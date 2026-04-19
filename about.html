@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Kristy Davis — retired U.S. Navy veteran, NNA Certified Notary Signing Agent, and founder of Notarized By Kristy LLC in Cibolo, TX.">
+  <title>About | Notarized By Kristy LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#1B3A6B;--navy-dark:#0f2444;--gold:#C8972A;--gold-light:#dba93a;--gold-pale:#f5e9cc;--cream:#FAF8F3;--white:#fff;--gray-100:#f2f2f0;--gray-300:#d0cfc8;--gray-500:#888880;--gray-700:#444440}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Jost',sans-serif;color:var(--gray-700);background:var(--cream);line-height:1.65;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(15,36,68,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,151,42,.3);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--gold);letter-spacing:.5px;line-height:1.15}
+    .nav-logo-sub{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;display:block}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .nav-cta{background:var(--gold)!important;color:var(--navy-dark)!important;padding:9px 20px;border-radius:3px;font-weight:600!important}
+    .hamburger{display:none;cursor:pointer}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--gold);margin:5px 0}
+    .mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--navy-dark);padding:20px 5% 30px;z-index:999;border-bottom:2px solid var(--gold)}
+    .mobile-menu.open{display:block}
+    .mobile-menu a{display:block;color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .page-hero{background:linear-gradient(160deg,var(--navy-dark) 0%,var(--navy) 100%);padding:130px 5% 70px;position:relative;overflow:hidden}
+    .page-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+    .breadcrumb{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px}
+    .breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,68px);font-weight:700;color:#fff;line-height:1.08;margin-bottom:16px}
+    .page-hero h1 em{color:var(--gold);font-style:italic}
+    .page-hero p{font-size:17px;color:rgba(255,255,255,.65);max-width:580px;line-height:1.75}
+    section{padding:80px 5%}
+    .section-inner{max-width:1100px;margin:0 auto}
+    .section-label{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(--navy-dark);line-height:1.1;margin-bottom:16px}
+    .section-title em{color:var(--gold);font-style:italic}
+    .body-text{font-size:15px;color:var(--gray-700);line-height:1.85;margin-bottom:18px}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+
+    /* ABOUT */
+    .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+    .cred-box{background:var(--navy-dark);padding:18px 20px;border-radius:4px;border-left:3px solid var(--gold)}
+    .cred-box-title{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.5px;margin-bottom:4px}
+    .cred-box-body{font-size:13px;color:rgba(255,255,255,.65);line-height:1.5}
+    .stat-row{display:flex;gap:32px;margin:32px 0;flex-wrap:wrap}
+    .stat-item{text-align:center}
+    .stat-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:700;color:var(--navy-dark);line-height:1}
+    .stat-lbl{font-size:12px;color:var(--gray-500);text-transform:uppercase;letter-spacing:.5px}
+    .navy-box{background:var(--navy-dark);border-radius:8px;padding:36px;color:#fff}
+    .navy-box-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--gold);margin-bottom:16px}
+    .navy-box p{font-size:14px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:12px}
+    .navy-box p:last-child{margin-bottom:0}
+
+    /* FAQ */
+    .faq-section{background:var(--white)}
+    .faq-item{border-bottom:1px solid var(--gray-100);padding:0}
+    .faq-btn{width:100%;text-align:left;background:none;border:none;padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .faq-q{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--navy-dark)}
+    .faq-icon{font-size:20px;color:var(--gold);flex-shrink:0;transition:transform .3s}
+    .faq-icon.open{transform:rotate(45deg)}
+    .faq-a{font-size:14px;color:var(--gray-700);line-height:1.8;padding-bottom:18px;display:none}
+    .faq-a.open{display:block}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+    .contact-box{background:var(--navy-dark);border-radius:8px;padding:32px;margin-bottom:16px;color:#fff}
+    .contact-box-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+    .contact-box-val{font-size:18px;font-weight:600;color:#fff}
+    .contact-box-val a{color:#fff;text-decoration:none}
+    .contact-box-val a:hover{color:var(--gold)}
+    .contact-form{display:flex;flex-direction:column;gap:14px}
+    .form-field{display:flex;flex-direction:column;gap:5px}
+    .form-field label{font-size:11px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:.5px}
+    .form-field input,.form-field select,.form-field textarea{background:var(--gray-100);border:1.5px solid var(--gray-300);border-radius:4px;padding:11px 13px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy-dark);transition:border-color .2s}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--gold)}
+    .form-field textarea{min-height:100px;resize:vertical}
+    .btn-gold-full{background:var(--gold);color:var(--navy-dark);border:none;border-radius:4px;padding:14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:background .2s;text-transform:uppercase}
+    .btn-gold-full:hover{background:var(--gold-light)}
+
+    /* BOOK */
+    .book-section{background:var(--navy-dark)}
+    .book-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:40px}
+    .book-card{background:rgba(255,255,255,.05);border:1px solid rgba(200,151,42,.2);border-radius:6px;padding:28px 24px;text-decoration:none;color:inherit;transition:background .2s;display:block}
+    .book-card:hover{background:rgba(200,151,42,.1)}
+    .book-card-icon{font-size:32px;margin-bottom:14px}
+    .book-card-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:8px}
+    .book-card-desc{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:16px}
+    .book-card-price{font-size:12px;font-weight:700;color:var(--gold);letter-spacing:.5px}
+    .book-card-link{display:inline-block;margin-top:14px;font-size:12px;font-weight:700;color:var(--gold);letter-spacing:1px;text-transform:uppercase}
+
+    .btn-gold{display:inline-block;background:var(--gold);color:var(--navy-dark);text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:13px 28px;border-radius:3px;margin:6px;transition:all .2s}
+    .btn-gold:hover{background:var(--gold-light)}
+    .btn-navy{display:inline-block;background:var(--navy-dark);color:#fff;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:14px 32px;border-radius:3px;margin:6px;transition:background .2s}
+
+    footer{background:var(--navy-dark);padding:50px 5% 28px;color:rgba(255,255,255,.5)}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-brand{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);margin-bottom:10px}
+    .footer-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-bottom:20px}
+    .footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){.two-col,.contact-grid,.cred-grid{grid-template-columns:1fr;gap:28px}.nav-links{display:none}.hamburger{display:block}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/index.html" class="nav-logo">
+    <span style="font-size:22px">⚓</span>
+    <div><span class="nav-logo-text">Notarized By Kristy</span><span class="nav-logo-sub">LLC · Cibolo, TX</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/apostille.html">Apostille</a></li>
+    <li><a href="/about.html" class="active">About</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="/book.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/index.html">Home</a><a href="/services.html">Services</a><a href="/apostille.html">Apostille</a><a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a>
+  <a href="/book.html" style="color:var(--gold);font-weight:700">Book Now →</a>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="about">
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="/index.html">Home</a> › About</div>
+    <h1>About <em>Kristy</em></h1>
+    <p>Retired U.S. Navy veteran. Texas-commissioned notary. Business owner. 21+ years of service — and the same standard applied to every appointment.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-inner">
+    <div class="two-col reveal">
+      <div>
+        <div class="section-label">The Story</div>
+        <h2 class="section-title">Service Was Never<br><em>Just a Job</em></h2>
+        <p class="body-text">Kristy Davis served 21+ years in the United States Navy before retiring and building Notarized By Kristy LLC from the ground up in Cibolo, Texas. The transition from military service to business ownership wasn't a departure from discipline — it was a direct application of it.</p>
+        <p class="body-text">Every appointment reflects the same standard: show up prepared, execute accurately, communicate clearly, and never cut corners. That's not a mission statement. It's how the work gets done.</p>
+        <p class="body-text">With over 2,000 completed notarizations, Notarized By Kristy LLC serves individual clients, law firms, title companies, lenders, and government agencies across the San Antonio metro and statewide via Remote Online Notarization.</p>
+        <div class="stat-row">
+          <div class="stat-item"><div class="stat-num">21+</div><div class="stat-lbl">Years Navy</div></div>
+          <div class="stat-item"><div class="stat-num">2,000+</div><div class="stat-lbl">Signings</div></div>
+          <div class="stat-item"><div class="stat-num">3</div><div class="stat-lbl">Counties Mobile</div></div>
+          <div class="stat-item"><div class="stat-num">50</div><div class="stat-lbl">States via RON</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="navy-box">
+          <div class="navy-box-title">⚓ The Military Standard</div>
+          <p>In the Navy, you don't get a second chance to execute a mission wrong. Documents matter. Accuracy matters. Timing matters. Showing up ready matters.</p>
+          <p>That's the same standard applied to every notarial act — whether it's a routine acknowledgment or a complex estate package at a hospital bedside. The job gets done right.</p>
+          <p>Clients trust Notarized By Kristy LLC because the work is consistent, the communication is clear, and there are no surprises on the back end.</p>
+        </div>
+        <div class="cred-grid" style="margin-top:16px">
+          <div class="cred-box"><div class="cred-box-title">NNA Certified</div><div class="cred-box-body">Notary Signing Agent — nationally certified</div></div>
+          <div class="cred-box"><div class="cred-box-title">BBB Accredited</div><div class="cred-box-body">Better Business Bureau accredited business</div></div>
+          <div class="cred-box"><div class="cred-box-title">E&O Insured</div><div class="cred-box-body">Errors & omissions insurance current</div></div>
+          <div class="cred-box"><div class="cred-box-title">SAM.gov</div><div class="cred-box-body">Federal contractor registered</div></div>
+          <div class="cred-box"><div class="cred-box-title">SDVOSB</div><div class="cred-box-body">Service-Disabled Veteran-Owned Small Business</div></div>
+          <div class="cred-box"><div class="cred-box-title">WOSB · VOSB</div><div class="cred-box-body">Women-Owned & Veteran-Owned certified</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FAQ PAGE -->
+<div id="faq">
+<section class="faq-section">
+  <div class="section-inner">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Frequently Asked<br><em>Questions</em></h2>
+
+    <div style="margin-top:36px" class="reveal">
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What notary services do you offer?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">We offer general notary work, loan signings, estate planning documents, Remote Online Notarization (RON), mobile notary, apostille coordination, I-9 verification, healthcare notary, and specialty services including correctional facility visits and structured settlements.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What areas do you serve for mobile notary?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">We provide mobile notary services across Bexar, Guadalupe, and Comal counties — including San Antonio, Cibolo, Schertz, Universal City, Converse, New Braunfels, and Seguin. Extended travel is available by arrangement. RON is available statewide and nationwide.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">How do I book an appointment?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">You can book online through the Book Now page, call 210-628-9991, or email info@notarizedbykristy.com. Same-day appointments are available when scheduling permits. After booking you'll receive a confirmation with preparation instructions.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What do I need to bring to a notary appointment?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Bring a valid government-issued photo ID (driver's license, passport, or military ID) and the documents that need to be notarized. Do not sign the documents beforehand — signatures must be made in the notary's presence. If witnesses are required, arrange for them in advance or contact us to coordinate.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What do I need for a Remote Online Notarization (RON) session?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">You need a reliable internet connection, a device with a camera and microphone (smartphone, tablet, or computer), a government-issued ID, and your documents uploaded to the platform in advance. We'll send you a link with instructions before your session.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What are your hours?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Appointments are available Monday through Saturday with flexible hours including evenings. Contact us for same-day availability. We work around your schedule — not a 9-to-5 window.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What is the notary fee in Texas?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Texas notary fees are $10 per notarized signature. Additional fees apply for travel, RON sessions, and specialized services. All pricing is transparent and provided before your appointment — no surprises.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What payment methods do you accept?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">We accept cash, credit/debit cards, and electronic payments including PayPal, Venmo, Zelle, Google Pay, and Apple Pay.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">What is your cancellation policy?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Appointments are time-reserved professional services. Cancellations or reschedules made within 2 hours of the scheduled appointment may result in applicable service or travel fees. No-shows are subject to the full reserved service fee.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" onclick="toggleFaq(this)">
+          <span class="faq-q">Do you work with title companies and law firms?</span><span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Yes — we regularly partner with title companies, mortgage lenders, and law firms for loan signings, legal document execution, and managed signing network services. Contact us to discuss volume pricing and partnership arrangements.</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="contact">
+<section>
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Get In <em>Touch</em></h2>
+    <div class="contact-grid reveal">
+      <div>
+        <div class="contact-box" style="margin-bottom:14px">
+          <div class="contact-box-label">Phone</div>
+          <div class="contact-box-val"><a href="tel:2106289991">210-628-9991</a></div>
+        </div>
+        <div class="contact-box" style="margin-bottom:14px">
+          <div class="contact-box-label">Email</div>
+          <div class="contact-box-val"><a href="mailto:info@notarizedbykristy.com">info@notarizedbykristy.com</a></div>
+        </div>
+        <div class="contact-box" style="margin-bottom:14px">
+          <div class="contact-box-label">Location</div>
+          <div class="contact-box-val" style="font-size:15px">Cibolo, TX<br><span style="font-size:13px;color:rgba(255,255,255,.5)">Serving Bexar, Guadalupe & Comal counties<br>Nationwide via RON</span></div>
+        </div>
+        <div class="contact-box">
+          <div class="contact-box-label">Hours</div>
+          <div class="contact-box-val" style="font-size:15px">Mon–Sat by Appointment<br><span style="font-size:13px;color:rgba(255,255,255,.5)">Evening & weekend availability<br>Same-day when possible</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Send a Message</div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-field"><label>Your Name</label><input type="text" placeholder="Full name" required></div>
+          <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+          <div class="form-field"><label>Phone</label><input type="tel" placeholder="210-000-0000"></div>
+          <div class="form-field">
+            <label>Service Needed</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Remote Online Notarization (RON)</option>
+              <option>Mobile Notary</option>
+              <option>Loan Signing / Real Estate Closing</option>
+              <option>Apostille & Authentication</option>
+              <option>Legal & Estate Documents</option>
+              <option>Healthcare Notary</option>
+              <option>Specialty / Government</option>
+              <option>Not Sure — Need Guidance</option>
+            </select>
+          </div>
+          <div class="form-field"><label>Message</label><textarea placeholder="Tell us what you need, when, and any relevant details..."></textarea></div>
+          <button type="submit" class="btn-gold-full">Send Message →</button>
+        </form>
+        <p style="font-size:12px;color:var(--gray-500);margin-top:10px">We respond within one business day. For urgent requests, call directly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- BOOK PAGE -->
+<div id="book">
+<section class="book-section">
+  <div class="section-inner">
+    <div class="section-label" style="color:var(--gold)">Book Online</div>
+    <h2 class="section-title" style="color:#fff">Choose Your <em>Service</em></h2>
+    <p style="color:rgba(255,255,255,.6);font-size:15px;max-width:560px;margin-bottom:8px">Select the service you need below. After booking you'll receive a confirmation with preparation instructions and next steps.</p>
+    <div class="book-grid reveal">
+      <div class="book-card">
+        <div class="book-card-icon">💻</div>
+        <div class="book-card-title">Remote Online Notarization</div>
+        <p class="book-card-desc">Secure RON session from anywhere. Audio-video verified, tamper-evident, and audit-ready.</p>
+        <div class="book-card-price">From $50 per session</div>
+        <a href="mailto:info@notarizedbykristy.com?subject=RON Booking Request" class="book-card-link">Request RON Session →</a>
+      </div>
+      <div class="book-card">
+        <div class="book-card-icon">🚗</div>
+        <div class="book-card-title">Mobile Notary</div>
+        <p class="book-card-desc">We come to you — home, office, hospital, or any location in Bexar, Guadalupe, or Comal county.</p>
+        <div class="book-card-price">From $75 · flat-rate pricing</div>
+        <a href="mailto:info@notarizedbykristy.com?subject=Mobile Notary Booking Request" class="book-card-link">Request Mobile Visit →</a>
+      </div>
+      <div class="book-card">
+        <div class="book-card-icon">🏠</div>
+        <div class="book-card-title">Real Estate & Loan Signing</div>
+        <p class="book-card-desc">NNA Certified Signing Agent for purchases, refinances, HELOCs, and seller packages.</p>
+        <div class="book-card-price">From $150 per closing</div>
+        <a href="mailto:info@notarizedbykristy.com?subject=Loan Signing Booking Request" class="book-card-link">Schedule a Closing →</a>
+      </div>
+      <div class="book-card">
+        <div class="book-card-icon">🌐</div>
+        <div class="book-card-title">Apostille & Authentication</div>
+        <p class="book-card-desc">Texas SOS apostille coordination start to finish — including international shipping.</p>
+        <div class="book-card-price">From $150 · all-inclusive</div>
+        <a href="mailto:info@notarizedbykristy.com?subject=Apostille Service Request" class="book-card-link">Request Apostille →</a>
+      </div>
+      <div class="book-card">
+        <div class="book-card-icon">⚖️</div>
+        <div class="book-card-title">Legal & Estate Documents</div>
+        <p class="book-card-desc">Wills, POAs, trusts, healthcare directives. Mobile or RON. Bedside service available.</p>
+        <div class="book-card-price">Contact for pricing</div>
+        <a href="mailto:info@notarizedbykristy.com?subject=Legal Document Signing Request" class="book-card-link">Contact for Booking →</a>
+      </div>
+      <div class="book-card">
+        <div class="book-card-icon">🎖️</div>
+        <div class="book-card-title">Specialty & Government</div>
+        <p class="book-card-desc">I-9 verification, correctional facility visits, federal document support, corporate docs.</p>
+        <div class="book-card-price">Contact for pricing</div>
+        <a href="mailto:info@notarizedbykristy.com?subject=Specialty Service Request" class="book-card-link">Discuss Your Needs →</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px">
+      <p style="color:rgba(255,255,255,.5);font-size:14px;margin-bottom:16px">Prefer to call or email directly?</p>
+      <a href="tel:2106289991" class="btn-gold">📞 Call 210-628-9991</a>
+      <a href="mailto:info@notarizedbykristy.com" class="btn-gold">✉️ Email Us</a>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚓ Notarized By Kristy LLC</div>
+    <div class="footer-links">
+      <a href="/index.html">Home</a><a href="/services.html">Services</a><a href="/apostille.html">Apostille</a><a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a><a href="/book.html">Book Online</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Notarized By Kristy LLC. All rights reserved.</span>
+      <span>info@notarizedbykristy.com · 210-628-9991 · Cibolo, TX</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function toggleFaq(btn){
+  const icon=btn.querySelector('.faq-icon');
+  const answer=btn.nextElementSibling;
+  const isOpen=answer.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen){answer.classList.add('open');icon.classList.add('open')}
+}
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button');
+  btn.textContent='✓ Message Sent!';
+  btn.style.background='#1a7a4a';
+  setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset()},3000);
+}
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
