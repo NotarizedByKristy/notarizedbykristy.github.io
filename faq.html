@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Frequently asked questions about Notarized By Kristy LLC — mobile notary, RON, apostille, loan signings, pricing, and scheduling in San Antonio, TX.">
+  <title>FAQ | Notarized By Kristy LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#1B3A6B;--navy-dark:#0f2444;--gold:#C8972A;--gold-light:#dba93a;--cream:#FAF8F3;--white:#fff;--gray-100:#f2f2f0;--gray-500:#888880;--gray-700:#444440}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Jost',sans-serif;color:var(--gray-700);background:var(--cream);line-height:1.65;overflow-x:hidden}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(15,36,68,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,151,42,.3);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--gold);letter-spacing:.5px;line-height:1.15}
+    .nav-logo-sub{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;display:block}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .nav-cta{background:var(--gold)!important;color:var(--navy-dark)!important;padding:9px 20px;border-radius:3px;font-weight:600!important}
+    .hamburger{display:none;cursor:pointer}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--gold);margin:5px 0}
+    .mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--navy-dark);padding:20px 5% 30px;z-index:999;border-bottom:2px solid var(--gold)}
+    .mobile-menu.open{display:block}
+    .mobile-menu a{display:block;color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+    .page-hero{background:linear-gradient(160deg,var(--navy-dark) 0%,var(--navy) 100%);padding:130px 5% 70px}
+    .page-hero-inner{max-width:1100px;margin:0 auto}
+    .breadcrumb{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px}
+    .breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none}
+    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,68px);font-weight:700;color:#fff;line-height:1.08;margin-bottom:16px}
+    .page-hero h1 em{color:var(--gold);font-style:italic}
+    .page-hero p{font-size:17px;color:rgba(255,255,255,.65);max-width:580px;line-height:1.75}
+    section{padding:80px 5%}
+    .section-inner{max-width:800px;margin:0 auto}
+    .faq-category{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--navy-dark);margin:40px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--gold)}
+    .faq-category:first-child{margin-top:0}
+    .faq-item{border-bottom:1px solid var(--gray-100)}
+    .faq-btn{width:100%;text-align:left;background:none;border:none;padding:18px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .faq-q{font-size:16px;font-weight:600;color:var(--navy-dark);line-height:1.4}
+    .faq-icon{font-size:22px;color:var(--gold);flex-shrink:0;transition:transform .3s}
+    .faq-icon.open{transform:rotate(45deg)}
+    .faq-a{font-size:14px;color:var(--gray-700);line-height:1.8;padding-bottom:18px;display:none}
+    .faq-a.open{display:block}
+    .cta-strip{background:var(--gold);padding:60px 5%;text-align:center}
+    .cta-strip h2{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;color:var(--navy-dark);margin-bottom:12px}
+    .cta-strip p{font-size:15px;color:rgba(15,36,68,.7);margin-bottom:24px}
+    .btn-navy{display:inline-block;background:var(--navy-dark);color:#fff;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:13px 28px;border-radius:3px;margin:5px;transition:background .2s}
+    .btn-navy:hover{background:var(--navy)}
+    footer{background:var(--navy-dark);padding:50px 5% 28px;color:rgba(255,255,255,.5)}
+    .footer-inner{max-width:1100px;margin:0 auto}
+    .footer-brand{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);margin-bottom:10px}
+    .footer-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-bottom:20px}
+    .footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+    @media(max-width:768px){.nav-links{display:none}.hamburger{display:block}}
+  </style>
+</head>
+<body>
+<nav>
+  <a href="/index.html" class="nav-logo">
+    <span style="font-size:22px">⚓</span>
+    <div><span class="nav-logo-text">Notarized By Kristy</span><span class="nav-logo-sub">LLC · Cibolo, TX</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/services.html">Services</a></li><li><a href="/apostille.html">Apostille</a></li>
+    <li><a href="/about.html">About</a></li><li><a href="/faq.html" class="active">FAQ</a></li>
+    <li><a href="/contact.html">Contact</a></li><li><a href="/book.html" class="nav-cta">Book Now</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/index.html">Home</a><a href="/services.html">Services</a><a href="/apostille.html">Apostille</a>
+  <a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a>
+  <a href="/book.html" style="color:var(--gold);font-weight:700">Book Now →</a>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="/index.html">Home</a> › FAQ</div>
+    <h1>Frequently Asked <em>Questions</em></h1>
+    <p>Everything you need to know before your appointment — services, scheduling, pricing, and what to bring.</p>
+  </div>
+</div>
+
+<section>
+  <div class="section-inner">
+    <div class="faq-category">Services</div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What notary services do you offer?</span><span class="faq-icon">+</span></button><div class="faq-a">We offer general notary work, loan signings, estate planning documents, Remote Online Notarization (RON), mobile notary, apostille coordination, I-9 verification, healthcare notary, and specialty services including correctional facility visits and structured settlements.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What areas do you serve for mobile notary?</span><span class="faq-icon">+</span></button><div class="faq-a">We serve Bexar, Guadalupe, and Comal counties — including San Antonio, Cibolo, Schertz, Universal City, Converse, New Braunfels, and Seguin. Extended travel is available by arrangement. RON is available statewide and nationwide.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Do you work with title companies and law firms?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes — we regularly partner with title companies, mortgage lenders, and law firms for loan signings, legal document execution, and managed signing network services. Contact us to discuss volume pricing and partnership arrangements.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Can you notarize documents for clients outside of Texas?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes — through Remote Online Notarization (RON), we can notarize documents for clients located anywhere in the United States. International clients can also be served via RON for qualifying documents.</div></div>
+
+    <div class="faq-category">Appointments & Scheduling</div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How do I book an appointment?</span><span class="faq-icon">+</span></button><div class="faq-a">Book online through the Book Now page, call 210-628-9991, or email info@notarizedbykristy.com. Same-day appointments are available when scheduling permits. After booking you'll receive a confirmation with preparation instructions.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What are your hours?</span><span class="faq-icon">+</span></button><div class="faq-a">Appointments are available Monday through Saturday with flexible hours including evenings. Contact us for same-day availability.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What is your cancellation policy?</span><span class="faq-icon">+</span></button><div class="faq-a">Cancellations or reschedules made within 2 hours of the scheduled appointment may result in applicable service or travel fees. No-shows are subject to the full reserved service fee.</div></div>
+
+    <div class="faq-category">What to Bring</div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What do I need to bring to a notary appointment?</span><span class="faq-icon">+</span></button><div class="faq-a">Bring a valid government-issued photo ID (driver's license, passport, or military ID) and the documents to be notarized. Do not sign the documents beforehand — signatures must be made in the notary's presence.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What do I need for a RON session?</span><span class="faq-icon">+</span></button><div class="faq-a">A reliable internet connection, a device with camera and microphone, a valid government-issued ID, and your documents uploaded in advance. We'll send a link with full instructions before your session.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Do some documents require witnesses?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes — documents like wills and powers of attorney may require witnesses. Contact us in advance if your document requires witnesses so we can make arrangements.</div></div>
+
+    <div class="faq-category">Pricing & Payment</div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What is the notary fee in Texas?</span><span class="faq-icon">+</span></button><div class="faq-a">Texas notary fees are $10 per notarized signature by law. Additional fees apply for travel, RON sessions, and specialized services. All pricing is transparent and provided upfront.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">What payment methods do you accept?</span><span class="faq-icon">+</span></button><div class="faq-a">Cash, credit/debit cards, PayPal, Venmo, Zelle, Google Pay, and Apple Pay.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Do you offer volume or corporate pricing?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes. We work with law firms, title companies, and businesses needing bulk or repeat notarizations. Contact us for corporate package and managed signing network pricing.</div></div>
+
+    <div class="faq-category">Apostille</div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">How long does the apostille process take?</span><span class="faq-icon">+</span></button><div class="faq-a">Standard processing through the Texas Secretary of State takes 5–10 business days after we receive your documents. Rush options available. International shipping adds additional transit time.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Does my document need to be notarized before apostille?</span><span class="faq-icon">+</span></button><div class="faq-a">It depends on the document type. Vital records (birth, marriage certificates) typically do not. Private documents like affidavits and POAs typically do. We review this with you before submission.</div></div>
+    <div class="faq-item"><button class="faq-btn" onclick="toggleFaq(this)"><span class="faq-q">Can you help if I'm outside Texas or the U.S.?</span><span class="faq-icon">+</span></button><div class="faq-a">Yes. If your document was issued in Texas, we can coordinate the apostille from anywhere. RON is available for any notarization needed, and we ship internationally via DHL.</div></div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div style="max-width:800px;margin:0 auto">
+    <h2>Still Have Questions?</h2>
+    <p>Call, email, or send a message — we respond within one business day.</p>
+    <a href="/contact.html" class="btn-navy">Contact Us</a>
+    <a href="tel:2106289991" class="btn-navy">Call 210-628-9991</a>
+    <a href="/book.html" class="btn-navy">Book Now</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚓ Notarized By Kristy LLC</div>
+    <div class="footer-links">
+      <a href="/index.html">Home</a><a href="/services.html">Services</a><a href="/apostille.html">Apostille</a>
+      <a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a><a href="/book.html">Book Online</a>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Notarized By Kristy LLC. All rights reserved.</span>
+      <span>info@notarizedbykristy.com · 210-628-9991 · Cibolo, TX</span>
+    </div>
+  </div>
+</footer>
+<script>
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  function toggleFaq(btn){
+    const icon=btn.querySelector('.faq-icon'),answer=btn.nextElementSibling,isOpen=answer.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(a=>a.classList.remove('open'));
+    document.querySelectorAll('.faq-icon.open').forEach(i=>i.classList.remove('open'));
+    if(!isOpen){answer.classList.add('open');icon.classList.add('open')}
+  }
+</script>
+</body>
+</html>
