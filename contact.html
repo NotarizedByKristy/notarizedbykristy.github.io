@@ -119,18 +119,22 @@
       <div>
         <div class="form-card">
           <div class="form-title">Send a Message</div>
-          <form class="contact-form" onsubmit="handleSubmit(event)">
+          <form class="contact-form" id="contactForm">
+            <input type="hidden" name="access_key" value="a3c6f4ed-406c-4167-90de-8d815ba16898">
+            <input type="hidden" name="subject" value="New Contact — Texas Notary Kristy Website">
+            <input type="hidden" name="from_name" value="Texas Notary Kristy Website">
+            <input type="checkbox" name="botcheck" style="display:none">
             <div class="form-row">
-              <div class="form-field"><label>First Name</label><input type="text" placeholder="First name" required></div>
-              <div class="form-field"><label>Last Name</label><input type="text" placeholder="Last name" required></div>
+              <div class="form-field"><label>First Name</label><input type="text" name="first_name" placeholder="First name" required></div>
+              <div class="form-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Last name" required></div>
             </div>
             <div class="form-row">
-              <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
-              <div class="form-field"><label>Phone</label><input type="tel" placeholder="210-000-0000"></div>
+              <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
+              <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="210-000-0000"></div>
             </div>
             <div class="form-field">
               <label>Service Needed</label>
-              <select>
+              <select name="service">
                 <option value="">Select a service...</option>
                 <option>Remote Online Notarization (RON)</option>
                 <option>Mobile Notary</option>
@@ -143,8 +147,9 @@
                 <option>Not Sure — Need Guidance</option>
               </select>
             </div>
-            <div class="form-field"><label>Message</label><textarea placeholder="Tell us what you need, when, and any relevant details..."></textarea></div>
-            <button type="submit" class="btn-submit">Send Message →</button>
+            <div class="form-field"><label>Message</label><textarea name="message" placeholder="Tell us what you need, when, and any relevant details..." required></textarea></div>
+            <button type="submit" class="btn-submit" id="contactSubmitBtn">Send Message →</button>
+            <div id="contactResult" style="display:none;padding:12px;border-radius:4px;font-size:14px;text-align:center;margin-top:4px"></div>
             <p class="form-note">We respond within one business day. For urgent requests, please call directly at 210-628-9991.</p>
           </form>
         </div>
@@ -168,12 +173,51 @@
 </footer>
 <script>
   function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
-  function handleSubmit(e){
+
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn=e.target.querySelector('button');
-    btn.textContent='✓ Message Sent!';btn.style.background='#1a7a4a';
-    setTimeout(()=>{btn.textContent='Send Message →';btn.style.background='';e.target.reset()},3500)
-  }
+    const btn = document.getElementById('contactSubmitBtn');
+    const result = document.getElementById('contactResult');
+    btn.textContent = '⏳ Sending...';
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: json
+      });
+      const data = await response.json();
+      if (data.success) {
+        result.style.display = 'block';
+        result.style.background = '#e8f8ef';
+        result.style.color = '#1a7a4a';
+        result.textContent = '✓ Message sent! We\'ll respond within one business day.';
+        btn.textContent = '✓ Sent!';
+        btn.style.background = '#1a7a4a';
+        this.reset();
+        setTimeout(() => {
+          btn.textContent = 'Send Message →';
+          btn.style.background = '';
+          btn.disabled = false;
+          result.style.display = 'none';
+        }, 5000);
+      } else {
+        throw new Error('Failed');
+      }
+    } catch(err) {
+      result.style.display = 'block';
+      result.style.background = '#fdeaea';
+      result.style.color = '#c0392b';
+      result.textContent = '⚠️ Something went wrong. Please call 210-628-9991 or email info@notarizedbykristy.com directly.';
+      btn.textContent = 'Send Message →';
+      btn.disabled = false;
+    }
+  });
 </script>
 </body>
 </html>
