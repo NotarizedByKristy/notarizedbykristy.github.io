@@ -171,6 +171,78 @@
   </div>
 </div>
 
+<div style="background:var(--navy-dark);padding:60px 5%">
+  <div class="section-inner">
+    <div style="max-width:680px;margin:0 auto">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Or Send a Booking Request</div>
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.5vw,38px);font-weight:700;color:#fff;margin-bottom:8px">Book via <em style="color:var(--gold);font-style:italic">Form</em></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,.55);margin-bottom:28px">Prefer not to use email? Fill this out and we'll contact you within one business day to confirm.</p>
+      <form id="bookingForm" style="display:flex;flex-direction:column;gap:14px">
+        <input type="hidden" name="access_key" value="a3c6f4ed-406c-4167-90de-8d815ba16898">
+        <input type="hidden" name="subject" value="New Booking Request — Texas Notary Kristy">
+        <input type="hidden" name="from_name" value="Texas Notary Kristy Booking">
+        <input type="checkbox" name="botcheck" style="display:none">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">First Name</label>
+            <input type="text" name="first_name" placeholder="First name" required style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Last Name</label>
+            <input type="text" name="last_name" placeholder="Last name" required style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%">
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Email</label>
+            <input type="email" name="email" placeholder="your@email.com" required style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Phone</label>
+            <input type="tel" name="phone" placeholder="210-000-0000" required style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%">
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Service Needed</label>
+          <select name="service" required style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%;-webkit-appearance:none">
+            <option value="">Select a service...</option>
+            <option>Remote Online Notarization (RON)</option>
+            <option>Mobile Notary</option>
+            <option>Loan Signing / Real Estate Closing</option>
+            <option>Apostille & Document Authentication</option>
+            <option>Legal & Estate Documents</option>
+            <option>Healthcare Notary</option>
+            <option>Specialty / Government Services</option>
+            <option>Not Sure — Need Guidance</option>
+          </select>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Preferred Date</label>
+            <input type="date" name="preferred_date" style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Preferred Time</label>
+            <select name="preferred_time" style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%;-webkit-appearance:none">
+              <option value="">Any time</option>
+              <option>Morning (8am–12pm)</option>
+              <option>Afternoon (12pm–4pm)</option>
+              <option>Evening (4pm–7pm)</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Additional Details</label>
+          <textarea name="message" placeholder="Location, document type, any special requirements..." rows="3" style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%;resize:vertical"></textarea>
+        </div>
+        <button type="submit" id="bookingSubmitBtn" style="background:linear-gradient(135deg,var(--gold),#e0aa3a);color:var(--navy-dark);border:none;border-radius:6px;padding:14px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.5px;text-transform:uppercase">Send Booking Request →</button>
+        <div id="bookingResult" style="display:none;padding:12px;border-radius:6px;font-size:14px;text-align:center"></div>
+        <p style="font-size:12px;color:rgba(255,255,255,.3);text-align:center">We'll confirm availability and pricing within one business day. For urgent requests call 210-628-9991.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
 <div class="prep-section">
   <div class="section-inner">
     <div class="section-label">Before Your Appointment</div>
@@ -211,6 +283,50 @@
 </footer>
 <script>
   function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+  document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('bookingSubmitBtn');
+    const result = document.getElementById('bookingResult');
+    btn.textContent = '⏳ Sending...';
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: json
+      });
+      const data = await response.json();
+      if (data.success) {
+        result.style.display = 'block';
+        result.style.background = 'rgba(26,122,74,0.2)';
+        result.style.color = '#4ecf7f';
+        result.style.border = '1px solid rgba(26,122,74,0.4)';
+        result.textContent = '✓ Booking request received! We\'ll confirm your appointment within one business day.';
+        btn.textContent = '✓ Request Sent!';
+        btn.style.background = '#1a7a4a';
+        this.reset();
+        setTimeout(() => {
+          btn.textContent = 'Send Booking Request →';
+          btn.style.background = '';
+          btn.disabled = false;
+          result.style.display = 'none';
+        }, 6000);
+      } else { throw new Error('Failed'); }
+    } catch(err) {
+      result.style.display = 'block';
+      result.style.background = 'rgba(192,57,43,0.2)';
+      result.style.color = '#e07070';
+      result.textContent = '⚠️ Something went wrong. Please call 210-628-9991 directly.';
+      btn.textContent = 'Send Booking Request →';
+      btn.disabled = false;
+    }
+  });
 </script>
 </body>
 </html>
