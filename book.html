@@ -45,7 +45,7 @@
     .book-card-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.15}
     .book-card-desc{font-size:14px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:16px;flex:1}
     .book-card-price{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:.3px;margin-bottom:18px}
-    .book-card-btn{display:inline-block;background:var(--gold);color:var(--navy-dark);text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:11px 20px;border-radius:3px;transition:background .2s;align-self:flex-start}
+    .book-card-btn{display:inline-block;background:var(--gold);color:var(--navy-dark);border:none;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:11px 20px;border-radius:3px;transition:background .2s;align-self:flex-start;cursor:pointer;font-family:'Jost',sans-serif;margin-top:14px}
     .book-card-btn:hover{background:var(--gold-light)}
 
     .direct-contact{background:rgba(255,255,255,.04);border:1px solid rgba(200,151,42,.2);border-radius:8px;padding:36px;margin-top:48px;text-align:center}
@@ -111,42 +111,42 @@
         <div class="book-card-title">Remote Online Notarization</div>
         <p class="book-card-desc">Secure RON session from anywhere in the U.S. Audio-video verified, tamper-evident, and audit-ready. No travel required.</p>
         <div class="book-card-price">From $25 · starting rate</div>
-        <a href="mailto:info@notarizedbykristy.com?subject=RON Session Request&body=Hello, I'd like to schedule a Remote Online Notarization session. Here are my details:%0A%0AName:%0ADate Needed:%0ADocument Type:%0APhone:" class="book-card-btn">Request RON Session</a>
+        <button class="book-card-btn" onclick="selectService('Remote Online Notarization (RON)')">Request RON Session</button>
       </div>
       <div class="book-card">
         <div class="book-card-icon">🚗</div>
         <div class="book-card-title">Mobile Notary</div>
         <p class="book-card-desc">We come to your home, office, hospital, or care facility. Flat-rate pricing across Bexar, Guadalupe, and Comal counties.</p>
         <div class="book-card-price">From $50 · starting rate</div>
-        <a href="mailto:info@notarizedbykristy.com?subject=Mobile Notary Request&body=Hello, I'd like to schedule a mobile notary visit. Here are my details:%0A%0AName:%0AAddress:%0ADate Needed:%0ADocument Type:%0APhone:" class="book-card-btn">Request Mobile Visit</a>
+        <button class="book-card-btn" onclick="selectService('Mobile Notary')">Request Mobile Visit</button>
       </div>
       <div class="book-card">
         <div class="book-card-icon">🏠</div>
         <div class="book-card-title">Real Estate & Loan Signing</div>
         <p class="book-card-desc">NNA Certified Signing Agent for purchases, refinances, HELOCs, seller packages, and more. Partnered with title companies across the metro.</p>
         <div class="book-card-price">From $150 · varies by transaction type</div>
-        <a href="mailto:info@notarizedbykristy.com?subject=Loan Signing Request&body=Hello, I'd like to schedule a loan signing. Here are my details:%0A%0AName:%0AProperty Address:%0AClosing Date:%0ATransaction Type:%0ATitle Company:%0APhone:" class="book-card-btn">Schedule a Closing</a>
+        <button class="book-card-btn" onclick="selectService('Loan Signing / Real Estate Closing')">Schedule a Closing</button>
       </div>
       <div class="book-card">
         <div class="book-card-icon">🌐</div>
         <div class="book-card-title">Apostille & Authentication</div>
         <p class="book-card-desc">Texas SOS apostille coordination from start to finish — document review, SOS submission, and international shipping included.</p>
         <div class="book-card-price">From $150 · all-inclusive · international from $475</div>
-        <a href="mailto:info@notarizedbykristy.com?subject=Apostille Service Request&body=Hello, I need apostille services. Here are my details:%0A%0AName:%0ADocument Type:%0ADestination Country:%0APhone:" class="book-card-btn">Request Apostille</a>
+        <button class="book-card-btn" onclick="selectService('Apostille & Document Authentication')">Request Apostille</button>
       </div>
       <div class="book-card">
         <div class="book-card-icon">⚖️</div>
         <div class="book-card-title">Legal & Estate Documents</div>
         <p class="book-card-desc">Wills, trusts, powers of attorney, healthcare directives. Mobile or RON. Bedside service at hospitals and care facilities available.</p>
         <div class="book-card-price">Contact for pricing · witness coordination available</div>
-        <a href="mailto:info@notarizedbykristy.com?subject=Legal Document Signing Request&body=Hello, I need notarization for legal/estate documents. Here are my details:%0A%0AName:%0ADocument Type:%0ALocation:%0ADate Needed:%0APhone:" class="book-card-btn">Contact for Booking</a>
+        <button class="book-card-btn" onclick="selectService('Legal & Estate Documents')">Contact for Booking</button>
       </div>
       <div class="book-card">
         <div class="book-card-icon">🎖️</div>
         <div class="book-card-title">Specialty & Government</div>
         <p class="book-card-desc">I-9 verification, correctional facility visits, structured settlements, federal document support, corporate resolutions.</p>
         <div class="book-card-price">Contact for pricing · SDVOSB certified</div>
-        <a href="mailto:info@notarizedbykristy.com?subject=Specialty Service Inquiry&body=Hello, I need specialty notary services. Here are my details:%0A%0AName:%0AService Needed:%0ADetails:%0APhone:" class="book-card-btn">Discuss Your Needs</a>
+        <button class="book-card-btn" onclick="selectService('Specialty / Government Services')">Discuss Your Needs</button>
       </div>
     </div>
 
@@ -171,7 +171,7 @@
   </div>
 </div>
 
-<div style="background:var(--navy-dark);padding:60px 5%">
+<div id="bookingFormSection" style="background:var(--navy-dark);padding:60px 5%">
   <div class="section-inner">
     <div style="max-width:680px;margin:0 auto">
       <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Or Send a Booking Request</div>
@@ -204,7 +204,7 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:5px">
           <label style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px">Service Needed</label>
-          <select name="service" required style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%;-webkit-appearance:none">
+          <select name="service" id="bookingServiceSelect" required style="background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);border-radius:6px;padding:10px 13px;font-family:'Jost',sans-serif;font-size:14px;color:#fff;width:100%;-webkit-appearance:none">
             <option value="">Select a service...</option>
             <option>Remote Online Notarization (RON)</option>
             <option>Mobile Notary</option>
@@ -283,6 +283,25 @@
 </footer>
 <script>
   function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+  function selectService(serviceName) {
+    // Pre-select the service in the dropdown
+    const select = document.getElementById('bookingServiceSelect');
+    if(select) {
+      for(let i = 0; i < select.options.length; i++) {
+        if(select.options[i].value === serviceName) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    // Scroll smoothly to the booking form
+    document.getElementById('bookingFormSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Brief highlight so user knows where to look
+    const form = document.getElementById('bookingFormSection');
+    form.style.outline = '2px solid var(--gold)';
+    setTimeout(() => form.style.outline = '', 2000);
+  }
 
   document.getElementById('bookingForm').addEventListener('submit', async function(e) {
     e.preventDefault();
