@@ -3,181 +3,196 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Texas Notary Kristy — professional mobile notary, Remote Online Notarization (RON), apostille, and loan signing services in San Antonio, Cibolo, Schertz, New Braunfels and Texas statewide. NNA Certified. Veteran-Owned.">
-  <meta name="keywords" content="notary San Antonio, mobile notary Cibolo, RON Texas, apostille Texas, loan signing agent, Texas Notary Kristy, veteran owned notary, Schertz notary, New Braunfels notary">
-  <meta property="og:title" content="Texas Notary Kristy | Mobile Notary & RON — San Antonio Metro">
-  <meta property="og:description" content="Professional mobile notary, RON, and apostille services. NNA Certified. Veteran-Owned. Serving San Antonio metro and statewide.">
+  <meta name="description" content="Texas Notary Kristy — professional mobile notary, Remote Online Notarization, apostille coordination, and loan signing services in San Antonio, Cibolo, and Texas statewide. NNA Certified. Veteran-Owned. BBB Accredited.">
+  <meta name="keywords" content="notary San Antonio, mobile notary Cibolo TX, RON Texas, apostille Texas, loan signing agent San Antonio, veteran owned notary Texas, Texas Notary Kristy">
+  <meta property="og:title" content="Texas Notary Kristy | Professional Notarial Services — San Antonio, TX">
+  <meta property="og:description" content="NNA Certified. Veteran-Owned. BBB Accredited. Mobile notary, RON, and apostille services across San Antonio and Texas statewide.">
   <meta property="og:url" content="https://www.texasnotarykristy.com">
-  <title>Texas Notary Kristy | Mobile Notary, RON & Apostille — San Antonio, TX</title>
+  <title>Texas Notary Kristy | Professional Notarial Services — San Antonio, TX</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy: #1B3A6B;
-      --navy-dark: #0f2444;
-      --navy-mid: #234d8a;
-      --gold: #C8972A;
-      --gold-light: #dba93a;
-      --gold-pale: #f5e9cc;
-      --cream: #FAF8F3;
-      --white: #ffffff;
-      --gray-100: #f2f2f0;
-      --gray-300: #d0cfc8;
-      --gray-500: #888880;
-      --gray-700: #444440;
-      --text: #1a1a18;
+      --navy:#1B3A6B; --navy-dark:#0d1f3c; --navy-mid:#1e4278;
+      --gold:#B8860B; --gold-light:#d4a017; --gold-pale:#f8f3e8;
+      --cream:#FAFAF7; --white:#ffffff;
+      --gray-50:#f8f8f6; --gray-100:#f0efe9; --gray-200:#e2e0d8;
+      --gray-400:#9c9a8e; --gray-600:#5c5a52; --gray-800:#2c2b25;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Jost', sans-serif; color: var(--text); background: var(--cream); line-height: 1.65; overflow-x: hidden; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Outfit',sans-serif;color:var(--gray-800);background:var(--cream);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
     /* NAV */
-    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(15,36,68,0.97); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(200,151,42,0.3); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px; }
-    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .nav-star { font-size: 20px; }
-    .nav-logo-text { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--gold); letter-spacing: 0.5px; line-height: 1.15; }
-    .nav-logo-sub { font-size: 9px; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; display: block; }
-    .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 12px; font-weight: 500; letter-spacing: 0.8px; text-transform: uppercase; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
-    .nav-cta { background: var(--gold) !important; color: var(--navy-dark) !important; padding: 9px 20px; border-radius: 3px; font-weight: 700 !important; }
-    .nav-cta:hover { background: var(--gold-light) !important; }
-    .hamburger { display: none; cursor: pointer; background: none; border: none; padding: 4px; }
-    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); margin: 5px 0; transition: 0.3s; }
-    .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--navy-dark); padding: 20px 5% 30px; z-index: 999; border-bottom: 2px solid var(--gold); }
-    .mobile-menu.open { display: block; }
-    .mobile-menu a { display: block; color: rgba(255,255,255,0.8); text-decoration: none; font-size: 15px; font-weight: 500; padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--navy-dark);border-bottom:1px solid rgba(184,134,11,.2);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:72px}
+    .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+    .nav-logo-mark{width:36px;height:36px;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .nav-logo-mark span{font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--gold);line-height:1}
+    .nav-logo-text{font-family:'EB Garamond',serif;font-size:16px;font-weight:600;color:var(--white);letter-spacing:.3px;line-height:1.2}
+    .nav-logo-sub{font-family:'Outfit',sans-serif;font-size:9px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:1px}
+    .nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover{color:var(--white)}
+    .nav-cta{color:var(--gold)!important;border:1px solid rgba(184,134,11,.5)!important;padding:8px 22px!important;font-weight:500!important;transition:all .2s!important}
+    .nav-cta:hover{background:var(--gold)!important;color:var(--navy-dark)!important;border-color:var(--gold)!important}
+    .hamburger{display:none;cursor:pointer;background:none;border:none;padding:4px}
+    .hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.6);margin:5px 0}
+    .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:var(--navy-dark);padding:24px 6% 32px;z-index:999;border-bottom:1px solid rgba(184,134,11,.15)}
+    .mobile-menu.open{display:block}
+    .mobile-menu a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:400;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.3px}
 
     /* HERO */
-    .hero { min-height: 100vh; background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4a7a 100%); display: flex; align-items: center; position: relative; overflow: hidden; padding: 120px 5% 80px; }
-    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 50%, rgba(200,151,42,0.07) 0%, transparent 65%); }
-    .hero::after { content: '★'; position: absolute; right: 2%; top: 50%; transform: translateY(-50%); font-size: clamp(180px, 26vw, 400px); opacity: 0.03; pointer-events: none; line-height: 1; }
-    .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(200,151,42,0.15); border: 1px solid rgba(200,151,42,0.4); color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 28px; animation: fadeUp 0.6s ease both; }
-    .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px, 6.5vw, 90px); font-weight: 700; color: var(--white); line-height: 1.04; margin-bottom: 12px; animation: fadeUp 0.6s 0.1s ease both; }
-    .hero h1 em { color: var(--gold); font-style: italic; }
-    .hero-tagline { font-family: 'Cormorant Garamond', serif; font-size: clamp(17px, 2.2vw, 24px); color: rgba(255,255,255,0.6); font-style: italic; margin-bottom: 28px; animation: fadeUp 0.6s 0.2s ease both; }
-    .hero-desc { font-size: 16px; color: rgba(255,255,255,0.68); max-width: 540px; margin-bottom: 40px; line-height: 1.8; animation: fadeUp 0.6s 0.3s ease both; }
-    .hero-btns { display: flex; flex-wrap: wrap; gap: 14px; animation: fadeUp 0.6s 0.4s ease both; }
-    .btn-gold { display: inline-block; background: var(--gold); color: var(--navy-dark); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 15px 32px; border-radius: 3px; transition: all 0.2s; }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
-    .btn-outline { display: inline-block; background: transparent; color: var(--white); text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 14px 32px; border: 1.5px solid rgba(255,255,255,0.35); border-radius: 3px; transition: all 0.2s; }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-    .hero-credentials { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 10px; animation: fadeUp 0.6s 0.5s ease both; }
-    .cred-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-size: 11px; font-weight: 500; letter-spacing: 0.5px; padding: 6px 12px; border-radius: 2px; }
+    .hero{min-height:100vh;background:var(--navy-dark);display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;padding-top:72px}
+    .hero-left{display:flex;flex-direction:column;justify-content:center;padding:80px 0 80px 6%;position:relative;z-index:1}
+    .hero-right{background:linear-gradient(160deg,var(--navy-mid) 0%,var(--navy) 100%);display:flex;flex-direction:column;justify-content:center;padding:80px 6% 80px 8%;position:relative}
+    .hero-right::before{content:'';position:absolute;left:0;top:10%;bottom:10%;width:1px;background:linear-gradient(to bottom,transparent,rgba(184,134,11,.25),transparent)}
+    .hero-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:12px}
+    .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
+    .hero h1{font-family:'EB Garamond',serif;font-size:clamp(40px,5.5vw,76px);font-weight:500;color:var(--white);line-height:1.08;letter-spacing:-.5px;margin-bottom:24px}
+    .hero h1 em{color:var(--gold);font-style:italic;font-weight:400}
+    .hero-desc{font-size:15px;font-weight:300;color:rgba(255,255,255,.5);max-width:480px;margin-bottom:44px;line-height:1.9;letter-spacing:.2px}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-primary{display:inline-block;background:var(--gold);color:var(--navy-dark);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:16px 36px;transition:all .25s}
+    .btn-primary:hover{background:var(--gold-light)}
+    .btn-secondary{display:inline-block;background:transparent;color:rgba(255,255,255,.65);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:15px 36px;border:1px solid rgba(255,255,255,.18);transition:all .25s}
+    .btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+    .credentials-panel{margin-top:52px;padding-top:36px;border-top:1px solid rgba(255,255,255,.07)}
+    .credentials-label{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px;font-weight:400}
+    .credentials-list{display:flex;flex-wrap:wrap;gap:7px}
+    .credential-tag{font-size:10px;font-weight:500;letter-spacing:.8px;color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.1);padding:5px 12px}
 
-    /* TRUST BAR */
-    .trust-bar { background: var(--gold); padding: 16px 5%; }
-    .trust-bar-inner { max-width: 1100px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 24px; }
-    .trust-item { font-size: 12px; font-weight: 700; color: var(--navy-dark); letter-spacing: 0.5px; text-transform: uppercase; }
-    .trust-sep { color: var(--navy-dark); opacity: 0.35; }
+    /* STATS PANEL */
+    .stats-panel{display:flex;flex-direction:column;gap:0}
+    .stat-item{padding:30px 0;border-bottom:1px solid rgba(255,255,255,.07)}
+    .stat-item:last-child{border-bottom:none}
+    .stat-number{font-family:'EB Garamond',serif;font-size:54px;font-weight:500;color:var(--white);line-height:1;margin-bottom:6px;letter-spacing:-1px}
+    .stat-number span{color:var(--gold)}
+    .stat-desc{font-size:13px;font-weight:300;color:rgba(255,255,255,.38);letter-spacing:.2px;line-height:1.5}
+
+    /* CREDENTIAL BAR */
+    .credential-bar{background:var(--navy);padding:16px 6%;border-bottom:1px solid rgba(184,134,11,.12)}
+    .credential-bar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+    .credential-bar-item{font-size:10px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:8px}
+    .credential-bar-item::before{content:'';width:3px;height:3px;background:var(--gold);border-radius:50%}
+    .credential-bar-divider{color:rgba(255,255,255,.08);font-size:18px}
 
     /* SECTIONS */
-    section { padding: 88px 5%; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label { font-size: 11px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-    .section-label::after { content: ''; flex: 0 0 28px; height: 1px; background: var(--gold); opacity: 0.5; }
-    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px, 4vw, 52px); font-weight: 700; color: var(--navy-dark); line-height: 1.1; margin-bottom: 16px; }
-    .section-title em { color: var(--gold); font-style: italic; }
-    .section-body { font-size: 16px; color: var(--gray-700); max-width: 600px; line-height: 1.8; }
+    section{padding:100px 6%}
+    .section-inner{max-width:1200px;margin:0 auto}
+    .section-header{margin-bottom:60px}
+    .section-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+    .section-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+    .section-title{font-family:'EB Garamond',serif;font-size:clamp(30px,3.5vw,50px);font-weight:500;color:var(--navy-dark);line-height:1.15;letter-spacing:-.3px}
+    .section-title em{color:var(--gold);font-style:italic}
+    .section-body{font-size:15px;font-weight:300;color:var(--gray-600);max-width:580px;line-height:1.85;margin-top:16px}
 
     /* SERVICES */
-    .services-section { background: var(--white); }
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2px; margin-top: 52px; border: 2px solid var(--navy-dark); }
-    .service-card { background: var(--white); padding: 34px 30px; border-right: 2px solid var(--navy-dark); border-bottom: 2px solid var(--navy-dark); text-decoration: none; color: inherit; transition: background 0.25s; position: relative; overflow: hidden; }
-    .service-card::before { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
-    .service-card:hover { background: var(--gold-pale); }
-    .service-card:hover::before { transform: scaleX(1); }
-    .service-icon { font-size: 28px; margin-bottom: 14px; display: block; }
-    .service-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--navy-dark); margin-bottom: 8px; line-height: 1.2; }
-    .service-price { font-size: 13px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
-    .service-desc { font-size: 14px; color: var(--gray-700); line-height: 1.7; margin-bottom: 16px; }
-    .service-link { font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: 0.8px; text-transform: uppercase; }
-    .service-link::after { content: ' →'; }
+    .services-section{background:var(--white)}
+    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--gray-200);border-left:1px solid var(--gray-200)}
+    .service-card{padding:42px 34px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);text-decoration:none;color:inherit;transition:background .3s;position:relative}
+    .service-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s ease}
+    .service-card:hover{background:var(--gold-pale)}
+    .service-card:hover::after{width:100%}
+    .service-number{font-family:'EB Garamond',serif;font-size:11px;font-weight:400;color:var(--gold);letter-spacing:2px;margin-bottom:26px;display:block}
+    .service-name{font-family:'EB Garamond',serif;font-size:21px;font-weight:600;color:var(--navy-dark);margin-bottom:10px;line-height:1.25}
+    .service-price{font-size:10px;font-weight:500;letter-spacing:1px;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+    .service-desc{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.75;margin-bottom:26px}
+    .service-link{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);display:flex;align-items:center;gap:8px}
+    .service-link::after{content:'→';transition:transform .2s}
+    .service-card:hover .service-link::after{transform:translateX(4px)}
+    .pricing-notice{margin-top:44px;padding:26px 34px;border-left:2px solid var(--gold);background:var(--gray-50)}
+    .pricing-notice p{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.85}
+    .pricing-notice strong{color:var(--gray-800);font-weight:500}
 
-    /* WHY */
-    .why-section { background: var(--navy-dark); }
-    .why-section .section-title { color: var(--white); }
-    .why-section .section-body { color: rgba(255,255,255,0.6); }
-    .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px; margin-top: 52px; }
-    .why-card { border-top: 2px solid var(--gold); padding-top: 24px; }
-    .why-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 700; color: rgba(200,151,42,0.2); line-height: 1; margin-bottom: 10px; }
-    .why-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 10px; }
-    .why-body { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.75; }
+    /* DISTINCTION */
+    .distinction-section{background:var(--cream)}
+    .distinction-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--gray-200);margin-top:60px}
+    .distinction-item{padding:48px 44px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);position:relative}
+    .distinction-num{font-family:'EB Garamond',serif;font-size:68px;font-weight:400;color:var(--gray-100);line-height:1;position:absolute;top:24px;right:28px;letter-spacing:-2px}
+    .distinction-rule{width:26px;height:1px;background:var(--gold);margin-bottom:18px}
+    .distinction-title{font-family:'EB Garamond',serif;font-size:21px;font-weight:600;color:var(--navy-dark);margin-bottom:12px;line-height:1.25}
+    .distinction-body{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.85}
 
-    /* ABOUT STRIP */
-    .about-strip { display: grid; grid-template-columns: 1fr 1fr; }
-    .about-text-side { padding: 90px 5%; background: var(--cream); display: flex; flex-direction: column; justify-content: center; }
-    .about-navy-side { background: var(--navy); padding: 90px 5%; display: flex; flex-direction: column; justify-content: center; }
-    .stat-block { margin-bottom: 36px; }
-    .stat-block:last-child { margin-bottom: 0; }
-    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 4px; }
-    .stat-label-text { font-size: 13px; color: rgba(255,255,255,0.55); font-weight: 400; }
+    /* ABOUT */
+    .about-section{background:var(--white)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}
+    .about-body{font-size:15px;font-weight:300;color:var(--gray-600);line-height:1.9;margin-bottom:16px}
+    .about-credentials{margin-top:40px;padding-top:32px;border-top:1px solid var(--gray-200);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .about-cred{padding:16px 18px;border:1px solid var(--gray-200);border-top:2px solid var(--navy)}
+    .about-cred-label{font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+    .about-cred-val{font-size:13px;font-weight:400;color:var(--gray-800)}
+    .about-panel{background:var(--navy-dark);padding:60px 48px}
+    .about-panel-title{font-size:10px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:44px}
+    .about-stat{margin-bottom:36px}
+    .about-stat:last-child{margin-bottom:0}
+    .about-stat-num{font-family:'EB Garamond',serif;font-size:50px;font-weight:500;color:var(--white);line-height:1;margin-bottom:4px}
+    .about-stat-num em{color:var(--gold);font-style:normal}
+    .about-stat-label{font-size:12px;font-weight:300;color:rgba(255,255,255,.35);letter-spacing:.3px}
 
     /* AREAS */
-    .area-section { background: var(--gray-100); }
-    .area-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; margin-top: 44px; }
-    .area-card { background: var(--white); border: 1px solid var(--gray-300); border-top: 3px solid var(--navy); padding: 22px 18px; transition: border-top-color 0.2s; }
-    .area-card:hover { border-top-color: var(--gold); }
-    .area-name { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--navy-dark); margin-bottom: 4px; }
-    .area-sub { font-size: 12px; color: var(--gray-500); }
-
-    /* PRICING NOTE */
-    .pricing-note { background: var(--white); border: 1px solid var(--gray-300); border-left: 4px solid var(--gold); padding: 20px 24px; margin-top: 48px; font-size: 14px; color: var(--gray-700); line-height: 1.7; max-width: 700px; }
-    .pricing-note strong { color: var(--navy-dark); }
+    .areas-section{background:var(--navy-dark)}
+    .areas-section .section-title{color:var(--white)}
+    .areas-section .section-body{color:rgba(255,255,255,.38)}
+    .areas-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(255,255,255,.07);border-left:1px solid rgba(255,255,255,.07);margin-top:44px}
+    .area-card{padding:30px 26px;border-right:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);transition:background .2s}
+    .area-card:hover{background:rgba(184,134,11,.05)}
+    .area-name{font-family:'EB Garamond',serif;font-size:19px;font-weight:500;color:var(--white);margin-bottom:6px}
+    .area-county{font-size:11px;font-weight:300;color:rgba(255,255,255,.28);letter-spacing:.3px}
 
     /* CTA */
-    .cta-section { background: linear-gradient(135deg, var(--gold) 0%, #b8820f 100%); text-align: center; padding: 80px 5%; }
-    .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 52px); font-weight: 700; color: var(--navy-dark); margin-bottom: 14px; }
-    .cta-section p { font-size: 16px; color: rgba(15,36,68,0.72); margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .btn-navy { display: inline-block; background: var(--navy-dark); color: var(--white); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 15px 32px; border-radius: 3px; margin: 6px; transition: background 0.2s; }
-    .btn-navy:hover { background: var(--navy); }
-    .btn-white { display: inline-block; background: transparent; color: var(--navy-dark); text-decoration: none; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 14px 32px; border: 2px solid var(--navy-dark); border-radius: 3px; margin: 6px; transition: all 0.2s; }
-    .btn-white:hover { background: var(--navy-dark); color: var(--white); }
+    .cta-section{background:var(--navy-dark);padding:100px 6%}
+    .cta-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:60px;align-items:center}
+    .cta-title{font-family:'EB Garamond',serif;font-size:clamp(30px,3.5vw,50px);font-weight:500;color:var(--white);line-height:1.15;margin-bottom:12px}
+    .cta-title em{color:var(--gold);font-style:italic}
+    .cta-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.75}
+    .cta-actions{display:flex;flex-direction:column;gap:12px;align-items:center;white-space:nowrap}
+    .btn-cta-primary{display:inline-block;background:var(--gold);color:var(--navy-dark);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:18px 40px;transition:background .2s;white-space:nowrap}
+    .btn-cta-primary:hover{background:var(--gold-light)}
+    .cta-contact{font-size:12px;font-weight:300;color:rgba(255,255,255,.3);text-align:center;width:100%}
+    .cta-contact a{color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+    .cta-contact a:hover{color:var(--gold)}
 
     /* FOOTER */
-    footer { background: var(--navy-dark); padding: 60px 5% 30px; color: rgba(255,255,255,0.55); }
-    .footer-inner { max-width: 1100px; margin: 0 auto; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 48px; }
-    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--gold); margin-bottom: 10px; }
-    .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.4); font-style: italic; margin-bottom: 18px; line-height: 1.6; }
-    .footer-contact a { display: block; color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; margin-bottom: 6px; transition: color 0.2s; }
-    .footer-contact a:hover { color: var(--gold); }
-    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; margin-bottom: 8px; transition: color 0.2s; }
-    .footer-col a:hover { color: var(--white); }
-    .footer-creds { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .footer-cred-tag { background: rgba(200,151,42,0.12); border: 1px solid rgba(200,151,42,0.25); color: rgba(200,151,42,0.8); font-size: 10px; font-weight: 600; letter-spacing: 0.5px; padding: 4px 10px; border-radius: 2px; }
-    .footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin-bottom: 22px; }
-    .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 12px; color: rgba(255,255,255,0.3); }
-    .footer-dba { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 6px; }
+    footer{background:#07111e;padding:72px 6% 36px;color:rgba(255,255,255,.35)}
+    .footer-inner{max-width:1200px;margin:0 auto}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;margin-bottom:60px}
+    .footer-brand{font-family:'EB Garamond',serif;font-size:18px;font-weight:500;color:var(--white);margin-bottom:10px}
+    .footer-tagline{font-size:13px;font-weight:300;color:rgba(255,255,255,.25);font-style:italic;margin-bottom:22px;line-height:1.6;letter-spacing:.2px}
+    .footer-contact-item{display:block;color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;font-weight:300;margin-bottom:7px;transition:color .2s}
+    .footer-contact-item:hover{color:var(--gold)}
+    .footer-creds-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:18px}
+    .footer-cred{font-size:9px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(184,134,11,.5);border:1px solid rgba(184,134,11,.18);padding:3px 9px}
+    .footer-col-title{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:18px}
+    .footer-col a{display:block;color:rgba(255,255,255,.35);text-decoration:none;font-size:13px;font-weight:300;margin-bottom:9px;transition:color .2s}
+    .footer-col a:hover{color:var(--white)}
+    .footer-rule{border:none;border-top:1px solid rgba(255,255,255,.05);margin-bottom:26px}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.2px}
+    .footer-dba{font-size:10px;color:rgba(255,255,255,.12)}
 
     /* ANIMATIONS */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    .hero-eyebrow{animation:fadeUp .7s ease both}
+    .hero h1{animation:fadeUp .7s .1s ease both}
+    .hero-desc{animation:fadeUp .7s .2s ease both}
+    .hero-actions{animation:fadeUp .7s .3s ease both}
+    .credentials-panel{animation:fadeUp .7s .4s ease both}
+    .hero-right{animation:fadeUp .7s .15s ease both}
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
 
     /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .about-strip { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-      .hamburger { display: block; }
-    }
-    @media (max-width: 600px) {
-      .footer-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-    }
+    @media(max-width:1024px){.hero{grid-template-columns:1fr;min-height:auto}.hero-right{display:none}.services-grid{grid-template-columns:1fr 1fr}.areas-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr;gap:48px}.distinction-grid{grid-template-columns:1fr}.cta-inner{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:40px}}
+    @media(max-width:768px){.nav-links{display:none}.hamburger{display:block}.services-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.about-credentials{grid-template-columns:1fr}section{padding:72px 6%}}
   </style>
 </head>
 <body>
 
 <nav>
   <a href="/index.html" class="nav-logo">
-    <span class="nav-star">⭐</span>
+    <div class="nav-logo-mark"><span>TK</span></div>
     <div>
       <span class="nav-logo-text">Texas Notary Kristy</span>
-      <span class="nav-logo-sub">Cibolo, TX · Serving San Antonio Metro</span>
+      <span class="nav-logo-sub">Cibolo, TX · Est. 2020</span>
     </div>
   </a>
   <ul class="nav-links">
@@ -186,7 +201,7 @@
     <li><a href="/about.html">About</a></li>
     <li><a href="/faq.html">FAQ</a></li>
     <li><a href="/contact.html">Contact</a></li>
-    <li><a href="/book.html" class="nav-cta">Book Now</a></li>
+    <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="nav-cta">Schedule</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -199,181 +214,226 @@
   <a href="/about.html">About</a>
   <a href="/faq.html">FAQ</a>
   <a href="/contact.html">Contact</a>
-  <a href="/book.html" style="color:var(--gold);font-weight:700">Book Now →</a>
+  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">⭐ Veteran-Owned · Women-Owned · Cibolo, TX</div>
-    <h1>Texas Notary <em>Done Right.</em><br>The First Time.<br>Every Time.</h1>
-    <p class="hero-tagline">Mobile Notary · Remote Online Notarization · Apostille · Loan Signings</p>
-    <p class="hero-desc">Professional notarial services backed by 21+ years of U.S. Navy discipline. Serving San Antonio, Cibolo, Schertz, New Braunfels, Seguin — and clients nationwide via RON.</p>
-    <div class="hero-btns">
-      <a href="/book.html" class="btn-gold">Book an Appointment</a>
-      <a href="/services.html" class="btn-outline">View All Services</a>
+  <div class="hero-left">
+    <div class="hero-eyebrow">Professional Notarial Services · San Antonio, TX</div>
+    <h1>Precision.<br>Integrity.<br><em>Results.</em></h1>
+    <p class="hero-desc">Texas Notary Kristy provides professional mobile notarization, remote online notarization, and document authentication to clients across the San Antonio metropolitan area and statewide — with the discipline of 21 years of United States Navy service behind every engagement.</p>
+    <div class="hero-actions">
+      <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-primary">Schedule a Consultation</a>
+      <a href="/services.html" class="btn-secondary">View Services</a>
     </div>
-    <div class="hero-credentials">
-      <span class="cred-pill">NNA Certified Signing Agent</span>
-      <span class="cred-pill">BBB Accredited</span>
-      <span class="cred-pill">E&amp;O Insured</span>
-      <span class="cred-pill">SDVOSB · VOSB · WOSB</span>
-      <span class="cred-pill">SAM.gov Registered</span>
-      <span class="cred-pill">Texas HUB Certified</span>
+    <div class="credentials-panel">
+      <div class="credentials-label">Credentials &amp; Certifications</div>
+      <div class="credentials-list">
+        <span class="credential-tag">NNA Certified</span>
+        <span class="credential-tag">BBB Accredited</span>
+        <span class="credential-tag">E&amp;O Insured</span>
+        <span class="credential-tag">SDVOSB</span>
+        <span class="credential-tag">WOSB · VOSB</span>
+        <span class="credential-tag">SAM.gov</span>
+        <span class="credential-tag">Texas HUB</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stats-panel">
+      <div class="stat-item">
+        <div class="stat-number">2,000<span>+</span></div>
+        <div class="stat-desc">Completed notarizations across mobile, remote, and signing engagements</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">21<span>+</span></div>
+        <div class="stat-desc">Years of United States Navy service — the foundation of every appointment</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50</div>
+        <div class="stat-desc">States served via Remote Online Notarization platform</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-desc">Texas counties served mobile — Bexar, Guadalupe, and Comal</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <span class="trust-item">📋 2,000+ Completed Signings</span>
-    <span class="trust-sep">·</span>
-    <span class="trust-item">🔒 Compliant RON Platform</span>
-    <span class="trust-sep">·</span>
-    <span class="trust-item">📞 Same-Day Availability</span>
-    <span class="trust-sep">·</span>
-    <span class="trust-item">🌐 Statewide &amp; Nationwide</span>
-    <span class="trust-sep">·</span>
-    <span class="trust-item">💲 No Surprise Fees</span>
+<!-- CREDENTIAL BAR -->
+<div class="credential-bar">
+  <div class="credential-bar-inner">
+    <span class="credential-bar-item">NNA Certified Notary Signing Agent</span>
+    <span class="credential-bar-divider">|</span>
+    <span class="credential-bar-item">BBB Accredited Business</span>
+    <span class="credential-bar-divider">|</span>
+    <span class="credential-bar-item">Service-Disabled Veteran-Owned</span>
+    <span class="credential-bar-divider">|</span>
+    <span class="credential-bar-item">SAM.gov Registered</span>
+    <span class="credential-bar-divider">|</span>
+    <span class="credential-bar-item">Same-Day Availability</span>
   </div>
 </div>
 
 <!-- SERVICES -->
 <section class="services-section">
   <div class="section-inner">
-    <div class="section-label">What We Do</div>
-    <h2 class="section-title">Services Built for<br><em>Every Signing Need</em></h2>
-    <p class="section-body">From loan closings to international apostille coordination — every service delivered with military precision and transparent pricing confirmed at booking.</p>
-
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Practice Areas</div>
+      <h2 class="section-title">Professional Notarial <em>Services</em></h2>
+      <p class="section-body">Each engagement is conducted with strict adherence to Texas notarial standards, complete confidentiality, and the precision that clients in legal, financial, and government sectors expect.</p>
+    </div>
     <div class="services-grid reveal">
       <a href="/services.html#ron" class="service-card">
-        <span class="service-icon">💻</span>
+        <span class="service-number">01</span>
         <div class="service-name">Remote Online Notarization</div>
         <div class="service-price">From $25</div>
-        <p class="service-desc">Secure RON sessions from anywhere in the U.S. Audio-video verified, tamper-evident, audit-ready. No travel required.</p>
+        <p class="service-desc">Compliant audio-visual notarization sessions available to clients across all fifty states. Identity-verified, tamper-evident, and fully audit-ready.</p>
         <span class="service-link">Learn More</span>
       </a>
       <a href="/services.html#mobile" class="service-card">
-        <span class="service-icon">🚗</span>
+        <span class="service-number">02</span>
         <div class="service-name">Mobile Notary</div>
         <div class="service-price">From $50</div>
-        <p class="service-desc">We come to you — home, office, hospital, or courthouse. Serving Bexar, Guadalupe, and Comal counties.</p>
+        <p class="service-desc">On-site notarization at your home, office, medical facility, or any location throughout Bexar, Guadalupe, and Comal counties.</p>
         <span class="service-link">Learn More</span>
       </a>
       <a href="/apostille.html" class="service-card">
-        <span class="service-icon">🌐</span>
+        <span class="service-number">03</span>
         <div class="service-name">Apostille &amp; Authentication</div>
         <div class="service-price">From $150</div>
-        <p class="service-desc">Texas SOS apostille coordination start to finish — for international clients, universities, and embassies.</p>
+        <p class="service-desc">Texas Secretary of State apostille coordination managed start to finish — for international clients, academic institutions, and embassy requirements.</p>
         <span class="service-link">Learn More</span>
       </a>
       <a href="/services.html#realestate" class="service-card">
-        <span class="service-icon">🏠</span>
+        <span class="service-number">04</span>
         <div class="service-name">Real Estate &amp; Loan Signings</div>
         <div class="service-price">From $150</div>
-        <p class="service-desc">NNA Certified Signing Agent for purchases, refinances, HELOCs, and seller packages across the San Antonio metro.</p>
+        <p class="service-desc">NNA Certified Signing Agent supporting title companies, lenders, and real estate teams across the San Antonio metropolitan area.</p>
         <span class="service-link">Learn More</span>
       </a>
       <a href="/services.html#legal" class="service-card">
-        <span class="service-icon">⚖️</span>
+        <span class="service-number">05</span>
         <div class="service-name">Legal &amp; Estate Documents</div>
         <div class="service-price">Contact for Quote</div>
-        <p class="service-desc">Wills, trusts, powers of attorney, healthcare directives. Mobile or RON. Bedside service available.</p>
+        <p class="service-desc">Execution of wills, trusts, powers of attorney, and healthcare directives. Mobile service to law offices, residences, and medical facilities.</p>
         <span class="service-link">Learn More</span>
       </a>
       <a href="/services.html#specialty" class="service-card">
-        <span class="service-icon">🎖️</span>
+        <span class="service-number">06</span>
         <div class="service-name">Specialty &amp; Government</div>
         <div class="service-price">Contact for Quote</div>
-        <p class="service-desc">I-9 verification, jail signings, structured settlements, federal document support. SDVOSB certified.</p>
+        <p class="service-desc">I-9 verification, structured settlements, correctional facility signings, and federal document support. SDVOSB-certified for government engagements.</p>
         <span class="service-link">Learn More</span>
       </a>
     </div>
-
-    <div class="pricing-note reveal">
-      <strong>Transparent pricing, confirmed at booking.</strong> Final pricing is based on document type, location, and scheduling. You know your cost before we begin — no surprises, no hidden fees. General notary work billed at the Texas state rate of $10 per notarized signature.
+    <div class="pricing-notice reveal">
+      <p><strong>Transparent fee disclosure.</strong> All pricing is confirmed prior to engagement. Final fees are determined by document type, location, and scheduling requirements. General notarial acts are billed at the Texas statutory rate of $10 per notarized signature. No fees are assessed post-engagement without prior written agreement.</p>
     </div>
   </div>
 </section>
 
-<!-- WHY -->
-<section class="why-section">
+<!-- DISTINCTION -->
+<section class="distinction-section">
   <div class="section-inner">
-    <div class="section-label" style="color:var(--gold)">Why Texas Notary Kristy</div>
-    <h2 class="section-title" style="color:var(--white)">The Standard Others<br><em>Talk About</em></h2>
-    <p class="section-body">21 years in the U.S. Navy means one thing: you execute the mission right, every time. That standard doesn't stop at the signing table.</p>
-    <div class="why-grid reveal">
-      <div class="why-card">
-        <div class="why-num">01</div>
-        <div class="why-title">Military Discipline</div>
-        <p class="why-body">On time. Prepared. Accountable. Twenty-one years of Navy service built a standard that doesn't clock out.</p>
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Our Standard</div>
+      <h2 class="section-title">Why Clients Choose <em>Texas Notary Kristy</em></h2>
+    </div>
+    <div class="distinction-grid reveal">
+      <div class="distinction-item">
+        <div class="distinction-num">01</div>
+        <div class="distinction-rule"></div>
+        <div class="distinction-title">Military Discipline</div>
+        <p class="distinction-body">Twenty-one years of United States Navy service built a standard of precision and accountability that applies to every notarial engagement — regardless of complexity, time, or location.</p>
       </div>
-      <div class="why-card">
-        <div class="why-num">02</div>
-        <div class="why-title">Fully Credentialed</div>
-        <p class="why-body">NNA Certified Signing Agent. BBB Accredited. E&amp;O Insured. Texas-commissioned. SAM.gov registered. Every credential current.</p>
+      <div class="distinction-item">
+        <div class="distinction-num">02</div>
+        <div class="distinction-rule"></div>
+        <div class="distinction-title">Complete Credentialing</div>
+        <p class="distinction-body">NNA Certified Signing Agent. BBB Accredited. E&amp;O Insured. Texas-commissioned. SAM.gov registered. SDVOSB, VOSB, and WOSB federally certified. Every credential is active and current.</p>
       </div>
-      <div class="why-card">
-        <div class="why-num">03</div>
-        <div class="why-title">No Surprise Pricing</div>
-        <p class="why-body">Your cost is confirmed before the appointment. No add-ons at the door. Flat rates where possible, clear tiers where not.</p>
+      <div class="distinction-item">
+        <div class="distinction-num">03</div>
+        <div class="distinction-rule"></div>
+        <div class="distinction-title">Fee Transparency</div>
+        <p class="distinction-body">Clients receive a confirmed fee structure before any engagement begins. No post-appointment additions, no undisclosed travel fees, and no contingency charges of any kind.</p>
       </div>
-      <div class="why-card">
-        <div class="why-num">04</div>
-        <div class="why-title">2,000+ Signings</div>
-        <p class="why-body">From routine loan docs to complex estate packages and international apostille coordination — the experience shows in the work.</p>
+      <div class="distinction-item">
+        <div class="distinction-num">04</div>
+        <div class="distinction-rule"></div>
+        <div class="distinction-title">Verified Experience</div>
+        <p class="distinction-body">Over 2,000 completed notarizations spanning loan closings, estate documents, remote sessions, and international apostille coordination — with a record of zero compliance incidents.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT STRIP -->
-<div class="about-strip">
-  <div class="about-text-side">
-    <div class="section-label">About Kristy</div>
-    <h2 class="section-title">Veteran. Notary.<br><em>Business Owner.</em></h2>
-    <p class="section-body" style="margin-bottom:18px">Kristy is a retired U.S. Navy veteran with 21+ years of service, a Texas-commissioned notary public, NNA Certified Signing Agent, and the founder of Texas Notary Kristy — a mobile notary and document services business based in Cibolo, TX.</p>
-    <p class="section-body" style="margin-bottom:28px">Holding SDVOSB, VOSB, and WOSB federal certifications — serving individual clients, title companies, law firms, and government agencies statewide.</p>
-    <a href="/about.html" class="btn-gold" style="display:inline-block;align-self:flex-start">Full Story →</a>
-  </div>
-  <div class="about-navy-side">
-    <div class="stat-block"><div class="stat-num">21+</div><div class="stat-label-text">Years U.S. Navy Service</div></div>
-    <div class="stat-block"><div class="stat-num">2,000+</div><div class="stat-label-text">Completed Notarizations</div></div>
-    <div class="stat-block"><div class="stat-num">3</div><div class="stat-label-text">Counties Served Mobile</div></div>
-    <div class="stat-block"><div class="stat-num">50</div><div class="stat-label-text">States Reachable via RON</div></div>
-  </div>
-</div>
-
-<!-- SERVICE AREAS -->
-<section class="area-section">
+<!-- ABOUT -->
+<section class="about-section">
   <div class="section-inner">
-    <div class="section-label">Where We Serve</div>
-    <h2 class="section-title">San Antonio Metro<br><em>&amp; Beyond</em></h2>
-    <p class="section-body">Mobile service across Bexar, Guadalupe, and Comal counties. RON available statewide and nationwide.</p>
-    <div class="area-grid reveal">
-      <div class="area-card"><div class="area-name">Cibolo</div><div class="area-sub">Home Base · Guadalupe County</div></div>
-      <div class="area-card"><div class="area-name">San Antonio</div><div class="area-sub">Full Metro Coverage · Bexar County</div></div>
-      <div class="area-card"><div class="area-name">Schertz</div><div class="area-sub">Guadalupe / Bexar / Comal</div></div>
-      <div class="area-card"><div class="area-name">New Braunfels</div><div class="area-sub">Comal County</div></div>
-      <div class="area-card"><div class="area-name">Seguin</div><div class="area-sub">Guadalupe County</div></div>
-      <div class="area-card"><div class="area-name">Universal City</div><div class="area-sub">Bexar County</div></div>
-      <div class="area-card"><div class="area-name">Converse</div><div class="area-sub">Bexar County</div></div>
-      <div class="area-card"><div class="area-name">Nationwide RON</div><div class="area-sub">All 50 States via Remote Session</div></div>
+    <div class="about-grid reveal">
+      <div>
+        <div class="section-eyebrow">About Kristy Davis</div>
+        <h2 class="section-title" style="margin-bottom:24px">Veteran. Notary.<br><em>Business Owner.</em></h2>
+        <p class="about-body">Kristy Davis is a retired United States Navy veteran with more than 21 years of service, a Texas-commissioned notary public, and NNA Certified Notary Signing Agent. She founded Texas Notary Kristy — a DBA of Notarized By Kristy LLC — serving the San Antonio metropolitan area from Cibolo, Texas.</p>
+        <p class="about-body">Her practice serves individual clients, title companies, law firms, mortgage lenders, and government agencies — statewide via Remote Online Notarization and across Bexar, Guadalupe, and Comal counties for mobile engagements.</p>
+        <p class="about-body">She holds Service-Disabled Veteran-Owned Small Business (SDVOSB), Women-Owned Small Business (WOSB), and Veteran-Owned Small Business (VOSB) federal certifications, and is registered in SAM.gov for government contracting.</p>
+        <div class="about-credentials">
+          <div class="about-cred"><div class="about-cred-label">Certification</div><div class="about-cred-val">NNA Certified Signing Agent</div></div>
+          <div class="about-cred"><div class="about-cred-label">Accreditation</div><div class="about-cred-val">BBB Accredited Business</div></div>
+          <div class="about-cred"><div class="about-cred-label">Federal Status</div><div class="about-cred-val">SDVOSB · WOSB · VOSB</div></div>
+          <div class="about-cred"><div class="about-cred-label">Registration</div><div class="about-cred-val">SAM.gov · Texas HUB</div></div>
+        </div>
+      </div>
+      <div class="about-panel">
+        <div class="about-panel-title">Professional Record</div>
+        <div class="about-stat"><div class="about-stat-num">21<em>+</em></div><div class="about-stat-label">Years United States Navy Service</div></div>
+        <div class="about-stat"><div class="about-stat-num">2,000<em>+</em></div><div class="about-stat-label">Completed Notarizations</div></div>
+        <div class="about-stat"><div class="about-stat-num">3</div><div class="about-stat-label">Counties Served · Mobile Engagements</div></div>
+        <div class="about-stat"><div class="about-stat-num">50</div><div class="about-stat-label">States Served · Remote Online Notarization</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas-section">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <div class="section-eyebrow" style="color:var(--gold)">Jurisdiction</div>
+      <h2 class="section-title" style="color:var(--white)">Service Area</h2>
+      <p class="section-body">Mobile notarial services are available throughout the San Antonio metropolitan area. Remote Online Notarization is available to clients across all fifty states and to qualifying international clients.</p>
+    </div>
+    <div class="areas-grid reveal">
+      <div class="area-card"><div class="area-name">Cibolo</div><div class="area-county">Home Office · Guadalupe County</div></div>
+      <div class="area-card"><div class="area-name">San Antonio</div><div class="area-county">Full Metropolitan Coverage · Bexar County</div></div>
+      <div class="area-card"><div class="area-name">Schertz</div><div class="area-county">Guadalupe, Bexar &amp; Comal Counties</div></div>
+      <div class="area-card"><div class="area-name">New Braunfels</div><div class="area-county">Comal County</div></div>
+      <div class="area-card"><div class="area-name">Seguin</div><div class="area-county">Guadalupe County</div></div>
+      <div class="area-card"><div class="area-name">Universal City</div><div class="area-county">Bexar County</div></div>
+      <div class="area-card"><div class="area-name">Converse</div><div class="area-county">Bexar County</div></div>
+      <div class="area-card"><div class="area-name">Nationwide · RON</div><div class="area-county">All Fifty States · Remote Sessions</div></div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
-  <div class="section-inner" style="text-align:center">
-    <h2>Ready to Get Notarized?</h2>
-    <p>Book online, call, or email. Same-day appointments often available. Pricing confirmed before we begin.</p>
+  <div class="cta-inner">
     <div>
-      <a href="/book.html" class="btn-navy">Book Online</a>
-      <a href="tel:2106289991" class="btn-white">Call 210-628-9991</a>
+      <h2 class="cta-title">Ready to Schedule Your <em>Appointment?</em></h2>
+      <p class="cta-sub">Same-day availability is offered when scheduling permits. All fees are confirmed prior to engagement. No surprises, no exceptions.</p>
     </div>
-    <p style="margin-top:18px;font-size:13px;color:rgba(15,36,68,0.55)">info@notarizedbykristy.com · Cibolo, TX · Mon–Sat by Appointment</p>
+    <div class="cta-actions">
+      <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-cta-primary">Schedule an Appointment</a>
+      <div class="cta-contact">
+        <a href="tel:2106289991">210-628-9991</a> &nbsp;&middot;&nbsp;
+        <a href="mailto:info@notarizedbykristy.com">info@notarizedbykristy.com</a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -382,63 +442,62 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-brand">⭐ Texas Notary Kristy</div>
+        <div class="footer-brand">Texas Notary Kristy</div>
         <p class="footer-tagline">"Notarized Right. The First Time. Every Time."</p>
-        <div class="footer-contact">
-          <a href="tel:2106289991">📞 210-628-9991</a>
-          <a href="mailto:info@notarizedbykristy.com">✉️ info@notarizedbykristy.com</a>
-          <a href="#">📍 Cibolo, TX · San Antonio Metro</a>
+        <a href="tel:2106289991" class="footer-contact-item">210-628-9991</a>
+        <a href="mailto:info@notarizedbykristy.com" class="footer-contact-item">info@notarizedbykristy.com</a>
+        <span class="footer-contact-item">Cibolo, TX · San Antonio Metropolitan Area</span>
+        <div class="footer-creds-row">
+          <span class="footer-cred">SDVOSB</span><span class="footer-cred">WOSB</span>
+          <span class="footer-cred">VOSB</span><span class="footer-cred">BBB</span>
+          <span class="footer-cred">NNA</span><span class="footer-cred">SAM.gov</span>
         </div>
-        <div class="footer-creds">
-          <span class="footer-cred-tag">SDVOSB</span>
-          <span class="footer-cred-tag">VOSB</span>
-          <span class="footer-cred-tag">WOSB</span>
-          <span class="footer-cred-tag">BBB Accredited</span>
-          <span class="footer-cred-tag">NNA Certified</span>
-          <span class="footer-cred-tag">SAM.gov</span>
-        </div>
-        <p class="footer-dba">Texas Notary Kristy is a DBA of Notarized By Kristy LLC · Texas-Commissioned Notary Public · Not a law firm</p>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
+        <div class="footer-col-title">Services</div>
         <a href="/services.html#ron">Remote Online Notarization</a>
         <a href="/services.html#mobile">Mobile Notary</a>
         <a href="/apostille.html">Apostille &amp; Authentication</a>
-        <a href="/services.html#realestate">Real Estate &amp; Loans</a>
-        <a href="/services.html#legal">Legal &amp; Estate Docs</a>
-        <a href="/services.html#specialty">Specialty Services</a>
+        <a href="/services.html#realestate">Real Estate &amp; Loan Signings</a>
+        <a href="/services.html#legal">Legal &amp; Estate Documents</a>
+        <a href="/services.html#specialty">Specialty &amp; Government</a>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
+        <div class="footer-col-title">Information</div>
         <a href="/about.html">About Kristy</a>
-        <a href="/faq.html">FAQ</a>
+        <a href="/faq.html">Frequently Asked Questions</a>
         <a href="/contact.html">Contact</a>
-        <a href="/book.html">Book Online</a>
+        <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank">Schedule</a>
+        <a href="/privacy.html">Privacy Policy</a>
       </div>
       <div class="footer-col">
-        <h4>Service Areas</h4>
-        <a href="#">San Antonio</a>
-        <a href="#">Cibolo</a>
-        <a href="#">Schertz</a>
-        <a href="#">New Braunfels</a>
-        <a href="#">Seguin</a>
-        <a href="#">Nationwide via RON</a>
+        <div class="footer-col-title">Service Areas</div>
+        <a href="/notary-san-antonio.html">San Antonio</a>
+        <a href="/notary-schertz.html">Schertz</a>
+        <a href="/notary-new-braunfels.html">New Braunfels</a>
+        <a href="/notary-seguin.html">Seguin</a>
+        <a href="/notary-converse.html">Converse</a>
+        <a href="/notary-live-oak.html">Live Oak</a>
       </div>
     </div>
-    <hr class="footer-divider">
+    <hr class="footer-rule">
     <div class="footer-bottom">
       <span>© 2026 Texas Notary Kristy · Notarized By Kristy LLC. All rights reserved.</span>
-      <span>Notarial acts only · Not legal advice</span>
+      <span class="footer-dba">Texas Notary Kristy is a registered DBA of Notarized By Kristy LLC · Texas-Commissioned Notary Public · Notarial acts only · Not a law firm</span>
     </div>
   </div>
 </footer>
 
 <script>
-  function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('open'); }
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
-  document.querySelectorAll('.mobile-menu a').forEach(a => a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open')));
+  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+  const reveals=document.querySelectorAll('.reveal');
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+  },{threshold:.08});
+  reveals.forEach(el=>observer.observe(el));
+  document.querySelectorAll('.mobile-menu a').forEach(a=>{
+    a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+  });
 </script>
 </body>
 </html>
