@@ -2,222 +2,286 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Texas Notary Kristy — mobile notary, RON, and apostille services in Cibolo and San Antonio, TX. Call, email, or send a message.">
+  <meta name="description" content="Contact Texas Notary Kristy — mobile notary, RON, and apostille services in Cibolo and San Antonio, TX. Call 210-628-9991 or submit an inquiry.">
   <title>Contact | Texas Notary Kristy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    :root{--navy:#1B3A6B;--navy-dark:#0f2444;--gold:#C8972A;--gold-light:#dba93a;--cream:#FAF8F3;--white:#fff;--gray-100:#f2f2f0;--gray-300:#d0cfc8;--gray-500:#888880;--gray-700:#444440}
+    :root{--navy:#1B3A6B;--navy-dark:#0d1f3c;--navy-mid:#1e4278;--gold:#B8860B;--gold-light:#d4a017;--gold-pale:#f8f3e8;--cream:#FAFAF7;--white:#ffffff;--gray-50:#f8f8f6;--gray-100:#f0efe9;--gray-200:#e2e0d8;--gray-400:#9c9a8e;--gray-600:#5c5a52;--gray-800:#2c2b25}
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Jost',sans-serif;color:var(--gray-700);background:var(--cream);line-height:1.65;overflow-x:hidden}
-    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(15,36,68,.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(200,151,42,.3);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:68px}
-    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-    .nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:700;color:var(--gold);letter-spacing:.5px;line-height:1.15}
-    .nav-logo-sub{font-size:9px;color:rgba(255,255,255,.5);letter-spacing:2px;text-transform:uppercase;display:block}
-    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
-    .nav-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;transition:color .2s}
-    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
-    .nav-cta{background:var(--gold)!important;color:var(--navy-dark)!important;padding:9px 20px;border-radius:3px;font-weight:600!important}
-    .hamburger{display:none;cursor:pointer}
-    .hamburger span{display:block;width:24px;height:2px;background:var(--gold);margin:5px 0}
-    .mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--navy-dark);padding:20px 5% 30px;z-index:999;border-bottom:2px solid var(--gold)}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{font-family:'Outfit',sans-serif;color:var(--gray-800);background:var(--cream);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:var(--navy-dark);border-bottom:1px solid rgba(184,134,11,.2);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:72px}
+    .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+    .nav-logo-mark{width:36px;height:36px;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .nav-logo-mark span{font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--gold);line-height:1}
+    .nav-logo-text{font-family:'EB Garamond',serif;font-size:16px;font-weight:600;color:var(--white);letter-spacing:.3px;line-height:1.2}
+    .nav-logo-sub{font-family:'Outfit',sans-serif;font-size:9px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:1px}
+    .nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+    .nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--white)}
+    .nav-cta{color:var(--gold)!important;border:1px solid rgba(184,134,11,.5)!important;padding:8px 22px!important;font-weight:500!important;transition:all .2s!important}
+    .nav-cta:hover{background:var(--gold)!important;color:var(--navy-dark)!important;border-color:var(--gold)!important}
+    .hamburger{display:none;cursor:pointer;background:none;border:none;padding:4px}
+    .hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.6);margin:5px 0}
+    .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:var(--navy-dark);padding:24px 6% 32px;z-index:999;border-bottom:1px solid rgba(184,134,11,.15)}
     .mobile-menu.open{display:block}
-    .mobile-menu a{display:block;color:rgba(255,255,255,.8);text-decoration:none;font-size:15px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
-    .page-hero{background:linear-gradient(160deg,var(--navy-dark) 0%,var(--navy) 100%);padding:130px 5% 70px}
-    .page-hero-inner{max-width:1100px;margin:0 auto}
-    .breadcrumb{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:16px}
-    .breadcrumb a{color:rgba(255,255,255,.4);text-decoration:none}
-    .page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,68px);font-weight:700;color:#fff;line-height:1.08;margin-bottom:16px}
-    .page-hero h1 em{color:var(--gold);font-style:italic}
-    .page-hero p{font-size:17px;color:rgba(255,255,255,.65);max-width:580px;line-height:1.75}
-    section{padding:80px 5%}
-    .section-inner{max-width:1100px;margin:0 auto}
-    .section-label{font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-    .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:52px;align-items:start}
-    .contact-box{background:var(--navy-dark);border-radius:6px;padding:24px 26px;margin-bottom:14px}
-    .contact-box-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-    .contact-box-val{font-size:17px;font-weight:600;color:#fff}
-    .contact-box-val a{color:#fff;text-decoration:none;transition:color .2s}
-    .contact-box-val a:hover{color:var(--gold)}
-    .contact-box-sub{font-size:13px;color:rgba(255,255,255,.45);margin-top:4px;line-height:1.5}
-    .form-card{background:var(--white);border-radius:8px;padding:36px;box-shadow:0 4px 24px rgba(27,58,107,.08);border:1px solid var(--gray-100)}
-    .form-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--navy-dark);margin-bottom:24px}
-    .contact-form{display:flex;flex-direction:column;gap:16px}
-    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .form-field{display:flex;flex-direction:column;gap:5px}
-    .form-field label{font-size:11px;font-weight:600;color:var(--gray-500);text-transform:uppercase;letter-spacing:.5px}
-    .form-field input,.form-field select,.form-field textarea{background:var(--gray-100);border:1.5px solid var(--gray-300);border-radius:4px;padding:11px 13px;font-family:'Jost',sans-serif;font-size:14px;color:var(--navy-dark);transition:border-color .2s;width:100%}
-    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--gold);background:#fff}
+    .mobile-menu a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:400;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.3px}
+    .page-hero{background:var(--navy-dark);padding:140px 6% 80px;position:relative;overflow:hidden;border-bottom:1px solid rgba(184,134,11,.15)}
+    .page-hero::after{content:attr(data-char);position:absolute;right:3%;top:50%;transform:translateY(-50%);font-family:'EB Garamond',serif;font-size:clamp(160px,20vw,300px);font-weight:400;color:rgba(255,255,255,.02);pointer-events:none;line-height:1}
+    .page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+    .breadcrumb{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px}
+    .breadcrumb a{color:rgba(255,255,255,.25);text-decoration:none;transition:color .2s}
+    .breadcrumb a:hover{color:var(--gold)}
+    .breadcrumb span{color:rgba(255,255,255,.15);margin:0 8px}
+    .page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(36px,5vw,68px);font-weight:500;color:var(--white);line-height:1.1;margin-bottom:16px;letter-spacing:-.3px}
+    .page-hero h1 em{color:var(--gold);font-style:italic;font-weight:400}
+    .page-hero-desc{font-size:16px;font-weight:300;color:rgba(255,255,255,.45);max-width:600px;line-height:1.85;letter-spacing:.2px}
+    section{padding:88px 6%}
+    .section-inner{max-width:1200px;margin:0 auto}
+    .section-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+    .section-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+    .section-title{font-family:'EB Garamond',serif;font-size:clamp(28px,3.5vw,48px);font-weight:500;color:var(--navy-dark);line-height:1.15;letter-spacing:-.3px}
+    .section-title em{color:var(--gold);font-style:italic}
+    .section-title.light{color:var(--white)}
+    .section-body{font-size:15px;font-weight:300;color:var(--gray-600);max-width:580px;line-height:1.85;margin-top:14px}
+    .section-body.light{color:rgba(255,255,255,.4)}
+    .btn-primary{display:inline-block;background:var(--gold);color:var(--navy-dark);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:16px 36px;transition:all .25s}
+    .btn-primary:hover{background:var(--gold-light)}
+    .btn-outline{display:inline-block;background:transparent;color:var(--navy-dark);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:15px 36px;border:1px solid var(--gray-200);transition:all .25s;margin-left:12px}
+    .btn-outline:hover{border-color:var(--navy);color:var(--navy)}
+    .btn-outline-light{display:inline-block;background:transparent;color:rgba(255,255,255,.6);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:15px 36px;border:1px solid rgba(255,255,255,.2);transition:all .25s;margin-left:12px}
+    .btn-outline-light:hover{border-color:var(--gold);color:var(--gold)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .cta-strip{background:var(--navy-dark);padding:80px 6%}
+    .cta-strip-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+    .cta-strip-title{font-family:'EB Garamond',serif;font-size:clamp(26px,3vw,42px);font-weight:500;color:var(--white);line-height:1.2;margin-bottom:8px}
+    .cta-strip-title em{color:var(--gold);font-style:italic}
+    .cta-strip-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.35);line-height:1.7}
+    .cta-strip-actions{display:flex;flex-direction:column;gap:10px;align-items:center;white-space:nowrap}
+    .cta-contact{font-size:12px;font-weight:300;color:rgba(255,255,255,.3);text-align:center}
+    .cta-contact a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s}
+    .cta-contact a:hover{color:var(--gold)}
+    footer{background:#07111e;padding:64px 6% 32px;color:rgba(255,255,255,.3)}
+    .footer-inner{max-width:1200px;margin:0 auto}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px}
+    .footer-brand{font-family:'EB Garamond',serif;font-size:17px;font-weight:500;color:var(--white);margin-bottom:10px}
+    .footer-tagline{font-size:13px;font-weight:300;color:rgba(255,255,255,.22);font-style:italic;margin-bottom:20px;line-height:1.6}
+    .footer-link-item{display:block;color:rgba(255,255,255,.3);text-decoration:none;font-size:13px;font-weight:300;margin-bottom:7px;transition:color .2s}
+    .footer-link-item:hover{color:var(--gold)}
+    .footer-creds-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+    .footer-cred{font-size:9px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(184,134,11,.45);border:1px solid rgba(184,134,11,.15);padding:3px 9px}
+    .footer-col-title{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:16px}
+    .footer-col a{display:block;color:rgba(255,255,255,.3);text-decoration:none;font-size:13px;font-weight:300;margin-bottom:8px;transition:color .2s}
+    .footer-col a:hover{color:var(--white)}
+    .footer-rule{border:none;border-top:1px solid rgba(255,255,255,.05);margin-bottom:24px}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:rgba(255,255,255,.15);letter-spacing:.2px}
+    @media(max-width:1024px){.cta-strip-inner{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:36px}}
+    @media(max-width:768px){.nav-links{display:none}.hamburger{display:block}.footer-grid{grid-template-columns:1fr}section{padding:64px 6%}}
+
+    .contact-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:0;max-width:1200px;margin:0 auto}
+    .contact-info-side{padding:88px 52px 88px 0}
+    .contact-form-side{background:var(--white);padding:64px 52px;border:1px solid var(--gray-200);border-left:none}
+    .contact-info-box{margin-bottom:32px;padding-bottom:32px;border-bottom:1px solid var(--gray-100)}
+    .contact-info-box:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .contact-info-label{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+    .contact-info-val{font-size:16px;font-weight:400;color:var(--navy-dark)}
+    .contact-info-val a{color:var(--navy-dark);text-decoration:none;transition:color .2s}
+    .contact-info-val a:hover{color:var(--gold)}
+    .contact-info-sub{font-size:13px;font-weight:300;color:var(--gray-400);margin-top:4px;line-height:1.6}
+    .form-title{font-family:'EB Garamond',serif;font-size:28px;font-weight:500;color:var(--navy-dark);margin-bottom:28px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+    .form-field label{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray-400)}
+    .form-field input,.form-field select,.form-field textarea{background:var(--gray-50);border:1px solid var(--gray-200);padding:12px 14px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;color:var(--navy-dark);transition:border-color .2s;border-radius:0;-webkit-appearance:none;width:100%}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--gold);background:var(--white)}
     .form-field textarea{min-height:110px;resize:vertical}
-    .btn-submit{background:var(--gold);color:var(--navy-dark);border:none;border-radius:4px;padding:15px;font-family:'Jost',sans-serif;font-size:14px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:background .2s;text-transform:uppercase;width:100%}
+    .btn-submit{background:var(--gold);color:var(--navy-dark);border:none;padding:15px 32px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:background .2s;width:100%}
     .btn-submit:hover{background:var(--gold-light)}
-    .form-note{font-size:12px;color:var(--gray-500);margin-top:6px}
-    footer{background:var(--navy-dark);padding:50px 5% 28px;color:rgba(255,255,255,.5)}
-    .footer-inner{max-width:1100px;margin:0 auto}
-    .footer-brand{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);margin-bottom:10px}
-    .footer-links{display:flex;flex-wrap:wrap;gap:6px 20px;margin-bottom:20px}
-    .footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px}
-    .footer-links a:hover{color:var(--gold)}
-    .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
-    @media(max-width:900px){.contact-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.nav-links{display:none}.hamburger{display:block}}
-  </style>
+    .form-note{font-size:11px;font-weight:300;color:var(--gray-400);margin-top:10px;line-height:1.6}
+    @media(max-width:1024px){.contact-layout{grid-template-columns:1fr}.contact-info-side{padding:64px 6% 0}.contact-form-side{border-left:1px solid var(--gray-200);margin:0 6% 64px}}
+    @media(max-width:768px){.form-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <nav>
   <a href="/index.html" class="nav-logo">
-    <span style="font-size:22px">⭐</span>
-    <div><span class="nav-logo-text">Texas Notary Kristy</span><span class="nav-logo-sub">LLC · Cibolo, TX</span></div>
+    <div class="nav-logo-mark"><span>TK</span></div>
+    <div><span class="nav-logo-text">Texas Notary Kristy</span><span class="nav-logo-sub">Cibolo, TX · Est. 2020</span></div>
   </a>
-  <ul class="nav-links">
-    <li><a href="/services.html">Services</a></li><li><a href="/apostille.html">Apostille</a></li>
-    <li><a href="/about.html">About</a></li><li><a href="/faq.html">FAQ</a></li>
-    <li><a href="/contact.html" class="active">Contact</a></li><li><a href="/book.html" class="nav-cta">Book Now</a></li>
+  <ul class="nav-links"><li><a href="/services.html">Services</a></li>
+<li><a href="/apostille.html">Apostille</a></li>
+<li><a href="/about.html">About</a></li>
+<li><a href="/faq.html">FAQ</a></li>
+<li><a href="/contact.html"  class="active">Contact</a></li>
+    <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="nav-cta">Schedule</a></li>
   </ul>
-  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="/index.html">Home</a><a href="/services.html">Services</a><a href="/apostille.html">Apostille</a>
-  <a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a>
-  <a href="/book.html" style="color:var(--gold);font-weight:700">Book Now →</a>
+  <a href="/services.html">Services</a><a href="/apostille.html">Apostille</a><a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a>
+  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
 </div>
-
-<div class="page-hero">
+<div class="page-hero" data-char="C">
   <div class="page-hero-inner">
-    <div class="breadcrumb"><a href="/index.html">Home</a> › Contact</div>
-    <h1>Get In <em>Touch</em></h1>
-    <p>Call, email, or send a message. We respond within one business day — often the same day.</p>
+    <div class="breadcrumb"><a href="/index.html">Home</a><span>/</span>Contact</div>
+    <h1>Contact <em>Us</em></h1>
+    <p class="page-hero-desc">Call, email, or submit an inquiry below. We respond to all inquiries within one business day. For time-sensitive matters, please call directly.</p>
   </div>
 </div>
-
-<section>
-  <div class="section-inner">
-    <div class="contact-grid">
-      <div>
-        <div class="section-label">Contact Information</div>
-        <div class="contact-box">
-          <div class="contact-box-label">Phone</div>
-          <div class="contact-box-val"><a href="tel:2106289991">210-628-9991</a></div>
-          <div class="contact-box-sub">Call or text · Mon–Sat</div>
-        </div>
-        <div class="contact-box">
-          <div class="contact-box-label">Email</div>
-          <div class="contact-box-val"><a href="mailto:info@notarizedbykristy.com">info@notarizedbykristy.com</a></div>
-          <div class="contact-box-sub">Responses within one business day</div>
-        </div>
-        <div class="contact-box">
-          <div class="contact-box-label">Location</div>
-          <div class="contact-box-val" style="font-size:15px">Cibolo, TX</div>
-          <div class="contact-box-sub">Serving Bexar, Guadalupe & Comal counties<br>Nationwide via Remote Online Notarization</div>
-        </div>
-        <div class="contact-box">
-          <div class="contact-box-label">Hours</div>
-          <div class="contact-box-val" style="font-size:15px">Mon–Sat by Appointment</div>
-          <div class="contact-box-sub">Evening & weekend availability<br>Same-day scheduling when possible</div>
-        </div>
+<section style="padding-top:0">
+  <div class="contact-layout">
+    <div class="contact-info-side">
+      <div class="section-eyebrow">Contact Information</div>
+      <h2 class="section-title" style="margin-bottom:36px">Get In <em>Touch</em></h2>
+      <div class="contact-info-box">
+        <div class="contact-info-label">Telephone</div>
+        <div class="contact-info-val"><a href="tel:2106289991">210-628-9991</a></div>
+        <div class="contact-info-sub">Call or text · Monday through Saturday</div>
       </div>
-      <div>
-        <div class="form-card">
-          <div class="form-title">Send a Message</div>
-          <form class="contact-form" id="contactForm">
-            <input type="hidden" name="access_key" value="a3c6f4ed-406c-4167-90de-8d815ba16898">
-            <input type="hidden" name="subject" value="New Contact — Texas Notary Kristy Website">
-            <input type="hidden" name="from_name" value="Texas Notary Kristy Website">
-            <input type="checkbox" name="botcheck" style="display:none">
-            <div class="form-row">
-              <div class="form-field"><label>First Name</label><input type="text" name="first_name" placeholder="First name" required></div>
-              <div class="form-field"><label>Last Name</label><input type="text" name="last_name" placeholder="Last name" required></div>
-            </div>
-            <div class="form-row">
-              <div class="form-field"><label>Email</label><input type="email" name="email" placeholder="your@email.com" required></div>
-              <div class="form-field"><label>Phone</label><input type="tel" name="phone" placeholder="210-000-0000"></div>
-            </div>
-            <div class="form-field">
-              <label>Service Needed</label>
-              <select name="service">
-                <option value="">Select a service...</option>
-                <option>Remote Online Notarization (RON)</option>
-                <option>Mobile Notary</option>
-                <option>Loan Signing / Real Estate Closing</option>
-                <option>Apostille & Document Authentication</option>
-                <option>Legal & Estate Documents</option>
-                <option>Healthcare Notary</option>
-                <option>Specialty / Government Services</option>
-                <option>Partnership / Volume Inquiry</option>
-                <option>Not Sure — Need Guidance</option>
-              </select>
-            </div>
-            <div class="form-field"><label>Message</label><textarea name="message" placeholder="Tell us what you need, when, and any relevant details..." required></textarea></div>
-            <button type="submit" class="btn-submit" id="contactSubmitBtn">Send Message →</button>
-            <div id="contactResult" style="display:none;padding:12px;border-radius:4px;font-size:14px;text-align:center;margin-top:4px"></div>
-            <p class="form-note">We respond within one business day. For urgent requests, please call directly at 210-628-9991.</p>
-          </form>
-        </div>
+      <div class="contact-info-box">
+        <div class="contact-info-label">Electronic Mail</div>
+        <div class="contact-info-val"><a href="mailto:info@notarizedbykristy.com">info@notarizedbykristy.com</a></div>
+        <div class="contact-info-sub">Responses within one business day</div>
       </div>
+      <div class="contact-info-box">
+        <div class="contact-info-label">Location</div>
+        <div class="contact-info-val">Cibolo, TX</div>
+        <div class="contact-info-sub">Serving Bexar, Guadalupe &amp; Comal counties<br>Remote Online Notarization available nationwide</div>
+      </div>
+      <div class="contact-info-box">
+        <div class="contact-info-label">Office Hours</div>
+        <div class="contact-info-val">Monday – Saturday</div>
+        <div class="contact-info-sub">By appointment · Evening availability<br>Same-day scheduling when available</div>
+      </div>
+      <div style="margin-top:36px">
+        <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-primary">Schedule an Appointment</a>
+      </div>
+    </div>
+    <div class="contact-form-side">
+      <div class="form-title">Send an Inquiry</div>
+      <form id="contactForm">
+        <input type="hidden" name="access_key" value="a3c6f4ed-406c-4167-90de-8d815ba16898">
+        <input type="hidden" name="subject" value="New Inquiry — Texas Notary Kristy">
+        <input type="hidden" name="from_name" value="Texas Notary Kristy Website">
+        <input type="checkbox" name="botcheck" style="display:none">
+        <div class="form-grid">
+          <div class="form-field"><label>First Name</label><input type="text" name="first_name" required placeholder="First name"></div>
+          <div class="form-field"><label>Last Name</label><input type="text" name="last_name" required placeholder="Last name"></div>
+        </div>
+        <div class="form-grid">
+          <div class="form-field"><label>Email Address</label><input type="email" name="email" required placeholder="your@email.com"></div>
+          <div class="form-field"><label>Telephone</label><input type="tel" name="phone" placeholder="210-000-0000"></div>
+        </div>
+        <div class="form-field">
+          <label>Service Required</label>
+          <select name="service">
+            <option value="">Select a service...</option>
+            <option>Remote Online Notarization (RON)</option>
+            <option>Mobile Notary</option>
+            <option>Loan Signing / Real Estate Closing</option>
+            <option>Apostille &amp; Document Authentication</option>
+            <option>Legal &amp; Estate Documents</option>
+            <option>Healthcare Notary</option>
+            <option>Specialty / Government Services</option>
+            <option>Partnership / Volume Inquiry</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Message</label><textarea name="message" required placeholder="Please describe your notarial needs, preferred dates, document type, and any relevant details..."></textarea></div>
+        <button type="submit" class="btn-submit" id="contactSubmitBtn">Submit Inquiry</button>
+        <div id="contactResult" style="display:none;padding:12px 16px;font-size:13px;font-weight:300;margin-top:8px"></div>
+        <p class="form-note">We respond to all inquiries within one business day. For time-sensitive matters, please call 210-628-9991 directly.</p>
+      </form>
     </div>
   </div>
 </section>
-
+<script>
+  document.getElementById('contactForm').addEventListener('submit',async function(e){
+    e.preventDefault();
+    const btn=document.getElementById('contactSubmitBtn');
+    const result=document.getElementById('contactResult');
+    btn.textContent='Submitting...';btn.disabled=true;
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(Object.fromEntries(new FormData(this)))});
+      const data=await res.json();
+      if(data.success){
+        result.style.display='block';result.style.background='#f0f7f4';result.style.color='#1a5c3a';result.style.borderLeft='2px solid #1a7a4a';
+        result.textContent='Your inquiry has been received. We will respond within one business day.';
+        btn.textContent='Submitted';btn.style.background='#1a7a4a';this.reset();
+      }else{throw new Error()}
+    }catch{
+      result.style.display='block';result.style.background='#fdf0ef';result.style.color='#8b2c2c';result.style.borderLeft='2px solid #c0392b';
+      result.textContent='Submission failed. Please call 210-628-9991 or email info@notarizedbykristy.com directly.';
+      btn.textContent='Submit Inquiry';btn.disabled=false;
+    }
+  });
+</script>
+<div class="cta-strip">
+  <div class="cta-strip-inner">
+    <div>
+      <div class="cta-strip-title">Ready to Schedule Your <em>Appointment?</em></div>
+      <p class="cta-strip-sub">Same-day availability when scheduling permits. All fees confirmed prior to engagement.</p>
+    </div>
+    <div class="cta-strip-actions">
+      <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-primary">Schedule an Appointment</a>
+      <div class="cta-contact"><a href="tel:2106289991">210-628-9991</a> &nbsp;&middot;&nbsp; <a href="mailto:info@notarizedbykristy.com">info@notarizedbykristy.com</a></div>
+    </div>
+  </div>
+</div>
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">⭐ Texas Notary Kristy</div>
-    <div class="footer-links">
-      <a href="/index.html">Home</a><a href="/services.html">Services</a><a href="/apostille.html">Apostille</a>
-      <a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a><a href="/book.html">Book Online</a>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Texas Notary Kristy</div>
+        <p class="footer-tagline">"Notarized Right. The First Time. Every Time."</p>
+        <a href="tel:2106289991" class="footer-link-item">210-628-9991</a>
+        <a href="mailto:info@notarizedbykristy.com" class="footer-link-item">info@notarizedbykristy.com</a>
+        <span class="footer-link-item">Cibolo, TX · San Antonio Metropolitan Area</span>
+        <div class="footer-creds-row">
+          <span class="footer-cred">SDVOSB</span><span class="footer-cred">WOSB</span><span class="footer-cred">VOSB</span><span class="footer-cred">BBB</span><span class="footer-cred">NNA</span><span class="footer-cred">SAM.gov</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Services</div>
+        <a href="/services.html#ron">Remote Online Notarization</a>
+        <a href="/services.html#mobile">Mobile Notary</a>
+        <a href="/apostille.html">Apostille &amp; Authentication</a>
+        <a href="/services.html#realestate">Real Estate &amp; Loan Signings</a>
+        <a href="/services.html#legal">Legal &amp; Estate Documents</a>
+        <a href="/services.html#specialty">Specialty &amp; Government</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Information</div>
+        <a href="/about.html">About Kristy</a>
+        <a href="/faq.html">Frequently Asked Questions</a>
+        <a href="/contact.html">Contact</a>
+        <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank">Schedule</a>
+        <a href="/privacy.html">Privacy Policy</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Service Areas</div>
+        <a href="/notary-san-antonio.html">San Antonio</a>
+        <a href="/notary-schertz.html">Schertz</a>
+        <a href="/notary-new-braunfels.html">New Braunfels</a>
+        <a href="/notary-seguin.html">Seguin</a>
+        <a href="/notary-converse.html">Converse</a>
+        <a href="/notary-live-oak.html">Live Oak</a>
+      </div>
     </div>
+    <hr class="footer-rule">
     <div class="footer-bottom">
-      <span>© 2026 Texas Notary Kristy. All rights reserved.</span>
-      <span>info@notarizedbykristy.com · 210-628-9991 · Cibolo, TX</span>
+      <span>© 2026 Texas Notary Kristy · Notarized By Kristy LLC. All rights reserved.</span>
+      <span>Texas Notary Kristy is a DBA of Notarized By Kristy LLC · Texas-Commissioned Notary Public · Not a law firm</span>
     </div>
   </div>
 </footer>
 <script>
   function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
-
-  document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault();
-    const btn = document.getElementById('contactSubmitBtn');
-    const result = document.getElementById('contactResult');
-    btn.textContent = '⏳ Sending...';
-    btn.disabled = true;
-
-    const formData = new FormData(this);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: json
-      });
-      const data = await response.json();
-      if (data.success) {
-        result.style.display = 'block';
-        result.style.background = '#e8f8ef';
-        result.style.color = '#1a7a4a';
-        result.textContent = '✓ Message sent! We\'ll respond within one business day.';
-        btn.textContent = '✓ Sent!';
-        btn.style.background = '#1a7a4a';
-        this.reset();
-        setTimeout(() => {
-          btn.textContent = 'Send Message →';
-          btn.style.background = '';
-          btn.disabled = false;
-          result.style.display = 'none';
-        }, 5000);
-      } else {
-        throw new Error('Failed');
-      }
-    } catch(err) {
-      result.style.display = 'block';
-      result.style.background = '#fdeaea';
-      result.style.color = '#c0392b';
-      result.textContent = '⚠️ Something went wrong. Please call 210-628-9991 or email info@notarizedbykristy.com directly.';
-      btn.textContent = 'Send Message →';
-      btn.disabled = false;
-    }
-  });
+  const reveals=document.querySelectorAll('.reveal');
+  const obs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')}),{threshold:.08});
+  reveals.forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
