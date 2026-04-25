@@ -1,0 +1,47 @@
+<nav>
+  <a href="/index.html" class="nav-logo">
+    <div class="nav-logo-mark"><span>TK</span></div>
+    <div>
+      <span class="nav-logo-text">Texas Notary Kristy</span>
+      <span class="nav-logo-sub">Cibolo, TX · Est. 2020</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/services.html">Services</a></li>
+    <li><a href="/apostille.html">Apostille</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/faq.html">FAQ</a></li>
+    <li><a href="/fee-reference.html">Fee Reference</a></li>
+    <li><a href="/quote.html">Get a Quote</a></li>
+    <li><a href="/contact.html">Contact</a></li>
+    <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="nav-cta">Schedule</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/services.html">Services</a>
+  <a href="/apostille.html">Apostille</a>
+  <a href="/about.html">About</a>
+  <a href="/faq.html">FAQ</a>
+  <a href="/fee-reference.html">Fee Reference</a>
+  <a href="/quote.html">Get a Quote</a>
+  <a href="/contact.html">Contact</a>
+  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
+</div>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+document.querySelectorAll('.mobile-menu a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+});
+// Highlight active nav link based on current page
+(function(){
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(a=>{
+    if(a.getAttribute('href') === '/' + path) a.classList.add('active');
+  });
+})();
+</script>
