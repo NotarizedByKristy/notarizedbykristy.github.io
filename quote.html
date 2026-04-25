@@ -419,7 +419,7 @@ footer{background:#07111e;padding:40px 6% 28px}
   <div class="quote-hero-sub" id="rSub">Complete the form above to see your estimate</div>
 </div>
 
-<a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-book">Book This Service</a>
+<a href="#" id="bookBtn" class="btn-book" onclick="sendQuoteEmail(event)">Book This Service</a>
 <a href="tel:2106289991" class="btn-contact">Questions? Call (210) 628-9991</a>
 
 <div class="results-disclaimer">
@@ -680,6 +680,94 @@ onServiceChange();
 document.querySelectorAll('.mobile-menu a').forEach(a =>
   a.addEventListener('click', () => document.getElementById('mobileMenu').classList.remove('open'))
 );
+
+// ─── Email quote function ─────────────────────────────────────────────────────
+function sendQuoteEmail(e){
+  e.preventDefault();
+
+  const svcKey  = document.getElementById('serviceType').value;
+  const svcName = SVC_CONFIG[svcKey].name;
+  const docs    = parseInt(document.getElementById('docCount').value)||1;
+  const signers = parseInt(document.getElementById('signerCount').value)||1;
+  const tpages  = parseInt(document.getElementById('transPages').value)||1;
+  const zone    = document.getElementById('locationZone').value;
+  const rush    = document.getElementById('addonRush').checked;
+  const after   = document.getElementById('addonAfter').checked;
+  const copies  = document.getElementById('addonCertCopies').checked;
+  const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
+  const notTrans= document.getElementById('addonNotarizeTrans').checked;
+  const quoteAmt= document.getElementById('rPrice').textContent;
+
+  // Zone labels
+  const zoneLabels = {
+    local:'Cibolo / Schertz / Universal City / Converse (≤15 mi)',
+    mid:'San Antonio / Seguin / Live Oak (15–30 mi)',
+    far:'New Braunfels / Marion / Far NW San Antonio (30–45 mi)',
+    extended:'Extended Service Area (45+ mi)'
+  };
+
+  // Shipping labels
+  const regionLabels = {
+    pickup:'In-Person Pickup (no shipping)',
+    dom:'U.S. Domestic',
+    latam:'Latin America & Caribbean',
+    europe:'Europe',
+    asia:'Asia & Pacific',
+    other:'Middle East / Africa / Other International'
+  };
+  const speedLabels = { standard:'Standard', expedited:'Expedited' };
+
+  // Build line items
+  const lines = [];
+  lines.push('SERVICE: ' + svcName);
+
+  if(['apo_tx','apo_oos','combo'].includes(svcKey))
+    lines.push('DOCUMENTS: ' + docs + (docs>1?' (bundle discount applied)':''));
+  if(svcKey==='ron')
+    lines.push('SIGNERS: ' + signers);
+  if(svcKey==='translation')
+    lines.push('PAGES TO TRANSLATE: ' + tpages);
+
+  const cfg = SVC_CONFIG[svcKey];
+  if(cfg.travel && zone !== 'extended')
+    lines.push('SERVICE LOCATION: ' + (zoneLabels[zone]||zone));
+
+  if(region !== 'pickup'){
+    lines.push('RETURN SHIPPING: ' + (regionLabels[region]||region) + ' — ' + speedLabels[speed]);
+  } else {
+    lines.push('RETURN SHIPPING: In-Person Pickup');
+  }
+
+  // Add-ons
+  const addons = [];
+  if(rush)    addons.push('Rush / Same-Day (+$50)');
+  if(after)   addons.push('After-Hours / Weekend (+$40)');
+  if(copies)  addons.push('Certified Copies x' + copiesN + ' (+$' + (copiesN*15) + ')');
+  if(notTrans)addons.push('Notarize Translation (+$10)');
+  if(addons.length) lines.push('ADD-ONS: ' + addons.join(', '));
+
+  lines.push('');
+  lines.push('QUOTED TOTAL: ' + quoteAmt);
+
+  const disclaimer = [
+    '---',
+    'ENGAGEMENT TERMS',
+    'This quote is an estimate based on the selections above. Your confirmed quote will be provided',
+    'in writing before any work begins and may reflect exact document count, destination, and',
+    'scheduling. Shipping costs for international orders are estimated and confirmed at booking.',
+    'All fees are disclosed prior to engagement. No post-engagement charges without written',
+    'agreement. Texas Notary Kristy is a DBA of Notarized By Kristy LLC.',
+    'Texas-Commissioned Notary Public. Not a law firm.',
+    '---',
+    'Sent from the NBK Quote Estimator at texasnotarykristy.com'
+  ];
+
+  const subject = encodeURIComponent('Quote Request — ' + svcName + ' (' + quoteAmt + ')');
+  const body    = encodeURIComponent(lines.join('\n') + '\n\n' + disclaimer.join('\n'));
+
+  window.location.href = 'mailto:info@notarizedbykristy.com?subject=' + subject + '&body=' + body;
+}
+
 </script>
 
 </body>
