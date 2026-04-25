@@ -2,11 +2,8 @@
 
 <html lang="en">
 <head>
-<meta charset="UTF-8"> 
-<head>
 <meta charset="UTF-8">
-<meta name="color-scheme" content="light only">  ← add this line
-<meta name="viewport" ...>
+<meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="U.S. Apostille fees and notary fees by state — complete reference for all 50 states. Texas Notary Kristy, Cibolo TX.">
 <meta property="og:title" content="Apostille & Notary Fee Reference | Texas Notary Kristy">
@@ -21,156 +18,110 @@
   --cream:#FAFAF7;--white:#ffffff;
   --gray-50:#f8f8f6;--gray-100:#f0efe9;--gray-200:#e2e0d8;
   --gray-400:#9c9a8e;--gray-600:#5c5a52;--gray-800:#2c2b25;
-  --green:#1a6b3c;--green-bg:#e8f5ee;
-  --amber:#7a4a00;--amber-bg:#fff3d0;
-  --red:#7a1a1a;--red-bg:#fde8e8;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px}
-body{font-family:'Outfit',sans-serif;color:var(--gray-800);background:var(--cream);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Outfit',sans-serif;color:#2c2b25;background:#FAFAF7;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;background:var(–navy-dark);border-bottom:1px solid rgba(184,134,11,.2);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:72px}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;border-bottom:1px solid rgba(184,134,11,.2);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:72px}
 .nav-logo{display:flex;align-items:center;gap:14px;text-decoration:none}
-.nav-logo-mark{width:36px;height:36px;border:1.5px solid var(–gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.nav-logo-mark span{font-family:‘EB Garamond’,serif;font-size:17px;font-weight:600;color:var(–gold);line-height:1}
-.nav-logo-text{font-family:‘EB Garamond’,serif;font-size:16px;font-weight:600;color:var(–white);letter-spacing:.3px;line-height:1.2}
-.nav-logo-sub{font-family:‘Outfit’,sans-serif;font-size:9px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:1px}
-.nav-links{display:flex;align-items:center;gap:30px;list-style:none}
+.nav-logo-mark{width:36px;height:36px;border:1.5px solid #B8860B;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.nav-logo-mark span{font-family:‘EB Garamond’,serif;font-size:17px;font-weight:600;color:#B8860B;line-height:1}
+.nav-logo-text{font-family:‘EB Garamond’,serif;font-size:16px;font-weight:600;color:#ffffff;letter-spacing:.3px;line-height:1.2}
+.nav-logo-sub{font-size:9px;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;display:block;margin-top:1px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
 .nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.2px;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(–white)}
-.nav-cta{color:var(–gold)!important;border:1px solid rgba(184,134,11,.5)!important;padding:8px 22px!important;font-weight:500!important;transition:all .2s!important}
-.nav-cta:hover{background:#B8860B!important;background:var(–gold)!important;color:#0d1f3c!important;color:var(–navy-dark)!important;border-color:#B8860B!important}
+.nav-links a:hover,.nav-links a.active{color:#ffffff}
+.nav-cta{color:#B8860B!important;border:1px solid rgba(184,134,11,.5)!important;padding:8px 22px!important;transition:all .2s!important}
+.nav-cta:hover{background:#B8860B!important;color:#0d1f3c!important;border-color:#B8860B!important}
 .hamburger{display:none;cursor:pointer;background:none;border:none;padding:4px}
 .hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.6);margin:5px 0}
-.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#0d1f3c;background:var(–navy-dark);padding:24px 6% 32px;z-index:999;border-bottom:1px solid rgba(184,134,11,.15)}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#0d1f3c;padding:24px 6% 32px;z-index:999;border-bottom:1px solid rgba(184,134,11,.15)}
 .mobile-menu.open{display:block}
-.mobile-menu a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:400;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.3px}
+.mobile-menu a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05)}
 
-/* PAGE HERO */
-.page-hero{padding:140px 6% 72px;background:#0d1f3c;background:var(–navy-dark);position:relative;overflow:hidden}
+.page-hero{padding:140px 6% 72px;background:#0d1f3c;position:relative;overflow:hidden}
 .page-hero::after{content:’’;position:absolute;right:-60px;top:40px;width:320px;height:320px;border:1px solid rgba(184,134,11,.08);border-radius:50%;pointer-events:none}
 .page-hero-inner{max-width:1200px;margin:0 auto}
-.page-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(–gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
-.page-eyebrow::before{content:’’;width:28px;height:1px;background:var(–gold)}
-.page-hero h1{font-family:‘EB Garamond’,serif;font-size:clamp(34px,4.5vw,62px);font-weight:500;color:var(–white);line-height:1.1;margin-bottom:18px}
-.page-hero h1 em{color:var(–gold);font-style:italic}
+.page-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#B8860B;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+.page-eyebrow::before{content:’’;width:28px;height:1px;background:#B8860B}
+.page-hero h1{font-family:‘EB Garamond’,serif;font-size:clamp(34px,4.5vw,62px);font-weight:500;color:#ffffff;line-height:1.1;margin-bottom:18px}
+.page-hero h1 em{color:#B8860B;font-style:italic}
 .page-hero-desc{font-size:15px;font-weight:300;color:rgba(255,255,255,.45);max-width:640px;line-height:1.85}
 .page-hero-meta{margin-top:32px;padding-top:28px;border-top:1px solid rgba(255,255,255,.07);display:flex;gap:40px;flex-wrap:wrap}
-.meta-item{font-size:11px;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:.5px}
+.meta-item{font-size:11px;color:rgba(255,255,255,.3)}
 .meta-item strong{color:rgba(255,255,255,.55);font-weight:500;display:block;margin-bottom:2px}
 
-/* FILTER BAR */
-.filter-bar{background:#1B3A6B;background:var(–navy);padding:18px 6%;border-bottom:1px solid rgba(184,134,11,.12);position:sticky;top:72px;z-index:50}
+.filter-bar{background:#1B3A6B;padding:18px 6%;border-bottom:1px solid rgba(184,134,11,.12);position:sticky;top:72px;z-index:50}
 .filter-bar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .filter-label{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.3);white-space:nowrap}
-#stateSearch{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:var(–white);padding:9px 16px;font-family:‘Outfit’,sans-serif;font-size:13px;font-weight:300;width:220px;outline:none;transition:border-color .2s}
+#stateSearch{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:#ffffff;padding:9px 16px;font-family:‘Outfit’,sans-serif;font-size:13px;font-weight:300;width:240px;outline:none;transition:border-color .2s}
 #stateSearch::placeholder{color:rgba(255,255,255,.25)}
-#stateSearch:focus{border-color:var(–gold)}
+#stateSearch:focus{border-color:#B8860B}
 .tab-btns{display:flex;gap:6px;margin-left:auto}
 .tab-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.45);padding:7px 18px;font-family:‘Outfit’,sans-serif;font-size:11px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;transition:all .2s}
-.tab-btn.active,.tab-btn:hover{background:#B8860B;background:var(–gold);color:#0d1f3c;color:var(–navy-dark);border-color:#B8860B;border-color:var(–gold)}
+.tab-btn.active,.tab-btn:hover{background:#B8860B;color:#0d1f3c;border-color:#B8860B}
 
-/* LEGEND */
-.legend-bar{background:#0d1f3c;background:var(–navy-dark);padding:12px 6%;border-bottom:1px solid rgba(255,255,255,.04)}
-.legend-bar-inner{max-width:1200px;margin:0 auto;display:flex;gap:28px;flex-wrap:wrap;align-items:center}
-.legend-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-right:4px}
-.legend-item{display:flex;align-items:center;gap:7px;font-size:11px;color:rgba(255,255,255,.35)}
-.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.dot-high{background:var(–green-bg);border:1px solid var(–green)}
-.dot-med{background:var(–amber-bg);border:1px solid #c4860a}
-.dot-low{background:var(–red-bg);border:1px solid #b04040}
-
-/* MAIN */
 main{max-width:1200px;margin:0 auto;padding:48px 6% 100px}
 
-/* TABLE */
-.table-wrap{overflow-x:auto;border:1px solid var(–gray-200);background:var(–white)}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:780px}
-thead th{background:#0d1f3c;background:var(–navy-dark);color:rgba(255,255,255,.75);font-family:‘EB Garamond’,serif;font-size:13px;font-weight:500;padding:14px 16px;text-align:left;border-right:1px solid rgba(255,255,255,.06);white-space:nowrap;letter-spacing:.3px}
-thead th:last-child{border-right:none}
-.th-gold{color:var(–gold)!important}
-tbody tr{border-bottom:1px solid var(–gray-100);transition:background .15s}
-tbody tr:hover{background:var(–gold-pale)}
-tbody tr.hidden{display:none}
-td{padding:13px 16px;vertical-align:middle;border-right:1px solid var(–gray-100);color:var(–gray-800);font-weight:300}
-td:last-child{border-right:none}
-td.state-name{font-family:‘EB Garamond’,serif;font-size:15px;font-weight:500;color:var(–navy);white-space:nowrap}
-td.abbrev{font-size:11px;font-weight:500;color:var(–gray-400);letter-spacing:1px;text-transform:uppercase}
-td.fee{font-weight:500;color:var(–gray-800);font-variant-numeric:tabular-nums}
-td.fee.tx-highlight{font-weight:600;color:var(–navy);background:rgba(184,134,11,.06)}
-.conf-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;font-size:10px;font-weight:600;letter-spacing:.5px;border-radius:2px;white-space:nowrap}
-.conf-high{background:var(–green-bg);color:var(–green)}
-.conf-med{background:var(–amber-bg);color:var(–amber)}
-.conf-low{background:var(–red-bg);color:var(–red)}
-.nfs-tag{font-size:10px;font-weight:500;letter-spacing:.5px;color:var(–gray-400);background:var(–gray-100);padding:2px 7px;border-radius:2px}
-.tx-row td{background:rgba(27,58,107,.03)}
-.tx-row td.state-name{color:var(–navy);font-weight:600}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e2e0d8;border:1px solid #e2e0d8;margin-bottom:48px}
+.info-card{background:#ffffff;padding:32px 28px}
+.info-card-eyebrow{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:#B8860B;margin-bottom:10px}
+.info-card-title{font-family:‘EB Garamond’,serif;font-size:24px;font-weight:500;color:#0d1f3c;margin-bottom:8px}
+.info-card-body{font-size:13px;font-weight:300;color:#5c5a52;line-height:1.75}
 
-/* NO RESULTS */
-.no-results{text-align:center;padding:60px 20px;color:var(–gray-400);display:none}
+.sec-hdr{margin-bottom:28px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.sec-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#B8860B;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.sec-eyebrow::before{content:’’;width:20px;height:1px;background:#B8860B}
+.sec-title{font-family:‘EB Garamond’,serif;font-size:28px;font-weight:500;color:#0d1f3c}
+.sec-count{font-size:12px;font-weight:300;color:#9c9a8e}
+
+.table-wrap{overflow-x:auto;border:1px solid #e2e0d8;background:#ffffff}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}
+thead th{background:#0d1f3c;color:rgba(255,255,255,.75);font-family:‘EB Garamond’,serif;font-size:13px;font-weight:500;padding:14px 16px;text-align:left;border-right:1px solid rgba(255,255,255,.06);white-space:nowrap;letter-spacing:.3px}
+thead th:last-child{border-right:none}
+.th-gold{color:#B8860B!important}
+tbody tr{border-bottom:1px solid #f0efe9;transition:background .15s}
+tbody tr:hover{background:#f8f3e8}
+tbody tr.hidden{display:none}
+td{padding:13px 16px;vertical-align:middle;border-right:1px solid #f0efe9;color:#2c2b25;font-weight:300}
+td:last-child{border-right:none}
+td.state-name{font-family:‘EB Garamond’,serif;font-size:15px;font-weight:500;color:#1B3A6B;white-space:nowrap}
+td.abbrev{font-size:11px;font-weight:500;color:#9c9a8e;letter-spacing:1px;text-transform:uppercase}
+td.fee{font-weight:500;color:#2c2b25;font-variant-numeric:tabular-nums}
+.nfs-tag{font-size:10px;font-weight:500;letter-spacing:.5px;color:#9c9a8e;background:#f0efe9;padding:2px 7px;border-radius:2px}
+.tx-row td{background:rgba(27,58,107,.03)}
+.tx-row td.state-name{color:#1B3A6B;font-weight:700}
+.tx-star{color:#B8860B;margin-left:4px}
+
+.no-results{text-align:center;padding:60px 20px;color:#9c9a8e;display:none}
 .no-results.show{display:block}
 
-/* INFO CARDS */
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(–gray-200);border:1px solid var(–gray-200);margin-bottom:48px}
-.info-card{background:var(–white);padding:32px 28px}
-.info-card-eyebrow{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(–gold);margin-bottom:10px}
-.info-card-title{font-family:‘EB Garamond’,serif;font-size:22px;font-weight:500;color:var(–navy-dark);margin-bottom:8px}
-.info-card-body{font-size:13px;font-weight:300;color:var(–gray-600);line-height:1.75}
+.disclaimer{margin-top:40px;padding:24px 28px;border-left:2px solid #B8860B;background:#f8f8f6}
+.disclaimer p{font-size:12px;font-weight:300;color:#5c5a52;line-height:1.85}
+.disclaimer strong{color:#2c2b25;font-weight:500}
 
-/* DISCLAIMER */
-.disclaimer{margin-top:48px;padding:24px 28px;border-left:2px solid var(–gold);background:var(–gray-50)}
-.disclaimer p{font-size:12px;font-weight:300;color:var(–gray-600);line-height:1.85}
-.disclaimer strong{color:var(–gray-800);font-weight:500}
-
-/* SECTION HEADER */
-.sec-hdr{margin-bottom:28px;display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.sec-hdr-left{display:flex;flex-direction:column}
-.sec-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(–gold);margin-bottom:6px;display:flex;align-items:center;gap:10px}
-.sec-eyebrow::before{content:’’;width:20px;height:1px;background:var(–gold)}
-.sec-title{font-family:‘EB Garamond’,serif;font-size:28px;font-weight:500;color:var(–navy-dark)}
-.sec-count{font-size:12px;font-weight:300;color:var(–gray-400)}
-
-/* TABS CONTENT */
-.tab-content{display:none}
-.tab-content.active{display:block}
-
-/* CTA STRIP */
-.cta-strip{margin-top:60px;background:#0d1f3c;background:var(–navy-dark);padding:44px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
-.cta-strip-text h3{font-family:‘EB Garamond’,serif;font-size:24px;font-weight:500;color:var(–white);margin-bottom:6px}
+.cta-strip{margin-top:60px;background:#0d1f3c;padding:44px 40px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cta-strip-text h3{font-family:‘EB Garamond’,serif;font-size:24px;font-weight:500;color:#ffffff;margin-bottom:6px}
 .cta-strip-text p{font-size:13px;font-weight:300;color:rgba(255,255,255,.4)}
-.btn-cta{display:inline-block;background:#B8860B;background:var(–gold);color:#0d1f3c;color:var(–navy-dark);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:14px 32px;transition:background .2s;white-space:nowrap}
-.btn-cta:hover{background:var(–gold-light)}
+.btn-cta{display:inline-block;background:#B8860B;color:#0d1f3c;text-decoration:none;text-align:center;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:14px 32px;transition:background .2s;white-space:nowrap}
+.btn-cta:hover{background:#d4a017}
+.btn-cta-outline{background:transparent!important;color:rgba(255,255,255,.5)!important;border:1px solid rgba(255,255,255,.15)!important}
+.btn-cta-outline:hover{border-color:#B8860B!important;color:#B8860B!important;background:transparent!important}
 
-/* FOOTER */
-footer{background:#07111e;padding:60px 6% 32px;color:rgba(255,255,255,.35)}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:rgba(255,255,255,.18);letter-spacing:.2px;padding-top:28px;border-top:1px solid rgba(255,255,255,.05)}
+footer{background:#07111e;padding:48px 6% 32px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:rgba(255,255,255,.18);padding-top:24px;border-top:1px solid rgba(255,255,255,.05);max-width:1200px;margin:0 auto}
 
-@media(max-width:900px){
-.info-grid{grid-template-columns:1fr 1fr}
-.tab-btns{margin-left:0;width:100%}
-}
-@media(max-width:768px){
-.nav-links{display:none}.hamburger{display:block}
-.info-grid{grid-template-columns:1fr}
-#stateSearch{width:100%}
-.filter-bar-inner{flex-direction:column;align-items:stretch}
-.page-hero-meta{gap:20px}
-.cta-strip{flex-direction:column;text-align:center}
-}
+@media(max-width:900px){.info-grid{grid-template-columns:1fr 1fr}.tab-btns{margin-left:0}}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:block}.info-grid{grid-template-columns:1fr}#stateSearch{width:100%}.filter-bar-inner{flex-direction:column;align-items:stretch}.page-hero-meta{gap:20px}.cta-strip{flex-direction:column;text-align:center}}
 </style>
 
 </head>
 <body>
-
 <nav>
   <a href="/index.html" class="nav-logo">
     <div class="nav-logo-mark"><span>TK</span></div>
-    <div>
-      <span class="nav-logo-text">Texas Notary Kristy</span>
-      <span class="nav-logo-sub">Cibolo, TX · Est. 2020</span>
-    </div>
+    <div><span class="nav-logo-text">Texas Notary Kristy</span><span class="nav-logo-sub">Cibolo, TX · Est. 2020</span></div>
   </a>
   <ul class="nav-links">
     <li><a href="/services.html">Services</a></li>
@@ -178,34 +129,31 @@ footer{background:#07111e;padding:60px 6% 32px;color:rgba(255,255,255,.35)}
     <li><a href="/about.html">About</a></li>
     <li><a href="/faq.html">FAQ</a></li>
     <li><a href="/fee-reference.html" class="active">Fee Reference</a></li>
-    <li><a href="/pricing-calculator.html">Price Calculator</a></li>
+    <li><a href="/quote.html">Get a Quote</a></li>
     <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="nav-cta">Schedule</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
   <a href="/services.html">Services</a>
   <a href="/apostille.html">Apostille</a>
   <a href="/about.html">About</a>
   <a href="/faq.html">FAQ</a>
   <a href="/fee-reference.html">Fee Reference</a>
-  <a href="/pricing-calculator.html">Price Calculator</a>
-  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
+  <a href="/quote.html">Get a Quote</a>
+  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" style="color:#B8860B;font-weight:500">Schedule an Appointment</a>
 </div>
 
 <div class="page-hero">
   <div class="page-hero-inner">
     <div class="page-eyebrow">Reference Data · April 2026</div>
     <h1>Apostille & Notary<br><em>Fees by State</em></h1>
-    <p class="page-hero-desc">Maximum statutory notary fees and Secretary of State apostille fees for all 50 states and D.C. — compiled from official government sources and the National Notary Association (January 2026). Confidence-rated for transparency.</p>
+    <p class="page-hero-desc">Maximum statutory notary fees and Secretary of State apostille fees for all 50 states and D.C. — compiled from official government sources and the National Notary Association. Updated April 2026.</p>
     <div class="page-hero-meta">
-      <div class="meta-item"><strong>Data Source</strong>NNA · Individual SOS Offices</div>
-      <div class="meta-item"><strong>Notary Data Updated</strong>January 14, 2026</div>
-      <div class="meta-item"><strong>States Covered</strong>All 50 + D.C.</div>
-      <div class="meta-item"><strong>Apostille Source Verified</strong>Always confirm at your state SOS</div>
+      <div class="meta-item"><strong>Notary Data Source</strong>National Notary Association</div>
+      <div class="meta-item"><strong>Last Updated</strong>April 2026</div>
+      <div class="meta-item"><strong>Coverage</strong>All 50 States + D.C.</div>
+      <div class="meta-item"><strong>Note</strong>Always verify at your state's SOS website</div>
     </div>
   </div>
 </div>
@@ -222,43 +170,31 @@ footer{background:#07111e;padding:60px 6% 32px;color:rgba(255,255,255,.35)}
   </div>
 </div>
 
-<div class="legend-bar">
-  <div class="legend-bar-inner">
-    <span class="legend-label">Confidence</span>
-    <div class="legend-item"><div class="legend-dot dot-high"></div>HIGH — Official SOS source or 2+ verified sources</div>
-    <div class="legend-item"><div class="legend-dot dot-med"></div>MEDIUM — Single reputable secondary source</div>
-    <div class="legend-item"><div class="legend-dot dot-low"></div>LOW — Inferred or sparse; verify before quoting</div>
-  </div>
-</div>
-
 <main>
-  <!-- SUMMARY CARDS -->
   <div class="info-grid">
     <div class="info-card">
       <div class="info-card-eyebrow">Texas · Confirmed</div>
       <div class="info-card-title">$15 / doc</div>
-      <div class="info-card-body">Texas SOS apostille fee, confirmed on the official SOS website. Walk-in same-day service available at 400 W 15th St, Austin. Adoption docs: $10/doc, capped at $100 per child.</div>
+      <div class="info-card-body">Texas SOS apostille fee, confirmed on the official SOS website. Walk-in same-day service available in Austin. Adoption docs: $10/doc, capped at $100 per child.</div>
     </div>
     <div class="info-card">
       <div class="info-card-eyebrow">Texas Notary · Statutory Max</div>
       <div class="info-card-title">$10 / signature</div>
-      <div class="info-card-body">Texas statutory notary fee: $10 for the first signature, $1 for each additional signature on the same document. RON: $25 + regular notary fee. Source: NNA, January 2026.</div>
+      <div class="info-card-body">Texas statutory notary fee: $10 for the first signature, $1 for each additional signature on the same document. Source: National Notary Association, 2026.</div>
     </div>
     <div class="info-card">
       <div class="info-card-eyebrow">National Range</div>
       <div class="info-card-title">$1 – $25</div>
-      <div class="info-card-body">Apostille fees range from $1 (Michigan) to $25 (New Jersey). Notary per-act maximums range from $2 (New York, Georgia) to $25 (Rhode Island). 10 states have no statutory notary fee cap.</div>
+      <div class="info-card-body">Apostille fees range from $1 (Michigan) to $25 (New Jersey). Notary per-act maximums range from $2 (New York) to $25 (Rhode Island). Ten states have no statutory fee cap.</div>
     </div>
   </div>
 
-  <!-- TABLE -->
-
   <div class="sec-hdr">
-    <div class="sec-hdr-left">
+    <div>
       <div class="sec-eyebrow">Complete Reference</div>
       <div class="sec-title">All States Fee Table</div>
     </div>
-    <div class="sec-count" id="rowCount">51 states / jurisdictions</div>
+    <div class="sec-count" id="rowCount">51 jurisdictions</div>
   </div>
 
   <div class="table-wrap">
@@ -268,181 +204,147 @@ footer{background:#07111e;padding:60px 6% 32px;color:rgba(255,255,255,.35)}
           <th>State</th>
           <th>Abbr.</th>
           <th class="th-gold">Apostille Fee</th>
-          <th>Processing Time</th>
+          <th>Std. Processing</th>
           <th class="th-gold">Notary Ack. (max)</th>
           <th>Jurat (max)</th>
           <th>RON Fee (max)</th>
-          <th>Apo. Confidence</th>
-          <th>Notary Confidence</th>
+          <th>Notes</th>
         </tr>
       </thead>
-      <tbody id="tableBody">
-      </tbody>
+      <tbody id="tableBody"></tbody>
     </table>
     <div class="no-results" id="noResults">No states match your search.</div>
   </div>
 
   <div class="disclaimer">
-    <p><strong>Important:</strong> Apostille fees shown are Secretary of State government fees only — they do not include notary pre-authentication, county clerk certification, outbound shipping, return shipping, translation, or expedite surcharges. Notary fees are maximum statutory caps; actual charges may be lower. <strong>NFS</strong> = No Fee Set — notary sets own rate (disclosure to signer required in some states). Always verify current fees directly at your state's official Secretary of State website before quoting clients. This table does not constitute legal advice.</p>
+    <p><strong>Important:</strong> Apostille fees shown are Secretary of State government fees only — they do not include notary pre-authentication, county clerk certification, outbound shipping, return shipping, translation, or expedite surcharges. Notary fees are maximum statutory caps; actual charges may be lower. <strong>NFS</strong> = No Fee Set by state law — notary sets own rate. Always verify current fees directly at your state's official Secretary of State website before relying on this data. This table does not constitute legal advice.</p>
   </div>
 
   <div class="cta-strip">
     <div class="cta-strip-text">
-      <h3>Need a Quote for Your Documents?</h3>
-      <p>Use the interactive pricing calculator to estimate your total cost including travel, shipping, and service fees.</p>
+      <h3>Ready to Get a Quote for Your Documents?</h3>
+      <p>Use our instant quote estimator to see your total cost including coordination, shipping, and service fees.</p>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="/pricing-calculator.html" class="btn-cta">Open Pricing Calculator</a>
-      <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-cta" style="background:transparent;color:var(--gold);border:1px solid rgba(184,134,11,.5)">Schedule Appointment</a>
+      <a href="/quote.html" class="btn-cta">Get an Instant Quote</a>
+      <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-cta btn-cta-outline">Schedule Appointment</a>
     </div>
   </div>
 </main>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-bottom">
-      <span>© 2026 Texas Notary Kristy · Notarized By Kristy LLC. All rights reserved.</span>
-      <span>Texas Notary Kristy is a registered DBA of Notarized By Kristy LLC · Not a law firm</span>
-    </div>
+  <div class="footer-bottom">
+    <span>© 2026 Texas Notary Kristy · Notarized By Kristy LLC. All rights reserved.</span>
+    <span>Not a law firm · Texas-Commissioned Notary Public</span>
   </div>
 </footer>
 
 <script>
-// ── Data ────────────────────────────────────────────────────────────────────
 const states = [
-  ["Alabama","AL","$10","5–10 bus. days","$10","$10","$10 (paper only)",75,95],
-  ["Alaska","AK","$15","4–6 weeks","NFS","NFS","NFS",75,90],
-  ["Arizona","AZ","$3","10–20 bus. days","$10/sig","$10","$10",95,95],
-  ["Arkansas","AR","$10","3–4 weeks","NFS","NFS","NFS",70,90],
-  ["California","CA","$20","5–7 bus. days","$15","$15","Not yet impl.",92,95],
-  ["Colorado","CO","$5","2–4 bus. days","$15","$15","$25/sig",75,95],
-  ["Connecticut","CT","$20","3–5 bus. days","$5","$5","$5 (paper only)",75,95],
-  ["Delaware","DE","$20","3–5 bus. days","$5","$5","$25",70,95],
-  ["Florida","FL","$10","4–6 bus. days","$10","$10","$25",80,95],
-  ["Georgia","GA","$10","3–5 bus. days","$2","$2","Not permitted",75,95],
-  ["Hawaii","HI","$12","3–5 bus. days","$5/signer","$5/cert","$25",70,95],
-  ["Idaho","ID","$10","3–5 bus. days","$5","$5","$5",70,95],
-  ["Illinois","IL","$2","5–7 bus. days","$5","$5","$25",80,95],
-  ["Indiana","IN","$20","4–6 bus. days","$10","$10","$25",70,95],
-  ["Iowa","IA","$5","2–4 bus. days","NFS","NFS","NFS",70,90],
-  ["Kansas","KS","$15","3–5 bus. days","NFS","NFS","NFS",70,90],
-  ["Kentucky","KY","$10","3–5 bus. days","NFS","NFS","NFS",70,90],
-  ["Louisiana","LA","$10","3–5 bus. days","NFS","NFS","NFS",70,90],
-  ["Maine","ME","$10","3–5 bus. days","NFS","NFS","NFS",70,90],
-  ["Maryland","MD","$5","3–5 bus. days","$8","$8","$30",75,95],
-  ["Massachusetts","MA","$15","3–5 bus. days","NFS","NFS","Not yet impl.",75,90],
-  ["Michigan","MI","$1","3–5 bus. days","$10","$10","$10",85,95],
-  ["Minnesota","MN","$5","3–5 bus. days","$5","$5","$5",75,95],
-  ["Mississippi","MS","$10","3–5 bus. days","$5","$5/person","Not permitted",70,95],
-  ["Missouri","MO","$10","3–5 bus. days","$5","$5","$5 + RON fee",70,95],
-  ["Montana","MT","$10","3–5 bus. days","$10","$10","$10 + tech fee",70,95],
-  ["Nebraska","NE","$10","3–5 bus. days","$5","$2","$25 + notary fee",70,95],
-  ["Nevada","NV","$20","2–4 bus. days","$15 (1st sig)","$15","$25/sig",75,95],
-  ["New Hampshire","NH","$10","3–5 bus. days","$10","$10","$25",70,95],
-  ["New Jersey","NJ","$25","3–4 bus. days","$2.50 / $15 / $25","$2.50 / $15 / $25","$2.50 / $15 / $25",85,95],
-  ["New Mexico","NM","$10","3–5 bus. days","$5","$5","$5 + $25 tech fee",70,95],
-  ["New York","NY","$10","2–4 bus. days","$2/person","$2/person","$25",80,95],
-  ["North Carolina","NC","$10","3–5 bus. days","$10","$10","Not yet impl.",75,95],
-  ["North Dakota","ND","$10","3–5 bus. days","$5","$5","$5 + tech fee",70,95],
-  ["Ohio","OH","$5","2–3 bus. days","$5","$5","$30 + up to $10 tech",80,95],
-  ["Oklahoma","OK","$10","3–5 bus. days","$5","$5","$25",70,95],
-  ["Oregon","OR","$10","5–7 bus. days","$10","$10","$25",75,95],
-  ["Pennsylvania","PA","$15","3–5 bus. days","$5/act","$5 flat","$20 + notary fee",75,95],
-  ["Rhode Island","RI","$10","3–5 bus. days","$25","$25","$25",70,95],
-  ["South Carolina","SC","$10","3–5 bus. days","$5","$5","Not permitted",70,95],
-  ["South Dakota","SD","$10","3–5 bus. days","NFS","NFS","NFS",70,90],
-  ["Tennessee","TN","$2","2–3 bus. days","NFS","NFS","$25",85,90],
-  ["Texas","TX","$15","3–5 bus. days","$10 (1st sig)","$10","$25 + notary fee",98,95],
-  ["Utah","UT","$10","3–5 bus. days","$10","$10","$25",70,95],
-  ["Vermont","VT","$10","3–5 bus. days","NFS","NFS","NFS",70,90],
-  ["Virginia","VA","$10","3–5 bus. days","$10","$10","$25",75,95],
-  ["Washington","WA","$20","3–4 bus. days","$15","$15","$25",80,95],
-  ["Washington D.C.","DC","$20","5–7 bus. days","$5","$5","Not yet impl.",85,95],
-  ["West Virginia","WV","$10","3–5 bus. days","$10","$10","$10",70,95],
-  ["Wisconsin","WI","$10","3–5 bus. days","$5","$5","$5 + tech fee",70,95],
-  ["Wyoming","WY","$10","3–5 bus. days","$10","$0","$10 + tech fee",70,95],
+  ["Alabama","AL","$10","5–10 bus. days","$10","$10","$10",""],
+  ["Alaska","AK","$15","4–6 weeks","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["Arizona","AZ","$3","10–20 bus. days","$10/sig","$10","$10","Expedite walk-in available ($25)"],
+  ["Arkansas","AR","$10","3–4 weeks","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["California","CA","$20","5–7 bus. days","$15","$15","Not impl.","In-person +$6 handling"],
+  ["Colorado","CO","$5","2–4 bus. days","$15","$15","$25/sig",""],
+  ["Connecticut","CT","$20","3–5 bus. days","$5","$5","$5","Travel fee: $0.35/mile (state-set)"],
+  ["Delaware","DE","$20","3–5 bus. days","$5","$5","$25",""],
+  ["Florida","FL","$10","4–6 bus. days","$10","$10","$25","Strong RON market"],
+  ["Georgia","GA","$10","3–5 bus. days","$2","$2","Not permitted","RON not permitted"],
+  ["Hawaii","HI","$12","3–5 bus. days","$5/signer","$5/cert","$25",""],
+  ["Idaho","ID","$10","3–5 bus. days","$5","$5","$5",""],
+  ["Illinois","IL","$2","5–7 bus. days","$5","$5","$25","Lowest apostille fee in U.S."],
+  ["Indiana","IN","$20","4–6 bus. days","$10","$10","$25",""],
+  ["Iowa","IA","$5","2–4 bus. days","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["Kansas","KS","$15","3–5 bus. days","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["Kentucky","KY","$10","3–5 bus. days","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["Louisiana","LA","$10","3–5 bus. days","NFS","NFS","NFS","Non-attorney bond: $50,000"],
+  ["Maine","ME","$10","3–5 bus. days","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["Maryland","MD","$5","3–5 bus. days","$8","$8","$30",""],
+  ["Massachusetts","MA","$15","3–5 bus. days","NFS","NFS","Not impl.","RON pending"],
+  ["Michigan","MI","$1","3–5 bus. days","$10","$10","$10","Lowest apostille fee in U.S."],
+  ["Minnesota","MN","$5","3–5 bus. days","$5","$5","$5",""],
+  ["Mississippi","MS","$10","3–5 bus. days","$5","$5/person","Not permitted","RON not permitted"],
+  ["Missouri","MO","$10","3–5 bus. days","$5","$5","$5 + RON fee",""],
+  ["Montana","MT","$10","3–5 bus. days","$10","$10","$10 + tech fee",""],
+  ["Nebraska","NE","$10","3–5 bus. days","$5","$2","$25 + notary fee","Jurat lower than acknowledgment"],
+  ["Nevada","NV","$20","2–4 bus. days","$15 (1st sig)","$15","$25/sig","Sliding scale for add'l sigs"],
+  ["New Hampshire","NH","$10","3–5 bus. days","$10","$10","$25",""],
+  ["New Jersey","NJ","$25","3–4 bus. days","$2.50–$25","$2.50–$25","$2.50–$25","Highest apostille fee in U.S. RE: tiered"],
+  ["New Mexico","NM","$10","3–5 bus. days","$5","$5","$5 + $25 tech","Travel: $0.30/mile"],
+  ["New York","NY","$10","2–4 bus. days","$2/person","$2/person","$25",""],
+  ["North Carolina","NC","$10","3–5 bus. days","$10","$10","Not impl.","RON pending"],
+  ["North Dakota","ND","$10","3–5 bus. days","$5","$5","$5 + tech fee",""],
+  ["Ohio","OH","$5","2–3 bus. days","$5","$5","$30 + $10 tech",""],
+  ["Oklahoma","OK","$10","3–5 bus. days","$5","$5","$25",""],
+  ["Oregon","OR","$10","5–7 bus. days","$10","$10","$25",""],
+  ["Pennsylvania","PA","$15","3–5 bus. days","$5/act","$5 flat","$20 + notary fee","RE transfers: $15 flat"],
+  ["Rhode Island","RI","$10","3–5 bus. days","$25","$25","$25","Highest notary cap in U.S."],
+  ["South Carolina","SC","$10","3–5 bus. days","$5","$5","Not permitted","RON not permitted"],
+  ["South Dakota","SD","$10","3–5 bus. days","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["Tennessee","TN","$2","2–3 bus. days","NFS","NFS","$25","Second-lowest apostille fee"],
+  ["Texas","TX","$15","3–5 bus. days","$10 (1st sig)","$10","$25 + notary","Walk-in same-day at Austin SOS"],
+  ["Utah","UT","$10","3–5 bus. days","$10","$10","$25",""],
+  ["Vermont","VT","$10","3–5 bus. days","NFS","NFS","NFS","No statutory notary fee cap"],
+  ["Virginia","VA","$10","3–5 bus. days","$10","$10","$25",""],
+  ["Washington","WA","$20","3–4 bus. days","$15","$15","$25",""],
+  ["Washington D.C.","DC","$20","5–7 bus. days","$5","$5","Not impl.","$15 SOS + $5 notarial = $20 total"],
+  ["West Virginia","WV","$10","3–5 bus. days","$10","$10","$10",""],
+  ["Wisconsin","WI","$10","3–5 bus. days","$5","$5","$5 + tech fee",""],
+  ["Wyoming","WY","$10","3–5 bus. days","$10","$0","$10 + tech fee","Jurats: $0"],
 ];
 
-function confBadge(score){
-  if(score>=85) return `<span class="conf-badge conf-high">${score}% HIGH</span>`;
-  if(score>=65) return `<span class="conf-badge conf-med">${score}% MED</span>`;
-  return `<span class="conf-badge conf-low">${score}% LOW</span>`;
-}
-
-function feeCell(val){
-  if(val==='NFS') return `<span class="nfs-tag">NFS</span>`;
-  return val;
-}
+function feeCell(v){ return v==='NFS'?'<span class="nfs-tag">NFS</span>':v; }
 
 function buildTable(){
   const tbody = document.getElementById('tableBody');
-  tbody.innerHTML = '';
   states.forEach(row=>{
-    const [name,abbr,apo,time,ack,jurat,ron,apoConf,notConf] = row;
+    const [name,abbr,apo,time,ack,jurat,ron,notes] = row;
     const isTX = abbr==='TX';
     const tr = document.createElement('tr');
     if(isTX) tr.className='tx-row';
-    tr.dataset.name = name.toLowerCase();
-    tr.dataset.abbr = abbr.toLowerCase();
-    tr.innerHTML = `
-      <td class="state-name">${name}${isTX?' ★':''}</td>
+    tr.dataset.name=name.toLowerCase(); tr.dataset.abbr=abbr.toLowerCase();
+    tr.innerHTML=`
+      <td class="state-name">${name}${isTX?'<span class="tx-star">★</span>':''}</td>
       <td class="abbrev">${abbr}</td>
-      <td class="fee${isTX?' tx-highlight':''}">${apo}</td>
+      <td class="fee">${apo}</td>
       <td>${time}</td>
       <td class="fee">${feeCell(ack)}</td>
       <td class="fee">${feeCell(jurat)}</td>
       <td class="fee">${feeCell(ron)}</td>
-      <td>${confBadge(apoConf)}</td>
-      <td>${confBadge(notConf)}</td>
+      <td style="font-size:12px;color:#9c9a8e">${notes}</td>
     `;
     tbody.appendChild(tr);
   });
-  updateCount();
 }
 
 function filterTable(){
-  const q = document.getElementById('stateSearch').value.toLowerCase().trim();
-  const rows = document.querySelectorAll('#tableBody tr');
-  let visible = 0;
-  rows.forEach(r=>{
-    const match = !q || r.dataset.name.includes(q) || r.dataset.abbr.includes(q);
+  const q=document.getElementById('stateSearch').value.toLowerCase().trim();
+  let visible=0;
+  document.querySelectorAll('#tableBody tr').forEach(r=>{
+    const match=!q||r.dataset.name.includes(q)||r.dataset.abbr.includes(q);
     r.classList.toggle('hidden',!match);
     if(match) visible++;
   });
-  document.getElementById('noResults').classList.toggle('show', visible===0);
-  document.getElementById('rowCount').textContent = `${visible} state${visible!==1?'s':''} shown`;
+  document.getElementById('noResults').classList.toggle('show',visible===0);
+  document.getElementById('rowCount').textContent=`${visible} jurisdiction${visible!==1?'s':''} shown`;
 }
 
-let currentTab = 'both';
-function showTab(tab, btn){
-  currentTab = tab;
+function showTab(tab,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  const ths = document.querySelectorAll('thead th');
-  // col indices: 0=State,1=Abbr,2=Apo fee,3=Time,4=Ack,5=Jurat,6=RON,7=ApoConf,8=NotConf
-  const apoOnly = [0,1,2,3,7];
-  const notOnly = [0,1,4,5,6,8];
-  if(tab==='both'){
-    ths.forEach(th=>th.style.display='');
-    document.querySelectorAll('#tableBody td').forEach(td=>td.style.display='');
-  } else {
-    const show = tab==='apostille' ? apoOnly : notOnly;
-    ths.forEach((th,i)=>{ th.style.display = show.includes(i)?'':'none'; });
-    document.querySelectorAll('#tableBody tr').forEach(tr=>{
-      Array.from(tr.cells).forEach((td,i)=>{ td.style.display = show.includes(i)?'':'none'; });
-    });
-  }
+  // col indices: 0=State,1=Abbr,2=Apo,3=Time,4=Ack,5=Jurat,6=RON,7=Notes
+  const apoOnly=[0,1,2,3,7], notOnly=[0,1,4,5,6,7];
+  const show = tab==='apostille'?apoOnly : tab==='notary'?notOnly:null;
+  document.querySelectorAll('thead th, #tableBody td').forEach((el,i)=>{
+    const col = i%8;
+    el.style.display = show ? (show.includes(col)?'':'none') : '';
+  });
 }
 
 function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
-function updateCount(){
-  document.getElementById('rowCount').textContent = `${states.length} states / jurisdictions`;
-}
-
 buildTable();
-document.querySelectorAll('.mobile-menu a').forEach(a=>{
-  a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
-});
+document.querySelectorAll('.mobile-menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open')));
 </script>
 
 </body>
