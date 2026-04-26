@@ -1,0 +1,57 @@
+# robots.txt for texasnotarykristy.com
+
+# Texas Notary Kristy - Notarized By Kristy LLC
+
+# Last updated: April 2026
+
+User-agent: *
+Allow: /
+
+# Block common non-content paths (defensive — none currently exist, but future-proofs the site)
+
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /*.json$
+
+# Allow major search engines explicit access
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Allow AI crawlers (helps surface the business in AI search results like ChatGPT, Perplexity, Claude)
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Block aggressive SEO scrapers that don’t add value
+
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap location
+
+Sitemap: https://texasnotarykristy.com/sitemap.xml
