@@ -13,7 +13,7 @@
           <span class="footer-cred">VOSB</span>
           <span class="footer-cred">NNA</span>
           <span class="footer-cred">SAM.gov</span>
-          <span class="footer-cred">E&O Insured</span>
+          <span class="footer-cred">E&amp;O Insured</span>
         </div>
       </div>
       <div class="footer-col">
@@ -32,7 +32,7 @@
         <a href="/fee-reference.html">Fee Reference</a>
         <a href="/quote.html">Get a Quote</a>
         <a href="/contact.html">Contact</a>
-        <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank">Schedule</a>
+        <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener">Schedule</a>
         <a href="/privacy.html">Privacy Policy</a>
       </div>
       <div class="footer-col">
@@ -52,4 +52,20 @@
     </div>
   </div>
 </footer>
-<script>document.getElementById('footerYear').textContent = new Date().getFullYear();</script>
+<script>
+// Auto-update copyright year
+document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+// De-emphasize footer link to current page (UX improvement)
+(function(){
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('footer a').forEach(a=>{
+    const href = a.getAttribute('href');
+    if(href === '/' + path || href === path){
+      a.style.opacity = '0.4';
+      a.style.pointerEvents = 'none';
+      a.setAttribute('aria-current', 'page');
+    }
+  });
+})();
+</script>
