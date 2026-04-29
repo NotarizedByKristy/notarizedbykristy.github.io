@@ -1,3 +1,27 @@
+<style>
+/* ============================================================
+   FOOTER — Self-contained styles. Works on any page regardless
+   of whether parent CSS defines the variables.
+   ============================================================ */
+footer{background:#07111e;padding:64px 6% 32px;color:rgba(255,255,255,.3);font-family:'Outfit',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+footer *{box-sizing:border-box}
+footer .footer-inner{max-width:1200px;margin:0 auto}
+footer .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px}
+footer .footer-brand{font-family:'EB Garamond',serif;font-size:17px;font-weight:500;color:#fff;color:var(--white,#fff);margin-bottom:10px}
+footer .footer-tagline{font-size:13px;font-weight:300;color:rgba(255,255,255,.22);font-style:italic;margin-bottom:20px;line-height:1.6}
+footer .footer-link-item{display:block;color:rgba(255,255,255,.3);text-decoration:none;font-size:13px;font-weight:300;margin-bottom:7px;transition:color .2s}
+footer .footer-link-item:hover{color:#B8860B;color:var(--gold,#B8860B)}
+footer .footer-creds-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+footer .footer-cred{font-size:9px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(184,134,11,.45);border:1px solid rgba(184,134,11,.15);padding:3px 9px;background:transparent}
+footer .footer-col-title{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:16px}
+footer .footer-col a{display:block;color:rgba(255,255,255,.3);text-decoration:none;font-size:13px;font-weight:300;margin-bottom:8px;transition:color .2s}
+footer .footer-col a:hover{color:#fff;color:var(--white,#fff)}
+footer .footer-rule{border:none;border-top:1px solid rgba(255,255,255,.05);margin-bottom:24px}
+footer .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;font-size:11px;color:rgba(255,255,255,.15);letter-spacing:.2px}
+@media(max-width:1024px){footer .footer-grid{grid-template-columns:1fr 1fr;gap:36px}}
+@media(max-width:768px){footer .footer-grid{grid-template-columns:1fr}}
+</style>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
@@ -6,7 +30,7 @@
         <p class="footer-tagline">"Notarized Right. The First Time. Every Time."</p>
         <a href="tel:2106289991" class="footer-link-item">210-628-9991</a>
         <a href="mailto:info@notarizedbykristy.com" class="footer-link-item">info@notarizedbykristy.com</a>
-        <span class="footer-link-item">Cibolo, TX · San Antonio Metropolitan Area</span>
+        <span class="footer-link-item">Cibolo, TX &middot; San Antonio Metropolitan Area</span>
         <div class="footer-creds-row">
           <span class="footer-cred">SDVOSB</span>
           <span class="footer-cred">WOSB</span>
@@ -47,8 +71,8 @@
     </div>
     <hr class="footer-rule">
     <div class="footer-bottom">
-      <span>© <span id="footerYear"></span> Texas Notary Kristy · Notarized By Kristy LLC. All rights reserved.</span>
-      <span>Texas Notary Kristy is a DBA of Notarized By Kristy LLC · Texas-Commissioned Notary Public · Not a law firm</span>
+      <span>&copy; <span id="footerYear"></span> Texas Notary Kristy &middot; Notarized By Kristy LLC. All rights reserved.</span>
+      <span>Texas Notary Kristy is a DBA of Notarized By Kristy LLC &middot; Texas-Commissioned Notary Public &middot; Not a law firm</span>
     </div>
   </div>
 </footer>
