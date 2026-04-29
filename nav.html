@@ -3,7 +3,7 @@
     <div class="nav-logo-mark"><span>TK</span></div>
     <div>
       <span class="nav-logo-text">Texas Notary Kristy</span>
-      <span class="nav-logo-sub">Cibolo, TX · Est. 2020</span>
+      <span class="nav-logo-sub">Cibolo, TX · Est. 2022</span>
     </div>
   </a>
   <ul class="nav-links">
@@ -14,9 +14,9 @@
     <li><a href="/fee-reference.html">Fee Reference</a></li>
     <li><a href="/quote.html">Get a Quote</a></li>
     <li><a href="/contact.html">Contact</a></li>
-    <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="nav-cta">Schedule</a></li>
+    <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener" class="nav-cta">Schedule</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -29,13 +29,22 @@
   <a href="/fee-reference.html">Fee Reference</a>
   <a href="/quote.html">Get a Quote</a>
   <a href="/contact.html">Contact</a>
-  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
+  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
 </div>
 
 <script>
-function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.querySelector('.hamburger');
+  const isOpen = menu.classList.toggle('open');
+  if(btn) btn.setAttribute('aria-expanded', isOpen);
+}
 document.querySelectorAll('.mobile-menu a').forEach(a=>{
-  a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
+  a.addEventListener('click',()=>{
+    document.getElementById('mobileMenu').classList.remove('open');
+    const btn = document.querySelector('.hamburger');
+    if(btn) btn.setAttribute('aria-expanded', 'false');
+  });
 });
 // Highlight active nav link based on current page
 (function(){
