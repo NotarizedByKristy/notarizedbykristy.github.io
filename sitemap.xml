@@ -55,7 +55,57 @@
     <priority>0.6</priority>
   </url>
 
-  <!-- City-specific landing pages (high SEO priority) -->
+  <!-- University Apostille hub and per-university pages -->
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-university.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-utsa.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-texas-am.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-ut-austin.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-sam-houston.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-texas-state.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-uh.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://texasnotarykristy.com/apostille-st-marys.html</loc>
+    <lastmod>2026-04-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- City-specific landing pages -->
   <url>
     <loc>https://texasnotarykristy.com/notary-san-antonio.html</loc>
     <lastmod>2026-04-29</lastmod>
