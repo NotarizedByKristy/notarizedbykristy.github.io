@@ -16,10 +16,14 @@ nav .nav-links a:hover,nav .nav-links a.active{color:#fff;color:var(--white,#fff
 nav .nav-cta{color:#B8860B!important;color:var(--gold,#B8860B)!important;border:1px solid rgba(184,134,11,.5)!important;padding:8px 22px!important;font-weight:500!important;transition:all .2s!important}
 nav .nav-cta:hover{background:#B8860B!important;background:var(--gold,#B8860B)!important;color:#0d1f3c!important;color:var(--navy-dark,#0d1f3c)!important;border-color:#B8860B!important;border-color:var(--gold,#B8860B)!important}
 nav .hamburger{display:none;cursor:pointer;background:none;border:none;padding:4px}
-nav .hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.6);margin:5px 0}
-.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#0d1f3c;background:var(--navy-dark,#0d1f3c);padding:24px 6% 32px;z-index:999;border-bottom:1px solid rgba(184,134,11,.15);font-family:'Outfit',sans-serif}
+nav .hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,255,255,.6);margin:5px 0;transition:transform .2s,opacity .2s}
+nav .hamburger.is-open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+nav .hamburger.is-open span:nth-child(2){opacity:0}
+nav .hamburger.is-open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:#0d1f3c;background:var(--navy-dark,#0d1f3c);padding:24px 6% 32px;z-index:999;border-bottom:1px solid rgba(184,134,11,.15);font-family:'Outfit',sans-serif;max-height:calc(100vh - 72px);overflow-y:auto}
 .mobile-menu.open{display:block}
 .mobile-menu a{display:block;color:rgba(255,255,255,.65);text-decoration:none;font-size:14px;font-weight:400;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.05);letter-spacing:.3px}
+.mobile-menu a:active{color:#B8860B;color:var(--gold,#B8860B)}
 @media(max-width:768px){nav .nav-links{display:none}nav .hamburger{display:block}}
 </style>
 
@@ -41,7 +45,7 @@ nav .hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,25
     <li><a href="/contact.html">Contact</a></li>
     <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener" class="nav-cta">Schedule</a></li>
   </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+  <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -49,33 +53,65 @@ nav .hamburger span{display:block;width:22px;height:1.5px;background:rgba(255,25
 <div class="mobile-menu" id="mobileMenu">
   <a href="/services.html">Services</a>
   <a href="/apostille.html">Apostille</a>
+  <a href="/apostille-university.html">University Apostille</a>
   <a href="/about.html">About</a>
   <a href="/faq.html">FAQ</a>
   <a href="/fee-reference.html">Fee Reference</a>
   <a href="/quote.html">Get a Quote</a>
   <a href="/contact.html">Contact</a>
-  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener" style="color:#B8860B;color:var(--gold,#B8860B);font-weight:500">Schedule an Appointment</a>
+  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener" style="color:#B8860B;color:var(--gold,#B8860B);font-weight:500;border-bottom:none;margin-top:8px">Schedule an Appointment &rarr;</a>
 </div>
 
 <script>
-function toggleMenu(){
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.querySelector('.hamburger');
-  const isOpen = menu.classList.toggle('open');
-  if(btn) btn.setAttribute('aria-expanded', isOpen);
-}
-document.querySelectorAll('.mobile-menu a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.getElementById('mobileMenu').classList.remove('open');
-    const btn = document.querySelector('.hamburger');
-    if(btn) btn.setAttribute('aria-expanded', 'false');
-  });
-});
-// Highlight active nav link based on current page
 (function(){
+  // Use addEventListener so this works even when injected via fetch().innerHTML
+  const hamburger = document.querySelector('nav .hamburger');
+  const menu = document.getElementById('mobileMenu');
+
+  if(hamburger && menu){
+    hamburger.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = menu.classList.toggle('open');
+      hamburger.classList.toggle('is-open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close menu when a link is tapped
+    menu.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        menu.classList.remove('open');
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when tapping outside it
+    document.addEventListener('click', function(e){
+      if(menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)){
+        menu.classList.remove('open');
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && menu.classList.contains('open')){
+        menu.classList.remove('open');
+        hamburger.classList.remove('is-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Highlight active nav link based on current page
   const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(a=>{
-    if(a.getAttribute('href') === '/' + path) a.classList.add('active');
+  document.querySelectorAll('.nav-links a:not(.nav-cta), .mobile-menu a').forEach(function(a){
+    const href = a.getAttribute('href');
+    if(href === '/' + path || href === path){
+      a.classList.add('active');
+    }
   });
 })();
 </script>
