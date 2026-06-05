@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="light only">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Title Companies | Texas Notary Kristy &mdash; Loan Signing Agent, RON, Witness Coordination</title>
+<meta name="description" content="Trusted loan signing agent for Texas title companies. NNA Certified, E&amp;O insured, SDVOSB. Same-day, after-hours, weekend availability. Snapdocs, SigningOrder ready. Mobile + RON + Hybrid e-closings.">
+<meta name="keywords" content="loan signing agent for title companies, mobile notary title company, RON loan signing Texas, NNA Certified Signing Agent San Antonio, Snapdocs notary, SigningOrder notary, hybrid closing notary, title company partnership Texas">
+<meta name="author" content="Kristy Davis, Notarized By Kristy LLC">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+
+<link rel="canonical" href="https://texasnotarykristy.com/for-title-companies.html">
+
+<meta name="geo.region" content="US-TX">
+<meta name="geo.placename" content="Cibolo, Texas">
+<meta name="geo.position" content="29.5719;-98.2181">
+<meta name="ICBM" content="29.5719, -98.2181">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="For Title Companies | Texas Notary Kristy">
+<meta property="og:description" content="Trusted loan signing agent for Texas title companies. NNA Certified. E&amp;O insured. Same-day, RON, hybrid closings.">
+<meta property="og:url" content="https://texasnotarykristy.com/for-title-companies.html">
+<meta property="og:site_name" content="Texas Notary Kristy">
+<meta property="og:locale" content="en_US">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="For Title Companies | Texas Notary Kristy">
+<meta name="twitter:description" content="Loan signing agent, mobile notary, RON, and hybrid closings for Texas title companies.">
+
+<meta name="theme-color" content="#0d1f3c">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!-- Schema: Service targeted at Title Companies -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": "https://texasnotarykristy.com/for-title-companies.html#service",
+  "name": "Loan Signing &amp; Mobile Notary Services for Title Companies",
+  "description": "NNA Certified Signing Agent services for Texas title companies. Mobile notary, Remote Online Notarization, hybrid e-closings, witness coordination, same-day and after-hours availability. Bexar, Guadalupe, and Comal county coverage with statewide RON capability.",
+  "provider": {"@id": "https://texasnotarykristy.com/#business"},
+  "areaServed": [
+    {"@type": "AdministrativeArea", "name": "Bexar County, Texas"},
+    {"@type": "AdministrativeArea", "name": "Guadalupe County, Texas"},
+    {"@type": "AdministrativeArea", "name": "Comal County, Texas"},
+    {"@type": "State", "name": "Texas"}
+  ],
+  "serviceType": "Loan Signing Agent &amp; Mobile Notary",
+  "audience": [
+    {"@type": "BusinessAudience", "audienceType": "Title Companies"},
+    {"@type": "BusinessAudience", "audienceType": "Escrow Officers"},
+    {"@type": "BusinessAudience", "audienceType": "Signing Service Coordinators"},
+    {"@type": "BusinessAudience", "audienceType": "Mortgage Lenders"}
+  ],
+  "offers": [
+    {"@type": "Offer", "name": "Mobile Loan Signing", "price": "165.00", "priceCurrency": "USD", "description": "Standard purchase or refinance signing; volume terms available"},
+    {"@type": "Offer", "name": "RON Loan Signing", "price": "165.00", "priceCurrency": "USD", "description": "Remote Online Notarization for distant or unavailable signers"},
+    {"@type": "Offer", "name": "Hybrid e-Closing", "priceCurrency": "USD", "description": "In-person + electronic execution; contact for quote"},
+    {"@type": "Offer", "name": "Print &amp; Ship Services", "priceCurrency": "USD", "description": "Print, deliver, and return overnight package; contact for quote"},
+    {"@type": "Offer", "name": "Same-Day &amp; After-Hours", "priceCurrency": "USD", "description": "Rush availability surcharge; contact for terms"}
+  ]
+}
+</script>
+
+<!-- Schema: FAQPage with title-company-specific questions -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://texasnotarykristy.com/for-title-companies.html#faq",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are you NNA Certified and background checked?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. NNA Certified Notary Signing Agent (current), NNA background check on file, Texas-commissioned notary public, and active Errors &amp; Omissions insurance. We can provide documentation upon request for your vendor onboarding."}
+    },
+    {
+      "@type": "Question",
+      "name": "What signing platforms are you familiar with?",
+      "acceptedAnswer": {"@type": "Answer", "text": "We work fluently with Snapdocs, SigningOrder, NotaryDash, Pactima (for RON), and Proof (for RON). We can adapt to your firm's preferred platform with minimal onboarding. For firms using proprietary signing portals, we accept standard email-based document delivery."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is your typical turnaround time for a standard signing?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Documents back to your office or shipped to underwriter within four hours of signing completion when scheduling permits, or same business day for evening signings. Snapshot or PDF confirmation provided to escrow officer within 30 minutes of signing close. Originals shipped via overnight carrier with tracking provided same day."}
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer same-day, after-hours, and weekend availability?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. Same-day signings are routinely accommodated when scheduling permits. After-hours signings (evenings) and weekend signings are available with a modest rush surcharge that we publish transparently. For partnership engagements, after-hours availability is structured into the engagement terms."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can you handle Texas witness requirements for purchase transactions?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. Texas is a witness-required state for certain transactions, and we coordinate witness arrangements as part of the signing. For signings requiring two witnesses, we either arrange witnesses in advance or work with the signer to identify suitable witnesses available at the signing location. Witness coordination is standard practice and not subject to additional fees in most cases."}
+    },
+    {
+      "@type": "Question",
+      "name": "Are you available for Remote Online Notarization (RON) closings?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. We are a Texas-commissioned online notary using Pactima and Proof platforms. RON closings are available for distant signers, out-of-state borrowers, military service members, and any scenario where the signer cannot meet in person. Sessions are recorded, audit-ready, and meet Texas RON statutory requirements."}
+    },
+    {
+      "@type": "Question",
+      "name": "Do you provide hybrid e-closings?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Yes. Hybrid closings combining in-person execution of legally required documents with electronic execution of remaining documents are supported. We work with your firm's preferred e-closing platform or recommend Pactima-based workflows where you don't have an established platform."}
+    },
+    {
+      "@type": "Question",
+      "name": "How do you structure pricing for volume title company engagements?",
+      "acceptedAnswer": {"@type": "Answer", "text": "Our base rate is $165 per standard purchase or refinance signing. For title companies anticipating 5+ monthly engagements, we offer volume pricing tiers, retainer agreements, and consolidated monthly invoicing. Specific volume terms are structured based on your firm's monthly volume and service mix."}
+    }
+  ]
+}
+</script>
+
+<!-- Schema: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://texasnotarykristy.com/"},
+    {"@type": "ListItem", "position": 2, "name": "For Title Companies", "item": "https://texasnotarykristy.com/for-title-companies.html"}
+  ]
+}
+</script>
+
+<!-- Schema: WebPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://texasnotarykristy.com/for-title-companies.html#webpage",
+  "url": "https://texasnotarykristy.com/for-title-companies.html",
+  "name": "For Title Companies | Texas Notary Kristy",
+  "description": "Loan signing agent, mobile notary, RON, and hybrid closings for Texas title companies.",
+  "inLanguage": "en-US",
+  "isPartOf": {"@id": "https://texasnotarykristy.com/#website"},
+  "about": {"@id": "https://texasnotarykristy.com/for-title-companies.html#service"},
+  "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".page-hero h1", ".page-hero-desc"]}
+}
+</script>
+
+<style>
+:root{--navy:#1B3A6B;--navy-dark:#0d1f3c;--gold:#B8860B;--gold-light:#d4a017;--gold-pale:#f8f3e8;--cream:#FAFAF7;--white:#fff;--gray-50:#f8f8f6;--gray-100:#f0efe9;--gray-200:#e2e0d8;--gray-400:#9c9a8e;--gray-600:#5c5a52;--gray-800:#2c2b25}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Outfit',sans-serif;color:var(--gray-800);background:var(--cream);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.page-hero{background:var(--navy-dark);padding:140px 6% 84px;position:relative;overflow:hidden;border-bottom:1px solid rgba(184,134,11,.15)}
+.page-hero::after{content:'T';position:absolute;right:3%;top:50%;transform:translateY(-50%);font-family:'EB Garamond',serif;font-size:clamp(160px,20vw,300px);font-weight:400;color:rgba(255,255,255,.025);pointer-events:none;line-height:1}
+.page-hero-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.breadcrumb{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:20px}
+.breadcrumb a{color:rgba(255,255,255,.25);text-decoration:none}.breadcrumb span{color:rgba(255,255,255,.15);margin:0 8px}
+.audience-tag{display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;padding:6px 14px;border:1px solid rgba(184,134,11,.4)}
+.audience-tag::before{content:'';width:6px;height:6px;background:var(--gold);border-radius:50%}
+.page-hero h1{font-family:'EB Garamond',serif;font-size:clamp(36px,5vw,68px);font-weight:500;color:var(--white);line-height:1.1;margin-bottom:18px;letter-spacing:-.3px}
+.page-hero h1 em{color:var(--gold);font-style:italic;font-weight:400}
+.page-hero-desc{font-size:17px;font-weight:300;color:rgba(255,255,255,.55);max-width:680px;line-height:1.85}
+.hero-creds-row{margin-top:32px;display:flex;flex-wrap:wrap;gap:8px}
+.hero-cred{font-size:10px;font-weight:500;letter-spacing:1px;color:rgba(184,134,11,.7);border:1px solid rgba(184,134,11,.25);padding:5px 12px;background:rgba(184,134,11,.05)}
+.hero-cta-row{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px}
+.btn-primary{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--navy-dark);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:16px 32px;transition:background .25s}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:rgba(255,255,255,.7);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;padding:15px 32px;border:1px solid rgba(255,255,255,.2);transition:all .25s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+section{padding:80px 6%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-eyebrow{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.section-eyebrow::before{content:'';width:24px;height:1px;background:var(--gold)}
+.section-title{font-family:'EB Garamond',serif;font-size:clamp(28px,3.4vw,46px);font-weight:500;color:var(--navy-dark);line-height:1.15;letter-spacing:-.3px}
+.section-title em{color:var(--gold);font-style:italic}
+.section-body{font-size:15px;font-weight:300;color:var(--gray-600);line-height:1.85;margin-top:14px;max-width:780px}
+
+/* Credibility band */
+.cred-band{background:var(--white);border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);padding:32px 6%}
+.cred-band-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.cred-band-label{font-size:10px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);flex-shrink:0}
+.cred-band-items{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.cred-band-item{font-family:'EB Garamond',serif;font-size:13px;font-weight:500;color:var(--navy-dark)}
+
+/* Pitch angle grid */
+.pitch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-200);border:1px solid var(--gray-200);margin-top:40px}
+.pitch-card{background:var(--white);padding:36px 30px;position:relative}
+.pitch-rule{width:36px;height:2px;background:var(--gold);margin-bottom:16px}
+.pitch-num{font-family:'EB Garamond',serif;font-size:11px;font-weight:400;color:var(--gold);letter-spacing:3px;margin-bottom:6px;display:block}
+.pitch-title{font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--navy-dark);line-height:1.2;margin-bottom:14px}
+.pitch-body{font-size:14px;font-weight:300;color:var(--gray-600);line-height:1.8}
+.pitch-body strong{font-weight:600;color:var(--navy-dark)}
+
+/* Services matrix */
+.svc-matrix{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--gray-200);border:1px solid var(--gray-200);margin-top:40px}
+.svc-cell{background:var(--white);padding:30px 26px;position:relative;transition:background .25s}
+.svc-cell:hover{background:var(--gold-pale)}
+.svc-label{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.svc-name{font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--navy-dark);margin-bottom:6px;line-height:1.25}
+.svc-rate{font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.svc-detail{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.7}
+
+/* Platforms grid */
+.platforms-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--gray-200);border:1px solid var(--gray-200);margin-top:36px}
+.platform-cell{background:var(--white);padding:28px 18px;text-align:center;transition:background .25s}
+.platform-cell:hover{background:var(--gold-pale)}
+.platform-name{font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--navy-dark);margin-bottom:4px;line-height:1.2}
+.platform-type{font-size:10px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+
+/* Pricing block */
+.pricing-section{background:var(--white)}
+.pricing-row{display:grid;grid-template-columns:1.5fr 1fr;gap:0;border:1px solid var(--gray-200);background:var(--gray-200);margin-top:36px}
+.pricing-info{background:var(--white);padding:36px 32px}
+.pricing-info-title{font-family:'EB Garamond',serif;font-size:22px;font-weight:600;color:var(--navy-dark);margin-bottom:14px}
+.pricing-info-body{font-size:14px;font-weight:300;color:var(--gray-600);line-height:1.85;margin-bottom:14px}
+.pricing-info-body strong{font-weight:600;color:var(--navy-dark)}
+.pricing-tier-table{background:var(--white);padding:0}
+.pricing-tier{padding:20px 28px;border-bottom:1px solid var(--gray-100);display:flex;justify-content:space-between;align-items:center;gap:14px}
+.pricing-tier:last-child{border-bottom:none}
+.pricing-tier-label{font-size:13px;font-weight:400;color:var(--gray-800)}
+.pricing-tier-rate{font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--gold);white-space:nowrap}
+.pricing-tier.volume{background:var(--gold-pale);font-style:italic}
+.pricing-tier.volume .pricing-tier-rate{font-style:normal;font-size:13px;color:var(--navy-dark);font-family:'Outfit',sans-serif;font-weight:500}
+
+/* Process timeline */
+.process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--gray-200);border:1px solid var(--gray-200);margin-top:44px}
+.process-cell{background:var(--white);padding:32px 24px;position:relative}
+.process-step-mark{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.process-step-num{font-family:'EB Garamond',serif;font-size:32px;font-weight:500;color:var(--gold);line-height:1}
+.process-step-tag{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gray-400);padding-bottom:4px}
+.process-step-title{font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--navy-dark);margin-bottom:8px;line-height:1.3}
+.process-step-body{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.7}
+
+/* Partnership terms */
+.terms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:36px}
+.terms-card{background:var(--white);border:1px solid var(--gray-200);padding:26px 28px;display:flex;align-items:flex-start;gap:18px;transition:border-color .25s,background .25s}
+.terms-card:hover{border-color:rgba(184,134,11,.35);background:var(--gold-pale)}
+.terms-mark{width:36px;height:36px;background:var(--navy-dark);color:var(--gold);font-family:'EB Garamond',serif;font-size:18px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.terms-content{flex:1}
+.terms-title{font-family:'EB Garamond',serif;font-size:17px;font-weight:600;color:var(--navy-dark);margin-bottom:6px;line-height:1.2}
+.terms-body{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.7}
+
+/* Coverage map block */
+.coverage-row{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--gray-200);margin-top:36px}
+.coverage-cell{background:var(--white);padding:32px 30px;border-right:1px solid var(--gray-200)}
+.coverage-cell:last-child{border-right:none}
+.coverage-cell-title{font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--navy-dark);margin-bottom:10px}
+.coverage-cell-tag{font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.coverage-cell-body{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.75}
+.coverage-cell-list{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px}
+.coverage-pill{font-size:11px;font-weight:500;color:var(--navy-dark);background:var(--gray-50);padding:5px 11px;border:1px solid var(--gray-200)}
+
+/* FAQ */
+.faq-section{padding:0 6% 88px}
+.faq-inner{max-width:900px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--gray-100)}
+.faq-btn{width:100%;text-align:left;background:none;border:none;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:inherit}
+.faq-q{font-size:15px;font-weight:500;color:var(--navy-dark);line-height:1.4}
+.faq-icon{font-family:'EB Garamond',serif;font-size:24px;color:var(--gold);flex-shrink:0;transition:transform .3s;line-height:1}
+.faq-icon.open{transform:rotate(45deg)}
+.faq-a{font-size:14px;font-weight:300;color:var(--gray-600);line-height:1.85;padding-bottom:22px;display:none;letter-spacing:.1px}
+.faq-a.open{display:block}
+.faq-a strong{font-weight:600;color:var(--navy-dark)}
+
+/* Pull quote */
+.pull-quote{background:var(--navy-dark);padding:64px 6%;position:relative}
+.pull-quote::before{content:'\201C';position:absolute;top:24px;left:6%;font-family:'EB Garamond',serif;font-size:140px;font-weight:500;color:rgba(184,134,11,.15);line-height:1}
+.pull-quote-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.pull-quote-text{font-family:'EB Garamond',serif;font-size:clamp(20px,2.4vw,30px);font-weight:400;color:var(--white);line-height:1.45;font-style:italic;letter-spacing:.2px}
+.pull-quote-text em{color:var(--gold);font-style:normal;font-weight:500}
+.pull-quote-attr{margin-top:24px;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* CTA strip */
+.cta-strip{background:var(--navy-dark);padding:72px 6%;border-top:1px solid rgba(184,134,11,.15)}
+.cta-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.cta-title{font-family:'EB Garamond',serif;font-size:clamp(26px,3vw,42px);font-weight:500;color:var(--white);line-height:1.2;margin-bottom:10px}
+.cta-title em{color:var(--gold);font-style:italic}
+.cta-sub{font-size:14px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.7;max-width:600px}
+.cta-actions{display:flex;flex-direction:column;gap:10px;align-items:flex-end;white-space:nowrap}
+.cta-contact{font-size:12px;font-weight:300;color:rgba(255,255,255,.35);text-align:right}
+.cta-contact a{color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+.cta-contact a:hover{color:var(--gold)}
+
+.sticky-mobile-cta{display:none}
+@media(max-width:768px){
+.sticky-mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:998;background:#0d1f3c;border-top:1px solid rgba(184,134,11,.3);padding:10px;gap:8px;box-shadow:0 -4px 12px rgba(0,0,0,.15)}
+.sticky-mobile-cta a{flex:1;text-align:center;padding:12px 8px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px}
+.sticky-mobile-cta .sticky-call{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.sticky-mobile-cta .sticky-book{background:#B8860B;color:#0d1f3c}
+body{padding-bottom:64px}
+}
+@media(max-width:1024px){.pitch-grid{grid-template-columns:1fr}.svc-matrix{grid-template-columns:1fr 1fr}.platforms-grid{grid-template-columns:1fr 1fr}.process-row{grid-template-columns:1fr 1fr}.terms-grid{grid-template-columns:1fr}.pricing-row{grid-template-columns:1fr}.cta-inner{grid-template-columns:1fr}.cta-actions{align-items:flex-start}.cta-contact{text-align:left}.coverage-row{grid-template-columns:1fr}.coverage-cell{border-right:none;border-bottom:1px solid var(--gray-200)}.coverage-cell:last-child{border-bottom:none}}
+@media(max-width:640px){.svc-matrix{grid-template-columns:1fr}.process-row{grid-template-columns:1fr}.platforms-grid{grid-template-columns:1fr}.cred-band-inner{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div id="site-nav"></div>
+
+<!-- HERO -->
+<div class="page-hero">
+<div class="page-hero-inner">
+<div class="breadcrumb"><a href="/index.html">Home</a><span>/</span>For Title Companies</div>
+<div class="audience-tag">For Title Companies &amp; Signing Coordinators</div>
+<h1>A signing agent who<br><em>delivers on the deadline.</em></h1>
+<p class="page-hero-desc">NNA Certified Signing Agent for Texas title companies. Mobile, RON, and hybrid closings. Same-day, after-hours, and weekend availability. Snapdocs and SigningOrder fluent. Documents back to your underwriter the same day. The vendor profile your due-diligence team will approve in one pass.</p>
+<div class="hero-creds-row">
+<span class="hero-cred">NNA Certified Signing Agent</span>
+<span class="hero-cred">Background Check Current</span>
+<span class="hero-cred">E&amp;O Insured</span>
+<span class="hero-cred">SDVOSB</span>
+<span class="hero-cred">WOSB &middot; VOSB</span>
+<span class="hero-cred">SAM.gov</span>
+<span class="hero-cred">RON Authorized</span>
+</div>
+<div class="hero-cta-row">
+<a href="/contact.html" class="btn-primary">Discuss Partnership &rarr;</a>
+<a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener" class="btn-outline">Schedule 15-min Intro Call</a>
+</div>
+</div>
+</div>
+
+<!-- CREDENTIAL BAND -->
+<div class="cred-band">
+<div class="cred-band-inner">
+<div class="cred-band-label">Active Credentials &middot; 2026</div>
+<div class="cred-band-items">
+<span class="cred-band-item">NNA Certified Signing Agent</span>
+<span class="cred-band-item">Background Check on File</span>
+<span class="cred-band-item">E&amp;O Insurance &middot; Current</span>
+<span class="cred-band-item">21+ yrs U.S. Navy</span>
+</div>
+</div>
+</div>
+
+<!-- THREE PITCH ANGLES -->
+<section>
+<div class="section-inner">
+<div class="section-eyebrow">Why Texas Notary Kristy</div>
+<h2 class="section-title">Three reasons title companies <em>choose to partner with us.</em></h2>
+<p class="section-body">Most signing agents are interchangeable until a deadline matters. The difference at Texas Notary Kristy is the combination of credentials, signing depth, and operating discipline that takes one variable out of your week.</p>
+
+<div class="pitch-grid">
+
+<div class="pitch-card">
+<div class="pitch-rule"></div>
+<span class="pitch-num">01</span>
+<div class="pitch-title">Credentials That Pass Due Diligence</div>
+<p class="pitch-body"><strong>NNA Certified Signing Agent</strong> with active certification and current background check. <strong>E&amp;O insured</strong>. Texas-commissioned notary. SDVOSB / WOSB / VOSB federally certified. SAM.gov registered. RON authorized. Every credential current &mdash; the kind of vendor profile that gets approved in one onboarding pass, not three.</p>
+</div>
+
+<div class="pitch-card">
+<div class="pitch-rule"></div>
+<span class="pitch-num">02</span>
+<div class="pitch-title">Signing Depth &amp; Platform Fluency</div>
+<p class="pitch-body">Fluent with <strong>Snapdocs, SigningOrder, NotaryDash, Pactima</strong> (RON), and <strong>Proof</strong> (RON). Comfortable with purchase, refi, HELOC, seller, and reverse mortgage packages. Witness coordination handled in-stride for Texas signings. <strong>Hybrid e-closings</strong> supported. The signings you assign get executed correctly the first time.</p>
+</div>
+
+<div class="pitch-card">
+<div class="pitch-rule"></div>
+<span class="pitch-num">03</span>
+<div class="pitch-title">Process &amp; Delivery Standard</div>
+<p class="pitch-body">21 years of U.S. Navy service defined the standard: <strong>response within four business hours</strong>, snapshot confirmation to escrow within 30 minutes of signing close, originals shipped same business day with tracking. <strong>Errors corrected at no charge</strong>. Available same-day, after-hours, and weekends. <em>"Notarized Right. The First Time. Every Time."</em></p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- SERVICES MATRIX -->
+<section style="background:var(--white)">
+<div class="section-inner">
+<div class="section-eyebrow">Capabilities for Title Companies</div>
+<h2 class="section-title">What we can do <em>for your closings.</em></h2>
+<p class="section-body">The full set of services title companies typically need from a loan signing agent &mdash; whether you're closing local purchase transactions, coordinating refis at scale, or running RON sessions for out-of-state buyers.</p>
+
+<div class="svc-matrix">
+
+<div class="svc-cell">
+<div class="svc-label">Purchase &amp; Refinance</div>
+<div class="svc-name">Mobile Loan Signing</div>
+<div class="svc-rate">From $165</div>
+<p class="svc-detail">Standard purchase or refinance loan signing at the borrower's preferred location. Document review, witness coordination, error-free notarization, and same-day return shipping to your office or underwriter.</p>
+</div>
+
+<div class="svc-cell">
+<div class="svc-label">Distant &amp; Military Signers</div>
+<div class="svc-name">RON Loan Signing</div>
+<div class="svc-rate">From $165</div>
+<p class="svc-detail">Texas-compliant Remote Online Notarization via Pactima and Proof. Particularly valuable for out-of-state borrowers, deployed military buyers, and busy professional clients. Sessions recorded and audit-ready.</p>
+</div>
+
+<div class="svc-cell">
+<div class="svc-label">Modern Closings</div>
+<div class="svc-name">Hybrid e-Closings</div>
+<div class="svc-rate">Contact for Quote</div>
+<p class="svc-detail">In-person execution of legally required documents combined with electronic execution of remaining package. Reduces closing time, paper handling, and signing complexity. Compatible with your firm's preferred platform.</p>
+</div>
+
+<div class="svc-cell">
+<div class="svc-label">Equity &amp; Specialty</div>
+<div class="svc-name">HELOC &amp; Reverse Mortgage</div>
+<div class="svc-rate">From $165</div>
+<p class="svc-detail">Home equity line of credit and reverse mortgage signings. Familiar with the additional disclosures and witness requirements specific to these transaction types in Texas.</p>
+</div>
+
+<div class="svc-cell">
+<div class="svc-label">Seller-Side</div>
+<div class="svc-name">Seller Package Signings</div>
+<div class="svc-rate">From $165</div>
+<p class="svc-detail">Standalone seller signings when buyer and seller close on different days or at different locations. Coordinated with your escrow officer for timing and document delivery.</p>
+</div>
+
+<div class="svc-cell">
+<div class="svc-label">Volume Support</div>
+<div class="svc-name">Print &amp; Ship + After-Hours</div>
+<div class="svc-rate">Contact for Quote</div>
+<p class="svc-detail">Print, deliver, and return overnight package services available. Same-day, after-hours, and weekend signings available with transparent rush surcharges. Built into partnership engagement terms.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PLATFORMS -->
+<section>
+<div class="section-inner">
+<div class="section-eyebrow">Platform Fluency</div>
+<h2 class="section-title">Signing platforms <em>we work with.</em></h2>
+<p class="section-body">Fluent with the platforms title companies actually use. Minimal onboarding required &mdash; we adapt to your firm's existing workflow rather than asking you to change yours.</p>
+
+<div class="platforms-grid">
+<div class="platform-cell">
+<div class="platform-name">Snapdocs</div>
+<div class="platform-type">Mobile</div>
+</div>
+<div class="platform-cell">
+<div class="platform-name">SigningOrder</div>
+<div class="platform-type">Mobile</div>
+</div>
+<div class="platform-cell">
+<div class="platform-name">NotaryDash</div>
+<div class="platform-type">Mobile</div>
+</div>
+<div class="platform-cell">
+<div class="platform-name">Pactima</div>
+<div class="platform-type">RON</div>
+</div>
+<div class="platform-cell">
+<div class="platform-name">Proof</div>
+<div class="platform-type">RON</div>
+</div>
+</div>
+<p class="section-body" style="margin-top:18px;font-size:13px;color:var(--gray-400)">Don't see your platform? We accept standard email-based document delivery and can onboard to most signing portals quickly.</p>
+</div>
+</section>
+
+<!-- COVERAGE -->
+<section style="background:var(--white)">
+<div class="section-inner">
+<div class="section-eyebrow">Service Coverage</div>
+<h2 class="section-title">Where we <em>cover signings.</em></h2>
+<p class="section-body">Mobile signings throughout the San Antonio metro area. Remote Online Notarization for borrowers anywhere in Texas (and U.S. clients with Texas-issued documents).</p>
+
+<div class="coverage-row">
+
+<div class="coverage-cell">
+<div class="coverage-cell-tag">Mobile Coverage</div>
+<div class="coverage-cell-title">San Antonio Metro Area</div>
+<p class="coverage-cell-body">In-person signings throughout Bexar, Guadalupe, and Comal counties. Travel zones disclosed transparently to signers at booking.</p>
+<div class="coverage-cell-list">
+<span class="coverage-pill">San Antonio</span>
+<span class="coverage-pill">Cibolo</span>
+<span class="coverage-pill">Schertz</span>
+<span class="coverage-pill">Universal City</span>
+<span class="coverage-pill">Converse</span>
+<span class="coverage-pill">Live Oak</span>
+<span class="coverage-pill">Garden Ridge</span>
+<span class="coverage-pill">Selma</span>
+<span class="coverage-pill">Seguin</span>
+<span class="coverage-pill">New Braunfels</span>
+<span class="coverage-pill">Marion</span>
+</div>
+</div>
+
+<div class="coverage-cell">
+<div class="coverage-cell-tag">RON Coverage</div>
+<div class="coverage-cell-title">Statewide &amp; Nationwide</div>
+<p class="coverage-cell-body">Texas-commissioned online notary &mdash; can serve any borrower located anywhere in the United States for documents requiring Texas notarial acts. RON is particularly valuable for:</p>
+<div class="coverage-cell-list">
+<span class="coverage-pill">Out-of-state buyers</span>
+<span class="coverage-pill">Deployed military</span>
+<span class="coverage-pill">Elderly signers</span>
+<span class="coverage-pill">Hospitalized signers</span>
+<span class="coverage-pill">Time-zone challenges</span>
+<span class="coverage-pill">Last-minute scheduling</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PRICING BLOCK -->
+<section class="pricing-section" style="background:var(--cream)">
+<div class="section-inner">
+<div class="section-eyebrow">Transparent Base Pricing</div>
+<h2 class="section-title">Published rates. <em>Volume terms by partnership.</em></h2>
+<p class="section-body">Our base rates are published here for transparency &mdash; what you'd pay for a one-off signing. For title companies with recurring volume, partnership pricing tiers, retainer agreements, and consolidated monthly invoicing are structured at engagement.</p>
+
+<div class="pricing-row">
+
+<div class="pricing-info">
+<div class="pricing-info-title">Volume Partnership Terms</div>
+<p class="pricing-info-body">For title companies anticipating <strong>5+ monthly signings</strong>, we offer volume pricing tiers, retainer agreements, dedicated intake forms, monthly status reporting, and consolidated invoicing. Pricing depends on monthly volume, service mix, geographic distribution, and after-hours requirements.</p>
+<p class="pricing-info-body">We're not the cheapest signing agent in the market. We're positioned to be the <strong>most reliable</strong> &mdash; the agent you assign when the deadline matters, the borrower is difficult, or the documents have to be back to the underwriter today.</p>
+<div style="margin-top:24px">
+<a href="/contact.html" class="btn-primary" style="background:var(--navy-dark);color:var(--gold);border:1px solid var(--gold)">Request Partnership Quote &rarr;</a>
+</div>
+</div>
+
+<div class="pricing-tier-table">
+<div class="pricing-tier">
+<span class="pricing-tier-label">Mobile Loan Signing &middot; standard</span>
+<span class="pricing-tier-rate">From $165</span>
+</div>
+<div class="pricing-tier">
+<span class="pricing-tier-label">RON Loan Signing</span>
+<span class="pricing-tier-rate">From $165</span>
+</div>
+<div class="pricing-tier">
+<span class="pricing-tier-label">HELOC Signing</span>
+<span class="pricing-tier-rate">From $165</span>
+</div>
+<div class="pricing-tier">
+<span class="pricing-tier-label">Reverse Mortgage Signing</span>
+<span class="pricing-tier-rate">From $165</span>
+</div>
+<div class="pricing-tier">
+<span class="pricing-tier-label">Hybrid e-Closing</span>
+<span class="pricing-tier-rate">Contact</span>
+</div>
+<div class="pricing-tier">
+<span class="pricing-tier-label">Print &amp; Ship Services</span>
+<span class="pricing-tier-rate">Contact</span>
+</div>
+<div class="pricing-tier">
+<span class="pricing-tier-label">After-Hours / Weekend Surcharge</span>
+<span class="pricing-tier-rate">+$40</span>
+</div>
+<div class="pricing-tier">
+<span class="pricing-tier-label">Same-Day / Rush Surcharge</span>
+<span class="pricing-tier-rate">+$50</span>
+</div>
+<div class="pricing-tier volume">
+<span class="pricing-tier-label">Volume / retainer / institutional terms</span>
+<span class="pricing-tier-rate">By Partnership</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PROCESS / SLA -->
+<section>
+<div class="section-inner">
+<div class="section-eyebrow">How We Work With Title Companies</div>
+<h2 class="section-title">Process &amp; <em>delivery standard.</em></h2>
+<p class="section-body">What you should expect from intake through underwriter delivery. We commit to these standards in writing for every partnership engagement.</p>
+
+<div class="process-row">
+
+<div class="process-cell">
+<div class="process-step-mark">
+<span class="process-step-num">01</span>
+<span class="process-step-tag">Assignment</span>
+</div>
+<div class="process-step-title">Confirmed &mdash; 4 Business Hours</div>
+<p class="process-step-body">Assignment received via your preferred platform or email. Confirmation back to escrow within four business hours including time block, signer contact status, and any flagged document issues.</p>
+</div>
+
+<div class="process-cell">
+<div class="process-step-mark">
+<span class="process-step-num">02</span>
+<span class="process-step-tag">Pre-Signing</span>
+</div>
+<div class="process-step-title">Document Review Completed</div>
+<p class="process-step-body">Full document review before arrival or RON start. Flagged inconsistencies, missing pages, or signer issues communicated to escrow before signing begins. No surprises at the closing table.</p>
+</div>
+
+<div class="process-cell">
+<div class="process-step-mark">
+<span class="process-step-num">03</span>
+<span class="process-step-tag">Signing</span>
+</div>
+<div class="process-step-title">Snapshot to Escrow &mdash; 30 min</div>
+<p class="process-step-body">Closing executed on schedule. Snapshot or PDF confirmation of signed package emailed to escrow officer within 30 minutes of signing close. Witness coordination handled in-stride for Texas signings.</p>
+</div>
+
+<div class="process-cell">
+<div class="process-step-mark">
+<span class="process-step-num">04</span>
+<span class="process-step-tag">Delivery</span>
+</div>
+<div class="process-step-title">Originals Shipped &mdash; Same Day</div>
+<p class="process-step-body">Original signed package shipped via overnight carrier same business day, with tracking number provided to escrow. RON packages delivered digitally same session. Itemized invoice within one business day.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PARTNERSHIP TERMS -->
+<section style="background:var(--white)">
+<div class="section-inner">
+<div class="section-eyebrow">Partnership Structure</div>
+<h2 class="section-title">What a partnership <em>looks like.</em></h2>
+<p class="section-body">For title companies anticipating recurring signings, we structure a formal partnership relationship built around the volume and reliability standards your operations team needs.</p>
+
+<div class="terms-grid">
+
+<div class="terms-card">
+<div class="terms-mark">&pound;</div>
+<div class="terms-content">
+<div class="terms-title">Volume Pricing Tiers</div>
+<p class="terms-body">Negotiated per-signing rates based on monthly volume. Net-30 invoicing standard. Custom rate sheet at engagement start.</p>
+</div>
+</div>
+
+<div class="terms-card">
+<div class="terms-mark">&para;</div>
+<div class="terms-content">
+<div class="terms-title">Dedicated Intake Workflow</div>
+<p class="terms-body">Custom intake form for your firm's standard assignment types. Streamlined assignment process. Reduced back-and-forth on schedule and document confirmation.</p>
+</div>
+</div>
+
+<div class="terms-card">
+<div class="terms-mark">&sect;</div>
+<div class="terms-content">
+<div class="terms-title">Confidentiality &amp; NDA</div>
+<p class="terms-body">NDA signed at engagement start. Borrower information protected per CFPB and state privacy requirements. Documents destroyed or returned per firm policy.</p>
+</div>
+</div>
+
+<div class="terms-card">
+<div class="terms-mark">&Sigma;</div>
+<div class="terms-content">
+<div class="terms-title">Monthly Status Reporting</div>
+<p class="terms-body">Optional monthly signing summary by transaction type, location, and turnaround time. Useful for firm operations reporting and underwriter audit support.</p>
+</div>
+</div>
+
+<div class="terms-card">
+<div class="terms-mark">&divide;</div>
+<div class="terms-content">
+<div class="terms-title">Consolidated Invoicing</div>
+<p class="terms-body">Monthly consolidated invoice with itemized signing detail. Transaction-coded line items if required. Net-30 terms standard.</p>
+</div>
+</div>
+
+<div class="terms-card">
+<div class="terms-mark">&infin;</div>
+<div class="terms-content">
+<div class="terms-title">Priority Scheduling</div>
+<p class="terms-body">Partnership engagements receive priority scheduling. Same-day availability prioritized. After-hours and weekend coverage built into engagement terms.</p>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PULL QUOTE -->
+<div class="pull-quote">
+<div class="pull-quote-inner">
+<p class="pull-quote-text">The signing agent you assign when the <em>deadline matters, the borrower is difficult, or the documents have to be back to the underwriter today</em> &mdash; without the carve-outs, the missed pickups, or the surprises.</p>
+<div class="pull-quote-attr">Our Operating Standard</div>
+</div>
+</div>
+
+<!-- FAQ -->
+<section style="padding-top:60px">
+<div class="section-inner">
+<div class="section-eyebrow">Partnership Questions</div>
+<h2 class="section-title">Questions title companies <em>typically ask.</em></h2>
+</div>
+</section>
+
+<div class="faq-section">
+<div class="faq-inner">
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">Are you NNA Certified and background checked?</span><span class="faq-icon">+</span></button>
+<div class="faq-a"><strong>Yes.</strong> NNA Certified Notary Signing Agent (current), NNA background check on file, Texas-commissioned notary public, and active Errors &amp; Omissions insurance. We can provide documentation upon request for your vendor onboarding.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">What signing platforms are you familiar with?</span><span class="faq-icon">+</span></button>
+<div class="faq-a">We work fluently with <strong>Snapdocs, SigningOrder, NotaryDash, Pactima</strong> (for RON), and <strong>Proof</strong> (for RON). We can adapt to your firm's preferred platform with minimal onboarding. For firms using proprietary signing portals, we accept standard email-based document delivery.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">What is your typical turnaround time for a standard signing?</span><span class="faq-icon">+</span></button>
+<div class="faq-a">Documents back to your office or shipped to underwriter within four hours of signing completion when scheduling permits, or same business day for evening signings. <strong>Snapshot or PDF confirmation provided to escrow officer within 30 minutes of signing close.</strong> Originals shipped via overnight carrier with tracking provided same day.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">Do you offer same-day, after-hours, and weekend availability?</span><span class="faq-icon">+</span></button>
+<div class="faq-a"><strong>Yes.</strong> Same-day signings are routinely accommodated when scheduling permits. After-hours signings (evenings) and weekend signings are available with a modest rush surcharge that we publish transparently. For partnership engagements, after-hours availability is structured into the engagement terms.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">Can you handle Texas witness requirements for purchase transactions?</span><span class="faq-icon">+</span></button>
+<div class="faq-a"><strong>Yes.</strong> Texas is a witness-required state for certain transactions, and we coordinate witness arrangements as part of the signing. For signings requiring two witnesses, we either arrange witnesses in advance or work with the signer to identify suitable witnesses available at the signing location. Witness coordination is standard practice and not subject to additional fees in most cases.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">Are you available for Remote Online Notarization (RON) closings?</span><span class="faq-icon">+</span></button>
+<div class="faq-a"><strong>Yes.</strong> We are a Texas-commissioned online notary using Pactima and Proof platforms. RON closings are available for distant signers, out-of-state borrowers, military service members, and any scenario where the signer cannot meet in person. Sessions are recorded, audit-ready, and meet Texas RON statutory requirements.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">Do you provide hybrid e-closings?</span><span class="faq-icon">+</span></button>
+<div class="faq-a"><strong>Yes.</strong> Hybrid closings combining in-person execution of legally required documents with electronic execution of remaining documents are supported. We work with your firm's preferred e-closing platform or recommend Pactima-based workflows where you don't have an established platform.</div>
+</div>
+
+<div class="faq-item">
+<button class="faq-btn" onclick="toggleFaq(this)" aria-expanded="false"><span class="faq-q">How do you structure pricing for volume title company engagements?</span><span class="faq-icon">+</span></button>
+<div class="faq-a">Our base rate is <strong>$165 per standard purchase or refinance signing</strong>. For title companies anticipating 5+ monthly engagements, we offer volume pricing tiers, retainer agreements, and consolidated monthly invoicing. Specific volume terms are structured based on your firm's monthly volume and service mix.</div>
+</div>
+
+</div>
+</div>
+
+<!-- CTA -->
+<div class="cta-strip">
+<div class="cta-inner">
+<div>
+<div class="cta-title">Ready to add us to <em>your signing roster?</em></div>
+<p class="cta-sub">Send a partnership inquiry or schedule a 15-minute intro call. We'll review your typical signing profile and structure terms that fit your volume and timeline. All discussions held in confidence, NDA available on request.</p>
+</div>
+<div class="cta-actions">
+<a href="/contact.html" class="btn-primary">Send Partnership Inquiry</a>
+<a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" rel="noopener" class="btn-outline">Schedule 15-min Call</a>
+<div class="cta-contact"><a href="tel:2106289991">210-628-9991</a> &middot; <a href="mailto:info@notarizedbykristy.com">info@notarizedbykristy.com</a></div>
+</div>
+</div>
+</div>
+
+<div class="sticky-mobile-cta">
+<a href="tel:2106289991" class="sticky-call">Call Now</a>
+<a href="/contact.html" class="sticky-book">Partnership</a>
+</div>
+
+<div id="site-footer"></div>
+
+<script>
+fetch("/nav.html").then(r=>r.text()).then(h=>{document.getElementById("site-nav").innerHTML=h;var s=document.getElementById("site-nav").querySelector("script");if(s){var f=new Function(s.textContent);f();}});
+fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-footer").innerHTML=h;var s=document.getElementById("site-footer").querySelector("script");if(s){var f=new Function(s.textContent);f();}});
+</script>
+
+<script>
+function toggleFaq(btn){
+  const icon=btn.querySelector('.faq-icon'),answer=btn.nextElementSibling,isOpen=answer.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(a=>a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon.open').forEach(i=>i.classList.remove('open'));
+  document.querySelectorAll('.faq-btn').forEach(b=>b.setAttribute('aria-expanded','false'));
+  if(!isOpen){answer.classList.add('open');icon.classList.add('open');btn.setAttribute('aria-expanded','true');}
+}
+</script>
+</body>
+</html>
