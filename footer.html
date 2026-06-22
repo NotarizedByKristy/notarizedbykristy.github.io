@@ -1,3 +1,44 @@
+<!-- ============================================================
+     GOOGLE ANALYTICS 4 — CONSENT MODE
+     Loads in DENIED state. Only activates if user clicks Accept.
+     ============================================================ -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEYFQ7Y28E"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+// Default consent state — DENIED until user explicitly accepts
+gtag('consent', 'default', {
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'analytics_storage': 'denied',
+  'functionality_storage': 'denied',
+  'personalization_storage': 'denied',
+  'security_storage': 'granted',
+  'wait_for_update': 500
+});
+
+gtag('config', 'G-JEYFQ7Y28E', {
+  'anonymize_ip': true,
+  'cookie_flags': 'SameSite=None;Secure'
+});
+
+// Check if user has already made a choice — apply it immediately
+(function(){
+  var stored = localStorage.getItem('tnk_cookie_consent');
+  if(stored === 'accepted'){
+    gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+  }
+})();
+</script>
+
 <style>
 /* ============================================================
    FOOTER — Self-contained styles. Works on any page regardless
@@ -23,6 +64,31 @@ footer .footer-bottom{display:flex;justify-content:space-between;align-items:cen
 @media(max-width:1200px){footer .footer-grid{grid-template-columns:1.5fr 1fr 1fr;gap:40px}}
 @media(max-width:768px){footer .footer-grid{grid-template-columns:1fr 1fr;gap:32px}}
 @media(max-width:520px){footer .footer-grid{grid-template-columns:1fr}}
+
+/* ============================================================
+   COOKIE CONSENT BANNER — Navy/gold brand match
+   ============================================================ */
+.tnk-cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#0d1f3c;border-top:2px solid #B8860B;padding:20px 6%;z-index:9999;font-family:'Outfit',sans-serif;color:#fff;box-shadow:0 -4px 20px rgba(0,0,0,.3);transform:translateY(100%);transition:transform .4s ease-out;display:none}
+.tnk-cookie-banner.show{display:block;transform:translateY(0)}
+.tnk-cookie-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.tnk-cookie-text{font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,.85)}
+.tnk-cookie-text strong{font-family:'EB Garamond',serif;font-size:15px;font-weight:500;color:#fff;display:block;margin-bottom:4px}
+.tnk-cookie-text a{color:#B8860B;text-decoration:none;border-bottom:1px solid rgba(184,134,11,.4);transition:border-color .2s}
+.tnk-cookie-text a:hover{border-bottom-color:#B8860B}
+.tnk-cookie-actions{display:flex;gap:10px;flex-shrink:0}
+.tnk-cookie-btn{font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:12px 22px;border:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.tnk-cookie-btn-decline{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.25)}
+.tnk-cookie-btn-decline:hover{color:#fff;border-color:rgba(255,255,255,.5)}
+.tnk-cookie-btn-accept{background:#B8860B;color:#0d1f3c}
+.tnk-cookie-btn-accept:hover{background:#d4a017}
+@media(max-width:768px){
+  .tnk-cookie-banner{padding:18px 5% 18px}
+  .tnk-cookie-inner{grid-template-columns:1fr;gap:16px}
+  .tnk-cookie-actions{justify-content:stretch}
+  .tnk-cookie-btn{flex:1;padding:14px 16px}
+  /* On mobile, push the cookie banner above the sticky CTA */
+  body.has-sticky-mobile-cta .tnk-cookie-banner{bottom:64px}
+}
 </style>
 
 <footer>
@@ -85,6 +151,24 @@ footer .footer-bottom{display:flex;justify-content:space-between;align-items:cen
     </div>
   </div>
 </footer>
+
+<!-- ============================================================
+     COOKIE CONSENT BANNER
+     Shows on first visit. Remembers choice via localStorage.
+     ============================================================ -->
+<div class="tnk-cookie-banner" id="tnkCookieBanner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <div class="tnk-cookie-inner">
+    <div class="tnk-cookie-text">
+      <strong>We value your privacy</strong>
+      This site uses cookies to understand how visitors use our website and improve your experience. We use Google Analytics for traffic measurement only — we do not sell or share your data. <a href="/privacy.html">Learn more in our Privacy Policy</a>.
+    </div>
+    <div class="tnk-cookie-actions">
+      <button class="tnk-cookie-btn tnk-cookie-btn-decline" id="tnkCookieDecline" type="button">Decline</button>
+      <button class="tnk-cookie-btn tnk-cookie-btn-accept" id="tnkCookieAccept" type="button">Accept All</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // Auto-update copyright year
 document.getElementById('footerYear').textContent = new Date().getFullYear();
@@ -100,5 +184,52 @@ document.getElementById('footerYear').textContent = new Date().getFullYear();
       a.setAttribute('aria-current', 'page');
     }
   });
+})();
+
+// ============================================================
+// COOKIE CONSENT BANNER LOGIC
+// ============================================================
+(function(){
+  var banner = document.getElementById('tnkCookieBanner');
+  var acceptBtn = document.getElementById('tnkCookieAccept');
+  var declineBtn = document.getElementById('tnkCookieDecline');
+  if(!banner || !acceptBtn || !declineBtn) return;
+
+  // Detect sticky mobile CTA so banner positions above it on mobile
+  if(document.querySelector('.sticky-mobile-cta')){
+    document.body.classList.add('has-sticky-mobile-cta');
+  }
+
+  // Check if user has already made a choice
+  var stored = localStorage.getItem('tnk_cookie_consent');
+
+  // Show banner only if no prior choice
+  if(!stored){
+    // Small delay so banner doesn't fight initial page load
+    setTimeout(function(){
+      banner.classList.add('show');
+    }, 800);
+  }
+
+  function setConsent(value){
+    localStorage.setItem('tnk_cookie_consent', value);
+    localStorage.setItem('tnk_cookie_consent_date', new Date().toISOString());
+
+    if(value === 'accepted' && typeof gtag === 'function'){
+      gtag('consent', 'update', {
+        'ad_storage': 'granted',
+        'analytics_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted'
+      });
+    }
+
+    // Smoothly hide banner
+    banner.style.transform = 'translateY(100%)';
+    setTimeout(function(){ banner.classList.remove('show'); }, 400);
+  }
+
+  acceptBtn.addEventListener('click', function(){ setConsent('accepted'); });
+  declineBtn.addEventListener('click', function(){ setConsent('declined'); });
 })();
 </script>
