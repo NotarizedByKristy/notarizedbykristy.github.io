@@ -1,44 +1,3 @@
-<!-- ============================================================
-     GOOGLE ANALYTICS 4 — CONSENT MODE
-     Loads in DENIED state. Only activates if user clicks Accept.
-     ============================================================ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JEYFQ7Y28E"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-
-// Default consent state — DENIED until user explicitly accepts
-gtag('consent', 'default', {
-  'ad_storage': 'denied',
-  'ad_user_data': 'denied',
-  'ad_personalization': 'denied',
-  'analytics_storage': 'denied',
-  'functionality_storage': 'denied',
-  'personalization_storage': 'denied',
-  'security_storage': 'granted',
-  'wait_for_update': 500
-});
-
-gtag('config', 'G-JEYFQ7Y28E', {
-  'anonymize_ip': true,
-  'cookie_flags': 'SameSite=None;Secure'
-});
-
-// Check if user has already made a choice — apply it immediately
-(function(){
-  var stored = localStorage.getItem('tnk_cookie_consent');
-  if(stored === 'accepted'){
-    gtag('consent', 'update', {
-      'ad_storage': 'granted',
-      'analytics_storage': 'granted',
-      'ad_user_data': 'granted',
-      'ad_personalization': 'granted'
-    });
-  }
-})();
-</script>
-
 <style>
 /* ============================================================
    FOOTER — Self-contained styles. Works on any page regardless
@@ -86,7 +45,6 @@ footer .footer-bottom{display:flex;justify-content:space-between;align-items:cen
   .tnk-cookie-inner{grid-template-columns:1fr;gap:16px}
   .tnk-cookie-actions{justify-content:stretch}
   .tnk-cookie-btn{flex:1;padding:14px 16px}
-  /* On mobile, push the cookie banner above the sticky CTA */
   body.has-sticky-mobile-cta .tnk-cookie-banner{bottom:64px}
 }
 </style>
@@ -152,10 +110,7 @@ footer .footer-bottom{display:flex;justify-content:space-between;align-items:cen
   </div>
 </footer>
 
-<!-- ============================================================
-     COOKIE CONSENT BANNER
-     Shows on first visit. Remembers choice via localStorage.
-     ============================================================ -->
+<!-- COOKIE CONSENT BANNER -->
 <div class="tnk-cookie-banner" id="tnkCookieBanner" role="dialog" aria-label="Cookie consent" aria-live="polite">
   <div class="tnk-cookie-inner">
     <div class="tnk-cookie-text">
@@ -170,66 +125,120 @@ footer .footer-bottom{display:flex;justify-content:space-between;align-items:cen
 </div>
 
 <script>
-// Auto-update copyright year
-document.getElementById('footerYear').textContent = new Date().getFullYear();
-
-// De-emphasize footer link to current page (UX improvement)
-(function(){
-  const path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('footer a').forEach(a=>{
-    const href = a.getAttribute('href');
-    if(href === '/' + path || href === path){
-      a.style.opacity = '0.4';
-      a.style.pointerEvents = 'none';
-      a.setAttribute('aria-current', 'page');
-    }
-  });
-})();
-
 // ============================================================
-// COOKIE CONSENT BANNER LOGIC
+// CONSOLIDATED FOOTER SCRIPT — runs everything in one go
+// This is the ONLY script tag in this file, so the existing
+// fetch-and-execute-one-script pattern on every page works.
 // ============================================================
 (function(){
+
+  // 1. AUTO-UPDATE COPYRIGHT YEAR
+  var yearEl = document.getElementById('footerYear');
+  if(yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // 2. DE-EMPHASIZE FOOTER LINK TO CURRENT PAGE
+  try {
+    var path = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('footer a').forEach(function(a){
+      var href = a.getAttribute('href');
+      if(href === '/' + path || href === path){
+        a.style.opacity = '0.4';
+        a.style.pointerEvents = 'none';
+        a.setAttribute('aria-current', 'page');
+      }
+    });
+  } catch(e){}
+
+  // 3. LOAD GOOGLE ANALYTICS 4 (with consent mode) — DYNAMIC INJECTION
+  // Because this script runs from an injected innerHTML context,
+  // we have to load the gtag library ourselves rather than relying
+  // on a static <script src=> tag.
+  if(typeof window.gtag === 'undefined'){
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ window.dataLayer.push(arguments); };
+    gtag('js', new Date());
+
+    // Default consent state — DENIED until user accepts
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'denied',
+      'personalization_storage': 'denied',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+
+    gtag('config', 'G-JEYFQ7Y28E', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
+
+    // Check stored consent and apply immediately if user previously accepted
+    try {
+      var stored = localStorage.getItem('tnk_cookie_consent');
+      if(stored === 'accepted'){
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'analytics_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+      }
+    } catch(e){}
+
+    // Inject the gtag library script tag — this loads GA4 itself
+    var gaScript = document.createElement('script');
+    gaScript.async = true;
+    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-JEYFQ7Y28E';
+    document.head.appendChild(gaScript);
+  }
+
+  // 4. COOKIE CONSENT BANNER LOGIC
   var banner = document.getElementById('tnkCookieBanner');
   var acceptBtn = document.getElementById('tnkCookieAccept');
   var declineBtn = document.getElementById('tnkCookieDecline');
-  if(!banner || !acceptBtn || !declineBtn) return;
 
-  // Detect sticky mobile CTA so banner positions above it on mobile
-  if(document.querySelector('.sticky-mobile-cta')){
-    document.body.classList.add('has-sticky-mobile-cta');
-  }
-
-  // Check if user has already made a choice
-  var stored = localStorage.getItem('tnk_cookie_consent');
-
-  // Show banner only if no prior choice
-  if(!stored){
-    // Small delay so banner doesn't fight initial page load
-    setTimeout(function(){
-      banner.classList.add('show');
-    }, 800);
-  }
-
-  function setConsent(value){
-    localStorage.setItem('tnk_cookie_consent', value);
-    localStorage.setItem('tnk_cookie_consent_date', new Date().toISOString());
-
-    if(value === 'accepted' && typeof gtag === 'function'){
-      gtag('consent', 'update', {
-        'ad_storage': 'granted',
-        'analytics_storage': 'granted',
-        'ad_user_data': 'granted',
-        'ad_personalization': 'granted'
-      });
+  if(banner && acceptBtn && declineBtn){
+    // Detect sticky mobile CTA so banner positions above it on mobile
+    if(document.querySelector('.sticky-mobile-cta')){
+      document.body.classList.add('has-sticky-mobile-cta');
     }
 
-    // Smoothly hide banner
-    banner.style.transform = 'translateY(100%)';
-    setTimeout(function(){ banner.classList.remove('show'); }, 400);
+    // Check if user has already made a choice
+    var storedConsent = null;
+    try { storedConsent = localStorage.getItem('tnk_cookie_consent'); } catch(e){}
+
+    // Show banner only if no prior choice
+    if(!storedConsent){
+      setTimeout(function(){
+        banner.classList.add('show');
+      }, 800);
+    }
+
+    function setConsent(value){
+      try {
+        localStorage.setItem('tnk_cookie_consent', value);
+        localStorage.setItem('tnk_cookie_consent_date', new Date().toISOString());
+      } catch(e){}
+
+      if(value === 'accepted' && typeof gtag === 'function'){
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'analytics_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted'
+        });
+      }
+
+      banner.style.transform = 'translateY(100%)';
+      setTimeout(function(){ banner.classList.remove('show'); }, 400);
+    }
+
+    acceptBtn.addEventListener('click', function(){ setConsent('accepted'); });
+    declineBtn.addEventListener('click', function(){ setConsent('declined'); });
   }
 
-  acceptBtn.addEventListener('click', function(){ setConsent('accepted'); });
-  declineBtn.addEventListener('click', function(){ setConsent('declined'); });
 })();
 </script>
