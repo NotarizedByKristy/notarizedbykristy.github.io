@@ -134,6 +134,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;border-b
 .addon-title{font-size:13px;font-weight:500;color:#2c2b25;display:block;margin-bottom:2px}
 .addon-price{font-size:11px;font-weight:400;color:#B8860B}
 
+/* Type pill selectors (estate, translation language) */
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.type-pill{border:1px solid #e2e0d8;padding:12px 14px;cursor:pointer;background:#f8f8f6;transition:all .2s;position:relative}
+.type-pill.selected{background:#f8f3e8;border-color:rgba(184,134,11,.5)}
+.type-pill-name{font-size:13px;font-weight:500;color:#2c2b25;margin-bottom:2px}
+.type-pill-sub{font-size:11px;font-weight:300;color:#9c9a8e;line-height:1.4}
+.type-pill-price{font-size:11px;font-weight:600;color:#B8860B;margin-top:4px}
+
+/* Witness sub-section */
+.witness-section{border:1px solid #e2e0d8;padding:18px 20px;background:#f8f8f6;margin-top:14px}
+.witness-title{font-size:12px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:#9c9a8e;margin-bottom:12px}
+.witness-note{font-size:11px;font-weight:300;color:#5c5a52;line-height:1.6;margin-top:10px;padding:10px 12px;background:#fff;border-left:2px solid #B8860B}
+
+/* Translation-in-combo toggle section */
+.combo-trans-toggle{background:#f8f8f6;border:1px solid #e2e0d8;padding:16px 20px;margin-top:14px}
+.combo-trans-toggle-hdr{display:flex;align-items:center;gap:12px;cursor:pointer}
+.combo-trans-toggle-hdr input{accent-color:#B8860B;width:16px;height:16px;flex-shrink:0}
+.combo-trans-toggle-title{font-size:13px;font-weight:500;color:#2c2b25}
+.combo-trans-toggle-title strong{color:#B8860B;font-weight:600}
+.combo-trans-body{margin-top:14px;padding-top:14px;border-top:1px solid #e2e0d8;display:none}
+.combo-trans-body.show{display:block}
+
 .results-panel{position:sticky;top:92px}
 .results-card{background:#0d1f3c;padding:32px 28px;border:1px solid rgba(184,134,11,.15)}
 .results-eyebrow{font-size:9px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:6px}
@@ -147,6 +169,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;border-b
 .subtotal{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);margin:12px 0}
 .subtotal .li-label{color:rgba(255,255,255,.65);font-weight:500;font-size:13px}
 .subtotal .li-val{color:#fff;font-weight:600;font-size:18px}
+
+/* White Glove indicator */
+.white-glove-indicator{display:none;background:linear-gradient(135deg, rgba(184,134,11,.15), rgba(184,134,11,.05));border:1px solid rgba(184,134,11,.35);padding:12px 16px;margin-bottom:18px;position:relative}
+.white-glove-indicator.show{display:block}
+.white-glove-label{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#B8860B;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.white-glove-label::before{content:'';width:14px;height:1px;background:#B8860B}
+.white-glove-title{font-family:'EB Garamond',serif;font-size:14px;font-weight:500;color:#fff;line-height:1.3}
 
 .quote-hero{background:#1B3A6B;padding:22px;text-align:center;margin-top:14px;border:1px solid rgba(184,134,11,.2)}
 .quote-hero-label{font-size:9px;font-weight:400;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:8px}
@@ -204,7 +233,7 @@ body{padding-bottom:64px}
 .step.hidden{display:none}
 
 @media(max-width:1024px){.quote-layout{grid-template-columns:1fr}.results-panel{position:static}}
-@media(max-width:768px){.field-row{grid-template-columns:1fr}.addon-grid{grid-template-columns:1fr}.wi-grid{grid-template-columns:1fr}.speed-grid{grid-template-columns:1fr}.region-grid{grid-template-columns:1fr}.modal-backdrop{padding:16px}.modal-hdr{padding:18px 22px}.modal-body{padding:20px 22px 24px}}
+@media(max-width:768px){.field-row{grid-template-columns:1fr}.addon-grid{grid-template-columns:1fr}.wi-grid{grid-template-columns:1fr}.speed-grid{grid-template-columns:1fr}.region-grid{grid-template-columns:1fr}.type-grid{grid-template-columns:1fr}.modal-backdrop{padding:16px}.modal-hdr{padding:18px 22px}.modal-body{padding:20px 22px 24px}}
 </style>
 </head>
 <body>
@@ -231,14 +260,17 @@ body{padding-bottom:64px}
           <option value="apo_tx">Texas Apostille Coordination</option>
           <option value="apo_oos">Out-of-State Apostille Coordination</option>
         </optgroup>
-        <optgroup label="Notary Services">
+        <optgroup label="Mobile Notary">
           <option value="mobile_std">Mobile Notary &mdash; Standard</option>
           <option value="mobile_loan">Mobile Notary &mdash; Loan Signing</option>
-          <option value="ron">Remote Online Notarization (RON)</option>
+        </optgroup>
+        <optgroup label="Remote Online Notarization (RON)">
+          <option value="ron_std">RON &mdash; Standard</option>
+          <option value="ron_loan">RON &mdash; Loan Signing</option>
         </optgroup>
         <optgroup label="Combined &amp; Specialty">
           <option value="combo">Apostille + Notarization &mdash; Combo</option>
-          <option value="translation">Certified Translation (per page)</option>
+          <option value="translation">Certified Translation</option>
           <option value="estate">Estate Planning Document Support</option>
           <option value="officiant">Wedding Officiant</option>
         </optgroup>
@@ -268,10 +300,81 @@ body{padding-bottom:64px}
       <div class="hint">Each signature or act requiring a notarial seal. TX statutory rate: $10 first sig, $1 each additional.</div>
     </div>
 
-    <div class="field hidden" id="transWrap">
-      <label>Number of Pages to Translate</label>
-      <input type="number" id="transPages" value="1" min="1" max="100" oninput="recalc()">
-      <div class="hint">Certified Spanish-English translation. Pricing is per page.</div>
+    <!-- Estate signer type selector (individual vs couple) -->
+    <div class="field hidden" id="estateTypeWrap">
+      <label>Signing Type</label>
+      <div class="type-grid">
+        <div class="type-pill selected" onclick="selectEstateType('individual',this)">
+          <div class="type-pill-name">Individual Signer</div>
+          <div class="type-pill-sub">Single-person estate documents</div>
+          <div class="type-pill-price">$145</div>
+        </div>
+        <div class="type-pill" onclick="selectEstateType('couple',this)">
+          <div class="type-pill-name">Couple / Joint Session</div>
+          <div class="type-pill-sub">Spouses signing together</div>
+          <div class="type-pill-price">$245 &middot; saves $45</div>
+        </div>
+      </div>
+      <div class="hint" style="margin-top:10px">Joint estate signings for spouses save $45 vs. two individual sessions. Witnesses can be added below if needed.</div>
+    </div>
+
+    <!-- Standalone translation inputs (docs + total pages + language) -->
+    <div class="field hidden" id="transLangWrap">
+      <label>Language</label>
+      <div class="type-grid">
+        <div class="type-pill selected" onclick="selectTransLang('spanish',this)">
+          <div class="type-pill-name">Spanish</div>
+          <div class="type-pill-sub">Spanish &harr; English</div>
+          <div class="type-pill-price">$50 / page</div>
+        </div>
+        <div class="type-pill" onclick="selectTransLang('other',this)">
+          <div class="type-pill-name">Other Language</div>
+          <div class="type-pill-sub">All other language pairs</div>
+          <div class="type-pill-price">$60 / page</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-row hidden" id="transDocsWrap">
+      <div class="field">
+        <label>Number of Documents</label>
+        <input type="number" id="transDocCount" value="1" min="1" max="20" oninput="recalc()">
+        <div class="hint">Distinct documents (e.g., 3 birth certificates = 3 docs).</div>
+      </div>
+      <div class="field">
+        <label>Total Pages (all documents)</label>
+        <input type="number" id="transPages" value="1" min="1" max="100" oninput="recalc()">
+        <div class="hint">Total page count across all documents. Certified translation is billed per page.</div>
+      </div>
+    </div>
+
+    <!-- Combo: Include Translation? toggle (White Glove) -->
+    <div class="combo-trans-toggle hidden" id="comboTransToggle">
+      <label class="combo-trans-toggle-hdr">
+        <input type="checkbox" id="comboIncludeTrans" onchange="onComboTransToggle()">
+        <span class="combo-trans-toggle-title">Include Certified Translation &mdash; <strong>White Glove Service</strong></span>
+      </label>
+      <div class="hint" style="margin-top:8px;padding-left:28px">Add certified translation to your notarization + apostille order. Translation applies to all documents in this order.</div>
+      <div class="combo-trans-body" id="comboTransBody">
+        <div class="field">
+          <label>Translation Language</label>
+          <div class="type-grid">
+            <div class="type-pill selected" onclick="selectComboLang('spanish',this)">
+              <div class="type-pill-name">Spanish</div>
+              <div class="type-pill-price">$50 / page</div>
+            </div>
+            <div class="type-pill" onclick="selectComboLang('other',this)">
+              <div class="type-pill-name">Other Language</div>
+              <div class="type-pill-price">$60 / page</div>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <label>Total Pages Across All Documents</label>
+          <input type="number" id="comboTransPages" value="1" min="1" max="100" oninput="recalc()">
+          <div class="hint">Total page count across every document you're apostilling. Billed per page.</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -367,16 +470,42 @@ body{padding-bottom:64px}
           <div><span class="addon-title">Certified Copies</span><span class="addon-price">+$15/copy</span></div>
         </label>
       </div>
-      <div class="addon-card">
+      <div class="addon-card" id="notarizeTransCard">
         <label><input type="checkbox" id="addonNotarizeTrans" onchange="recalc()">
           <div><span class="addon-title">Notarize Translation</span><span class="addon-price">+$10</span></div>
         </label>
       </div>
     </div>
+
     <div class="field-row" id="copiesRow" style="margin-top:14px;display:none">
       <div class="field">
         <label>Number of Certified Copies</label>
         <input type="number" id="certCopiesCount" value="1" min="1" max="20" oninput="recalc()">
+      </div>
+    </div>
+
+    <!-- Witness sub-section (conditional on service type) -->
+    <div class="witness-section" id="witnessSection" style="display:none">
+      <div class="witness-title">Witness Requirement</div>
+      <div class="field">
+        <label>Are witnesses needed?</label>
+        <select id="witnessNeed" onchange="onWitnessChange()">
+          <option value="none">No &mdash; not needed for this document</option>
+          <option value="client">Yes &mdash; client will bring their own witnesses (free)</option>
+          <option value="coord">Yes &mdash; please coordinate witnesses ($30/witness)</option>
+        </select>
+        <div class="hint">Texas wills, living wills, and declarations of guardian typically require 2 witnesses. Medical POAs need either a notary OR 2 witnesses.</div>
+      </div>
+      <div class="field" id="witnessCountWrap" style="display:none">
+        <label>Number of Witnesses to Coordinate</label>
+        <div class="stepper">
+          <button class="stepper-btn" onclick="stepWitness(-1)" type="button" aria-label="Decrease witnesses">&minus;</button>
+          <input class="stepper-val" type="number" id="witnessCount" value="2" min="1" max="6" oninput="recalc()">
+          <button class="stepper-btn" onclick="stepWitness(1)" type="button" aria-label="Increase witnesses">+</button>
+        </div>
+      </div>
+      <div class="witness-note" id="witnessClientNote" style="display:none">
+        <strong>Bring-your-own witnesses:</strong> Witnesses must be 14+ years old (18+ recommended), mentally competent, and cannot be a beneficiary of the document or related to a beneficiary. We'll advise on requirements before the appointment.
       </div>
     </div>
   </div>
@@ -398,16 +527,25 @@ body{padding-bottom:64px}
 
 <div class="results-panel">
   <div class="results-card">
+    <!-- White Glove indicator appears when combo + translation -->
+    <div class="white-glove-indicator" id="whiteGloveIndicator">
+      <div class="white-glove-label">Full Service</div>
+      <div class="white-glove-title">White Glove Package &mdash; Notarization + Translation + Apostille</div>
+    </div>
+
     <div class="results-eyebrow">Your Estimate</div>
     <div class="results-service" id="rServiceName">Texas Apostille Coordination</div>
 
     <div class="line-item"><span class="li-label">Service &amp; Coordination Fee</span><span class="li-val" id="rSvcFee">&mdash;</span></div>
+    <div class="line-item" id="rTransLine" style="display:none"><span class="li-label" id="rTransLabel">Translation Fee</span><span class="li-val" id="rTransFee">&mdash;</span></div>
     <div class="line-item" id="rSosLine"><span class="li-label">SOS / Gov't Fee</span><span class="li-val" id="rSosFee">&mdash;</span></div>
     <div class="line-item" id="rDiscLine" style="display:none"><span class="li-label">Bundle Discount</span><span class="li-val savings" id="rDiscount">&mdash;</span></div>
+    <div class="line-item" id="rCoupleLine" style="display:none"><span class="li-label">Couples Discount</span><span class="li-val savings" id="rCoupleDisc">&minus;$45 saved</span></div>
     <div class="line-item" id="rTravelLine" style="display:none"><span class="li-label">Travel Fee</span><span class="li-val" id="rTravel">&mdash;</span></div>
     <div class="line-item" id="rShipOutLine"><span class="li-label">Outbound Shipping (SOS)</span><span class="li-val incl" id="rShipOut">Included</span></div>
     <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping</span><span class="li-val" id="rShipRet">&mdash;</span></div>
     <div class="line-item" id="rIntlCoordLine" style="display:none"><span class="li-label">Intl. Coordination Fee</span><span class="li-val" id="rIntlCoord">+$20</span></div>
+    <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
     <div class="line-item" id="rRushLine" style="display:none"><span class="li-label">Rush / Same-Day</span><span class="li-val" id="rRush">+$50</span></div>
     <div class="line-item" id="rAfterLine" style="display:none"><span class="li-label">After-Hours / Weekend</span><span class="li-val" id="rAfter">+$40</span></div>
     <div class="line-item" id="rCopiesLine" style="display:none"><span class="li-label">Certified Copies</span><span class="li-val" id="rCopies">&mdash;</span></div>
@@ -510,20 +648,27 @@ fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-f
 // ─────────────────────────────────────────────────────────────────────────────
 // RATE CONFIG
 // apo_tx: $125 base | apo_oos: $155 base | combo: $195 base
+// mobile_std: $75 | mobile_loan: $165 | ron_std: $75 | ron_loan: $150
+// Estate individual: $145 | Estate couple: $245 (saves $45)
+// Translation: Spanish $50/pg | Other $60/pg
+// Witness coordination: $30/witness (only when kristy coordinates; client-brought = free)
 // International orders include +$20 coordination fee
 // ─────────────────────────────────────────────────────────────────────────────
 const SVC_CONFIG = {
-  apo_tx:      { name:'Texas Apostille Coordination',     base:125, sos:15,  travel:false, shipOut:true,  perDoc:true,  multiDisc:true  },
-  apo_oos:     { name:'Out-of-State Apostille',           base:155, sos:12,  travel:false, shipOut:true,  perDoc:true,  multiDisc:true  },
-  mobile_std:  { name:'Mobile Notary - Standard',         base:75,  sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false },
-  mobile_loan: { name:'Mobile Notary - Loan Signing',     base:165, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false },
-  ron:         { name:'Remote Online Notarization (RON)', base:75,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false },
-  combo:       { name:'Apostille + Notarization Combo',   base:195, sos:15,  travel:true,  shipOut:true,  perDoc:true,  multiDisc:true  },
-  translation: { name:'Certified Translation',            base:50,  sos:0,   travel:false, shipOut:false, perDoc:true,  multiDisc:false },
-  estate:      { name:'Estate Planning Document Support', base:145, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false },
-  officiant:   { name:'Wedding Officiant',                base:275, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false }
+  apo_tx:      { name:'Texas Apostille Coordination',      base:125, sos:15,  travel:false, shipOut:true,  perDoc:true,  multiDisc:true,  witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  apo_oos:     { name:'Out-of-State Apostille',            base:155, sos:12,  travel:false, shipOut:true,  perDoc:true,  multiDisc:true,  witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  mobile_std:  { name:'Mobile Notary - Standard',          base:75,  sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  mobile_loan: { name:'Mobile Notary - Loan Signing',      base:165, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  ron_std:     { name:'RON - Standard',                    base:75,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:true,  isTrans:false, isEstate:false },
+  ron_loan:    { name:'RON - Loan Signing',                base:150, sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:true,  isTrans:false, isEstate:false },
+  combo:       { name:'Apostille + Notarization Combo',    base:195, sos:15,  travel:true,  shipOut:true,  perDoc:true,  multiDisc:true,  witnessOpt:false, comboTrans:true,  isRon:false, isTrans:false, isEstate:false },
+  translation: { name:'Certified Translation',             base:50,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:true,  isEstate:false },
+  estate:      { name:'Estate Planning Document Support',  base:145, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:true  },
+  officiant:   { name:'Wedding Officiant',                 base:275, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false }
 };
 
+const ESTATE_PRICE = { individual: 145, couple: 245 };
+const TRANS_PRICE = { spanish: 50, other: 60 };
 const TRAVEL_FEES = { local:35, mid:55, far:75, extended:null };
 const SHIP = {
   pickup:  { standard:0,   expedited:0   },
@@ -534,9 +679,13 @@ const SHIP = {
   other:   { standard:90,  expedited:132 }
 };
 const INTL_COORD_FEE = 20;
+const WITNESS_FEE = 30;
 
 let region = 'pickup';
 let speed  = 'standard';
+let estateType = 'individual';
+let transLang  = 'spanish';   // standalone translation
+let comboLang  = 'spanish';   // translation-in-combo
 
 function fmt(n){ return '$' + Math.round(n).toLocaleString(); }
 function show(id,val){ const el=document.getElementById(id); if(el) el.style.display = val ? '' : 'none'; }
@@ -569,9 +718,49 @@ function selectSpeed(val, el){
   recalc();
 }
 
+function selectEstateType(val, el){
+  estateType = val;
+  document.querySelectorAll('#estateTypeWrap .type-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  recalc();
+}
+
+function selectTransLang(val, el){
+  transLang = val;
+  document.querySelectorAll('#transLangWrap .type-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  recalc();
+}
+
+function selectComboLang(val, el){
+  comboLang = val;
+  document.querySelectorAll('#comboTransBody .type-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  recalc();
+}
+
 function stepSigner(delta){
   const el = document.getElementById('signerCount');
   el.value = Math.max(1, Math.min(10, parseInt(el.value||1) + delta));
+  recalc();
+}
+
+function stepWitness(delta){
+  const el = document.getElementById('witnessCount');
+  el.value = Math.max(1, Math.min(6, parseInt(el.value||2) + delta));
+  recalc();
+}
+
+function onWitnessChange(){
+  const need = document.getElementById('witnessNeed').value;
+  show('witnessCountWrap', need === 'coord');
+  show('witnessClientNote', need === 'client');
+  recalc();
+}
+
+function onComboTransToggle(){
+  const on = document.getElementById('comboIncludeTrans').checked;
+  document.getElementById('comboTransBody').classList.toggle('show', on);
   recalc();
 }
 
@@ -588,12 +777,46 @@ function onServiceChange(){
   const key = document.getElementById('serviceType').value;
   const cfg = SVC_CONFIG[key];
 
-  show('docCountWrap',  cfg.perDoc && key !== 'translation');
-  show('transWrap',     key === 'translation');
-  show('signerWrap',    key === 'ron');
-  show('notaryWrap',    ['mobile_std','mobile_loan','combo','estate'].includes(key));
-  show('locationStep',  cfg.travel);
-  show('shippingStep',  cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(key));
+  // Standard docCount shown for apostille and combo services
+  show('docCountWrap',    cfg.perDoc && !cfg.isTrans);
+
+  // Translation-specific fields (standalone only)
+  show('transLangWrap',   cfg.isTrans);
+  show('transDocsWrap',   cfg.isTrans);
+
+  // Combo translation toggle
+  show('comboTransToggle', cfg.comboTrans);
+  // Reset combo trans state when switching away
+  if(!cfg.comboTrans){
+    document.getElementById('comboIncludeTrans').checked = false;
+    document.getElementById('comboTransBody').classList.remove('show');
+  }
+
+  // Signers only for RON services
+  show('signerWrap',      cfg.isRon);
+
+  // Notarization count for mobile + combo (not RON, which uses signers)
+  show('notaryWrap',      ['mobile_std','mobile_loan','combo'].includes(key));
+
+  // Estate type selector
+  show('estateTypeWrap',  cfg.isEstate);
+
+  // Travel and shipping steps
+  show('locationStep',    cfg.travel);
+  show('shippingStep',    cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(key));
+
+  // Witness section
+  show('witnessSection',  cfg.witnessOpt);
+
+  // Notarize translation card hidden when service IS translation
+  show('notarizeTransCard', !cfg.isTrans);
+
+  // Reset witness state when switching to a service that doesn't use it
+  if(!cfg.witnessOpt){
+    document.getElementById('witnessNeed').value = 'none';
+    show('witnessCountWrap', false);
+    show('witnessClientNote', false);
+  }
 
   document.getElementById('docCountLabel').textContent =
     key === 'combo' ? 'Number of Documents (Apostille)' : 'Number of Documents';
@@ -616,13 +839,18 @@ function recalc(){
   const cfg   = SVC_CONFIG[key];
   const docs  = parseInt(document.getElementById('docCount').value)||1;
   const signers = parseInt(document.getElementById('signerCount').value)||1;
+  const transDocs = parseInt(document.getElementById('transDocCount').value)||1;
   const tpages  = parseInt(document.getElementById('transPages').value)||1;
+  const comboTransPages = parseInt(document.getElementById('comboTransPages').value)||1;
+  const comboTransOn = document.getElementById('comboIncludeTrans').checked;
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
   const after   = document.getElementById('addonAfter').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const notTrans= document.getElementById('addonNotarizeTrans').checked;
   const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
+  const witnessNeed = document.getElementById('witnessNeed').value;
+  const witnessN = parseInt(document.getElementById('witnessCount').value)||2;
 
   show('copiesRow', copies);
 
@@ -633,11 +861,18 @@ function recalc(){
     return;
   }
 
-  let svcFee = 0, discAmt = 0;
-  if(key === 'ron'){
+  let svcFee = 0, discAmt = 0, coupleDisc = 0, transFee = 0;
+
+  if(cfg.isRon){
+    // Both RON standard AND RON loan signing: base + $25/additional signer
     svcFee = cfg.base + Math.max(0, signers - 1) * 25;
-  } else if(key === 'translation'){
-    svcFee = cfg.base * tpages;
+  } else if(cfg.isTrans){
+    // Standalone translation: language rate × total pages
+    const perPage = TRANS_PRICE[transLang] || 50;
+    svcFee = perPage * tpages;
+  } else if(cfg.isEstate){
+    svcFee = ESTATE_PRICE[estateType] || ESTATE_PRICE.individual;
+    if(estateType === 'couple') coupleDisc = 45;
   } else if(cfg.multiDisc && docs > 1){
     const r = calcDocFee(cfg.base, docs);
     svcFee  = r.total;
@@ -648,23 +883,52 @@ function recalc(){
     svcFee = cfg.base;
   }
 
+  // Combo translation add-on (White Glove)
+  if(cfg.comboTrans && comboTransOn){
+    const perPage = TRANS_PRICE[comboLang] || 50;
+    transFee = perPage * comboTransPages;
+  }
+
   const sosFee = cfg.sos * (cfg.perDoc ? docs : 1);
   const travelFee = cfg.travel ? (TRAVEL_FEES[zone]||0) : 0;
   const shipRates = SHIP[region] || {standard:0, expedited:0};
   const shipRetFee = shipRates[speed] || 0;
   const intlCoord = isInternational(region) ? INTL_COORD_FEE : 0;
 
+  const witnessFee = (cfg.witnessOpt && witnessNeed === 'coord') ? (WITNESS_FEE * witnessN) : 0;
+
   const rushFee    = rush   ? 50   : 0;
   const afterFee   = after  ? 40   : 0;
   const copiesFee  = copies ? 15 * copiesN : 0;
-  const notTransFee= notTrans ? 10 : 0;
+  const notTransFee= (notTrans && !cfg.isTrans) ? 10 : 0;
 
-  const total = svcFee + sosFee - discAmt + travelFee + shipRetFee + intlCoord + rushFee + afterFee + copiesFee + notTransFee;
+  const total = svcFee + transFee + sosFee - discAmt + travelFee + shipRetFee + intlCoord + witnessFee + rushFee + afterFee + copiesFee + notTransFee;
 
-  const docLabel = docs > 1 ? ` (${docs} docs)` : '';
-  document.getElementById('rServiceName').textContent = cfg.name + (key==='ron' && signers>1 ? ` (${signers} signers)` : '') + docLabel;
+  // Build service name label
+  let nameLabel = cfg.name;
+  if(cfg.isRon && signers > 1) nameLabel += ` (${signers} signers)`;
+  if(cfg.isEstate) nameLabel += estateType === 'couple' ? ' - Couple' : ' - Individual';
+  if(cfg.isTrans){
+    const langLbl = transLang === 'spanish' ? 'Spanish' : 'Other Language';
+    nameLabel += ` (${langLbl}, ${transDocs} doc${transDocs>1?'s':''}, ${tpages} pg${tpages>1?'s':''})`;
+  }
+  if(cfg.perDoc && !cfg.isTrans && docs > 1) nameLabel += ` (${docs} docs)`;
+  if(cfg.comboTrans && comboTransOn) nameLabel += ' + Translation';
+  document.getElementById('rServiceName').textContent = nameLabel;
+
+  // White Glove indicator (combo + translation)
+  const whiteGloveOn = cfg.comboTrans && comboTransOn;
+  document.getElementById('whiteGloveIndicator').classList.toggle('show', whiteGloveOn);
 
   document.getElementById('rSvcFee').textContent = fmt(svcFee);
+
+  // Translation line item (combo-in-context)
+  show('rTransLine', transFee > 0);
+  if(transFee > 0){
+    const langLbl = comboLang === 'spanish' ? 'Spanish' : 'Other';
+    document.getElementById('rTransLabel').textContent = `Translation (${langLbl}, ${comboTransPages} pg${comboTransPages>1?'s':''})`;
+    document.getElementById('rTransFee').textContent = fmt(transFee);
+  }
 
   show('rSosLine', sosFee > 0);
   document.getElementById('rSosFee').textContent = sosFee > 0 ? fmt(sosFee) : '-';
@@ -678,12 +942,14 @@ function recalc(){
     document.getElementById('savingsBadge').classList.add('hidden');
   }
 
+  show('rCoupleLine', coupleDisc > 0);
+
   show('rTravelLine', travelFee > 0);
   document.getElementById('rTravel').textContent = fmt(travelFee);
 
   show('rShipOutLine', cfg.shipOut);
 
-  const showShipRet = region !== 'pickup';
+  const showShipRet = region !== 'pickup' && (cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(key));
   show('rShipRetLine', showShipRet);
   if(showShipRet){
     const isIntl = isInternational(region);
@@ -694,11 +960,16 @@ function recalc(){
 
   show('rIntlCoordLine', intlCoord > 0);
 
+  show('rWitnessLine', witnessFee > 0);
+  if(witnessFee > 0){
+    document.getElementById('rWitness').textContent = `+${fmt(witnessFee)} (${witnessN}x)`;
+  }
+
   show('rRushLine',    rush);
   show('rAfterLine',   after);
   show('rCopiesLine',  copies);
   document.getElementById('rCopies').textContent = copies ? fmt(copiesFee) : '-';
-  show('rNotTransLine', notTrans);
+  show('rNotTransLine', notTrans && !cfg.isTrans);
 
   document.getElementById('rTotal').textContent = fmt(total);
   document.getElementById('rPrice').textContent = fmt(total);
@@ -721,13 +992,18 @@ function buildQuoteSummary(){
   const cfg     = SVC_CONFIG[svcKey];
   const docs    = parseInt(document.getElementById('docCount').value)||1;
   const signers = parseInt(document.getElementById('signerCount').value)||1;
+  const transDocs = parseInt(document.getElementById('transDocCount').value)||1;
   const tpages  = parseInt(document.getElementById('transPages').value)||1;
+  const comboTransPages = parseInt(document.getElementById('comboTransPages').value)||1;
+  const comboTransOn = document.getElementById('comboIncludeTrans').checked;
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
   const after   = document.getElementById('addonAfter').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
   const notTrans= document.getElementById('addonNotarizeTrans').checked;
+  const witnessNeed = document.getElementById('witnessNeed').value;
+  const witnessN = parseInt(document.getElementById('witnessCount').value)||2;
   const quoteAmt= document.getElementById('rPrice').textContent;
 
   const zoneLabels = {
@@ -747,38 +1023,67 @@ function buildQuoteSummary(){
   const speedLabels = { standard:'Standard', expedited:'Expedited' };
 
   const lines = [];
+  const isWhiteGlove = cfg.comboTrans && comboTransOn;
+  if(isWhiteGlove) lines.push('*** WHITE GLOVE PACKAGE - Notarization + Translation + Apostille ***');
   lines.push('SERVICE: ' + svcName);
 
+  if(cfg.isEstate){
+    lines.push('SIGNING TYPE: ' + (estateType === 'couple' ? 'Couple / Joint Session ($245 - saves $45)' : 'Individual Signer ($145)'));
+  }
+  if(cfg.isTrans){
+    lines.push('LANGUAGE: ' + (transLang === 'spanish' ? 'Spanish ($50/page)' : 'Other Language ($60/page)'));
+    lines.push('DOCUMENTS: ' + transDocs);
+    lines.push('TOTAL PAGES: ' + tpages);
+  }
   if(['apo_tx','apo_oos','combo'].includes(svcKey))
     lines.push('DOCUMENTS: ' + docs + (docs>1?' (bundle discount applied)':''));
-  if(svcKey==='ron')
+  if(cfg.isRon)
     lines.push('SIGNERS: ' + signers);
-  if(svcKey==='translation')
-    lines.push('PAGES TO TRANSLATE: ' + tpages);
+
+  if(cfg.comboTrans && comboTransOn){
+    lines.push('TRANSLATION INCLUDED: ' + (comboLang === 'spanish' ? 'Spanish' : 'Other Language') + ' - ' + comboTransPages + ' page(s) at $' + (comboLang === 'spanish' ? 50 : 60) + '/page');
+  }
 
   if(cfg.travel && zone !== 'extended')
     lines.push('SERVICE LOCATION: ' + (zoneLabels[zone]||zone));
 
-  if(region !== 'pickup'){
+  if(region !== 'pickup' && (cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(svcKey))){
     lines.push('RETURN SHIPPING: ' + (regionLabels[region]||region) + ' - ' + speedLabels[speed]);
     if(isInternational(region)){
       lines.push('INTL COORDINATION FEE: +$' + INTL_COORD_FEE);
     }
-  } else {
+  } else if(cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(svcKey)) {
     lines.push('RETURN SHIPPING: In-Person Pickup');
+  }
+
+  if(cfg.witnessOpt){
+    if(witnessNeed === 'client'){
+      lines.push('WITNESSES: Client will bring their own (no charge)');
+    } else if(witnessNeed === 'coord'){
+      lines.push('WITNESSES: Kristy to coordinate ' + witnessN + ' witness(es) at $30 each (+$' + (witnessN*30) + ')');
+    } else {
+      lines.push('WITNESSES: Not needed');
+    }
   }
 
   const addons = [];
   if(rush)    addons.push('Rush / Same-Day (+$50)');
   if(after)   addons.push('After-Hours / Weekend (+$40)');
   if(copies)  addons.push('Certified Copies x' + copiesN + ' (+$' + (copiesN*15) + ')');
-  if(notTrans)addons.push('Notarize Translation (+$10)');
+  if(notTrans && !cfg.isTrans) addons.push('Notarize Translation (+$10)');
   if(addons.length) lines.push('ADD-ONS: ' + addons.join(', '));
 
   lines.push('');
   lines.push('QUOTED TOTAL: ' + quoteAmt);
 
-  return { svcName, quoteAmt, summary: lines.join('\n') };
+  // Build display name for modal
+  let modalName = svcName;
+  if(cfg.isEstate) modalName += estateType === 'couple' ? ' - Couple' : ' - Individual';
+  if(cfg.isTrans) modalName += ` (${transLang === 'spanish' ? 'Spanish' : 'Other'})`;
+  if(cfg.isRon && signers > 1) modalName += ` (${signers} signers)`;
+  if(cfg.comboTrans && comboTransOn) modalName = 'White Glove: ' + modalName + ' + Translation';
+
+  return { svcName: modalName, quoteAmt, summary: lines.join('\n') };
 }
 
 const bookBtn      = document.getElementById('bookBtn');
@@ -790,21 +1095,13 @@ const quoteSubmit  = document.getElementById('quoteSubmitBtn');
 
 function openBookModal(){
   const q = buildQuoteSummary();
-
-  // Populate the modal preview
   document.getElementById('modalSvcName').textContent = q.svcName;
   document.getElementById('modalQuoteAmt').textContent = q.quoteAmt;
   document.getElementById('modalQuoteMeta').textContent = 'Estimated total based on your selections. Confirmed in writing before work begins.';
-
-  // Populate hidden form fields with the full quote details
   document.getElementById('quoteFormSubject').value = 'Quote Request — ' + q.svcName + ' (' + q.quoteAmt + ')';
   document.getElementById('quoteFormSummary').value = q.summary;
-
-  // Show modal
   bookModal.classList.add('open');
   document.body.style.overflow = 'hidden';
-
-  // Focus first field
   setTimeout(()=>document.getElementById('qf_first').focus(), 100);
 }
 
@@ -816,17 +1113,14 @@ function closeBookModal(){
 bookBtn.addEventListener('click', openBookModal);
 bookModalClose.addEventListener('click', closeBookModal);
 
-// Close modal when clicking the backdrop (but not the card itself)
 bookModal.addEventListener('click', function(e){
   if(e.target === bookModal) closeBookModal();
 });
 
-// Close on Escape key
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape' && bookModal.classList.contains('open')) closeBookModal();
 });
 
-// Submit the form via Web3Forms
 quoteForm.addEventListener('submit', async function(e){
   e.preventDefault();
   quoteSubmit.textContent = 'Submitting...';
@@ -849,7 +1143,6 @@ quoteForm.addEventListener('submit', async function(e){
       quoteSubmit.textContent = 'Submitted ✓';
       quoteSubmit.style.background = '#1a7a4a';
       this.reset();
-      // Auto-close modal after 3 seconds
       setTimeout(closeBookModal, 3500);
     } else {
       throw new Error('submission failed');
