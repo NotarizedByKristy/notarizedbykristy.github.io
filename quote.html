@@ -681,6 +681,13 @@ const SHIP = {
 const INTL_COORD_FEE = 20;
 const WITNESS_FEE = 30;
 
+  // Maps each quote service to a router tag → Gmail INTAKE label
+const SERVICE_TAG_MAP = {
+  apo_tx:'APOSTILLE', apo_oos:'APOSTILLE', combo:'APOSTILLE',
+  mobile_loan:'TITLE', ron_loan:'TITLE',
+  mobile_std:'GNW', ron_std:'GNW', translation:'GNW', officiant:'GNW',
+  estate:'LAW'
+};
 let region = 'pickup';
 let speed  = 'standard';
 let estateType = 'individual';
@@ -1098,7 +1105,9 @@ function openBookModal(){
   document.getElementById('modalSvcName').textContent = q.svcName;
   document.getElementById('modalQuoteAmt').textContent = q.quoteAmt;
   document.getElementById('modalQuoteMeta').textContent = 'Estimated total based on your selections. Confirmed in writing before work begins.';
-  document.getElementById('quoteFormSubject').value = 'Quote Request — ' + q.svcName + ' (' + q.quoteAmt + ')';
+  const routeKey = document.getElementById('serviceType').value;
+  const routeTag = SERVICE_TAG_MAP[routeKey] || 'GNW';
+  document.getElementById('quoteFormSubject').value = '[' + routeTag + '] Quote Request — ' + q.svcName + ' (' + q.quoteAmt + ')';
   document.getElementById('quoteFormSummary').value = q.summary;
   bookModal.classList.add('open');
   document.body.style.overflow = 'hidden';
