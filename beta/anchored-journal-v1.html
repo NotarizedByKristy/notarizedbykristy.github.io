@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="e-Journal">
+<meta name="theme-color" content="#0A1F44">
+<title>The Anchored Journal — Texas Edition</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A1F44'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23C5A572' stroke-width='3'/%3E%3Ctext x='32' y='39' font-size='20' text-anchor='middle' fill='%23C5A572' font-family='Georgia'%3EJ%3C/text%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1F44; --navy-2:#132B57; --gold:#C5A572; --gold-soft:#E3D3B4;
+  --cream:#F4ECDC; --paper:#FBF7EE; --ink:#1B2437; --muted:#6B7385;
+  --line:#DCD2BC; --danger:#A93B3B; --ok:#2E6E4E;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Outfit',system-ui,-apple-system,sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;font-size:16px}
+/* ---------- masthead ---------- */
+header{background:var(--navy);color:var(--cream);padding:calc(env(safe-area-inset-top,0px) + 18px) 18px 14px;text-align:center}
+header h1{font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:1.25rem;letter-spacing:.14em;color:var(--gold)}
+header .sub{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:#B9C2D8;margin-top:3px}
+header .rule{width:64px;height:2px;background:var(--gold);margin:10px auto 0;position:relative}
+header .rule::after{content:"";position:absolute;left:50%;top:-3px;width:8px;height:8px;transform:translateX(-50%) rotate(45deg);background:var(--gold)}
+/* ---------- tabs ---------- */
+nav{display:flex;background:var(--navy);position:sticky;top:0;z-index:20;box-shadow:0 2px 10px rgba(10,31,68,.25)}
+nav button{flex:1;background:none;border:none;color:#9FA9C4;font-family:'Outfit',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.06em;padding:13px 4px;border-bottom:3px solid transparent;cursor:pointer}
+nav button.active{color:var(--gold);border-bottom-color:var(--gold)}
+main{max-width:680px;margin:0 auto;padding:16px 14px calc(env(safe-area-inset-bottom,0px) + 40px)}
+.tab{display:none}.tab.active{display:block}
+/* ---------- banners ---------- */
+.banner{border-radius:var(--r);padding:11px 14px;font-size:.85rem;margin-bottom:14px;display:none;line-height:1.45}
+.banner.show{display:block}
+.banner.warn{background:#F6E7C8;border:1px solid var(--gold);color:#5C4A22}
+.banner.mem{background:#EAE4F2;border:1px solid #B7A8D6;color:#4A3B6B}
+/* ---------- cards & fields ---------- */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:14px;box-shadow:0 1px 3px rgba(10,31,68,.05)}
+.card h2{font-family:'Cinzel',Georgia,serif;font-size:.8rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card h2::after{content:"";flex:1;height:1px;background:var(--line)}
+label{display:block;font-size:.74rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:10px 0 4px}
+input[type=text],input[type=date],input[type=datetime-local],input[type=number],select,textarea{
+  width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;
+  font-family:'Outfit',sans-serif;font-size:1rem;color:var(--ink);appearance:none;-webkit-appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7385' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:var(--gold)}
+textarea{min-height:70px;resize:vertical}
+.row{display:flex;gap:10px}.row>*{flex:1;min-width:0}
+/* segmented appointment type */
+.seg{display:flex;gap:6px;flex-wrap:wrap}
+.seg button{flex:1;min-width:100px;padding:11px 6px;border:1px solid var(--line);border-radius:10px;background:#fff;font-family:'Outfit',sans-serif;font-size:.83rem;font-weight:600;color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--navy);border-color:var(--navy);color:var(--gold)}
+/* checkboxes */
+.chk{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:.95rem;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--navy);flex:none}
+.sub-block{border-left:3px solid var(--gold-soft);padding-left:12px;margin:4px 0 8px;display:none}
+.sub-block.show{display:block}
+/* doc + witness rows */
+.doc-row,.wit-row{border:1px dashed var(--line);border-radius:10px;padding:10px;margin-bottom:8px;position:relative;background:#fff}
+.x-btn{position:absolute;top:6px;right:6px;border:none;background:none;color:var(--danger);font-size:1.05rem;font-weight:700;cursor:pointer;padding:4px 8px}
+.add-btn{width:100%;padding:10px;border:1.5px dashed var(--gold);border-radius:10px;background:none;color:var(--navy);font-family:'Outfit',sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;margin-top:2px}
+.btn-row{display:flex;gap:8px;margin-top:8px}
+.btn-row button{flex:1;padding:10px 6px;border:1.5px solid var(--navy);border-radius:10px;background:none;color:var(--navy);font-family:'Outfit',sans-serif;font-weight:600;font-size:.82rem;cursor:pointer}
+.mini{border:none;background:none;color:var(--navy);font-family:'Outfit',sans-serif;font-size:.76rem;font-weight:600;text-decoration:underline;cursor:pointer;padding:4px 0}
+.sigpad{width:100%;height:160px;border:1.5px dashed var(--line);border-radius:10px;background:#fff;display:block;touch-action:none}
+.sig-thumb{height:44px;border:1px solid var(--line);border-radius:6px;background:#fff;margin:4px 6px 0 0;vertical-align:middle}
+/* primary actions */
+.primary{width:100%;padding:15px;border:none;border-radius:12px;background:var(--navy);color:var(--gold);font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:.95rem;letter-spacing:.14em;cursor:pointer;margin-top:6px}
+.primary:active{transform:scale(.99)}
+.ghost{width:100%;padding:12px;border:1.5px solid var(--navy);border-radius:12px;background:none;color:var(--navy);font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;cursor:pointer;margin-top:10px}
+.ghost.red{border-color:var(--danger);color:var(--danger)}
+/* ---------- journal list ---------- */
+.search{margin-bottom:12px}
+.entry{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px;overflow:hidden}
+.entry-head{display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer}
+.seal{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--gold);color:var(--navy);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Cinzel',Georgia,serif;background:radial-gradient(circle at 35% 30%,#fff 0%,var(--cream) 70%)}
+.seal .n{font-size:.95rem;font-weight:600;line-height:1}
+.seal .t{font-size:.42rem;letter-spacing:.12em;color:var(--muted)}
+.entry-head .who{flex:1;min-width:0}
+.entry-head .who b{display:block;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.entry-head .who span{font-size:.76rem;color:var(--muted)}
+.tag{flex:none;font-size:.64rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--gold-soft);color:var(--navy)}
+.entry-body{display:none;border-top:1px solid var(--line);padding:12px 14px;font-size:.88rem;line-height:1.55}
+.entry.open .entry-body{display:block}
+.entry-body dt{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.entry-body dd{margin:0}
+.entry-actions{display:flex;gap:8px;margin-top:12px}
+.entry-actions button{flex:1;padding:9px;border-radius:9px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.83rem;cursor:pointer;border:1px solid var(--line);background:#fff;color:var(--navy)}
+.entry-actions .del{color:var(--danger);border-color:#E4C6C6}
+.empty{text-align:center;color:var(--muted);padding:44px 20px;font-size:.92rem;line-height:1.6}
+.empty .big{font-family:'Cinzel',Georgia,serif;font-size:1.05rem;color:var(--navy);margin-bottom:6px}
+/* stats strip */
+.stats{display:flex;gap:8px;margin-bottom:12px}
+.stats div{flex:1;background:var(--navy);color:var(--cream);border-radius:12px;padding:10px;text-align:center}
+.stats b{display:block;font-family:'Cinzel',Georgia,serif;font-size:1.15rem;color:var(--gold)}
+.stats span{font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#B9C2D8}
+.note{font-size:.8rem;color:var(--muted);line-height:1.5;margin-top:8px}
+footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-spacing:.06em}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(80px);background:var(--navy);color:var(--gold);padding:12px 22px;border-radius:999px;font-size:.88rem;font-weight:600;transition:transform .25s;z-index:50;box-shadow:0 6px 20px rgba(10,31,68,.35)}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* ---------- activation gate ---------- */
+#gate{position:fixed;inset:0;background:var(--navy);z-index:100;display:flex;align-items:center;justify-content:center;padding:22px}
+#gate.off{display:none}
+.gate-card{width:100%;max-width:400px;background:var(--paper);border:1px solid var(--gold);border-radius:16px;padding:26px 22px;text-align:center}
+.gate-card h1{font-family:'Cinzel',Georgia,serif;font-size:1.15rem;letter-spacing:.12em;color:var(--navy)}
+.gate-card .gsub{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:4px 0 16px}
+.gate-card input{text-align:center;margin-bottom:10px}
+.gate-card .gerr{color:var(--danger);font-size:.8rem;min-height:18px;margin-top:4px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+/* ---------- certified copy print sheet ---------- */
+#printSheet{display:none}
+@media print{
+  body>*{display:none!important}
+  body{background:#fff}
+  #printSheet{display:block!important;font-family:Georgia,'EB Garamond',serif;color:#000;max-width:7in;margin:0 auto;padding:.4in .2in;font-size:12pt;line-height:1.5}
+  #printSheet h1{font-size:15pt;text-align:center;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2pt}
+  #printSheet .ph{text-align:center;font-size:9.5pt;letter-spacing:.18em;text-transform:uppercase;border-bottom:2pt solid #000;padding-bottom:8pt;margin-bottom:14pt}
+  #printSheet table{width:100%;border-collapse:collapse;margin-bottom:16pt}
+  #printSheet td{border:.75pt solid #000;padding:5pt 7pt;vertical-align:top}
+  #printSheet td.k{width:34%;font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:#f2f2f2}
+  #printSheet .cert{border:1.5pt solid #000;padding:12pt;margin-top:6pt}
+  #printSheet .cert p{margin-bottom:10pt}
+  #printSheet .sigrow{display:flex;gap:24pt;margin-top:28pt}
+  #printSheet .sig{flex:1;border-top:1pt solid #000;padding-top:3pt;font-size:9pt;letter-spacing:.06em;text-transform:uppercase}
+  #printSheet .seal-box{width:1.6in;height:1.1in;border:1pt dashed #000;display:flex;align-items:center;justify-content:center;font-size:8pt;color:#555;letter-spacing:.1em}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>The Anchored Journal</h1>
+  <div class="sub">e-Notary Record Book · Texas Edition</div>
+  <div class="rule"></div>
+</header>
+
+<nav>
+  <button class="active" data-tab="new" onclick="showTab('new')">New Entry</button>
+  <button data-tab="journal" onclick="showTab('journal')">Journal</button>
+  <button data-tab="backup" onclick="showTab('backup')">Backup</button>
+</nav>
+
+<main>
+<div id="memBanner" class="banner mem">Preview mode: this environment can't save between sessions. Once you download the file and open it in your own browser, entries save automatically on your device.</div>
+<div id="backupBanner" class="banner warn"></div>
+
+<!-- ============ NEW ENTRY ============ -->
+<section id="tab-new" class="tab active">
+
+  <div class="card">
+    <h2>Appointment</h2>
+    <label>Date &amp; time of notarization</label>
+    <input type="datetime-local" id="f-dt">
+    <label>Appointment type</label>
+    <div class="seg" id="apptSeg">
+      <button type="button" data-v="Loan Signing">Loan Signing</button>
+      <button type="button" data-v="Estate Planning">Estate Planning</button>
+      <button type="button" data-v="General Notary Work">General Notary</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Documents</h2>
+    <div id="docList"></div>
+    <button type="button" class="add-btn" onclick="addDoc()">+ Add document</button>
+    <p class="note">Pick an appointment type above to load its common document list. Choose "Other…" to type your own.</p>
+  </div>
+
+  <div class="card">
+    <h2>Signer</h2>
+    <label>Full name</label>
+    <input type="text" id="f-signer" autocomplete="off" placeholder="Signer's printed name">
+    <label>Address</label>
+    <input type="text" id="f-address" autocomplete="off" placeholder="Street, city, state, ZIP">
+    <label>Identification method</label>
+    <select id="f-idtype" onchange="idChanged()">
+      <option value="">Select…</option>
+      <option>TX Driver License</option>
+      <option>TX ID Card</option>
+      <option>US Passport</option>
+      <option>US Passport Card</option>
+      <option>US Military ID</option>
+      <option>Permanent Resident Card</option>
+      <option>Foreign Passport</option>
+      <option>Personally Known</option>
+      <option>Credible Witness</option>
+      <option>Other</option>
+    </select>
+    <div id="idExpWrap">
+      <label>ID expiration date</label>
+      <input type="date" id="f-idexp">
+    </div>
+    <p class="note">Texas Gov't Code §406.014 — do not record the ID number itself. This journal intentionally has no field for it.</p>
+    <label>Signer signature (recommended)</label>
+    <canvas id="pad1" class="sigpad"></canvas>
+    <button type="button" class="mini" onclick="pad1.clear()">Clear signature</button>
+    <p class="note" style="margin-top:2px">Hand the signer your phone to sign. Not required in Texas, but it's your strongest proof they personally appeared.</p>
+    <button type="button" class="add-btn" id="s2btn" onclick="toggleSigner2()">+ Add second signer</button>
+    <div id="signer2" class="sub-block" style="margin-top:10px">
+      <label>Second signer full name</label>
+      <input type="text" id="f-signer2" autocomplete="off" placeholder="Second signer's printed name">
+      <label>Address</label>
+      <input type="text" id="f-address2" autocomplete="off">
+      <button type="button" class="mini" onclick="document.getElementById('f-address2').value=v('f-address');">Same as first signer</button>
+      <label>Identification method</label>
+      <select id="f-idtype2" onchange="idChanged2()">
+        <option value="">Select…</option>
+        <option>TX Driver License</option>
+        <option>TX ID Card</option>
+        <option>US Passport</option>
+        <option>US Passport Card</option>
+        <option>US Military ID</option>
+        <option>Permanent Resident Card</option>
+        <option>Foreign Passport</option>
+        <option>Personally Known</option>
+        <option>Credible Witness</option>
+        <option>Other</option>
+      </select>
+      <div id="idExpWrap2">
+        <label>ID expiration date</label>
+        <input type="date" id="f-idexp2">
+      </div>
+      <label>Second signer signature</label>
+      <canvas id="pad2" class="sigpad"></canvas>
+      <button type="button" class="mini" onclick="pad2.clear()">Clear signature</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Witnesses</h2>
+    <label class="chk"><input type="checkbox" id="f-cw" onchange="toggle('cwBlock',this.checked)"> Credible witness used to identify signer</label>
+    <div id="cwBlock" class="sub-block">
+      <label>Credible witness name</label>
+      <input type="text" id="f-cwname" autocomplete="off">
+      <label>Credible witness address</label>
+      <input type="text" id="f-cwaddr" autocomplete="off">
+      <div class="row">
+        <div>
+          <label>CW identified by</label>
+          <select id="f-cwid">
+            <option value="">Select…</option>
+            <option>Personally known to notary</option>
+            <option>TX Driver License</option>
+            <option>TX ID Card</option>
+            <option>US Passport</option>
+            <option>Other ID</option>
+          </select>
+        </div>
+        <div>
+          <label>CW ID expiration</label>
+          <input type="date" id="f-cwexp">
+        </div>
+      </div>
+    </div>
+    <label class="chk"><input type="checkbox" id="f-dw" onchange="toggle('dwBlock',this.checked)"> Document / package witnesses present</label>
+    <div id="dwBlock" class="sub-block">
+      <div id="witList"></div>
+      <button type="button" class="add-btn" onclick="addWit()">+ Add witness</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Travel &amp; Delivery</h2>
+    <label class="chk"><input type="checkbox" id="f-mobile" onchange="toggle('mobBlock',this.checked)"> Mobile appointment</label>
+    <div id="mobBlock" class="sub-block">
+      <label>Starting address</label>
+      <input type="text" id="f-start" autocomplete="off" placeholder="Where the trip begins">
+      <label>Appointment address</label>
+      <input type="text" id="f-apptaddr" autocomplete="off" placeholder="Where the signing takes place">
+      <button type="button" class="mini" onclick="document.getElementById('f-apptaddr').value=v('f-address');">Use signer's address</button>
+      <label class="chk" style="padding-top:2px"><input type="checkbox" id="f-return" checked> Include return trip to start</label>
+      <div class="btn-row">
+        <button type="button" onclick="calcMiles()">Auto-calculate mileage</button>
+        <button type="button" onclick="openMaps()">Check in Google Maps</button>
+      </div>
+      <label>Mileage traveled</label>
+      <input type="number" id="f-miles" inputmode="decimal" min="0" step="0.1" placeholder="0.0">
+      <p class="note">Auto-calculate needs an internet connection and sends only the addresses to a free routing service (OpenStreetMap). Prefer full privacy? Type the miles yourself — nothing leaves your device.</p>
+    </div>
+    <label class="chk"><input type="checkbox" id="f-drop" onchange="toggle('dropBlock',this.checked)"> Package drop-off required (UPS / FedEx)</label>
+    <div id="dropBlock" class="sub-block">
+      <label>Drop-off location</label>
+      <input type="text" id="f-dropaddr" autocomplete="off" placeholder="UPS Store, FedEx Office, etc. — address">
+      <div class="row">
+        <div>
+          <label>Carrier</label>
+          <select id="f-carrier">
+            <option>UPS</option><option>FedEx</option><option>USPS</option><option>Other</option>
+          </select>
+        </div>
+        <div>
+          <label>Tracking # (optional)</label>
+          <input type="text" id="f-tracking" autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Fee &amp; Notes</h2>
+    <label>Fee charged ($)</label>
+    <input type="number" id="f-fee" inputmode="decimal" min="0" step="0.01" placeholder="0.00">
+    <label>Notes</label>
+    <textarea id="f-notes" placeholder="Anything worth remembering about this appointment"></textarea>
+  </div>
+
+  <button class="primary" onclick="saveEntry()">Record Entry</button>
+</section>
+
+<!-- ============ JOURNAL ============ -->
+<section id="tab-journal" class="tab">
+  <div class="stats">
+    <div><b id="st-total">0</b><span>Entries</span></div>
+    <div><b id="st-month">0</b><span>This month</span></div>
+    <div><b id="st-miles">0</b><span>Miles YTD</span></div>
+  </div>
+  <div class="search"><input type="text" id="q" placeholder="Search signer, document, address…" oninput="renderList()"></div>
+  <div id="list"></div>
+</section>
+
+<!-- ============ BACKUP ============ -->
+<section id="tab-backup" class="tab">
+  <div class="card">
+    <h2>Export for Excel</h2>
+    <p class="note" style="margin-top:0">Downloads every entry as a CSV file that opens directly in Excel, Numbers, or Google Sheets. Make this a monthly habit — your records live only on this device.</p>
+    <button class="ghost" onclick="exportCSV()">Download CSV (all entries)</button>
+  </div>
+  <div class="card">
+    <h2>Backup &amp; Restore</h2>
+    <p class="note" style="margin-top:0">A backup file preserves everything exactly, including settings. Restore it on a new phone or after clearing your browser.</p>
+    <button class="ghost" onclick="exportJSON()">Download backup file</button>
+    <button class="ghost" onclick="document.getElementById('restoreFile').click()">Restore from backup</button>
+    <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreJSON(event)">
+  </div>
+  <div class="card">
+    <h2>Notary Details</h2>
+    <label>Notary name</label>
+    <input type="text" id="s-name" onchange="saveSettings()">
+    <label>Commission number</label>
+    <input type="text" id="s-comm" onchange="saveSettings()">
+    <label>Commission expiration</label>
+    <input type="date" id="s-exp" onchange="saveSettings()">
+    <label>Home / starting address</label>
+    <input type="text" id="s-home" onchange="saveSettings()" placeholder="Prefills every mobile trip">
+    <p class="note">Included in your CSV exports so each report is self-identifying. Your home address prefills the starting point on mobile appointments.</p>
+  </div>
+  <div class="card">
+    <h2>Danger Zone</h2>
+    <button class="ghost red" onclick="wipeAll()">Erase all journal data</button>
+  </div>
+</section>
+
+<footer><span id="licLine"></span>Notarized By Kristy · Notarized Right. The First Time. Every Time.</footer>
+<div id="gate" class="off">
+  <div class="gate-card">
+    <h1>The Anchored Journal</h1>
+    <div class="gsub">e-Notary Record Book · Texas Edition</div>
+    <label>Your full name</label>
+    <input type="text" id="g-name" autocomplete="name" placeholder="As it should appear on your license">
+    <label>License key</label>
+    <input type="text" id="g-key" autocomplete="off" autocapitalize="characters" placeholder="NBK-XXXX-XXXX-XXXX">
+    <div class="gerr" id="g-err"></div>
+    <button class="primary" onclick="activate()">Activate</button>
+    <p class="note" style="margin-top:12px">Your key is in your purchase email. Activation happens entirely on this device — nothing is sent anywhere. Need help? kristy@notarizedbykristy.com</p>
+  </div>
+</div>
+<div id="toast" class="toast"></div>
+<div id="printSheet"></div>
+
+<script>
+/* ---------- storage (localStorage with in-memory fallback) ---------- */
+const store=(()=>{try{localStorage.setItem('__t','1');localStorage.removeItem('__t');return localStorage}
+catch(e){document.getElementById('memBanner').classList.add('show');const m={};
+return{getItem:k=>k in m?m[k]:null,setItem:(k,v)=>{m[k]=String(v)},removeItem:k=>{delete m[k]}}}})();
+
+const KEY='nbk_journal_v1', SKEY='nbk_settings_v1';
+const DEFAULT_HOME='421 Landmark Falls, Cibolo, TX 78108';
+let entries=JSON.parse(store.getItem(KEY)||'[]');
+let settings=JSON.parse(store.getItem(SKEY)||'{}');
+function persist(){store.setItem(KEY,JSON.stringify(entries))}
+function saveSettings(){settings={name:v('s-name'),comm:v('s-comm'),exp:v('s-exp'),home:v('s-home'),licName:settings.licName,licKey:settings.licKey,lastExport:settings.lastExport,lastExportCount:settings.lastExportCount};store.setItem(SKEY,JSON.stringify(settings));document.getElementById('f-start').value=homeAddr();toast('Details saved')}
+function homeAddr(){return settings.home||DEFAULT_HOME}
+
+/* ---------- license activation (fully offline) ---------- */
+const KCHARS='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+function validKey(raw){
+  const k=(raw||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(!k.startsWith('NBK')||k.length!==15)return false;
+  const b=k.slice(3);let s=0;
+  for(let i=0;i<11;i++){const x=KCHARS.indexOf(b[i]);if(x<0)return false;s+=(i+3)*x;}
+  return KCHARS[s%31]===b[11];
+}
+function fmtKey(raw){const k=(raw||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(3);return 'NBK-'+k.slice(0,4)+'-'+k.slice(4,8)+'-'+k.slice(8,12)}
+function activate(){
+  const name=v('g-name'),key=v('g-key'),err=document.getElementById('g-err');
+  if(!name){err.textContent='Enter your name as the licensee.';return}
+  if(!validKey(key)){err.textContent='That key isn\u2019t valid \u2014 check for typos against your purchase email.';return}
+  settings.licName=name;settings.licKey=fmtKey(key);
+  store.setItem(SKEY,JSON.stringify(settings));
+  syncGate();toast('Welcome, '+name.split(' ')[0]);
+}
+function syncGate(){
+  const licensed=!!settings.licKey&&validKey(settings.licKey);
+  document.getElementById('gate').classList.toggle('off',licensed);
+  document.getElementById('licLine').innerHTML=licensed?('Licensed to '+esc(settings.licName)+' \u00b7 '+esc(settings.licKey)+'<br>'):'';
+}
+
+/* ---------- document libraries ---------- */
+const DOCS={
+'Loan Signing':['Deed of Trust','Warranty Deed','Note (not notarized)','Owner\u2019s Affidavit','Signature / Name Affidavit','Occupancy Affidavit','Correction Agreement / Compliance','Power of Attorney','Subordination Agreement','HELOC Agreement','Closing Disclosure Acknowledgment','Survey Affidavit','Other\u2026'],
+'Estate Planning':['Last Will &amp; Testament (Self-Proving Affidavit)','Revocable Living Trust','Durable Power of Attorney','Medical Power of Attorney','Directive to Physicians (Living Will)','HIPAA Release','Declaration of Guardian','Transfer on Death Deed','Appointment of Agent for Remains','Other\u2026'],
+'General Notary Work':['Affidavit','Power of Attorney','Vehicle Title / VTR Form','Minor Travel Consent','Certified Copy Request','Real Estate Deed','School / DMV Form','Bill of Sale','Oath / Affirmation','Other\u2026']};
+const ACTS=['Acknowledgment','Jurat','Oath / Affirmation','Copy Certification','Protest','Other'];
+
+let apptType='';
+document.querySelectorAll('#apptSeg button').forEach(b=>{
+  b.onclick=()=>{apptType=b.dataset.v;
+    document.querySelectorAll('#apptSeg button').forEach(x=>x.classList.toggle('on',x===b));
+    document.querySelectorAll('.doc-sel').forEach(refreshDocOptions);
+    if(!document.querySelector('.doc-row'))addDoc();}});
+
+/* ---------- dynamic rows ---------- */
+function refreshDocOptions(sel){
+  const cur=sel.value;
+  sel.innerHTML='<option value="">Select document\u2026</option>'+
+    (DOCS[apptType]||[].concat()).map(d=>`<option>${d}</option>`).join('')+
+    (apptType?'':'<option>Other\u2026</option>');
+  if(cur)sel.value=cur;
+}
+function addDoc(){
+  const d=document.createElement('div');d.className='doc-row';
+  d.innerHTML=`<button type="button" class="x-btn" onclick="this.parentNode.remove()">×</button>
+  <label>Document</label><select class="doc-sel" onchange="docSelChanged(this)"></select>
+  <input type="text" class="doc-other" placeholder="Type document name" style="display:none;margin-top:6px" autocomplete="off">
+  <div class="row" style="margin-top:2px">
+    <div><label>Document date</label><input type="date" class="doc-date"></div>
+    <div><label>Notarial act</label><select class="doc-act">${ACTS.map(a=>`<option>${a}</option>`).join('')}</select></div>
+  </div>
+  <div class="doc-by-wrap" style="display:none">
+    <label>Signed by</label>
+    <select class="doc-by"><option>Both signers</option><option>Signer 1 only</option><option>Signer 2 only</option></select>
+  </div>`;
+  document.getElementById('docList').appendChild(d);
+  refreshDocOptions(d.querySelector('.doc-sel'));
+  syncDocBy();
+}
+function syncDocBy(){
+  const on=document.getElementById('signer2').classList.contains('show');
+  document.querySelectorAll('.doc-by-wrap').forEach(w=>w.style.display=on?'block':'none');
+}
+function docSelChanged(sel){
+  const other=sel.parentNode.querySelector('.doc-other');
+  other.style.display=sel.value.startsWith('Other')?'block':'none';
+}
+function addWit(){
+  const d=document.createElement('div');d.className='wit-row';
+  d.innerHTML=`<button type="button" class="x-btn" onclick="this.parentNode.remove()">×</button>
+  <label>Witness name</label><input type="text" class="wit-name" autocomplete="off">`;
+  document.getElementById('witList').appendChild(d);
+}
+function toggle(id,on){document.getElementById(id).classList.toggle('show',on);
+  if(id==='dwBlock'&&on&&!document.querySelector('.wit-row'))addWit();}
+function idChanged(){
+  const t=v('f-idtype');
+  const noExp=t==='Personally Known'||t==='Credible Witness';
+  document.getElementById('idExpWrap').style.display=noExp?'none':'block';
+  if(t==='Credible Witness'&&!document.getElementById('f-cw').checked){
+    document.getElementById('f-cw').checked=true;toggle('cwBlock',true);}
+}
+
+/* ---------- helpers ---------- */
+function v(id){return document.getElementById(id).value.trim()}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function fmtDT(iso){if(!iso)return'';const d=new Date(iso);return d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})+' · '+d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'})}
+
+/* ---------- signature pads ---------- */
+function makePad(canvas){
+  const ctx=canvas.getContext('2d');let drawing=false,empty=true;
+  function resize(){
+    const r=canvas.getBoundingClientRect();if(!r.width)return;
+    const d=window.devicePixelRatio||1;
+    if(canvas.width===Math.round(r.width*d))return;
+    canvas.width=Math.round(r.width*d);canvas.height=Math.round(160*d);
+    ctx.scale(d,d);ctx.lineWidth=2;ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#1B2437';
+  }
+  function pos(ev){const r=canvas.getBoundingClientRect();return[ev.clientX-r.left,ev.clientY-r.top]}
+  canvas.addEventListener('pointerdown',ev=>{ev.preventDefault();resize();drawing=true;empty=false;const[x,y]=pos(ev);ctx.beginPath();ctx.moveTo(x,y);canvas.setPointerCapture(ev.pointerId)});
+  canvas.addEventListener('pointermove',ev=>{if(!drawing)return;ev.preventDefault();const[x,y]=pos(ev);ctx.lineTo(x,y);ctx.stroke()});
+  ['pointerup','pointercancel','pointerleave'].forEach(t=>canvas.addEventListener(t,()=>drawing=false));
+  return{
+    clear(){ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,canvas.width,canvas.height);ctx.restore();empty=true},
+    isEmpty:()=>empty,
+    data:()=>canvas.toDataURL('image/png'),
+    resize
+  };
+}
+const pad1=makePad(document.getElementById('pad1'));
+const pad2=makePad(document.getElementById('pad2'));
+function toggleSigner2(){
+  const b=document.getElementById('signer2');
+  const on=!b.classList.contains('show');
+  b.classList.toggle('show',on);
+  document.getElementById('s2btn').textContent=on?'− Remove second signer':'+ Add second signer';
+  syncDocBy();
+  if(on)setTimeout(()=>pad2.resize(),50);
+}
+function idChanged2(){
+  const t=v('f-idtype2');
+  const noExp=t==='Personally Known'||t==='Credible Witness';
+  document.getElementById('idExpWrap2').style.display=noExp?'none':'block';
+  if(t==='Credible Witness'&&!document.getElementById('f-cw').checked){
+    document.getElementById('f-cw').checked=true;toggle('cwBlock',true);}
+}
+
+/* ---------- trip mileage ---------- */
+function tripStops(){
+  const s=[v('f-start'),v('f-apptaddr')];
+  if(document.getElementById('f-drop').checked&&v('f-dropaddr'))s.push(v('f-dropaddr'));
+  if(s.some(x=>!x))return null;
+  if(document.getElementById('f-return').checked)s.push(s[0]);
+  return s;
+}
+async function calcMiles(){
+  const stops=tripStops();
+  if(!stops)return toast('Enter the starting and appointment addresses first');
+  toast('Calculating route\u2026');
+  try{
+    const pts=[];
+    for(const s of stops){
+      const r=await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q='+encodeURIComponent(s));
+      const j=await r.json();
+      if(!j.length)throw new Error('Address not found: '+s);
+      pts.push(j[0].lon+','+j[0].lat);
+    }
+    const r2=await fetch('https://router.project-osrm.org/route/v1/driving/'+pts.join(';')+'?overview=false');
+    const j2=await r2.json();
+    if(!j2.routes||!j2.routes.length)throw new Error('No drivable route found');
+    document.getElementById('f-miles').value=(j2.routes[0].distance/1609.344).toFixed(1);
+    toast('Mileage: '+document.getElementById('f-miles').value+' mi');
+  }catch(err){
+    toast((err.message&&err.message.length<60?err.message:'Auto-calc unavailable')+' \u2014 use the Maps button or type miles');
+  }
+}
+function openMaps(){
+  const stops=tripStops();
+  if(!stops)return toast('Enter the starting and appointment addresses first');
+  const url='https://www.google.com/maps/dir/?api=1&origin='+encodeURIComponent(stops[0])
+    +'&destination='+encodeURIComponent(stops[stops.length-1])
+    +(stops.length>2?'&waypoints='+encodeURIComponent(stops.slice(1,-1).join('|')):'');
+  window.open(url,'_blank');
+}
+
+/* ---------- save entry ---------- */
+function saveEntry(){
+  const signer=v('f-signer');
+  if(!signer)return toast('Signer name is required');
+  if(!apptType)return toast('Choose an appointment type');
+  const s2on=document.getElementById('signer2').classList.contains('show')&&v('f-signer2');
+  const docs=[...document.querySelectorAll('.doc-row')].map(r=>{
+    let name=r.querySelector('.doc-sel').value;
+    if(name.startsWith('Other'))name=r.querySelector('.doc-other').value.trim()||'Other';
+    return{name,date:r.querySelector('.doc-date').value,act:r.querySelector('.doc-act').value,
+      by:s2on?r.querySelector('.doc-by').value:''};
+  }).filter(d=>d.name);
+  if(!docs.length)return toast('Add at least one document');
+  if(!v('f-idtype'))return toast('Select an identification method');
+
+  const e={
+    id:Date.now(), seq:(entries.length?Math.max(...entries.map(x=>x.seq)):0)+1,
+    dt:v('f-dt')||new Date().toISOString().slice(0,16),
+    appt:apptType, docs,
+    signer, address:v('f-address'),
+    idType:v('f-idtype'), idExp:v('f-idexp'),
+    sig1:pad1.isEmpty()?null:pad1.data(),
+    signer2:s2on?{
+      name:v('f-signer2'),address:v('f-address2'),idType:v('f-idtype2'),idExp:v('f-idexp2'),
+      sig:pad2.isEmpty()?null:pad2.data()}:null,
+    cw:document.getElementById('f-cw').checked?{name:v('f-cwname'),addr:v('f-cwaddr'),id:v('f-cwid'),exp:v('f-cwexp')}:null,
+    wits:document.getElementById('f-dw').checked?[...document.querySelectorAll('.wit-name')].map(w=>w.value.trim()).filter(Boolean):[],
+    mobile:document.getElementById('f-mobile').checked, miles:v('f-miles'),
+    startAddr:v('f-start'), apptAddr:v('f-apptaddr'),
+    returnTrip:document.getElementById('f-return').checked,
+    drop:document.getElementById('f-drop').checked?{carrier:v('f-carrier'),tracking:v('f-tracking'),addr:v('f-dropaddr')}:null,
+    fee:v('f-fee'), notes:v('f-notes'), created:new Date().toISOString()
+  };
+  entries.unshift(e);persist();clearForm();updateBanner();renderList();
+  toast('Entry #'+e.seq+' recorded');showTab('journal');
+}
+function clearForm(){
+  ['f-signer','f-address','f-idexp','f-cwname','f-cwaddr','f-cwexp','f-miles','f-tracking','f-fee','f-notes','f-apptaddr','f-dropaddr','f-signer2','f-address2','f-idexp2'].forEach(id=>document.getElementById(id).value='');
+  pad1.clear();pad2.clear();
+  document.getElementById('signer2').classList.remove('show');
+  document.getElementById('s2btn').textContent='+ Add second signer';
+  document.getElementById('f-idtype2').value='';document.getElementById('idExpWrap2').style.display='block';
+  ['f-cw','f-dw','f-mobile','f-drop'].forEach(id=>document.getElementById(id).checked=false);
+  document.getElementById('f-return').checked=true;
+  document.getElementById('f-start').value=homeAddr();
+  ['cwBlock','dwBlock','mobBlock','dropBlock'].forEach(id=>document.getElementById(id).classList.remove('show'));
+  document.getElementById('f-idtype').value='';document.getElementById('idExpWrap').style.display='block';
+  document.getElementById('docList').innerHTML='';document.getElementById('witList').innerHTML='';
+  document.getElementById('f-dt').value=nowLocal();
+  if(apptType)addDoc();
+}
+function nowLocal(){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)}
+
+/* ---------- journal list ---------- */
+function renderList(){
+  const q=(document.getElementById('q').value||'').toLowerCase();
+  const list=document.getElementById('list');
+  const shown=entries.filter(e=>!q||JSON.stringify(e).toLowerCase().includes(q));
+  document.getElementById('st-total').textContent=entries.length;
+  const now=new Date();
+  document.getElementById('st-month').textContent=entries.filter(e=>{const d=new Date(e.dt);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear()}).length;
+  document.getElementById('st-miles').textContent=entries.filter(e=>new Date(e.dt).getFullYear()===now.getFullYear()).reduce((s,e)=>s+(parseFloat(e.miles)||0),0).toFixed(0);
+  if(!entries.length){list.innerHTML='<div class="empty"><div class="big">Your journal is empty</div>Record your first notarization from the New Entry tab.</div>';return}
+  if(!shown.length){list.innerHTML='<div class="empty">No entries match that search.</div>';return}
+  list.innerHTML=shown.map(e=>`
+  <div class="entry" id="e${e.id}">
+    <div class="entry-head" onclick="document.getElementById('e${e.id}').classList.toggle('open')">
+      <div class="seal"><span class="n">${e.seq}</span><span class="t">ENTRY</span></div>
+      <div class="who"><b>${esc(e.signer)}${e.signer2?' +1':''}</b><span>${fmtDT(e.dt)}</span></div>
+      <span class="tag">${e.appt==='General Notary Work'?'GNW':esc(e.appt)}</span>
+    </div>
+    <div class="entry-body"><dl>
+      <dt>Documents</dt><dd>${e.docs.map(d=>esc(d.name)+' — '+esc(d.act)+(d.date?' ('+d.date+')':'')+(d.by?' · '+esc(d.by):'')).join('<br>')}</dd>
+      ${e.address?`<dt>Address</dt><dd>${esc(e.address)}</dd>`:''}
+      <dt>Identification</dt><dd>${esc(e.idType)}${e.idExp?' · expires '+e.idExp:''}</dd>
+      ${e.signer2?`<dt>Second signer</dt><dd>${esc(e.signer2.name)}${e.signer2.address?', '+esc(e.signer2.address):''}${e.signer2.idType?'<br>ID: '+esc(e.signer2.idType):''}${e.signer2.idExp?' · expires '+e.signer2.idExp:''}</dd>`:''}
+      ${(e.sig1||(e.signer2&&e.signer2.sig))?`<dt>Signatures captured</dt><dd>${e.sig1?'<img class="sig-thumb" src="'+e.sig1+'" alt="Signer signature">':''}${e.signer2&&e.signer2.sig?'<img class="sig-thumb" src="'+e.signer2.sig+'" alt="Second signer signature">':''}</dd>`:''}
+      ${e.cw?`<dt>Credible witness</dt><dd>${esc(e.cw.name)}${e.cw.addr?', '+esc(e.cw.addr):''}${e.cw.id?' · ID: '+esc(e.cw.id):''}${e.cw.exp?' (exp '+e.cw.exp+')':''}</dd>`:''}
+      ${e.wits&&e.wits.length?`<dt>Document witnesses</dt><dd>${e.wits.map(esc).join(', ')}</dd>`:''}
+      ${e.mobile?`<dt>Mobile trip</dt><dd>${esc(e.startAddr||'')}${e.apptAddr?' → '+esc(e.apptAddr):''}${e.drop&&e.drop.addr?' → '+esc(e.drop.addr):''}${e.returnTrip?' → back to start':''}${e.miles?'<br>'+e.miles+' miles':''}</dd>`:''}
+      ${e.drop?`<dt>Package drop-off</dt><dd>${esc(e.drop.carrier)}${e.drop.tracking?' · '+esc(e.drop.tracking):''}</dd>`:''}
+      ${e.fee?`<dt>Fee</dt><dd>$${esc(e.fee)}</dd>`:''}
+      ${e.notes?`<dt>Notes</dt><dd>${esc(e.notes)}</dd>`:''}
+    </dl>
+    <div class="entry-actions"><button onclick="printEntry(${e.id})">Certified copy</button><button class="del" onclick="delEntry(${e.id})">Delete entry</button></div>
+    </div>
+  </div>`).join('');
+}
+function delEntry(id){
+  if(!confirm('Delete this entry permanently? Most notaries keep every entry — consider adding a correction note instead.'))return;
+  entries=entries.filter(e=>e.id!==id);persist();renderList();updateBanner();toast('Entry deleted');
+}
+
+/* ---------- export ---------- */
+function csvCell(s){s=String(s==null?'':s);return '"'+s.replace(/"/g,'""')+'"'}
+function exportCSV(){
+  if(!entries.length)return toast('Nothing to export yet');
+  const head=['Entry #','Date/Time','Appointment Type','Documents','Notarial Acts','Document Dates','Signed By (per document)','Signer Name','Signer Address','ID Method','ID Expiration','Signer 2 Name','Signer 2 Address','Signer 2 ID','Signer 2 ID Exp','Signatures Captured','Credible Witness Name','CW Address','CW ID','CW ID Exp','Document Witnesses','Mobile','Start Address','Appointment Address','Drop-off Address','Return Trip','Miles','Drop-off Carrier','Tracking #','Fee','Notes','Notary','Commission #','Commission Exp'];
+  const rows=entries.slice().reverse().map(e=>[
+    e.seq,e.dt,e.appt,
+    e.docs.map(d=>d.name).join('; '),e.docs.map(d=>d.act).join('; '),e.docs.map(d=>d.date||'').join('; '),e.docs.map(d=>d.by||'').join('; '),
+    e.signer,e.address,e.idType,e.idExp,
+    e.signer2?e.signer2.name:'',e.signer2?e.signer2.address:'',e.signer2?e.signer2.idType:'',e.signer2?e.signer2.idExp:'',
+    [e.sig1?'Signer 1':'',e.signer2&&e.signer2.sig?'Signer 2':''].filter(Boolean).join('; ')||'None',
+    e.cw?e.cw.name:'',e.cw?e.cw.addr:'',e.cw?e.cw.id:'',e.cw?e.cw.exp:'',
+    (e.wits||[]).join('; '),e.mobile?'Yes':'No',
+    e.startAddr||'',e.apptAddr||'',e.drop?(e.drop.addr||''):'',e.returnTrip?'Yes':'No',e.miles,
+    e.drop?e.drop.carrier:'',e.drop?e.drop.tracking:'',e.fee,e.notes,
+    settings.name||'',settings.comm||'',settings.exp||''
+  ].map(csvCell).join(','));
+  download('notary-journal-'+today()+'.csv','\uFEFF'+head.map(csvCell).join(',')+'\n'+rows.join('\n'),'text/csv');
+  settings.lastExport=new Date().toISOString();settings.lastExportCount=entries.length;
+  store.setItem(SKEY,JSON.stringify(settings));updateBanner();toast('CSV downloaded');
+}
+function exportJSON(){
+  download('notary-journal-backup-'+today()+'.json',JSON.stringify({settings,entries},null,1),'application/json');
+  settings.lastExport=new Date().toISOString();settings.lastExportCount=entries.length;
+  store.setItem(SKEY,JSON.stringify(settings));updateBanner();toast('Backup downloaded');
+}
+function restoreJSON(ev){
+  const f=ev.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=()=>{try{
+    const d=JSON.parse(r.result);
+    if(!Array.isArray(d.entries))throw 0;
+    if(!confirm('Restore '+d.entries.length+' entries? This replaces what is currently on this device.'))return;
+    entries=d.entries;settings=d.settings||settings;persist();store.setItem(SKEY,JSON.stringify(settings));
+    loadSettings();syncGate();renderList();updateBanner();toast('Backup restored');
+  }catch(e){toast('That file is not a valid backup')}};
+  r.readAsText(f);ev.target.value='';
+}
+function download(name,content,type){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),4000);
+}
+function today(){return new Date().toISOString().slice(0,10)}
+function wipeAll(){
+  if(!confirm('Erase ALL entries and settings from this device? Download a backup first if you have any doubt.'))return;
+  if(!confirm('This cannot be undone. Erase everything?'))return;
+  entries=[];settings={licName:settings.licName,licKey:settings.licKey};persist();store.setItem(SKEY,JSON.stringify(settings));loadSettings();syncGate();renderList();updateBanner();toast('Journal erased');
+}
+
+/* ---------- certified copy of a single entry ---------- */
+function printEntry(id){
+  const e=entries.find(x=>x.id===id);if(!e)return;
+  const tr=(k,val)=>val?`<tr><td class="k">${k}</td><td>${val}</td></tr>`:'';
+  const docs=e.docs.map(d=>esc(d.name)+' — '+esc(d.act)+(d.date?' (dated '+d.date+')':'')+(d.by?' — '+esc(d.by):'')).join('<br>');
+  const notary=esc(settings.name||'____________________');
+  const comm=esc(settings.comm||'____________');
+  const commExp=esc(settings.exp||'____________');
+  document.getElementById('printSheet').innerHTML=`
+  <h1>Copy of Notary Record Book Entry</h1>
+  <div class="ph">State of Texas · Entry No. ${e.seq}</div>
+  <table>
+    ${tr('Date & time of notarization',esc(fmtDT(e.dt)))}
+    ${tr('Appointment type',esc(e.appt))}
+    ${tr('Document(s) & notarial act(s)',docs)}
+    ${tr('Signer name',esc(e.signer))}
+    ${tr('Signer address',esc(e.address))}
+    ${tr('Identification method',esc(e.idType)+(e.idExp?' · expires '+e.idExp:''))}
+    ${e.signer2?tr('Second signer',esc(e.signer2.name)+(e.signer2.address?', '+esc(e.signer2.address):'')):''}
+    ${e.signer2&&e.signer2.idType?tr('Second signer identification',esc(e.signer2.idType)+(e.signer2.idExp?' · expires '+e.signer2.idExp:'')):''}
+    ${e.sig1?tr('Signer signature (captured at appointment)','<img src="'+e.sig1+'" style="height:.55in" alt="">'):''}
+    ${e.signer2&&e.signer2.sig?tr('Second signer signature (captured at appointment)','<img src="'+e.signer2.sig+'" style="height:.55in" alt="">'):''}
+    ${e.cw?tr('Credible witness',esc(e.cw.name)+(e.cw.addr?', '+esc(e.cw.addr):'')+(e.cw.id?' · identified by: '+esc(e.cw.id):'')+(e.cw.exp?' (exp '+e.cw.exp+')':'')):''}
+    ${e.wits&&e.wits.length?tr('Document witnesses',e.wits.map(esc).join(', ')):''}
+    ${e.fee?tr('Fee charged','$'+esc(e.fee)):''}
+  </table>
+  <div class="cert">
+    <p>I, <b>${notary}</b>, a notary public commissioned in the State of Texas (Commission No. ${comm}, expiring ${commExp}), certify that the above is a true and correct copy of an entry in my notary record book, maintained as required by Texas Government Code §406.014.</p>
+    <p>Given under my hand and seal of office on ______________________, 20____.</p>
+    <div class="sigrow">
+      <div class="sig">Notary Public Signature</div>
+      <div class="seal-box">SEAL</div>
+    </div>
+  </div>
+  <p style="margin-top:12pt;font-size:8pt;color:#444;text-align:center">Record maintained in The Anchored Journal e-record book \u00b7 Licensed to ${esc(settings.licName||'')} ${esc(settings.licKey||'')}</p>`;
+  window.print();
+}
+
+/* ---------- backup nag ---------- */
+function updateBanner(){
+  const b=document.getElementById('backupBanner');
+  const since=entries.length-(settings.lastExportCount||0);
+  const stale=settings.lastExport&&(Date.now()-new Date(settings.lastExport))>30*864e5;
+  if(entries.length&&(!settings.lastExport&&entries.length>=5||since>=10||stale)){
+    b.textContent='📥 '+(settings.lastExport?since+' entries since your last export.':'You have '+entries.length+' entries and no backup yet.')+' Your records live only on this device — export a copy from the Backup tab.';
+    b.classList.add('show');
+  }else b.classList.remove('show');
+}
+
+/* ---------- tabs & init ---------- */
+function showTab(t){
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));
+  document.querySelectorAll('.tab').forEach(s=>s.classList.toggle('active',s.id==='tab-'+t));
+  if(t==='journal')renderList();
+  window.scrollTo({top:0});
+}
+function loadSettings(){
+  document.getElementById('s-name').value=settings.name||'';
+  document.getElementById('s-comm').value=settings.comm||'';
+  document.getElementById('s-exp').value=settings.exp||'';
+  document.getElementById('s-home').value=homeAddr();
+  document.getElementById('f-start').value=homeAddr();
+}
+document.getElementById('f-dt').value=nowLocal();
+loadSettings();syncGate();updateBanner();renderList();
+</script>
+</body>
+</html>
