@@ -149,13 +149,6 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
   </div>
 
   <div class="card">
-    <h2>Documents</h2>
-    <div id="docList"></div>
-    <button type="button" class="add-btn" onclick="addDoc()">+ Add document</button>
-    <p class="note">Pick an appointment type above to load its common document list. Choose "Other…" to type your own.</p>
-  </div>
-
-  <div class="card">
     <h2>Signer</h2>
     <label>Full name</label>
     <input type="text" id="f-signer" autocomplete="off" placeholder="Signer's printed name">
@@ -164,8 +157,8 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
     <label>Identification method</label>
     <select id="f-idtype" onchange="idChanged()">
       <option value="">Select…</option>
-      <option>TX Driver License</option>
-      <option>TX ID Card</option>
+      <option>Driver License</option>
+      <option>ID Card</option>
       <option>US Passport</option>
       <option>US Passport Card</option>
       <option>US Military ID</option>
@@ -194,8 +187,8 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
       <label>Identification method</label>
       <select id="f-idtype2" onchange="idChanged2()">
         <option value="">Select…</option>
-        <option>TX Driver License</option>
-        <option>TX ID Card</option>
+        <option>Driver License</option>
+        <option>ID Card</option>
         <option>US Passport</option>
         <option>US Passport Card</option>
         <option>US Military ID</option>
@@ -216,6 +209,13 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
   </div>
 
   <div class="card">
+    <h2>Documents</h2>
+    <div id="docList"></div>
+    <button type="button" class="add-btn" onclick="addDoc()">+ Add document</button>
+    <p class="note">Pick an appointment type above to load its common document list. Choose "Other…" to type your own.</p>
+  </div>
+
+  <div class="card">
     <h2>Witnesses</h2>
     <label class="chk"><input type="checkbox" id="f-cw" onchange="toggle('cwBlock',this.checked)"> Credible witness used to identify signer</label>
     <div id="cwBlock" class="sub-block">
@@ -229,8 +229,8 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
           <select id="f-cwid">
             <option value="">Select…</option>
             <option>Personally known to notary</option>
-            <option>TX Driver License</option>
-            <option>TX ID Card</option>
+            <option>Driver License</option>
+            <option>ID Card</option>
             <option>US Passport</option>
             <option>Other ID</option>
           </select>
@@ -361,7 +361,7 @@ const store=(()=>{try{localStorage.setItem('__t','1');localStorage.removeItem('_
 catch(e){document.getElementById('memBanner').classList.add('show');const m={};
 return{getItem:k=>k in m?m[k]:null,setItem:(k,v)=>{m[k]=String(v)},removeItem:k=>{delete m[k]}}}})();
 
-const APP_VERSION='v1.3.0';
+const APP_VERSION='v1.4.0';
 const KEY='nbk_journal_v1', SKEY='nbk_settings_v1';
 const DEFAULT_HOME='';
 let entries=JSON.parse(store.getItem(KEY)||'[]');
