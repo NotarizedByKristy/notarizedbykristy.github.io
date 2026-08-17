@@ -119,6 +119,10 @@ body.printing header,body.printing nav,body.printing main,body.printing footer{d
 .ps-bar button{flex:1;padding:13px;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;cursor:pointer}
 .ps-bar .pback{background:#fff;border:1.5px solid var(--navy);color:var(--navy)}
 .ps-bar .pgo{background:var(--navy);border:none;color:var(--gold)}
+.ps-opt{max-width:7in;margin:0 auto 14px;font-family:'Outfit',sans-serif;font-size:.85rem;background:#FBF7EE;border:1px solid var(--gold);border-radius:10px;padding:8px 12px}
+.ps-opt .chk{padding:6px 0}
+@media print{.ps-opt{display:none!important}}
+.ps-bar .pprint{background:#fff;border:1.5px solid var(--navy);color:var(--navy);flex:0 0 84px}
 .ps-inner{font-family:Georgia,'EB Garamond','Times New Roman',serif;color:#000;max-width:7in;margin:0 auto;font-size:12pt;line-height:1.5}
 .ps-inner h1{font-size:15pt;text-align:center;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2pt}
 .ps-inner .ph{text-align:center;font-size:9.5pt;letter-spacing:.18em;text-transform:uppercase;border-bottom:2pt solid #000;padding-bottom:8pt;margin-bottom:14pt}
@@ -131,10 +135,11 @@ body.printing header,body.printing nav,body.printing main,body.printing footer{d
 .ps-inner .sig{flex:1;border-top:1pt solid #000;padding-top:3pt;font-size:9pt;letter-spacing:.06em;text-transform:uppercase}
 .ps-inner .seal-box{width:1.6in;height:1.1in;border:1pt dashed #000;display:flex;align-items:center;justify-content:center;font-size:8pt;color:#555;letter-spacing:.1em}
 @media print{
-  body>*{display:none!important}
   body{background:#fff}
-  #printSheet{display:block!important;position:static;padding:0;overflow:visible}
+  body.printing #printSheet{position:static;inset:auto;padding:0;overflow:visible;height:auto}
   .ps-bar{display:none!important}
+  body.printing .toast{display:none!important}
+  .ps-inner td.k{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
 </head>
@@ -385,7 +390,7 @@ const store=(()=>{try{localStorage.setItem('__t','1');localStorage.removeItem('_
 catch(e){document.getElementById('memBanner').classList.add('show');const m={};
 return{getItem:k=>k in m?m[k]:null,setItem:(k,v)=>{m[k]=String(v)},removeItem:k=>{delete m[k]}}}})();
 
-const APP_VERSION='v1.0.1';
+const APP_VERSION='v1.2.0';
 const KEY='nbk_journal_v1', SKEY='nbk_settings_v1';
 const DEFAULT_HOME='';
 let entries=JSON.parse(store.getItem(KEY)||'[]');
@@ -707,6 +712,227 @@ function wipeAll(){
   entries=[];settings={licName:settings.licName,licKey:settings.licKey};persist();store.setItem(SKEY,JSON.stringify(settings));loadSettings();syncGate();renderList();updateBanner();toast('Journal erased');
 }
 
+/* ---------- minimal self-contained PDF writer (no libraries) ---------- */
+const PDF_W=612, PDF_H=792, PDF_M=56;
+
+function pdfSan(s){
+  s=String(s==null?'':s);
+  const map={'\u2019':"'",'\u2018':"'",'\u201c':'"','\u201d':'"','\u2014':'-','\u2013':'-','\u00a0':' ','\u00b7':'\\267','\u00a7':'\\247','\u2192':'->'};
+  let out='';
+  for(const ch of s){
+    if(map[ch]!==undefined){out+=map[ch];continue}
+    const c=ch.charCodeAt(0);
+    if(c===40||c===41||c===92)out+='\\'+ch;
+    else if(c>=32&&c<127)out+=ch;
+    else if(c>=160&&c<256)out+='\\'+c.toString(8);
+    else out+='';
+  }
+  return out;
+}
+function pdfWidth(txt,size,bold,sans){
+  if(typeof document!=='undefined'&&document.createElement){
+    const c=pdfWidth._c||(pdfWidth._c=document.createElement('canvas').getContext('2d'));
+    c.font=(bold?'bold ':'')+size+'px '+(sans?'Helvetica,Arial':'Times,"Times New Roman",serif');
+    return c.measureText(txt).width;
+  }
+  return txt.length*size*0.5;
+}
+function pdfWrap(txt,size,maxW,bold,sans){
+  const words=String(txt||'').split(/\s+/).filter(Boolean),lines=[];let cur='';
+  const lim=maxW*0.94;
+  for(const w of words){
+    const t=cur?cur+' '+w:w;
+    if(pdfWidth(t,size,bold,sans)<=lim||!cur)cur=t;
+    else{lines.push(cur);cur=w}
+  }
+  if(cur)lines.push(cur);
+  return lines.length?lines:[''];
+}
+
+function PdfDoc(){
+  this.pages=[];this.images=[];this.cur=null;this.newPage();
+}
+PdfDoc.prototype.newPage=function(){this.cur=[];this.pages.push(this.cur);this.y=PDF_M};
+PdfDoc.prototype.room=function(h){if(this.y+h>PDF_H-PDF_M){this.newPage();return true}return false};
+PdfDoc.prototype.op=function(s){this.cur.push(s)};
+PdfDoc.prototype.text=function(txt,x,y,size,font){
+  this.op('BT /'+font+' '+size+' Tf '+x.toFixed(2)+' '+(PDF_H-y).toFixed(2)+' Td ('+pdfSan(txt)+') Tj ET');
+};
+PdfDoc.prototype.centerText=function(txt,y,size,font,sans,bold){
+  const w=pdfWidth(txt,size,bold,sans);
+  this.text(txt,(PDF_W-w)/2,y,size,font);
+};
+PdfDoc.prototype.line=function(x1,y1,x2,y2,lw){
+  this.op((lw||1).toFixed(2)+' w '+x1.toFixed(2)+' '+(PDF_H-y1).toFixed(2)+' m '+x2.toFixed(2)+' '+(PDF_H-y2).toFixed(2)+' l S');
+};
+PdfDoc.prototype.rect=function(x,y,w,h,lw,fillGray){
+  if(fillGray!==undefined)this.op(fillGray+' g '+x.toFixed(2)+' '+(PDF_H-y-h).toFixed(2)+' '+w.toFixed(2)+' '+h.toFixed(2)+' re f 0 g');
+  if(lw)this.op(lw.toFixed(2)+' w '+x.toFixed(2)+' '+(PDF_H-y-h).toFixed(2)+' '+w.toFixed(2)+' '+h.toFixed(2)+' re S');
+};
+PdfDoc.prototype.dashRect=function(x,y,w,h){
+  this.op('[3 3] 0 d 1 w '+x.toFixed(2)+' '+(PDF_H-y-h).toFixed(2)+' '+w.toFixed(2)+' '+h.toFixed(2)+' re S [] 0 d');
+};
+PdfDoc.prototype.image=function(mask,x,y,w,h){
+  const idx=this.images.length;this.images.push(mask);
+  this.op('q 0 g '+w.toFixed(2)+' 0 0 '+h.toFixed(2)+' '+x.toFixed(2)+' '+(PDF_H-y-h).toFixed(2)+' cm /Im'+idx+' Do Q');
+};
+
+function latin1(str){const a=new Uint8Array(str.length);for(let i=0;i<str.length;i++)a[i]=str.charCodeAt(i)&0xff;return a}
+
+PdfDoc.prototype.build=function(){
+  const parts=[],offsets=[];let pos=0;
+  const push=x=>{const b=typeof x==='string'?latin1(x):x;parts.push(b);pos+=b.length};
+  push('%PDF-1.4\n%\xE2\xE3\xCF\xD3\n');
+  const objs=[];
+  const nPages=this.pages.length,nImg=this.images.length;
+  // object numbering: 1 catalog, 2 pages, 3..(2+nPages) page objs, then content streams, then fonts, then images
+  const pageStart=3, contentStart=pageStart+nPages, fontStart=contentStart+nPages, imgStart=fontStart+3;
+  const kids=[];for(let i=0;i<nPages;i++)kids.push((pageStart+i)+' 0 R');
+  const imgRes=[];for(let i=0;i<nImg;i++)imgRes.push('/Im'+i+' '+(imgStart+i)+' 0 R');
+  objs[1]='<< /Type /Catalog /Pages 2 0 R >>';
+  objs[2]='<< /Type /Pages /Count '+nPages+' /Kids ['+kids.join(' ')+'] >>';
+  for(let i=0;i<nPages;i++){
+    objs[pageStart+i]='<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+PDF_W+' '+PDF_H+'] '+
+      '/Resources << /Font << /F1 '+fontStart+' 0 R /F2 '+(fontStart+1)+' 0 R /F3 '+(fontStart+2)+' 0 R >>'+
+      (nImg?' /XObject << '+imgRes.join(' ')+' >>':'')+' >> /Contents '+(contentStart+i)+' 0 R >>';
+  }
+  objs[fontStart]='<< /Type /Font /Subtype /Type1 /BaseFont /Times-Roman /Encoding /WinAnsiEncoding >>';
+  objs[fontStart+1]='<< /Type /Font /Subtype /Type1 /BaseFont /Times-Bold /Encoding /WinAnsiEncoding >>';
+  objs[fontStart+2]='<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>';
+
+  const streams={};
+  for(let i=0;i<nPages;i++)streams[contentStart+i]=latin1(this.pages[i].join('\n'));
+  for(let i=0;i<nImg;i++){
+    const m=this.images[i];
+    objs[imgStart+i]='<< /Type /XObject /Subtype /Image /Width '+m.w+' /Height '+m.h+
+      ' /ColorSpace /DeviceGray /BitsPerComponent 1 /ImageMask true /Decode [1 0] /Length '+m.data.length+' >>';
+    streams[imgStart+i]=m.data;
+  }
+  const total=imgStart+nImg;
+  for(let n=1;n<total;n++){
+    offsets[n]=pos;
+    if(streams[n]){
+      push(n+' 0 obj\n'+(objs[n]||'<< /Length '+streams[n].length+' >>')+'\nstream\n');
+      push(streams[n]);push('\nendstream\nendobj\n');
+    }else{
+      push(n+' 0 obj\n'+objs[n]+'\nendobj\n');
+    }
+  }
+  const xref=pos;
+  let x='xref\n0 '+total+'\n0000000000 65535 f \n';
+  for(let n=1;n<total;n++)x+=String(offsets[n]).padStart(10,'0')+' 00000 n \n';
+  x+='trailer\n<< /Size '+total+' /Root 1 0 R >>\nstartxref\n'+xref+'\n%%EOF\n';
+  push(x);
+  let len=0;parts.forEach(p=>len+=p.length);
+  const out=new Uint8Array(len);let o=0;
+  parts.forEach(p=>{out.set(p,o);o+=p.length});
+  return out;
+};
+
+/* content-stream note: streams need /Length; patch by wrapping in build via objs default above */
+
+/* ---------- turn a signature dataURL into a 1-bit image mask ---------- */
+function sigToMask(dataUrl){
+  return new Promise(resolve=>{
+    if(!dataUrl)return resolve(null);
+    const img=new Image();
+    img.onload=()=>{
+      try{
+        const maxW=560,sc=Math.min(1,maxW/img.width);
+        const w=Math.max(1,Math.round(img.width*sc)),h=Math.max(1,Math.round(img.height*sc));
+        const cv=document.createElement('canvas');cv.width=w;cv.height=h;
+        const cx=cv.getContext('2d');cx.drawImage(img,0,0,w,h);
+        const d=cx.getImageData(0,0,w,h).data;
+        const rowBytes=Math.ceil(w/8),out=new Uint8Array(rowBytes*h);
+        for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+          const i=(y*w+x)*4,a=d[i+3],lum=(d[i]+d[i+1]+d[i+2])/3;
+          const ink=a>60&&lum<180;
+          if(ink)out[y*rowBytes+(x>>3)]|=(128>>(x&7));
+        }
+        resolve({w,h,data:out});
+      }catch(err){resolve(null)}
+    };
+    img.onerror=()=>resolve(null);
+    img.src=dataUrl;
+  });
+}
+
+/* ---------- certified copy PDF layout ---------- */
+async function certPdf(e,opts){
+  const inclSig=!!(opts&&opts.sigs);
+  const doc=new PdfDoc();
+  const L=PDF_M, R=PDF_W-PDF_M, CW=R-L, KW=CW*0.34;
+  let y=PDF_M+12;
+  doc.centerText('Copy of Notary Record Book Entry',y,15,'F2',false,true);
+  y+=17;
+  doc.centerText('STATE OF TEXAS   \u00b7   ENTRY NO. '+e.seq,y,9,'F3',true,false);
+  y+=8; doc.line(L,y,R,y,1.5); y+=16;
+
+  const row=(k,vLines,imgMask)=>{
+    const pad=5, lh=13;
+    const bodyH=imgMask?(imgMask.h*(150/imgMask.w)):(vLines.length*lh);
+    const h=Math.max(21,bodyH+pad*2);
+    if(y+h>PDF_H-PDF_M-30){doc.newPage();y=PDF_M}
+    doc.rect(L,y,KW,h,0.75,'0.93');
+    doc.rect(L+KW,y,CW-KW,h,0.75);
+    doc.text(k.toUpperCase(),L+pad,y+13,7.5,'F3');
+    if(imgMask){
+      const w=150,hh=imgMask.h*(w/imgMask.w);
+      doc.image(imgMask,L+KW+pad,y+pad,w,hh);
+    }else{
+      let ty=y+14;
+      vLines.forEach(ln=>{doc.text(ln,L+KW+pad,ty,10.5,'F1');ty+=lh});
+    }
+    y+=h;
+  };
+  const wrapV=t=>pdfWrap(t,10.5,CW-KW-14,false,false);
+  const fmt=iso=>{if(!iso)return'';const d=new Date(iso);return d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})+' at '+d.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})};
+
+  row('Date & time of notarization',wrapV(fmt(e.dt)));
+  row('Appointment type',wrapV(e.appt));
+  let dl=[];e.docs.forEach(d=>{dl=dl.concat(wrapV(d.name+' \u2014 '+d.act+(d.date?' (dated '+d.date+')':'')+(d.by?' \u2014 '+d.by:'')))});
+  row('Document(s) & notarial act(s)',dl);
+  row('Signer name',wrapV(e.signer));
+  if(e.address)row('Signer address',wrapV(e.address));
+  row('Identification method',wrapV(e.idType+(e.idExp?' \u00b7 expires '+e.idExp:'')));
+  if(e.sig1){
+    if(inclSig){const m1=await sigToMask(e.sig1);if(m1)row('Signer signature',[],m1);}
+    else row('Signer signature',wrapV('Signature captured at the appointment and retained in the notary\u2019s record book. Image withheld from this copy; available upon lawful request.'));
+  }
+  if(e.signer2){
+    row('Second signer',wrapV(e.signer2.name+(e.signer2.address?', '+e.signer2.address:'')));
+    if(e.signer2.idType)row('Second signer identification',wrapV(e.signer2.idType+(e.signer2.idExp?' \u00b7 expires '+e.signer2.idExp:'')));
+    if(e.signer2.sig){
+      if(inclSig){const m2=await sigToMask(e.signer2.sig);if(m2)row('Second signer signature',[],m2);}
+      else row('Second signer signature',wrapV('Signature captured at the appointment and retained in the notary\u2019s record book. Image withheld from this copy; available upon lawful request.'));
+    }
+  }
+  if(e.cw)row('Credible witness',wrapV(e.cw.name+(e.cw.addr?', '+e.cw.addr:'')+(e.cw.id?' \u00b7 identified by: '+e.cw.id:'')+(e.cw.exp?' (exp '+e.cw.exp+')':'')));
+  if(e.wits&&e.wits.length)row('Document witnesses',wrapV(e.wits.join(', ')));
+  if(e.fee)row('Fee charged',wrapV('$'+e.fee));
+
+  y+=12;
+  const nm=settings.name||'____________________', cm=settings.comm||'____________', cx=settings.exp||'____________';
+  const p1=pdfWrap('I, '+nm+', a notary public commissioned in the State of Texas (Commission No. '+cm+', expiring '+cx+'), certify that the above is a true and correct copy of an entry in my notary record book, maintained as required by Texas Government Code \u00a7406.014.',10.5,CW-24,false,false);
+  const p2=pdfWrap('Given under my hand and seal of office on ______________________, 20____.',10.5,CW-24,false,false);
+  const boxH=(p1.length+p2.length)*13.5+30+80;
+  if(y+boxH>PDF_H-PDF_M){doc.newPage();y=PDF_M}
+  doc.rect(L,y,CW,boxH,1.5);
+  let ty=y+22;
+  p1.forEach(ln=>{doc.text(ln,L+12,ty,10.5,'F1');ty+=13.5});
+  ty+=10;
+  p2.forEach(ln=>{doc.text(ln,L+12,ty,10.5,'F1');ty+=13.5});
+  ty+=46;
+  doc.line(L+12,ty,L+232,ty,1);
+  doc.text('NOTARY PUBLIC SIGNATURE',L+12,ty+11,7.5,'F3');
+  doc.dashRect(R-128,ty-52,116,70);
+  doc.text('SEAL',R-82,ty-14,7.5,'F3');
+  y+=boxH+16;
+  const lic='Record maintained in The Anchored Journal e-record book \u00b7 Licensed to '+(settings.licName||'')+' '+(settings.licKey||'');
+  doc.centerText(lic,y,7.5,'F3',true,false);
+  return doc.build();
+}
+
 /* ---------- certified copy of a single entry ---------- */
 function printEntry(id){
  try{
@@ -720,8 +946,11 @@ function printEntry(id){
   _ps.innerHTML=`
   <div class="ps-bar">
     <button class="pback" type="button">\u2190 Back to journal</button>
-    <button class="pgo" type="button">Print / Save PDF</button>
+    <button class="pgo" type="button">Save PDF</button>
+    <button class="pprint" type="button">Print</button>
   </div>
+  <div class="ps-opt"><label class="chk"><input type="checkbox" id="ps-sigs"> Include signature images in this copy</label>
+  <p class="note" style="margin:0">Off by default. The entry still records that signatures were captured \u2014 only the images are withheld, so a released copy can\u2019t be used to trace a signature.</p></div>
   <div class="ps-inner">
   <h1>Copy of Notary Record Book Entry</h1>
   <div class="ph">State of Texas · Entry No. ${e.seq}</div>
@@ -734,8 +963,8 @@ function printEntry(id){
     ${tr('Identification method',esc(e.idType)+(e.idExp?' · expires '+e.idExp:''))}
     ${e.signer2?tr('Second signer',esc(e.signer2.name)+(e.signer2.address?', '+esc(e.signer2.address):'')):''}
     ${e.signer2&&e.signer2.idType?tr('Second signer identification',esc(e.signer2.idType)+(e.signer2.idExp?' · expires '+e.signer2.idExp:'')):''}
-    ${e.sig1?tr('Signer signature (captured at appointment)','<img src="'+e.sig1+'" style="height:.55in" alt="">'):''}
-    ${e.signer2&&e.signer2.sig?tr('Second signer signature (captured at appointment)','<img src="'+e.signer2.sig+'" style="height:.55in" alt="">'):''}
+    ${e.sig1?tr('Signer signature','<span class="sigcell" data-src="'+e.sig1+'">Signature captured at the appointment and retained in the notary\u2019s record book. Image withheld from this copy; available upon lawful request.</span>'):''}
+    ${e.signer2&&e.signer2.sig?tr('Second signer signature','<span class="sigcell" data-src="'+e.signer2.sig+'">Signature captured at the appointment and retained in the notary\u2019s record book. Image withheld from this copy; available upon lawful request.</span>'):''}
     ${e.cw?tr('Credible witness',esc(e.cw.name)+(e.cw.addr?', '+esc(e.cw.addr):'')+(e.cw.id?' · identified by: '+esc(e.cw.id):'')+(e.cw.exp?' (exp '+e.cw.exp+')':'')):''}
     ${e.wits&&e.wits.length?tr('Document witnesses',e.wits.map(esc).join(', ')):''}
     ${e.fee?tr('Fee charged','$'+esc(e.fee)):''}
@@ -751,7 +980,15 @@ function printEntry(id){
   <p style="margin-top:12pt;font-size:8pt;color:#444;text-align:center">Record maintained in The Anchored Journal e-record book \u00b7 Licensed to ${esc(settings.licName||'')} ${esc(settings.licKey||'')}</p>
   </div>`;
   _ps.querySelector('.pback').addEventListener('click',closePrint);
-  _ps.querySelector('.pgo').addEventListener('click',()=>window.print());
+  const sigChk=_ps.querySelector('#ps-sigs');
+  sigChk.addEventListener('change',()=>{
+    _ps.querySelectorAll('.sigcell').forEach(sp=>{
+      if(sigChk.checked)sp.innerHTML='<img src="'+sp.dataset.src+'" style="height:.55in" alt="">';
+      else sp.textContent='Signature captured at the appointment and retained in the notary\u2019s record book. Image withheld from this copy; available upon lawful request.';
+    });
+  });
+  _ps.querySelector('.pgo').addEventListener('click',()=>savePdf(e,{sigs:document.getElementById('ps-sigs').checked}));
+  _ps.querySelector('.pprint').addEventListener('click',()=>window.print());
   document.body.classList.add('printing');
   window.scrollTo({top:0});
  }catch(err){document.body.classList.remove('printing');toast('Certified copy failed: '+(err&&err.message?err.message:'unknown error'))}
@@ -759,6 +996,19 @@ function printEntry(id){
 function closePrint(){
   document.body.classList.remove('printing');
   document.getElementById('printSheet').innerHTML='';
+}
+async function savePdf(e,opts){
+  try{
+    toast('Building PDF\u2026');
+    const bytes=await certPdf(e,opts);
+    const name='certified-copy-entry-'+e.seq+'-'+today()+'.pdf';
+    const blob=new Blob([bytes],{type:'application/pdf'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');a.href=url;a.download=name;
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),8000);
+    toast('PDF saved');
+  }catch(err){toast('PDF failed: '+(err&&err.message?err.message:'unknown'))}
 }
 
 /* ---------- backup nag ---------- */
