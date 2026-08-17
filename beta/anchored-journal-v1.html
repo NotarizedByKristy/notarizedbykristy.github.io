@@ -111,22 +111,30 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
 .gate-card input{text-align:center;margin-bottom:10px}
 .gate-card .gerr{color:var(--danger);font-size:.8rem;min-height:18px;margin-top:4px}
 @media (prefers-reduced-motion: reduce){*{transition:none!important}}
-/* ---------- certified copy print sheet ---------- */
+/* ---------- certified copy sheet (on-screen preview + print) ---------- */
 #printSheet{display:none}
+body.printing #printSheet{display:block;position:fixed;inset:0;z-index:200;background:#fff;overflow:auto;-webkit-overflow-scrolling:touch;padding:14px 16px 70px;color:#000}
+body.printing header,body.printing nav,body.printing main,body.printing footer{display:none}
+.ps-bar{position:sticky;top:0;display:flex;gap:10px;max-width:7in;margin:0 auto 16px;background:#fff;padding:4px 0;z-index:5}
+.ps-bar button{flex:1;padding:13px;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;cursor:pointer}
+.ps-bar .pback{background:#fff;border:1.5px solid var(--navy);color:var(--navy)}
+.ps-bar .pgo{background:var(--navy);border:none;color:var(--gold)}
+.ps-inner{font-family:Georgia,'EB Garamond','Times New Roman',serif;color:#000;max-width:7in;margin:0 auto;font-size:12pt;line-height:1.5}
+.ps-inner h1{font-size:15pt;text-align:center;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2pt}
+.ps-inner .ph{text-align:center;font-size:9.5pt;letter-spacing:.18em;text-transform:uppercase;border-bottom:2pt solid #000;padding-bottom:8pt;margin-bottom:14pt}
+.ps-inner table{width:100%;border-collapse:collapse;margin-bottom:16pt}
+.ps-inner td{border:.75pt solid #000;padding:5pt 7pt;vertical-align:top}
+.ps-inner td.k{width:34%;font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:#f2f2f2}
+.ps-inner .cert{border:1.5pt solid #000;padding:12pt;margin-top:6pt}
+.ps-inner .cert p{margin-bottom:10pt}
+.ps-inner .sigrow{display:flex;gap:24pt;margin-top:28pt}
+.ps-inner .sig{flex:1;border-top:1pt solid #000;padding-top:3pt;font-size:9pt;letter-spacing:.06em;text-transform:uppercase}
+.ps-inner .seal-box{width:1.6in;height:1.1in;border:1pt dashed #000;display:flex;align-items:center;justify-content:center;font-size:8pt;color:#555;letter-spacing:.1em}
 @media print{
   body>*{display:none!important}
   body{background:#fff}
-  #printSheet{display:block!important;font-family:Georgia,'EB Garamond',serif;color:#000;max-width:7in;margin:0 auto;padding:.4in .2in;font-size:12pt;line-height:1.5}
-  #printSheet h1{font-size:15pt;text-align:center;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2pt}
-  #printSheet .ph{text-align:center;font-size:9.5pt;letter-spacing:.18em;text-transform:uppercase;border-bottom:2pt solid #000;padding-bottom:8pt;margin-bottom:14pt}
-  #printSheet table{width:100%;border-collapse:collapse;margin-bottom:16pt}
-  #printSheet td{border:.75pt solid #000;padding:5pt 7pt;vertical-align:top}
-  #printSheet td.k{width:34%;font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;font-weight:700;background:#f2f2f2}
-  #printSheet .cert{border:1.5pt solid #000;padding:12pt;margin-top:6pt}
-  #printSheet .cert p{margin-bottom:10pt}
-  #printSheet .sigrow{display:flex;gap:24pt;margin-top:28pt}
-  #printSheet .sig{flex:1;border-top:1pt solid #000;padding-top:3pt;font-size:9pt;letter-spacing:.06em;text-transform:uppercase}
-  #printSheet .seal-box{width:1.6in;height:1.1in;border:1pt dashed #000;display:flex;align-items:center;justify-content:center;font-size:8pt;color:#555;letter-spacing:.1em}
+  #printSheet{display:block!important;position:static;padding:0;overflow:visible}
+  .ps-bar{display:none!important}
 }
 </style>
 </head>
@@ -268,7 +276,7 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
     <label class="chk"><input type="checkbox" id="f-mobile" onchange="toggle('mobBlock',this.checked)"> Mobile appointment</label>
     <div id="mobBlock" class="sub-block">
       <label>Starting address</label>
-      <input type="text" id="f-start" autocomplete="off" placeholder="Where the trip begins">
+      <input type="text" id="f-start" autocomplete="off" placeholder="Set your home address in the Backup tab to prefill this">
       <label>Appointment address</label>
       <input type="text" id="f-apptaddr" autocomplete="off" placeholder="Where the signing takes place">
       <button type="button" class="mini" onclick="document.getElementById('f-apptaddr').value=v('f-address');">Use signer's address</button>
@@ -378,7 +386,7 @@ catch(e){document.getElementById('memBanner').classList.add('show');const m={};
 return{getItem:k=>k in m?m[k]:null,setItem:(k,v)=>{m[k]=String(v)},removeItem:k=>{delete m[k]}}}})();
 
 const KEY='nbk_journal_v1', SKEY='nbk_settings_v1';
-const DEFAULT_HOME='421 Landmark Falls, Cibolo, TX 78108';
+const DEFAULT_HOME='';
 let entries=JSON.parse(store.getItem(KEY)||'[]');
 let settings=JSON.parse(store.getItem(SKEY)||'{}');
 function persist(){store.setItem(KEY,JSON.stringify(entries))}
@@ -707,6 +715,11 @@ function printEntry(id){
   const comm=esc(settings.comm||'____________');
   const commExp=esc(settings.exp||'____________');
   document.getElementById('printSheet').innerHTML=`
+  <div class="ps-bar">
+    <button class="pback" onclick="closePrint()">\u2190 Back to journal</button>
+    <button class="pgo" onclick="window.print()">Print / Save PDF</button>
+  </div>
+  <div class="ps-inner">
   <h1>Copy of Notary Record Book Entry</h1>
   <div class="ph">State of Texas · Entry No. ${e.seq}</div>
   <table>
@@ -732,8 +745,14 @@ function printEntry(id){
       <div class="seal-box">SEAL</div>
     </div>
   </div>
-  <p style="margin-top:12pt;font-size:8pt;color:#444;text-align:center">Record maintained in The Anchored Journal e-record book \u00b7 Licensed to ${esc(settings.licName||'')} ${esc(settings.licKey||'')}</p>`;
-  window.print();
+  <p style="margin-top:12pt;font-size:8pt;color:#444;text-align:center">Record maintained in The Anchored Journal e-record book \u00b7 Licensed to ${esc(settings.licName||'')} ${esc(settings.licKey||'')}</p>
+  </div>`;
+  document.body.classList.add('printing');
+  window.scrollTo({top:0});
+}
+function closePrint(){
+  document.body.classList.remove('printing');
+  document.getElementById('printSheet').innerHTML='';
 }
 
 /* ---------- backup nag ---------- */
