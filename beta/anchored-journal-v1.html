@@ -362,7 +362,7 @@ body.printing header,body.printing nav,body.printing main,body.printing footer{d
   </div>
 </section>
 
-<footer><span id="licLine"></span>Notarized By Kristy · Notarized Right. The First Time. Every Time.</footer>
+<footer><span id="licLine"></span>Notarized By Kristy · Notarized Right. The First Time. Every Time.<br><span id="verLine"></span></footer>
 <div id="gate" class="off">
   <div class="gate-card">
     <h1>The Anchored Journal</h1>
@@ -385,6 +385,7 @@ const store=(()=>{try{localStorage.setItem('__t','1');localStorage.removeItem('_
 catch(e){document.getElementById('memBanner').classList.add('show');const m={};
 return{getItem:k=>k in m?m[k]:null,setItem:(k,v)=>{m[k]=String(v)},removeItem:k=>{delete m[k]}}}})();
 
+const APP_VERSION='v1.0.1';
 const KEY='nbk_journal_v1', SKEY='nbk_settings_v1';
 const DEFAULT_HOME='';
 let entries=JSON.parse(store.getItem(KEY)||'[]');
@@ -708,16 +709,18 @@ function wipeAll(){
 
 /* ---------- certified copy of a single entry ---------- */
 function printEntry(id){
+ try{
   const e=entries.find(x=>x.id===id);if(!e)return;
   const tr=(k,val)=>val?`<tr><td class="k">${k}</td><td>${val}</td></tr>`:'';
   const docs=e.docs.map(d=>esc(d.name)+' — '+esc(d.act)+(d.date?' (dated '+d.date+')':'')+(d.by?' — '+esc(d.by):'')).join('<br>');
   const notary=esc(settings.name||'____________________');
   const comm=esc(settings.comm||'____________');
   const commExp=esc(settings.exp||'____________');
-  document.getElementById('printSheet').innerHTML=`
+  const _ps=document.getElementById('printSheet');
+  _ps.innerHTML=`
   <div class="ps-bar">
-    <button class="pback" onclick="closePrint()">\u2190 Back to journal</button>
-    <button class="pgo" onclick="window.print()">Print / Save PDF</button>
+    <button class="pback" type="button">\u2190 Back to journal</button>
+    <button class="pgo" type="button">Print / Save PDF</button>
   </div>
   <div class="ps-inner">
   <h1>Copy of Notary Record Book Entry</h1>
@@ -747,8 +750,11 @@ function printEntry(id){
   </div>
   <p style="margin-top:12pt;font-size:8pt;color:#444;text-align:center">Record maintained in The Anchored Journal e-record book \u00b7 Licensed to ${esc(settings.licName||'')} ${esc(settings.licKey||'')}</p>
   </div>`;
+  _ps.querySelector('.pback').addEventListener('click',closePrint);
+  _ps.querySelector('.pgo').addEventListener('click',()=>window.print());
   document.body.classList.add('printing');
   window.scrollTo({top:0});
+ }catch(err){document.body.classList.remove('printing');toast('Certified copy failed: '+(err&&err.message?err.message:'unknown error'))}
 }
 function closePrint(){
   document.body.classList.remove('printing');
@@ -782,6 +788,7 @@ function loadSettings(){
 }
 document.getElementById('f-dt').value=nowLocal();
 loadSettings();syncGate();updateBanner();renderList();
+document.getElementById('verLine').textContent='The Anchored Journal '+APP_VERSION;
 </script>
 </body>
 </html>
