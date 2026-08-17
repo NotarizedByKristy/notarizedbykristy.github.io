@@ -390,7 +390,7 @@ const store=(()=>{try{localStorage.setItem('__t','1');localStorage.removeItem('_
 catch(e){document.getElementById('memBanner').classList.add('show');const m={};
 return{getItem:k=>k in m?m[k]:null,setItem:(k,v)=>{m[k]=String(v)},removeItem:k=>{delete m[k]}}}})();
 
-const APP_VERSION='v1.2.0';
+const APP_VERSION='v1.2.1';
 const KEY='nbk_journal_v1', SKEY='nbk_settings_v1';
 const DEFAULT_HOME='';
 let entries=JSON.parse(store.getItem(KEY)||'[]');
@@ -805,7 +805,7 @@ PdfDoc.prototype.build=function(){
   for(let i=0;i<nImg;i++){
     const m=this.images[i];
     objs[imgStart+i]='<< /Type /XObject /Subtype /Image /Width '+m.w+' /Height '+m.h+
-      ' /ColorSpace /DeviceGray /BitsPerComponent 1 /ImageMask true /Decode [1 0] /Length '+m.data.length+' >>';
+      ' /BitsPerComponent 1 /ImageMask true /Decode [1 0] /Length '+m.data.length+' >>';
     streams[imgStart+i]=m.data;
   }
   const total=imgStart+nImg;
@@ -1003,11 +1003,27 @@ async function savePdf(e,opts){
     const bytes=await certPdf(e,opts);
     const name='certified-copy-entry-'+e.seq+'-'+today()+'.pdf';
     const blob=new Blob([bytes],{type:'application/pdf'});
+    // 1) iOS/Android share sheet (Save to Files, Mail, AirDrop) \u2014 most reliable on phones
+    try{
+      if(navigator.canShare&&window.File){
+        const file=new File([blob],name,{type:'application/pdf'});
+        if(navigator.canShare({files:[file]})){
+          await navigator.share({files:[file],title:'Certified copy \u2014 entry '+e.seq});
+          toast('Shared');return;
+        }
+      }
+    }catch(shareErr){ if(shareErr&&shareErr.name==='AbortError'){return} }
+    // 2) desktop-style download
     const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');a.href=url;a.download=name;
-    document.body.appendChild(a);a.click();a.remove();
-    setTimeout(()=>URL.revokeObjectURL(url),8000);
-    toast('PDF saved');
+    const a=document.createElement('a');
+    if('download' in a){
+      a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),20000);
+      toast('PDF saved to your files');return;
+    }
+    // 3) last resort: open it so the user can save from the viewer
+    window.open(url,'_blank');
+    toast('PDF opened \u2014 use Share to save it');
   }catch(err){toast('PDF failed: '+(err&&err.message?err.message:'unknown'))}
 }
 
