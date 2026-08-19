@@ -15,6 +15,29 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- ==================================================================
+     BRAND CONFIG — the only block to edit for a white-label build.
+     Everything below this block is shared logic; do not fork it.
+     Build tag convention: v1.9.1-ACME
+     ================================================================== -->
+<script>
+window.BRAND = {
+  appName:      "The Anchored Journal",
+  subtitle:     "e-Notary Record Book \u00b7 Texas Edition",
+  company:      "Notarized By Kristy LLC",
+  tagline:      "Notarized Right. The First Time. Every Time.",
+  supportEmail: "kristy@notarizedbykristy.com",
+  year:         "2026",
+  keyPrefix:    "NBK",            // license keys must start with this
+  buildTag:     "",               // e.g. "ACME" for a client edition
+  colors: {
+    navy:  "#0A1F44",             // headers, primary buttons
+    gold:  "#C5A572",             // accents, rules, primary button text
+    cream: "#F4ECDC",             // page background
+    paper: "#FBF7EE"              // card background
+  }
+};
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="author" content="Notarized By Kristy LLC">
@@ -375,12 +398,30 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
     <button class="ghost" onclick="exportCSV()">Download CSV (all entries)</button>
   </div>
   <div class="card">
+    <h2>Year-End Tax Summary</h2>
+    <label>Tax year</label>
+    <select id="r-year" onchange="renderTax()"></select>
+    <div class="btn-row">
+      <button type="button" onclick="renderTax()">Show summary</button>
+      <button type="button" onclick="saveTaxPdf()">Download PDF</button>
+    </div>
+    <div id="r-out" class="note" style="margin-top:10px"></div>
+    <p class="note">Totals come from your own entries. Voided entries are excluded from income. Give the PDF to your accountant \u2014 it separates notarial fees from travel and signing-service income, which are commonly treated differently. Not tax advice.</p>
+  </div>
+
+  <div class="card">
     <h2>Backup &amp; Restore</h2>
     <p class="note" style="margin-top:0">Texas requires you to keep these records for 10 years after the notarization (§406.014(g)) — keep your backups that long. A backup file preserves everything exactly, including settings. Restore it on a new phone or after clearing your browser.</p>
     <button class="ghost" onclick="exportJSON()">Download backup file</button>
     <button class="ghost" onclick="document.getElementById('restoreFile').click()">Restore from backup</button>
     <input type="file" id="restoreFile" accept=".json" style="display:none" onchange="restoreJSON(event)">
   </div>
+  <div class="card">
+    <h2>Device Storage</h2>
+    <p id="storeOut" class="note" style="margin-top:0"></p>
+    <p class="note">Signatures are the only large item stored, and each one is compressed before it is saved. If this ever passes 80%, download a backup before recording more.</p>
+  </div>
+
   <div class="card">
     <h2>Record Integrity</h2>
     <p class="note" style="margin-top:0">Every entry is sealed with a fingerprint that includes the entry before it. If any earlier entry were altered or removed, this check would fail — proof your record book is intact, verified on your own device with no server involved.</p>
@@ -414,7 +455,7 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
   </div>
 </section>
 
-<footer><span id="licLine"></span>© 2026 Notarized By Kristy LLC · Notarized Right. The First Time. Every Time.<br><span id="verLine"></span></footer>
+<footer><span id="licLine"></span><span id="footBrand"></span><br><span id="verLine"></span></footer>
 <div id="gate" class="off">
   <div class="gate-card">
     <h1>The Anchored Journal</h1>
@@ -422,10 +463,10 @@ footer{text-align:center;font-size:.7rem;color:var(--muted);padding:18px;letter-
     <label>Your full name</label>
     <input type="text" id="g-name" autocomplete="name" placeholder="As it should appear on your license">
     <label>License key</label>
-    <input type="text" id="g-key" autocomplete="off" autocapitalize="characters" placeholder="NBK-XXXX-XXXX-XXXX">
+    <input type="text" id="g-key" autocomplete="off" autocapitalize="characters" placeholder="XXXX-XXXX-XXXX-XXXX">
     <div class="gerr" id="g-err"></div>
     <button class="primary" onclick="activate()">Activate</button>
-    <p class="note" style="margin-top:12px">Your key is in your purchase email. Activation happens entirely on this device — nothing is sent anywhere. Need help? kristy@notarizedbykristy.com</p>
+    <p class="note" id="gateHelp" style="margin-top:12px"></p>
   </div>
 </div>
 <div id="toast" class="toast"></div>
@@ -436,12 +477,54 @@ const store=(()=>{try{localStorage.setItem('__t','1');localStorage.removeItem('_
 catch(e){document.getElementById('memBanner').classList.add('show');const m={};
 return{getItem:k=>k in m?m[k]:null,setItem:(k,v)=>{m[k]=String(v)},removeItem:k=>{delete m[k]}}}})();
 
-const APP_VERSION='v1.8.1';
+const APP_VERSION='v1.9.2';
 const KEY='nbk_journal_v1', SKEY='nbk_settings_v1';
 const DEFAULT_HOME='';
 let entries=JSON.parse(store.getItem(KEY)||'[]');
 let settings=JSON.parse(store.getItem(SKEY)||'{}');
-function persist(){store.setItem(KEY,JSON.stringify(entries))}
+function persist(){
+  try{store.setItem(KEY,JSON.stringify(entries));storageWarn();return true}
+  catch(err){
+    toast('Storage full \u2014 download a backup from the Backup tab now');
+    const b=document.getElementById('backupBanner');
+    if(b){b.textContent='\u26a0 This device will not accept more entries until space is freed. Download a backup file immediately, then contact support before recording anything further.';b.classList.add('show')}
+    return false;
+  }
+}
+function storageBytes(){
+  try{
+    let n=0;
+    const a=store.getItem(KEY)||'',b=store.getItem(SKEY)||'';
+    n=a.length+b.length;
+    return n;
+  }catch(e){return 0}
+}
+const STORE_CAP=5*1024*1024;
+function storagePct(){return Math.min(100,Math.round(storageBytes()/STORE_CAP*100))}
+function storageWarn(){
+  const el=document.getElementById('storeOut');
+  const pct=storagePct(),kb=(storageBytes()/1024).toFixed(0);
+  if(el){
+    el.textContent=kb+' KB used \u2014 about '+pct+'% of this browser\u2019s limit for the app.'+
+      (pct>=80?' Download a backup and contact support about archiving older entries.':'');
+    el.style.color=pct>=80?'#A93B3B':'#6B7385';
+  }
+  if(pct>=80){
+    const b=document.getElementById('backupBanner');
+    if(b&&!b.classList.contains('show')){
+      b.textContent='\u26a0 Storage is '+pct+'% full. Download a backup file now so nothing is at risk.';
+      b.classList.add('show');
+    }
+  }
+}
+async function requestPersist(){
+  try{
+    if(navigator.storage&&navigator.storage.persist){
+      const already=navigator.storage.persisted?await navigator.storage.persisted():false;
+      if(!already)await navigator.storage.persist();
+    }
+  }catch(e){}
+}
 function saveSettings(){settings={name:v('s-name'),comm:v('s-comm'),exp:v('s-exp'),home:v('s-home'),
   r1:v('s-r1')||'10',r2:v('s-r2')||'1',r3:v('s-r3')||'10',r4:v('s-r4')||'25',licName:settings.licName,licKey:settings.licKey,lastExport:settings.lastExport,lastExportCount:settings.lastExportCount};store.setItem(SKEY,JSON.stringify(settings));document.getElementById('f-start').value=homeAddr();toast('Details saved')}
 function homeAddr(){return settings.home||DEFAULT_HOME}
@@ -450,12 +533,13 @@ function homeAddr(){return settings.home||DEFAULT_HOME}
 const KCHARS='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 function validKey(raw){
   const k=(raw||'').toUpperCase().replace(/[^A-Z0-9]/g,'');
-  if(!k.startsWith('NBK')||k.length!==15)return false;
-  const b=k.slice(3);let s=0;
+  const P=keyPrefix();
+  if(!k.startsWith(P)||k.length!==P.length+12)return false;
+  const b=k.slice(P.length);let s=0;
   for(let i=0;i<11;i++){const x=KCHARS.indexOf(b[i]);if(x<0)return false;s+=(i+3)*x;}
   return KCHARS[s%31]===b[11];
 }
-function fmtKey(raw){const k=(raw||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(3);return 'NBK-'+k.slice(0,4)+'-'+k.slice(4,8)+'-'+k.slice(8,12)}
+function fmtKey(raw){const P=keyPrefix();const k=(raw||'').toUpperCase().replace(/[^A-Z0-9]/g,'').slice(P.length);return P+'-'+k.slice(0,4)+'-'+k.slice(4,8)+'-'+k.slice(8,12)}
 function activate(){
   const name=v('g-name'),key=v('g-key'),err=document.getElementById('g-err');
   if(!name){err.textContent='Enter your name as the licensee.';return}
@@ -802,10 +886,10 @@ async function saveEntry(){
     appt:apptType, docs,
     signer, address:v('f-address'),
     idType:v('f-idtype'), idExp:v('f-idexp'),
-    sig1:pad1.isEmpty()?null:pad1.data(),
+    sig1:pad1.isEmpty()?null:await compressSig(pad1.data()),
     signer2:s2on?{
       name:v('f-signer2'),address:v('f-address2'),idType:v('f-idtype2'),idExp:v('f-idexp2'),
-      sig:pad2.isEmpty()?null:pad2.data()}:null,
+      sig:pad2.isEmpty()?null:await compressSig(pad2.data())}:null,
     cw:document.getElementById('f-cw').checked?{name:v('f-cwname'),addr:v('f-cwaddr'),id:v('f-cwid'),exp:v('f-cwexp')}:null,
     wits:document.getElementById('f-dw').checked?[...document.querySelectorAll('.wit-row')].map(r=>({
       name:r.querySelector('.wit-name').value.trim(),
@@ -859,6 +943,7 @@ function renderList(){
   const now=new Date();
   document.getElementById('st-month').textContent=entries.filter(e=>{const d=new Date(e.dt);return d.getMonth()===now.getMonth()&&d.getFullYear()===now.getFullYear()}).length;
   document.getElementById('st-miles').textContent=entries.filter(e=>new Date(e.dt).getFullYear()===now.getFullYear()).reduce((s,e)=>s+(parseFloat(e.miles)||0),0).toFixed(0);
+  fillYearSel();
   if(!entries.length){list.innerHTML='<div class="empty"><div class="big">Your journal is empty</div>Record your first notarization from the New Entry tab.</div>';return}
   if(!shown.length){list.innerHTML='<div class="empty">No entries match that search.</div>';return}
   list.innerHTML=shown.map(e=>`
@@ -896,6 +981,75 @@ function voidEntry(id){
   if(!why.trim())return toast('A reason is required to void an entry');
   e.void={reason:why.trim(),at:new Date().toISOString()};
   persist();renderList();toast('Entry '+e.seq+' voided');
+}
+
+/* ---------- year-end tax summary ---------- */
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+function taxYears(){
+  const ys=[...new Set(entries.map(e=>new Date(e.dt).getFullYear()))].filter(y=>!isNaN(y)).sort((a,b)=>b-a);
+  if(!ys.length)ys.push(new Date().getFullYear());
+  return ys;
+}
+function fillYearSel(){
+  const s=document.getElementById('r-year');if(!s)return;
+  const cur=s.value,ys=taxYears();
+  s.innerHTML=ys.map(y=>'<option>'+y+'</option>').join('');
+  if(cur&&ys.indexOf(+cur)>=0)s.value=cur;
+}
+function taxData(year){
+  const y=+year;
+  const list=entries.filter(e=>new Date(e.dt).getFullYear()===y);
+  const months=[];for(let i=0;i<12;i++)months.push({n:0,fee:0,travel:0,other:0,miles:0});
+  const t={entries:0,voided:0,fee:0,travel:0,other:0,miles:0,trips:0,ron:0,mobile:0,byType:{}};
+  list.forEach(e=>{
+    const m=new Date(e.dt).getMonth();
+    months[m].n++;t.entries++;
+    t.byType[e.appt]=(t.byType[e.appt]||0)+1;
+    if(e.ron)t.ron++;
+    if(e.mobile)t.mobile++;
+    const mi=parseFloat(e.miles)||0;
+    if(mi>0){t.miles+=mi;t.trips++;months[m].miles+=mi}
+    if(e.void){t.voided++;return}
+    const f=parseFloat(e.fee)||0,tr=parseFloat(e.travelFee)||0,o=parseFloat(e.otherFee)||0;
+    t.fee+=f;t.travel+=tr;t.other+=o;
+    months[m].fee+=f;months[m].travel+=tr;months[m].other+=o;
+  });
+  t.total=t.fee+t.travel+t.other;
+  return{year:y,months:months,t:t};
+}
+function renderTax(){
+  const out=document.getElementById('r-out');
+  const yr=document.getElementById('r-year').value;
+  if(!yr){out.textContent='No entries yet.';return}
+  const d=taxData(yr),t=d.t;
+  if(!t.entries){out.textContent='No entries recorded in '+yr+'.';return}
+  out.innerHTML='<b>'+yr+'</b><br>'+
+    t.entries+' entries'+(t.voided?' ('+t.voided+' voided, excluded from income)':'')+'<br>'+
+    'Notarial fees: $'+money(t.fee)+'<br>'+
+    'Travel fees: $'+money(t.travel)+'<br>'+
+    'Signing service / other: $'+money(t.other)+'<br>'+
+    '<b>Total collected: $'+money(t.total)+'</b><br>'+
+    'Mileage: '+t.miles.toFixed(1)+' miles across '+t.trips+' trips';
+}
+async function saveTaxPdf(){
+  try{
+    const yr=document.getElementById('r-year').value;
+    const d=taxData(yr);
+    if(!d.t.entries)return toast('No entries recorded in '+yr);
+    toast('Building summary\u2026');
+    const bytes=taxPdf(d);
+    const name='notary-tax-summary-'+d.year+'.pdf';
+    const blob=new Blob([bytes],{type:'application/pdf'});
+    try{
+      if(navigator.canShare&&window.File){
+        const file=new File([blob],name,{type:'application/pdf'});
+        if(navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Notary tax summary '+d.year});toast('Shared');return}
+      }
+    }catch(sh){if(sh&&sh.name==='AbortError')return}
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    if('download' in a){a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),20000);toast('Summary saved');return}
+    window.open(url,'_blank');
+  }catch(err){toast('Summary failed: '+(err&&err.message?err.message:'unknown'))}
 }
 
 /* ---------- export ---------- */
@@ -1069,6 +1223,37 @@ PdfDoc.prototype.build=function(){
 
 /* content-stream note: streams need /Length; patch by wrapping in build via objs default above */
 
+/* ---------- shrink a captured signature before it is stored ----------
+   The pad captures at device resolution (often 1080px wide, ~25KB per PNG).
+   Stored entries only need a legible 2-colour trace: ~600px wide, 3-6KB. */
+function compressSig(dataUrl){
+  return new Promise(resolve=>{
+    if(!dataUrl)return resolve(null);
+    try{
+      const img=new Image();
+      img.onload=()=>{
+        try{
+          const maxW=600,sc=Math.min(1,maxW/img.width);
+          const w=Math.max(1,Math.round(img.width*sc)),hh=Math.max(1,Math.round(img.height*sc));
+          const cv=document.createElement('canvas');cv.width=w;cv.height=hh;
+          const cx=cv.getContext('2d');cx.drawImage(img,0,0,w,hh);
+          const im=cx.getImageData(0,0,w,hh),d=im.data;
+          for(let i=0;i<d.length;i+=4){
+            const a=d[i+3],lum=(d[i]+d[i+1]+d[i+2])/3;
+            if(a>60&&lum<180){d[i]=0;d[i+1]=0;d[i+2]=0;d[i+3]=255}
+            else{d[i]=0;d[i+1]=0;d[i+2]=0;d[i+3]=0}
+          }
+          cx.putImageData(im,0,0);
+          const out=cv.toDataURL('image/png');
+          resolve(out&&out.length<dataUrl.length?out:dataUrl);
+        }catch(e){resolve(dataUrl)}
+      };
+      img.onerror=()=>resolve(dataUrl);
+      img.src=dataUrl;
+    }catch(e){resolve(dataUrl)}
+  });
+}
+
 /* ---------- turn a signature dataURL into a 1-bit image mask ---------- */
 function sigToMask(dataUrl){
   return new Promise(resolve=>{
@@ -1172,8 +1357,86 @@ async function certPdf(e,opts){
   doc.dashRect(R-128,ty-52,116,70);
   doc.text('SEAL',R-82,ty-14,7.5,'F3');
   y+=boxH+16;
-  const lic='Record maintained in The Anchored Journal e-record book \u00b7 Licensed to '+(settings.licName||'')+' '+(settings.licKey||'');
+  const lic='Record maintained in the '+brandName()+' e-record book \u00b7 Licensed to '+(settings.licName||'')+' '+(settings.licKey||'');
   doc.centerText(lic,y,7.5,'F3',true,false);
+  return doc.build();
+}
+
+/* ---------- year-end summary PDF ---------- */
+function taxPdf(d){
+  const doc=new PdfDoc();
+  const L=PDF_M,R=PDF_W-PDF_M,CW=R-L;
+  let y=PDF_M+12;
+  doc.centerText('Notary Income & Mileage Summary',y,15,'F2',false,true);y+=17;
+  doc.centerText('TAX YEAR '+d.year+'   \u00b7   STATE OF TEXAS',y,9,'F3',true,false);y+=8;
+  doc.line(L,y,R,y,1.5);y+=18;
+
+  const nm=settings.name||'', cm=settings.comm||'';
+  if(nm||cm){doc.text(nm+(cm?'   \u00b7   Commission No. '+cm:''),L,y,10.5,'F1');y+=18}
+
+  // ---- income summary ----
+  const t=d.t;
+  const rows=[
+    ['Notarial act fees','$'+money(t.fee)],
+    ['Travel fees','$'+money(t.travel)],
+    ['Signing service / other fees','$'+money(t.other)],
+    ['Total collected','$'+money(t.total)]
+  ];
+  doc.text('INCOME BY CATEGORY',L,y,8.5,'F3');y+=6;
+  rows.forEach((r,i)=>{
+    const last=i===rows.length-1;
+    doc.rect(L,y,CW*0.62,20,0.75,last?'0.88':'0.95');
+    doc.rect(L+CW*0.62,y,CW*0.38,20,0.75,last?'0.88':undefined);
+    doc.text(r[0],L+7,y+13.5,last?10.5:10,last?'F2':'F1');
+    doc.text(r[1],L+CW*0.62+7,y+13.5,last?10.5:10,last?'F2':'F1');
+    y+=20;
+  });
+  y+=16;
+
+  // ---- activity ----
+  doc.text('ACTIVITY',L,y,8.5,'F3');y+=6;
+  const acts=[
+    ['Entries recorded',String(t.entries)+(t.voided?'  ('+t.voided+' voided, excluded from income)':'')],
+    ['Mobile appointments',String(t.mobile)],
+    ['Remote online notarizations',String(t.ron)],
+    ['Total mileage',t.miles.toFixed(1)+' miles across '+t.trips+' trips']
+  ];
+  Object.keys(t.byType).forEach(k=>acts.push([k+' appointments',String(t.byType[k])]));
+  acts.forEach(r=>{
+    doc.rect(L,y,CW*0.62,18,0.75,'0.95');
+    doc.rect(L+CW*0.62,y,CW*0.38,18,0.75);
+    doc.text(r[0],L+7,y+12.5,10,'F1');
+    doc.text(r[1],L+CW*0.62+7,y+12.5,10,'F1');
+    y+=18;
+  });
+  y+=16;
+
+  // ---- monthly table ----
+  if(y+230>PDF_H-PDF_M){doc.newPage();y=PDF_M}
+  doc.text('MONTH BY MONTH',L,y,8.5,'F3');y+=6;
+  const cols=[0,0.30,0.44,0.60,0.76,1.0].map(f=>L+CW*f);
+  const head=['Month','Entries','Notarial','Travel','Other / Miles'];
+  const drawRow=(cells,bold,shade)=>{
+    for(let i=0;i<5;i++)doc.rect(cols[i],y,cols[i+1]-cols[i],17,0.75,shade);
+    doc.text(cells[0],cols[0]+6,y+12,9,bold?'F3':'F1');
+    for(let i=1;i<5;i++)doc.text(cells[i],cols[i]+6,y+12,9,bold?'F3':'F1');
+    y+=17;
+  };
+  drawRow(head,true,'0.9');
+  d.months.forEach((m,i)=>{
+    if(!m.n)return;
+    drawRow([MONTHS[i].slice(0,3),String(m.n),'$'+money(m.fee),'$'+money(m.travel),'$'+money(m.other)+' / '+m.miles.toFixed(1)+' mi'],false);
+  });
+  drawRow(['Year',String(t.entries),'$'+money(t.fee),'$'+money(t.travel),'$'+money(t.other)+' / '+t.miles.toFixed(1)+' mi'],true,'0.9');
+  y+=18;
+
+  // ---- notes ----
+  const note=pdfWrap('Prepared from the notary\u2019s own record book entries. Fees for notarial acts are commonly treated differently from travel and signing-service income for self-employment tax purposes; confirm the correct treatment with a tax professional. Mileage figures reflect trips recorded at the time of each appointment. This summary is a record of amounts collected, not tax advice.',9,CW-16,false,true);
+  if(y+note.length*12+24>PDF_H-PDF_M){doc.newPage();y=PDF_M}
+  doc.rect(L,y,CW,note.length*12+18,1);
+  let ty=y+14;note.forEach(ln=>{doc.text(ln,L+8,ty,9,'F3');ty+=12});
+  y+=note.length*12+30;
+  doc.centerText(brandName()+' \u00b7 Licensed to '+(settings.licName||'')+' '+(settings.licKey||''),y,7.5,'F3',true,false);
   return doc.build();
 }
 
@@ -1226,6 +1489,27 @@ function updateBanner(){
   }else b.classList.remove('show');
 }
 
+/* ---------- brand application (see BRAND CONFIG at top of file) ---------- */
+function applyBrand(){
+  const B=window.BRAND||{};
+  const c=B.colors||{}, root=document.documentElement.style;
+  if(c.navy)root.setProperty('--navy',c.navy);
+  if(c.gold)root.setProperty('--gold',c.gold);
+  if(c.cream)root.setProperty('--cream',c.cream);
+  if(c.paper)root.setProperty('--paper',c.paper);
+  const set=(sel,txt)=>{const el=document.querySelector(sel);if(el&&txt)el.textContent=txt};
+  set('header h1',B.appName); set('header .sub',B.subtitle);
+  set('.gate-card h1',B.appName); set('.gate-card .gsub',B.subtitle);
+  document.title=(B.appName||'')+(B.subtitle?' \u2014 '+B.subtitle.split('\u00b7').pop().trim():'');
+  const help=document.getElementById('gateHelp');
+  if(help)help.textContent='Your key is in your purchase email. Activation happens entirely on this device \u2014 nothing is sent anywhere. Need help? '+(B.supportEmail||'');
+  const foot=document.getElementById('footBrand');
+  if(foot)foot.textContent='\u00a9 '+(B.year||'')+' '+(B.company||'')+' \u00b7 '+(B.tagline||'');
+  document.getElementById('verLine').textContent=(B.appName||'')+' '+APP_VERSION+(B.buildTag?'-'+B.buildTag:'');
+}
+function brandName(){return (window.BRAND&&window.BRAND.appName)||'The Anchored Journal'}
+function keyPrefix(){return ((window.BRAND&&window.BRAND.keyPrefix)||'NBK').toUpperCase()}
+
 /* ---------- tabs & init ---------- */
 function showTab(t){
   document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));
@@ -1250,7 +1534,7 @@ function loadSettings(){
   el.addEventListener('blur',()=>{if(el.value!=='')el.value=money(el.value);showTotal()});});
 document.getElementById('f-dt').value=nowLocal();
 loadSettings();syncGate();updateBanner();renderList();
-document.getElementById('verLine').textContent='The Anchored Journal '+APP_VERSION;
+applyBrand();storageWarn();requestPersist();
 </script>
 </body>
 </html>
