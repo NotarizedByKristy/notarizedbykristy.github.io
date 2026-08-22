@@ -81,7 +81,7 @@
     @media(max-width:768px){.nav-links{display:none}.hamburger{display:block}.footer-grid{grid-template-columns:1fr}section{padding:64px 6%}}
 
     .book-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--gray-200);border-left:1px solid var(--gray-200);margin-top:52px}
-    .book-card{padding:40px 32px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);display:flex;flex-direction:column;position:relative;transition:background .25s;cursor:pointer}
+    .book-card{text-decoration:none;color:inherit;padding:40px 32px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200);display:flex;flex-direction:column;position:relative;transition:background .25s;cursor:pointer}
     .book-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);transition:width .4s ease}
     .book-card:hover{background:var(--gold-pale)}
     .book-card:hover::after{width:100%}
@@ -92,6 +92,8 @@
     .book-card-btn{font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy-dark);background:none;border:none;cursor:pointer;font-family:'Outfit',sans-serif;display:flex;align-items:center;gap:8px;padding:0;margin-top:auto}
     .book-card-btn::after{content:'→';transition:transform .2s}
     .book-card:hover .book-card-btn::after{transform:translateX(4px)}
+    .book-card-footnote{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.75;margin-top:26px;max-width:760px}
+    .book-card-footnote a{color:var(--navy);text-decoration:underline}
     .book-form-section{background:var(--navy-dark);padding:88px 6%}
     .book-form-inner{max-width:760px;margin:0 auto}
     .book-form-title{font-family:'EB Garamond',serif;font-size:32px;font-weight:500;color:var(--white);margin-bottom:8px}
@@ -133,68 +135,78 @@
 <li><a href="/about.html">About</a></li>
 <li><a href="/faq.html">FAQ</a></li>
 <li><a href="/contact.html">Contact</a></li>
-    <li><a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="nav-cta">Schedule</a></li>
+    <li><a href="/book.html" class="nav-cta">Schedule</a></li>
   </ul>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="/services.html">Services</a><a href="/apostille.html">Apostille</a><a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a>
-  <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
+  <a href="/book.html" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
 </div>
 <div class="page-hero" data-char="B">
   <div class="page-hero-inner">
     <div class="breadcrumb"><a href="/index.html">Home</a><span>/</span>Schedule</div>
     <h1>Schedule an <em>Appointment</em></h1>
-    <p class="page-hero-desc">Select your service below or complete the booking request form. All fees are confirmed prior to engagement. Same-day availability when scheduling permits.</p>
+    <p class="page-hero-desc">Choose your service below to book directly on my calendar. Not sure which you need? Use the fee estimator or send a booking request and I will confirm within one business day.</p>
   </div>
 </div>
 <section style="padding-top:0">
   <div class="section-inner">
     <div class="section-eyebrow" style="margin-top:0;padding-top:88px">Select a Service</div>
     <h2 class="section-title">Schedule Your <em>Appointment</em></h2>
-    <p class="section-body">Select the service below to pre-populate your booking request, or complete the form directly. All fees are confirmed prior to your engagement.</p>
-    <div class="book-grid reveal"><div class="book-card" onclick="selectService('Remote Online Notarization (RON)')">
+    <p class="section-body">Each service books straight onto my calendar with its own intake questions. Times shown are live availability.</p>
+    <div class="book-grid reveal">
+<a class="book-card" href="https://calendar.app.google/AJhpzGRf5ZpFbXu7A" target="_blank" rel="noopener">
   <span class="book-card-number">01</span>
-  <div class="book-card-title">Remote Online Notarization</div>
-  <div class="book-card-price">From $25</div>
-  <p class="book-card-desc">Compliant audio-visual notarization from any device, anywhere in the United States.</p>
-  <button class="book-card-btn">Schedule Now</button>
-</div>
-<div class="book-card" onclick="selectService('Mobile Notary')">
-  <span class="book-card-number">02</span>
   <div class="book-card-title">Mobile Notary</div>
-  <div class="book-card-price">From $50</div>
-  <p class="book-card-desc">On-site notarization at your location throughout Bexar, Guadalupe, and Comal counties.</p>
-  <button class="book-card-btn">Schedule Now</button>
-</div>
-<div class="book-card" onclick="selectService('Loan Signing / Real Estate Closing')">
+  <div class="book-card-price">$75 deposit</div>
+  <p class="book-card-desc">On-site notarization at your home, office, or facility across Bexar, Guadalupe, and Comal counties.</p>
+  <span class="book-card-btn">Schedule Now</span>
+</a>
+<a class="book-card" href="https://calendar.app.google/F3GgqTiQebre4hj46" target="_blank" rel="noopener">
+  <span class="book-card-number">02</span>
+  <div class="book-card-title">Mobile Loan Signing</div>
+  <div class="book-card-price">$165 deposit</div>
+  <p class="book-card-desc">NNA Certified Signing Agent for closings, refinances, and full lender packages at your location.</p>
+  <span class="book-card-btn">Schedule Now</span>
+</a>
+<a class="book-card" href="https://calendar.app.google/4vDvBVVm6rinDma58" target="_blank" rel="noopener">
   <span class="book-card-number">03</span>
-  <div class="book-card-title">Real Estate &amp; Loan Signing</div>
-  <div class="book-card-price">From $150</div>
-  <p class="book-card-desc">NNA Certified Signing Agent for closings, refinances, and loan packages.</p>
-  <button class="book-card-btn">Schedule Now</button>
-</div>
-<div class="book-card" onclick="selectService('Apostille &amp; Document Authentication')">
+  <div class="book-card-title">Remote Online Notarization</div>
+  <div class="book-card-price">$75 deposit</div>
+  <p class="book-card-desc">Compliant audio-video notarization from any device. Signers may be located anywhere.</p>
+  <span class="book-card-btn">Schedule Now</span>
+</a>
+<a class="book-card" href="https://calendar.app.google/XegHZHvGp7HQKEnP9" target="_blank" rel="noopener">
   <span class="book-card-number">04</span>
-  <div class="book-card-title">Apostille &amp; Authentication</div>
-  <div class="book-card-price">From $150</div>
-  <p class="book-card-desc">Texas SOS apostille coordination from intake through international delivery.</p>
-  <button class="book-card-btn">Schedule Now</button>
-</div>
-<div class="book-card" onclick="selectService('Legal &amp; Estate Documents')">
+  <div class="book-card-title">RON Loan Signing</div>
+  <div class="book-card-price">$150 deposit</div>
+  <p class="book-card-desc">Full lender package execution by secure audio-video session, with electronic return to your lender.</p>
+  <span class="book-card-btn">Schedule Now</span>
+</a>
+<a class="book-card" href="https://calendar.app.google/jL4wNdKdq1yD8pZZA" target="_blank" rel="noopener">
   <span class="book-card-number">05</span>
-  <div class="book-card-title">Legal &amp; Estate Documents</div>
-  <div class="book-card-price">Contact for Quote</div>
-  <p class="book-card-desc">Wills, trusts, powers of attorney, and healthcare directives. Bedside service available.</p>
-  <button class="book-card-btn">Schedule Now</button>
-</div>
-<div class="book-card" onclick="selectService('Specialty / Government Services')">
+  <div class="book-card-title">Estate Planning &mdash; Individual</div>
+  <div class="book-card-price">$145 deposit</div>
+  <p class="book-card-desc">Unhurried execution of wills, powers of attorney, directives, and trust documents for one signer.</p>
+  <span class="book-card-btn">Schedule Now</span>
+</a>
+<a class="book-card" href="https://calendar.app.google/Zo8UpeXN2ePCnUvy7" target="_blank" rel="noopener">
   <span class="book-card-number">06</span>
-  <div class="book-card-title">Specialty &amp; Government</div>
-  <div class="book-card-price">Contact for Quote</div>
-  <p class="book-card-desc">I-9 verification, correctional facilities, federal document support. SDVOSB certified.</p>
-  <button class="book-card-btn">Schedule Now</button>
-</div></div>
+  <div class="book-card-title">Estate Planning &mdash; Couple</div>
+  <div class="book-card-price">$245 deposit</div>
+  <p class="book-card-desc">Both signers&rsquo; wills, powers of attorney, directives, and trust documents in one appointment.</p>
+  <span class="book-card-btn">Schedule Now</span>
+</a>
+<a class="book-card" href="https://calendar.app.google/kaTVa2d8swhS7x7G7" target="_blank" rel="noopener">
+  <span class="book-card-number">07</span>
+  <div class="book-card-title">Apostille Consultation</div>
+  <div class="book-card-price">Free &middot; 15 minutes</div>
+  <p class="book-card-desc">Eligibility review, destination-country requirements, and timeline. A written quote follows the call.</p>
+  <span class="book-card-btn">Schedule Now</span>
+</a>
+</div>
+    <p class="book-card-footnote">Only the service &amp; coordination fee shown is charged at booking. Travel, witnesses, printing, rush handling, and additional signers are itemised and invoiced after your appointment. For a full estimate before you book, use the <a href="/quote.html">fee estimator</a>.</p>
   </div>
 </section>
 
@@ -219,11 +231,15 @@
         <label>Service Required</label>
         <select name="service" id="bookingServiceSelect" required>
           <option value="">Select a service...</option>
-          <option>Remote Online Notarization (RON)</option>
           <option>Mobile Notary</option>
-          <option>Loan Signing / Real Estate Closing</option>
+          <option>Mobile Loan Signing</option>
+          <option>Remote Online Notarization (RON)</option>
+          <option>RON Loan Signing</option>
+          <option>Estate Planning — Individual Signer</option>
+          <option>Estate Planning — Couple / Joint Signing</option>
           <option>Apostille &amp; Document Authentication</option>
-          <option>Legal &amp; Estate Documents</option>
+          <option>Certified Translation</option>
+          <option>Wedding Officiant</option>
           <option>Specialty / Government Services</option>
           <option>General Inquiry</option>
         </select>
@@ -305,7 +321,7 @@
       <p class="cta-strip-sub">Same-day availability when scheduling permits. All fees confirmed prior to engagement.</p>
     </div>
     <div class="cta-strip-actions">
-      <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank" class="btn-primary">Schedule an Appointment</a>
+      <a href="/book.html" class="btn-primary">Schedule an Appointment</a>
       <div class="cta-contact"><a href="tel:2106289991">210-628-9991</a> &nbsp;&middot;&nbsp; <a href="mailto:info@notarizedbykristy.com">info@notarizedbykristy.com</a></div>
     </div>
   </div>
@@ -337,7 +353,7 @@
         <a href="/about.html">About Kristy</a>
         <a href="/faq.html">Frequently Asked Questions</a>
         <a href="/contact.html">Contact</a>
-        <a href="https://calendar.app.google/s9mnpo8VookiP8X17" target="_blank">Schedule</a>
+        <a href="/book.html">Schedule</a>
         <a href="/privacy.html">Privacy Policy</a>
       </div>
       <div class="footer-col">
