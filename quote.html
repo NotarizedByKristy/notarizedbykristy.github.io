@@ -457,12 +457,12 @@ body{padding-bottom:64px}
     <div class="addon-grid">
       <div class="addon-card">
         <label><input type="checkbox" id="addonRush" onchange="recalc()">
-          <div><span class="addon-title">Rush / Same-Day</span><span class="addon-price">+$50 flat</span></div>
+          <div><span class="addon-title">Rush &middot; Same-Day &middot; After-Hours &middot; Weekend</span><span class="addon-price">+$50 flat</span></div>
         </label>
       </div>
       <div class="addon-card">
-        <label><input type="checkbox" id="addonAfter" onchange="recalc()">
-          <div><span class="addon-title">After-Hours / Weekend</span><span class="addon-price">+$40 flat</span></div>
+        <label><input type="checkbox" id="addonPrint" onchange="recalc()">
+          <div><span class="addon-title">Print / Copy / Scan</span><span class="addon-price">+$25 flat</span></div>
         </label>
       </div>
       <div class="addon-card">
@@ -546,8 +546,8 @@ body{padding-bottom:64px}
     <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping</span><span class="li-val" id="rShipRet">&mdash;</span></div>
     <div class="line-item" id="rIntlCoordLine" style="display:none"><span class="li-label">Intl. Coordination Fee</span><span class="li-val" id="rIntlCoord">+$20</span></div>
     <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
-    <div class="line-item" id="rRushLine" style="display:none"><span class="li-label">Rush / Same-Day</span><span class="li-val" id="rRush">+$50</span></div>
-    <div class="line-item" id="rAfterLine" style="display:none"><span class="li-label">After-Hours / Weekend</span><span class="li-val" id="rAfter">+$40</span></div>
+    <div class="line-item" id="rRushLine" style="display:none"><span class="li-label">Rush / After-Hours</span><span class="li-val" id="rRush">+$50</span></div>
+    <div class="line-item" id="rPrintLine" style="display:none"><span class="li-label">Print / Copy / Scan</span><span class="li-val" id="rPrint">+$25</span></div>
     <div class="line-item" id="rCopiesLine" style="display:none"><span class="li-label">Certified Copies</span><span class="li-val" id="rCopies">&mdash;</span></div>
     <div class="line-item" id="rNotTransLine" style="display:none"><span class="li-label">Notarize Translation</span><span class="li-val" id="rNotTrans">+$10</span></div>
 
@@ -879,7 +879,7 @@ function recalc(){
   const comboTransOn = document.getElementById('comboIncludeTrans').checked;
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
-  const after   = document.getElementById('addonAfter').checked;
+  const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const notTrans= document.getElementById('addonNotarizeTrans').checked;
   const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
@@ -932,11 +932,11 @@ function recalc(){
   const witnessFee = (cfg.witnessOpt && witnessNeed === 'coord') ? (WITNESS_FEE * witnessN) : 0;
 
   const rushFee    = rush   ? 50   : 0;
-  const afterFee   = after  ? 40   : 0;
+  const printFee   = printing ? 25 : 0;
   const copiesFee  = copies ? 15 * copiesN : 0;
   const notTransFee= (notTrans && !cfg.isTrans) ? 10 : 0;
 
-  const total = svcFee + transFee + sosFee - discAmt + travelFee + shipRetFee + intlCoord + witnessFee + rushFee + afterFee + copiesFee + notTransFee;
+  const total = svcFee + transFee + sosFee - discAmt + travelFee + shipRetFee + intlCoord + witnessFee + rushFee + printFee + copiesFee + notTransFee;
 
   // Build service name label
   let nameLabel = cfg.name;
@@ -1000,7 +1000,7 @@ function recalc(){
   }
 
   show('rRushLine',    rush);
-  show('rAfterLine',   after);
+  show('rPrintLine',   printing);
   show('rCopiesLine',  copies);
   document.getElementById('rCopies').textContent = copies ? fmt(copiesFee) : '-';
   show('rNotTransLine', notTrans && !cfg.isTrans);
@@ -1032,7 +1032,7 @@ function buildQuoteSummary(){
   const comboTransOn = document.getElementById('comboIncludeTrans').checked;
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
-  const after   = document.getElementById('addonAfter').checked;
+  const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
   const notTrans= document.getElementById('addonNotarizeTrans').checked;
@@ -1101,8 +1101,8 @@ function buildQuoteSummary(){
   }
 
   const addons = [];
-  if(rush)    addons.push('Rush / Same-Day (+$50)');
-  if(after)   addons.push('After-Hours / Weekend (+$40)');
+  if(rush)     addons.push('Rush / Same-Day / After-Hours / Weekend (+$50)');
+  if(printing) addons.push('Print / Copy / Scan (+$25)');
   if(copies)  addons.push('Certified Copies x' + copiesN + ' (+$' + (copiesN*15) + ')');
   if(notTrans && !cfg.isTrans) addons.push('Notarize Translation (+$10)');
   if(addons.length) lines.push('ADD-ONS: ' + addons.join(', '));
