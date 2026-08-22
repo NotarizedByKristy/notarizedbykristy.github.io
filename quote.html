@@ -688,6 +688,33 @@ const SERVICE_TAG_MAP = {
   mobile_std:'GNW', ron_std:'GNW', translation:'GNW', officiant:'GNW',
   estate:'LAW'
 };
+
+  // Maps each quote service to its Google Calendar appointment schedule.
+  // null = no self-serve schedule; Kristy follows up by email instead.
+const BOOKING_URL_MAP = {
+  mobile_std:  'https://calendar.app.google/AJhpzGRf5ZpFbXu7A',
+  mobile_loan: 'https://calendar.app.google/F3GgqTiQebre4hj46',
+  ron_std:     'https://calendar.app.google/4vDvBVVm6rinDma58',
+  ron_loan:    'https://calendar.app.google/XegHZHvGp7HQKEnP9',
+  estate_individual: 'https://calendar.app.google/jL4wNdKdq1yD8pZZA',
+  estate_couple:     'https://calendar.app.google/Zo8UpeXN2ePCnUvy7',
+  apo_tx:  'https://calendar.app.google/kaTVa2d8swhS7x7G7',
+  apo_oos: 'https://calendar.app.google/kaTVa2d8swhS7x7G7',
+  combo:   'https://calendar.app.google/kaTVa2d8swhS7x7G7',
+  translation: null,
+  officiant:   null
+};
+
+  // Deposits charged at booking, by schedule key
+const BOOKING_DEPOSIT = {
+  mobile_std:'$75', mobile_loan:'$165', ron_std:'$75', ron_loan:'$150',
+  estate_individual:'$145', estate_couple:'$245'
+};
+
+function bookingKeyFor(routeKey){
+  if(routeKey === 'estate') return estateType === 'couple' ? 'estate_couple' : 'estate_individual';
+  return routeKey;
+}
 let region = 'pickup';
 let speed  = 'standard';
 let estateType = 'individual';
@@ -1147,12 +1174,33 @@ quoteForm.addEventListener('submit', async function(e){
     const data = await res.json();
 
     if(data.success){
+      const bKey    = bookingKeyFor(document.getElementById('serviceType').value);
+      const bUrl    = BOOKING_URL_MAP[bKey] || null;
+      const deposit = BOOKING_DEPOSIT[bKey] || null;
+
       quoteResult.className = 'form-result success';
-      quoteResult.textContent = 'Your quote request has been received. We will respond within one business day.';
+
+      if(bUrl){
+        let note;
+        if(deposit){
+          note = 'Only the ' + deposit + ' service &amp; coordination fee is charged at booking. Travel and add-ons are invoiced after your appointment.';
+        } else {
+          note = 'The consultation is free. No payment is collected to book.';
+        }
+        quoteResult.innerHTML =
+          'Your quote request has been received.<br>' +
+          '<a href="' + bUrl + '" target="_blank" rel="noopener" ' +
+          'style="display:inline-block;margin-top:12px;font-weight:600;text-decoration:underline">' +
+          'Choose your appointment time &rarr;</a>' +
+          '<span style="display:block;margin-top:10px;font-size:.85em;opacity:.85">' + note + '</span>';
+      } else {
+        quoteResult.textContent = 'Your quote request has been received. We will respond within one business day.';
+      }
+
       quoteSubmit.textContent = 'Submitted ✓';
       quoteSubmit.style.background = '#1a7a4a';
       this.reset();
-      setTimeout(closeBookModal, 3500);
+      if(!bUrl) setTimeout(closeBookModal, 3500);
     } else {
       throw new Error('submission failed');
     }
