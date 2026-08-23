@@ -257,6 +257,7 @@ body{padding-bottom:64px}
       <label>Service Type</label>
       <select id="serviceType" onchange="onServiceChange()">
         <optgroup label="Apostille Services">
+          <option value="apo_std">Standard Apostille &mdash; Mail-In</option>
           <option value="apo_tx">Texas Executive Tier &mdash; Apostille</option>
           <option value="apo_oos">Federal Executive Tier &mdash; U.S. Dept. of State</option>
         </optgroup>
@@ -275,6 +276,10 @@ body{padding-bottom:64px}
           <option value="officiant">Wedding Officiant</option>
         </optgroup>
       </select>
+    </div>
+
+    <div class="hint" id="batchedNotice" style="display:none;border-left:2px solid var(--gold,#B8860B);padding-left:12px;margin-bottom:16px">
+      <strong>Mail-in tier.</strong> You mail or drop off your original documents, and they are filed in the next scheduled Secretary of State submission. Standard processing is 10&ndash;15 business days. Document retrieval from the issuing institution and priority hand-carried handling are not available at this tier &mdash; those are part of the Texas Executive Tier.
     </div>
 
     <div class="field" id="docCountWrap">
@@ -461,7 +466,7 @@ body{padding-bottom:64px}
     <div class="addon-grid">
       <div class="addon-card" id="transCoordCard">
         <label><input type="checkbox" id="addonTransCoord" onchange="recalc()">
-          <div><span class="addon-title">Certified Translation Coordination</span><span class="addon-price">$50&ndash;$60 / page</span></div>
+          <div><span class="addon-title">Certified Translation Coordination</span><span class="addon-price">+$65 flat</span></div>
         </label>
       </div>
       <div class="addon-card" id="expediteCard" style="display:none">
@@ -491,8 +496,28 @@ body{padding-bottom:64px}
       </div>
     </div>
 
-    <div class="hint" id="transCoordHint" style="margin-top:12px;display:none">
-      Certified translation runs $50&ndash;$60 per page depending on target language. Kristy reviews your documents, confirms the exact page count and rate in writing, and manages the translation order end to end.
+    <div id="transCoordPanel" style="margin-top:12px;display:none">
+      <div class="hint" style="margin-bottom:12px">
+        Certified translation is billed at cost &mdash; $50 per page for Spanish, $60 per page for all other languages. The $65 coordination fee is Kristy's flat charge for reviewing your documents, confirming the page count, placing and managing the order, and standing behind the delivered translation. Final page count is confirmed in writing after document review.
+      </div>
+      <div class="field">
+        <label>Translation Language</label>
+        <div class="type-grid">
+          <div class="type-pill selected" onclick="selectCoordLang('spanish',this)">
+            <div class="type-pill-name">Spanish</div>
+            <div class="type-pill-price">$50 / page</div>
+          </div>
+          <div class="type-pill" onclick="selectCoordLang('other',this)">
+            <div class="type-pill-name">Other Language</div>
+            <div class="type-pill-price">$60 / page</div>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Estimated Total Pages</label>
+        <input type="number" id="coordTransPages" value="1" min="1" max="100" oninput="recalc()">
+        <div class="hint">Total pages across every document needing translation. Confirmed after review.</div>
+      </div>
     </div>
 
     <div class="field-row" id="copiesRow" style="margin-top:14px;display:none">
@@ -562,7 +587,7 @@ body{padding-bottom:64px}
     <div class="line-item" id="rTravelLine" style="display:none"><span class="li-label">Travel Fee</span><span class="li-val" id="rTravel">&mdash;</span></div>
     <div class="line-item" id="rShipOutLine"><span class="li-label">Outbound Shipping (SOS)</span><span class="li-val incl" id="rShipOut">Included</span></div>
     <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping</span><span class="li-val" id="rShipRet">&mdash;</span></div>
-    <div class="line-item" id="rTransCoordLine" style="display:none"><span class="li-label">Translation Coordination</span><span class="li-val" id="rTransCoord">$50&ndash;$60 / page</span></div>
+    <div class="line-item" id="rTransCoordLine" style="display:none"><span class="li-label">Translation Coordination</span><span class="li-val" id="rTransCoord">+$65</span></div>
     <div class="line-item" id="rExpediteLine" style="display:none"><span class="li-label">Priority Hand-Carried Handling (5&ndash;7 business days)</span><span class="li-val" id="rExpedite">+$150</span></div>
         <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
     <div class="line-item" id="rRushLine" style="display:none"><span class="li-label">Rush / After-Hours</span><span class="li-val" id="rRush">+$50</span></div>
@@ -679,6 +704,7 @@ fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-f
 // International return shipping: $150 flat rate (no separate coordination fee)
 // ─────────────────────────────────────────────────────────────────────────────
 const SVC_CONFIG = {
+  apo_std:     { name:'Standard Apostille - Mail-In',      base:225, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:75,  isApostille:true, isBatched:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   apo_tx:      { name:'Texas Executive Tier - Apostille',     base:400, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   apo_oos:     { name:'Federal Executive Tier - U.S. Dept. of State', base:600, sos:0, travel:false, shipOut:true, perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   mobile_std:  { name:'Mobile Notary - Standard',          base:75,  sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
@@ -693,6 +719,10 @@ const SVC_CONFIG = {
 
 const ESTATE_PRICE = { individual: 145, couple: 245 };
 const TRANS_PRICE = { spanish: 50, other: 60 };
+// Kristy's fee for managing the translation order end to end: document review,
+// page count, order placement, provider management, delivery. Flat, per order --
+// NOT per page. Idiomatic's per-page charge is passed through separately at cost.
+const TRANS_COORD_FEE = 65;
 const TRAVEL_FEES = { local:35, mid:55, far:75, extended:null };
 // Domestic: USPS $25 / FedEx-UPS $35. International: flat rate confirmed at intake.
 const SHIP = {
@@ -709,7 +739,7 @@ const WITNESS_FEE = 30;
 
   // Maps each quote service to a router tag → Gmail INTAKE label
 const SERVICE_TAG_MAP = {
-  apo_tx:'APOSTILLE', apo_oos:'APOSTILLE', combo:'APOSTILLE',
+  apo_std:'APOSTILLE', apo_tx:'APOSTILLE', apo_oos:'APOSTILLE', combo:'APOSTILLE',
   mobile_loan:'TITLE', ron_loan:'TITLE',
   mobile_std:'GNW', ron_std:'GNW', translation:'GNW', officiant:'GNW',
   estate:'LAW'
@@ -724,6 +754,7 @@ const BOOKING_URL_MAP = {
   ron_loan:    'https://calendar.app.google/XegHZHvGp7HQKEnP9',
   estate_individual: 'https://calendar.app.google/jL4wNdKdq1yD8pZZA',
   estate_couple:     'https://calendar.app.google/Zo8UpeXN2ePCnUvy7',
+  apo_std: 'https://calendar.app.google/kaTVa2d8swhS7x7G7',
   apo_tx:  'https://calendar.app.google/kaTVa2d8swhS7x7G7',
   apo_oos: 'https://calendar.app.google/kaTVa2d8swhS7x7G7',
   combo:   'https://calendar.app.google/kaTVa2d8swhS7x7G7',
@@ -746,6 +777,7 @@ let speed  = 'standard';
 let estateType = 'individual';
 let transLang  = 'spanish';   // standalone translation
 let comboLang  = 'spanish';   // translation-in-combo
+let coordLang  = 'spanish';   // translation-as-add-on (apostille tiers)
 
 function fmt(n){ return '$' + Math.round(n).toLocaleString(); }
 function show(id,val){ const el=document.getElementById(id); if(el) el.style.display = val ? '' : 'none'; }
@@ -818,6 +850,13 @@ function onWitnessChange(){
   recalc();
 }
 
+function selectCoordLang(val, el){
+  coordLang = val;
+  document.querySelectorAll('#transCoordPanel .type-pill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  recalc();
+}
+
 function onComboTransToggle(){
   const on = document.getElementById('comboIncludeTrans').checked;
   document.getElementById('comboTransBody').classList.toggle('show', on);
@@ -854,6 +893,7 @@ function onServiceChange(){
 
   // Standard docCount shown for apostille and combo services
   show('docCountWrap',    (cfg.perDoc || cfg.addlDoc) && !cfg.isTrans);
+  show('batchedNotice',   !!cfg.isBatched);
 
   // Translation-specific fields (standalone only)
   show('transLangWrap',   cfg.isTrans);
@@ -878,7 +918,7 @@ function onServiceChange(){
 
   // Travel and shipping steps
   show('locationStep',    cfg.travel);
-  show('shippingStep',    cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(key));
+  show('shippingStep',    cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(key));
 
   // Witness section
   show('witnessSection',  cfg.witnessOpt);
@@ -901,6 +941,7 @@ function onServiceChange(){
   document.getElementById('docCountLabel').textContent =
     key === 'combo' ? 'Number of Documents (Apostille)' : 'Number of Documents';
   const DOC_HINTS = {
+    apo_std: 'First document $225, all-inclusive of the Texas SOS filing fee. Each additional document in the same submission is $75.',
     apo_tx:  'First document $400, all-inclusive of the Texas SOS filing fee. Each additional document in the same submission is $100.',
     apo_oos: 'First document $600, inclusive of the required state-level certification step. Each additional document in the same federal submission is $100.',
     combo:   'Each document requiring both notarization and an apostille certificate. First document $400; each additional is $100.'
@@ -909,7 +950,7 @@ function onServiceChange(){
     DOC_HINTS[key] || 'Each document requiring an apostille certificate from the Secretary of State.';
 
   const hasTravel   = cfg.travel;
-  const hasShipping = cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(key);
+  const hasShipping = cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(key);
   let step = 2;
   if(hasTravel)   { document.querySelector('#locationStep .step-num').textContent = step++; }
   if(hasShipping) { document.getElementById('shipStepNum').textContent = step++; }
@@ -931,6 +972,7 @@ function recalc(){
   const rush    = document.getElementById('addonRush').checked;
   const expedite= document.getElementById('addonExpedite').checked;
   const transCoord = document.getElementById('addonTransCoord').checked;
+  const coordTransPages = parseInt(document.getElementById('coordTransPages').value)||1;
   const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const notTrans= document.getElementById('addonNotarizeTrans').checked;
@@ -977,6 +1019,16 @@ function recalc(){
     transFee = perPage * comboTransPages;
   }
 
+  // Translation elected as an add-on to a standalone apostille tier.
+  if(transCoord && !cfg.isTrans && !cfg.comboTrans){
+    const perPage = TRANS_PRICE[coordLang] || 50;
+    transFee = perPage * coordTransPages;
+  }
+
+  // Coordination fee: flat, once per order, whenever translation is part of the job.
+  const translationOnOrder = cfg.isTrans || (cfg.comboTrans && comboTransOn) || transCoord;
+  const transCoordFee = translationOnOrder ? TRANS_COORD_FEE : 0;
+
   const sosFee = cfg.sos * (cfg.perDoc ? docs : 1);
   const travelFee = cfg.travel ? (TRAVEL_FEES[zone]||0) : 0;
   const shipRates = SHIP[region] || {standard:0, expedited:0};
@@ -985,13 +1037,15 @@ function recalc(){
 
   const witnessFee = (cfg.witnessOpt && witnessNeed === 'coord') ? (WITNESS_FEE * witnessN) : 0;
 
-  const expediteFee = (cfg.isApostille && expedite) ? EXPEDITED_HANDLING : 0;
+  // Priority handling is unavailable on the batched tier by design: that tier is
+  // priced on submissions accumulating into one Austin run.
+  const expediteFee = (cfg.isApostille && !cfg.isBatched && expedite) ? EXPEDITED_HANDLING : 0;
   const rushFee    = rush   ? 50   : 0;
   const printFee   = printing ? 25 : 0;
   const copiesFee  = copies ? 15 * copiesN : 0;
   const notTransFee= (notTrans && !cfg.isTrans) ? 10 : 0;
 
-  const total = svcFee + transFee + sosFee - discAmt + travelFee + shipRetFee + intlCoord + expediteFee + witnessFee + rushFee + printFee + copiesFee + notTransFee;
+  const total = svcFee + transFee + transCoordFee + sosFee - discAmt + travelFee + shipRetFee + intlCoord + expediteFee + witnessFee + rushFee + printFee + copiesFee + notTransFee;
 
   // Build service name label
   let nameLabel = cfg.name;
@@ -1011,11 +1065,15 @@ function recalc(){
 
   document.getElementById('rSvcFee').textContent = fmt(svcFee);
 
-  // Translation line item (combo-in-context)
+  // Translation pass-through, billed at the provider's per-page rate
   show('rTransLine', transFee > 0);
   if(transFee > 0){
-    const langLbl = comboLang === 'spanish' ? 'Spanish' : 'Other';
-    document.getElementById('rTransLabel').textContent = `Translation (${langLbl}, ${comboTransPages} pg${comboTransPages>1?'s':''})`;
+    const usingCoord = transCoord && !cfg.isTrans && !cfg.comboTrans;
+    const lang  = usingCoord ? coordLang : comboLang;
+    const pages = usingCoord ? coordTransPages : comboTransPages;
+    const langLbl = lang === 'spanish' ? 'Spanish' : 'Other';
+    document.getElementById('rTransLabel').textContent =
+      `Certified Translation (${langLbl}, ${pages} pg${pages>1?'s':''})`;
     document.getElementById('rTransFee').textContent = fmt(transFee);
   }
 
@@ -1038,7 +1096,7 @@ function recalc(){
 
   show('rShipOutLine', cfg.shipOut);
 
-  const showShipRet = region !== 'pickup' && (cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(key));
+  const showShipRet = region !== 'pickup' && (cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(key));
   show('rShipRetLine', showShipRet);
   if(showShipRet){
     const isIntl = isInternational(region);
@@ -1048,10 +1106,12 @@ function recalc(){
   }
 
   show('rExpediteLine', expediteFee > 0);
-  show('rTransCoordLine', transCoord);
-  show('transCoordHint', transCoord);
-  document.getElementById('expediteCard').style.display = cfg.isApostille ? '' : 'none';
-  if(!cfg.isApostille) document.getElementById('addonExpedite').checked = false;
+  show('rTransCoordLine', transCoordFee > 0);
+  document.getElementById('rTransCoord').textContent = fmt(transCoordFee);
+  show('transCoordPanel', transCoord);
+  const expediteAvailable = cfg.isApostille && !cfg.isBatched;
+  document.getElementById('expediteCard').style.display = expediteAvailable ? '' : 'none';
+  if(!expediteAvailable) document.getElementById('addonExpedite').checked = false;
   show('rIntlCoordLine', intlCoord > 0);
 
   show('rWitnessLine', witnessFee > 0);
@@ -1094,6 +1154,7 @@ function buildQuoteSummary(){
   const rush    = document.getElementById('addonRush').checked;
   const expedite= document.getElementById('addonExpedite').checked;
   const transCoord = document.getElementById('addonTransCoord').checked;
+  const coordTransPages = parseInt(document.getElementById('coordTransPages').value)||1;
   const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
@@ -1131,7 +1192,7 @@ function buildQuoteSummary(){
     lines.push('DOCUMENTS: ' + transDocs);
     lines.push('TOTAL PAGES: ' + tpages);
   }
-  if(['apo_tx','apo_oos','combo'].includes(svcKey))
+  if(['apo_std','apo_tx','apo_oos','combo'].includes(svcKey))
     lines.push('DOCUMENTS: ' + docs + (docs>1?' (bundle discount applied)':''));
   if(cfg.isRon)
     lines.push('SIGNERS: ' + signers);
@@ -1143,10 +1204,10 @@ function buildQuoteSummary(){
   if(cfg.travel && zone !== 'extended')
     lines.push('SERVICE LOCATION: ' + (zoneLabels[zone]||zone));
 
-  if(region !== 'pickup' && (cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(svcKey))){
+  if(region !== 'pickup' && (cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(svcKey))){
     lines.push('RETURN SHIPPING: ' + (regionLabels[region]||region) +
       (isInternational(region) ? ' - flat rate, tracked' : ' - ' + (speedLabels[speed]||speed)));
-  } else if(cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(svcKey)) {
+  } else if(cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(svcKey)) {
     lines.push('RETURN SHIPPING: In-Person Pickup');
   }
 
@@ -1161,8 +1222,10 @@ function buildQuoteSummary(){
   }
 
   const addons = [];
-  if(cfg.isApostille && expedite) addons.push('Priority Hand-Carried Handling, 5-7 business days (+$150)');
-  if(transCoord) addons.push('Certified Translation Coordination - $50-$60 per page by target language; final page count and rate confirmed after document review');
+  if(cfg.isApostille && !cfg.isBatched && expedite) addons.push('Priority Hand-Carried Handling, 5-7 business days (+$150)');
+  if(transCoord) addons.push('Certified Translation - ' + (coordLang === 'spanish' ? 'Spanish' : 'Other Language') +
+    ', ' + coordTransPages + ' page(s) at $' + (coordLang === 'spanish' ? 50 : 60) + '/page, plus $' + TRANS_COORD_FEE +
+    ' coordination fee (page count confirmed after document review)');
   if(rush)     addons.push('Rush / Same-Day / After-Hours / Weekend (+$50)');
   if(printing) addons.push('Print / Copy / Scan (+$25)');
   if(copies)  addons.push('Certified Copies x' + copiesN + ' (+$' + (copiesN*15) + ')');
