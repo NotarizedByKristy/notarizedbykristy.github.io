@@ -170,7 +170,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;border-b
 .subtotal .li-label{color:rgba(255,255,255,.65);font-weight:500;font-size:13px}
 .subtotal .li-val{color:#fff;font-weight:600;font-size:18px}
 
-/* White Glove indicator */
+/* Executive Apostille indicator */
 .white-glove-indicator{display:none;background:linear-gradient(135deg, rgba(184,134,11,.15), rgba(184,134,11,.05));border:1px solid rgba(184,134,11,.35);padding:12px 16px;margin-bottom:18px;position:relative}
 .white-glove-indicator.show{display:block}
 .white-glove-label{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#B8860B;margin-bottom:3px;display:flex;align-items:center;gap:8px}
@@ -348,11 +348,11 @@ body{padding-bottom:64px}
       </div>
     </div>
 
-    <!-- Combo: Include Translation? toggle (White Glove) -->
+    <!-- Combo: Include Translation? toggle (Executive Apostille) -->
     <div class="combo-trans-toggle hidden" id="comboTransToggle">
       <label class="combo-trans-toggle-hdr">
         <input type="checkbox" id="comboIncludeTrans" onchange="onComboTransToggle()">
-        <span class="combo-trans-toggle-title">Include Certified Translation &mdash; <strong>White Glove Service</strong></span>
+        <span class="combo-trans-toggle-title">Include Certified Translation &mdash; <strong>Executive Service</strong></span>
       </label>
       <div class="hint" style="margin-top:8px;padding-left:28px">Add certified translation to your notarization + apostille order. Translation applies to all documents in this order.</div>
       <div class="combo-trans-body" id="comboTransBody">
@@ -398,7 +398,7 @@ body{padding-bottom:64px}
 <div class="step" id="shippingStep">
   <div class="step-hdr"><span class="step-num" id="shipStepNum">03</span><span class="step-title">Document Destination &amp; Shipping</span></div>
   <div class="step-body">
-    <p class="step-desc">Select your region first, then your preferred delivery speed. Shipping is fully coordinated &mdash; we handle outbound to the SOS and return delivery to you. Your confirmed shipping quote will be provided at booking based on exact carrier rates at that time.</p>
+    <p class="step-desc">Select your region first, then your preferred delivery speed. Shipping is fully coordinated &mdash; we handle outbound to the SOS and return delivery to you. Domestic return shipping is $25 USPS or $35 FedEx &middot; UPS; international is a flat $150.</p>
 
     <div class="field">
       <label>Delivery Region</label>
@@ -435,17 +435,17 @@ body{padding-bottom:64px}
       <div class="speed-grid" id="speedGrid">
         <div class="speed-card selected" onclick="selectSpeed('standard',this)">
           <div class="speed-card-title">Standard</div>
-          <div class="speed-card-sub" id="speedSubStd">2-3 business days</div>
+          <div class="speed-card-sub" id="speedSubStd">USPS &middot; 2&ndash;3 business days</div>
           <div class="speed-card-price" id="speedPriceStd">&mdash;</div>
         </div>
         <div class="speed-card" onclick="selectSpeed('expedited',this)">
           <div class="speed-card-title">Expedited</div>
-          <div class="speed-card-sub" id="speedSubExp">Next business day</div>
+          <div class="speed-card-sub" id="speedSubExp">FedEx &middot; UPS &middot; next business day</div>
           <div class="speed-card-price" id="speedPriceExp">&mdash;</div>
         </div>
       </div>
       <div class="ship-confirm-note show" id="shipNote">
-        International shipping rates vary by exact destination, package weight, and carrier availability. The estimate shown reflects typical rates with a coordination fee. Your exact shipping cost will be confirmed before work begins.
+        International return shipping is a flat $150 and covers a standard document envelope. Oversized or multi-package shipments are quoted at intake.
       </div>
     </div>
   </div>
@@ -455,6 +455,11 @@ body{padding-bottom:64px}
   <div class="step-hdr"><span class="step-num" id="addonStepNum">04</span><span class="step-title">Add-Ons &amp; Special Requests</span></div>
   <div class="step-body">
     <div class="addon-grid">
+      <div class="addon-card" id="expediteCard" style="display:none">
+        <label><input type="checkbox" id="addonExpedite" onchange="recalc()">
+          <div><span class="addon-title">Priority Hand-Carried Handling</span><span class="addon-price">+$150 flat</span></div>
+        </label>
+      </div>
       <div class="addon-card">
         <label><input type="checkbox" id="addonRush" onchange="recalc()">
           <div><span class="addon-title">Rush &middot; Same-Day &middot; After-Hours &middot; Weekend</span><span class="addon-price">+$50 flat</span></div>
@@ -527,10 +532,10 @@ body{padding-bottom:64px}
 
 <div class="results-panel">
   <div class="results-card">
-    <!-- White Glove indicator appears when combo + translation -->
+    <!-- Executive Apostille indicator appears when combo + translation -->
     <div class="white-glove-indicator" id="whiteGloveIndicator">
       <div class="white-glove-label">Full Service</div>
-      <div class="white-glove-title">White Glove Package &mdash; Notarization + Translation + Apostille</div>
+      <div class="white-glove-title">Executive Service Package &mdash; Notarization + Translation + Apostille</div>
     </div>
 
     <div class="results-eyebrow">Your Estimate</div>
@@ -544,9 +549,8 @@ body{padding-bottom:64px}
     <div class="line-item" id="rTravelLine" style="display:none"><span class="li-label">Travel Fee</span><span class="li-val" id="rTravel">&mdash;</span></div>
     <div class="line-item" id="rShipOutLine"><span class="li-label">Outbound Shipping (SOS)</span><span class="li-val incl" id="rShipOut">Included</span></div>
     <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping</span><span class="li-val" id="rShipRet">&mdash;</span></div>
-    <div class="line-item" id="rExpediteLine" style="display:none"><span class="li-label">Expedited Handling (5-7 business days)</span><span class="li-val" id="rExpedite">+$150</span></div>
-    <div class="line-item" id="rIntlCoordLine" style="display:none"><span class="li-label">Intl. Coordination Fee</span><span class="li-val" id="rIntlCoord">+$20</span></div>
-    <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
+    <div class="line-item" id="rExpediteLine" style="display:none"><span class="li-label">Priority Hand-Carried Handling (5&ndash;7 business days)</span><span class="li-val" id="rExpedite">+$150</span></div>
+        <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
     <div class="line-item" id="rRushLine" style="display:none"><span class="li-label">Rush / After-Hours</span><span class="li-val" id="rRush">+$50</span></div>
     <div class="line-item" id="rPrintLine" style="display:none"><span class="li-label">Print / Copy / Scan</span><span class="li-val" id="rPrint">+$25</span></div>
     <div class="line-item" id="rCopiesLine" style="display:none"><span class="li-label">Certified Copies</span><span class="li-val" id="rCopies">&mdash;</span></div>
@@ -648,7 +652,7 @@ fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-f
 <script>
 // ─────────────────────────────────────────────────────────────────────────────
 // RATE CONFIG
-// WHITE GLOVE APOSTILLE (Aug 2026 model)
+// EXECUTIVE APOSTILLE (Aug 2026 model)
 // apo_tx: $400 first doc, all-inclusive of the $15 TX SOS fee | +$100 each additional
 // apo_oos (Federal authentication, US Dept of State): $600 first doc | +$100 each additional
 // combo (apostille + certified translation): $400 first doc | +$100 each additional
@@ -658,16 +662,16 @@ fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-f
 // Estate individual: $145 | Estate couple: $245 (saves $45)
 // Translation: Spanish $50/pg | Other $60/pg
 // Witness coordination: $30/witness (only when kristy coordinates; client-brought = free)
-// International orders include +$20 coordination fee
+// International return shipping: $150 flat rate (no separate coordination fee)
 // ─────────────────────────────────────────────────────────────────────────────
 const SVC_CONFIG = {
-  apo_tx:      { name:'White Glove Apostille - Texas',     base:400, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  apo_tx:      { name:'Executive Apostille - Texas',     base:400, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   apo_oos:     { name:'Federal Authentication - U.S. Dept. of State', base:600, sos:0, travel:false, shipOut:true, perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   mobile_std:  { name:'Mobile Notary - Standard',          base:75,  sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   mobile_loan: { name:'Mobile Notary - Loan Signing',      base:165, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   ron_std:     { name:'RON - Standard',                    base:75,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:true,  isTrans:false, isEstate:false },
   ron_loan:    { name:'RON - Loan Signing',                base:150, sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:true,  isTrans:false, isEstate:false },
-  combo:       { name:'White Glove Apostille + Translation', base:400, sos:0, travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:true,  isRon:false, isTrans:false, isEstate:false },
+  combo:       { name:'Executive Apostille + Certified Translation', base:400, sos:0, travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:true,  isRon:false, isTrans:false, isEstate:false },
   translation: { name:'Certified Translation',             base:50,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:true,  isEstate:false },
   estate:      { name:'Estate Planning Document Support',  base:145, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:true  },
   officiant:   { name:'Wedding Officiant',                 base:275, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false }
@@ -887,6 +891,7 @@ function recalc(){
   const comboTransOn = document.getElementById('comboIncludeTrans').checked;
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
+  const expedite= document.getElementById('addonExpedite').checked;
   const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const notTrans= document.getElementById('addonNotarizeTrans').checked;
@@ -927,7 +932,7 @@ function recalc(){
     svcFee = cfg.base;
   }
 
-  // Combo translation add-on (White Glove)
+  // Combo translation add-on (Executive Apostille)
   if(cfg.comboTrans && comboTransOn){
     const perPage = TRANS_PRICE[comboLang] || 50;
     transFee = perPage * comboTransPages;
@@ -941,7 +946,7 @@ function recalc(){
 
   const witnessFee = (cfg.witnessOpt && witnessNeed === 'coord') ? (WITNESS_FEE * witnessN) : 0;
 
-  const expediteFee = (cfg.isApostille && speed === 'expedited') ? EXPEDITED_HANDLING : 0;
+  const expediteFee = (cfg.isApostille && expedite) ? EXPEDITED_HANDLING : 0;
   const rushFee    = rush   ? 50   : 0;
   const printFee   = printing ? 25 : 0;
   const copiesFee  = copies ? 15 * copiesN : 0;
@@ -961,7 +966,7 @@ function recalc(){
   if(cfg.comboTrans && comboTransOn) nameLabel += ' + Translation';
   document.getElementById('rServiceName').textContent = nameLabel;
 
-  // White Glove indicator (combo + translation)
+  // Executive Apostille indicator (combo + translation)
   const whiteGloveOn = cfg.comboTrans && comboTransOn;
   document.getElementById('whiteGloveIndicator').classList.toggle('show', whiteGloveOn);
 
@@ -1004,6 +1009,8 @@ function recalc(){
   }
 
   show('rExpediteLine', expediteFee > 0);
+  document.getElementById('expediteCard').style.display = cfg.isApostille ? '' : 'none';
+  if(!cfg.isApostille) document.getElementById('addonExpedite').checked = false;
   show('rIntlCoordLine', intlCoord > 0);
 
   show('rWitnessLine', witnessFee > 0);
@@ -1044,6 +1051,7 @@ function buildQuoteSummary(){
   const comboTransOn = document.getElementById('comboIncludeTrans').checked;
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
+  const expedite= document.getElementById('addonExpedite').checked;
   const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
@@ -1070,7 +1078,7 @@ function buildQuoteSummary(){
 
   const lines = [];
   const isWhiteGlove = cfg.comboTrans && comboTransOn;
-  if(isWhiteGlove) lines.push('*** WHITE GLOVE PACKAGE - Notarization + Translation + Apostille ***');
+  if(isWhiteGlove) lines.push('*** EXECUTIVE APOSTILLE PACKAGE - Notarization + Translation + Apostille ***');
   lines.push('SERVICE: ' + svcName);
 
   if(cfg.isEstate){
@@ -1113,7 +1121,7 @@ function buildQuoteSummary(){
   }
 
   const addons = [];
-  if(cfg.isApostille && speed === 'expedited') addons.push('Expedited Handling, 5-7 business days (+$150)');
+  if(cfg.isApostille && expedite) addons.push('Priority Hand-Carried Handling, 5-7 business days (+$150)');
   if(rush)     addons.push('Rush / Same-Day / After-Hours / Weekend (+$50)');
   if(printing) addons.push('Print / Copy / Scan (+$25)');
   if(copies)  addons.push('Certified Copies x' + copiesN + ' (+$' + (copiesN*15) + ')');
@@ -1128,7 +1136,7 @@ function buildQuoteSummary(){
   if(cfg.isEstate) modalName += estateType === 'couple' ? ' - Couple' : ' - Individual';
   if(cfg.isTrans) modalName += ` (${transLang === 'spanish' ? 'Spanish' : 'Other'})`;
   if(cfg.isRon && signers > 1) modalName += ` (${signers} signers)`;
-  if(cfg.comboTrans && comboTransOn) modalName = 'White Glove: ' + modalName + ' + Translation';
+  if(cfg.comboTrans && comboTransOn) modalName = 'Executive Apostille: ' + modalName + ' + Translation';
 
   return { svcName: modalName, quoteAmt, summary: lines.join('\n') };
 }
