@@ -257,8 +257,8 @@ body{padding-bottom:64px}
       <label>Service Type</label>
       <select id="serviceType" onchange="onServiceChange()">
         <optgroup label="Apostille Services">
-          <option value="apo_tx">Texas Apostille Coordination</option>
-          <option value="apo_oos">Out-of-State Apostille Coordination</option>
+          <option value="apo_tx">Texas Executive Tier &mdash; Apostille</option>
+          <option value="apo_oos">Federal Executive Tier &mdash; U.S. Dept. of State</option>
         </optgroup>
         <optgroup label="Mobile Notary">
           <option value="mobile_std">Mobile Notary &mdash; Standard</option>
@@ -269,7 +269,7 @@ body{padding-bottom:64px}
           <option value="ron_loan">RON &mdash; Loan Signing</option>
         </optgroup>
         <optgroup label="Combined &amp; Specialty">
-          <option value="combo">Apostille + Notarization &mdash; Combo</option>
+          <option value="combo">Executive Apostille + Notarization &mdash; Combined</option>
           <option value="translation">Certified Translation</option>
           <option value="estate">Estate Planning Document Support</option>
           <option value="officiant">Wedding Officiant</option>
@@ -431,7 +431,7 @@ body{padding-bottom:64px}
     </div>
 
     <div class="field" id="speedWrap" style="display:none">
-      <label>Delivery Speed</label>
+      <label>Return Carrier &amp; Speed</label>
       <div class="speed-grid" id="speedGrid">
         <div class="speed-card selected" onclick="selectSpeed('standard',this)">
           <div class="speed-card-title">Standard</div>
@@ -445,8 +445,12 @@ body{padding-bottom:64px}
         </div>
       </div>
       <div class="ship-confirm-note show" id="shipNote">
-        International return shipping is a flat $150 and covers a standard document envelope. Oversized or multi-package shipments are quoted at intake.
+        Domestic return shipping: $25 USPS or $35 FedEx &middot; UPS. Choose the carrier that matches your deadline.
       </div>
+    </div>
+
+    <div class="ship-confirm-note show" id="intlFlatNote" style="display:none">
+      International return shipping is a flat <strong>$150</strong>, tracked, and covers a standard document envelope. Oversized or multi-package shipments are quoted at intake.
     </div>
   </div>
 </div>
@@ -455,6 +459,11 @@ body{padding-bottom:64px}
   <div class="step-hdr"><span class="step-num" id="addonStepNum">04</span><span class="step-title">Add-Ons &amp; Special Requests</span></div>
   <div class="step-body">
     <div class="addon-grid">
+      <div class="addon-card" id="transCoordCard">
+        <label><input type="checkbox" id="addonTransCoord" onchange="recalc()">
+          <div><span class="addon-title">Certified Translation Coordination</span><span class="addon-price">$50&ndash;$60 / page</span></div>
+        </label>
+      </div>
       <div class="addon-card" id="expediteCard" style="display:none">
         <label><input type="checkbox" id="addonExpedite" onchange="recalc()">
           <div><span class="addon-title">Priority Hand-Carried Handling</span><span class="addon-price">+$150 flat</span></div>
@@ -480,6 +489,10 @@ body{padding-bottom:64px}
           <div><span class="addon-title">Notarize Translation</span><span class="addon-price">+$10</span></div>
         </label>
       </div>
+    </div>
+
+    <div class="hint" id="transCoordHint" style="margin-top:12px;display:none">
+      Certified translation runs $50&ndash;$60 per page depending on target language. Kristy reviews your documents, confirms the exact page count and rate in writing, and manages the translation order end to end.
     </div>
 
     <div class="field-row" id="copiesRow" style="margin-top:14px;display:none">
@@ -549,6 +562,7 @@ body{padding-bottom:64px}
     <div class="line-item" id="rTravelLine" style="display:none"><span class="li-label">Travel Fee</span><span class="li-val" id="rTravel">&mdash;</span></div>
     <div class="line-item" id="rShipOutLine"><span class="li-label">Outbound Shipping (SOS)</span><span class="li-val incl" id="rShipOut">Included</span></div>
     <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping</span><span class="li-val" id="rShipRet">&mdash;</span></div>
+    <div class="line-item" id="rTransCoordLine" style="display:none"><span class="li-label">Translation Coordination</span><span class="li-val" id="rTransCoord">$50&ndash;$60 / page</span></div>
     <div class="line-item" id="rExpediteLine" style="display:none"><span class="li-label">Priority Hand-Carried Handling (5&ndash;7 business days)</span><span class="li-val" id="rExpedite">+$150</span></div>
         <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
     <div class="line-item" id="rRushLine" style="display:none"><span class="li-label">Rush / After-Hours</span><span class="li-val" id="rRush">+$50</span></div>
@@ -665,8 +679,8 @@ fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-f
 // International return shipping: $150 flat rate (no separate coordination fee)
 // ─────────────────────────────────────────────────────────────────────────────
 const SVC_CONFIG = {
-  apo_tx:      { name:'Executive Apostille - Texas',     base:400, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
-  apo_oos:     { name:'Federal Authentication - U.S. Dept. of State', base:600, sos:0, travel:false, shipOut:true, perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  apo_tx:      { name:'Texas Executive Tier - Apostille',     base:400, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  apo_oos:     { name:'Federal Executive Tier - U.S. Dept. of State', base:600, sos:0, travel:false, shipOut:true, perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   mobile_std:  { name:'Mobile Notary - Standard',          base:75,  sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   mobile_loan: { name:'Mobile Notary - Loan Signing',      base:165, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   ron_std:     { name:'RON - Standard',                    base:75,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:true,  isTrans:false, isEstate:false },
@@ -752,7 +766,7 @@ function selectRegion(val, el){
   document.querySelectorAll('.region-pill').forEach(p => p.classList.remove('selected'));
   el.classList.add('selected');
   show('speedWrap', val !== 'pickup');
-  document.getElementById('shipNote').classList.toggle('show', isInternational(val));
+  document.getElementById('shipNote').classList.toggle('show', val === 'dom');
   updateSpeedLabels();
   recalc();
 }
@@ -812,9 +826,24 @@ function onComboTransToggle(){
 
 function updateSpeedLabels(){
   const rates = SHIP[region] || { standard:0, expedited:0 };
-  const isDom  = region === 'dom';
-  document.getElementById('speedSubStd').textContent  = isDom ? '2-3 business days' : '3-7 business days (Intl Economy)';
-  document.getElementById('speedSubExp').textContent  = isDom ? 'Next business day'  : '1-3 business days (Intl Priority)';
+  const isDom = region === 'dom';
+  const intl  = isInternational(region);
+
+  // International return shipping is a single flat rate, so there is no speed
+  // choice to present. Force 'standard' and hide the selector.
+  if(intl){
+    speed = 'standard';
+    const cards = document.querySelectorAll('.speed-card');
+    cards.forEach((c,i) => c.classList.toggle('selected', i === 0));
+    show('speedWrap', false);
+    show('intlFlatNote', true);
+  } else {
+    show('intlFlatNote', false);
+    show('speedWrap', region !== 'pickup');
+  }
+
+  document.getElementById('speedSubStd').textContent = isDom ? 'USPS - 2-3 business days' : 'Standard';
+  document.getElementById('speedSubExp').textContent = isDom ? 'FedEx / UPS - next business day' : 'Expedited';
   document.getElementById('speedPriceStd').textContent = rates.standard  > 0 ? fmt(rates.standard)  : '';
   document.getElementById('speedPriceExp').textContent = rates.expedited > 0 ? fmt(rates.expedited) : '';
 }
@@ -824,7 +853,7 @@ function onServiceChange(){
   const cfg = SVC_CONFIG[key];
 
   // Standard docCount shown for apostille and combo services
-  show('docCountWrap',    cfg.perDoc && !cfg.isTrans);
+  show('docCountWrap',    (cfg.perDoc || cfg.addlDoc) && !cfg.isTrans);
 
   // Translation-specific fields (standalone only)
   show('transLangWrap',   cfg.isTrans);
@@ -857,6 +886,11 @@ function onServiceChange(){
   // Notarize translation card hidden when service IS translation
   show('notarizeTransCard', !cfg.isTrans);
 
+  // Translation coordination is a flag for review, not a price. Hide it when
+  // translation is already the service or is bundled into the combined tier.
+  show('transCoordCard', !cfg.isTrans && !cfg.comboTrans);
+  if(cfg.isTrans || cfg.comboTrans) document.getElementById('addonTransCoord').checked = false;
+
   // Reset witness state when switching to a service that doesn't use it
   if(!cfg.witnessOpt){
     document.getElementById('witnessNeed').value = 'none';
@@ -866,9 +900,13 @@ function onServiceChange(){
 
   document.getElementById('docCountLabel').textContent =
     key === 'combo' ? 'Number of Documents (Apostille)' : 'Number of Documents';
+  const DOC_HINTS = {
+    apo_tx:  'First document $400, all-inclusive of the Texas SOS filing fee. Each additional document in the same submission is $100.',
+    apo_oos: 'First document $600, inclusive of the required state-level certification step. Each additional document in the same federal submission is $100.',
+    combo:   'Each document requiring both notarization and an apostille certificate. First document $400; each additional is $100.'
+  };
   document.getElementById('docHint').textContent =
-    key === 'combo' ? 'Each document requiring both notarization and an apostille certificate.'
-                    : 'Each document requiring an apostille certificate from the Secretary of State.';
+    DOC_HINTS[key] || 'Each document requiring an apostille certificate from the Secretary of State.';
 
   const hasTravel   = cfg.travel;
   const hasShipping = cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(key);
@@ -892,6 +930,7 @@ function recalc(){
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
   const expedite= document.getElementById('addonExpedite').checked;
+  const transCoord = document.getElementById('addonTransCoord').checked;
   const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const notTrans= document.getElementById('addonNotarizeTrans').checked;
@@ -1009,6 +1048,8 @@ function recalc(){
   }
 
   show('rExpediteLine', expediteFee > 0);
+  show('rTransCoordLine', transCoord);
+  show('transCoordHint', transCoord);
   document.getElementById('expediteCard').style.display = cfg.isApostille ? '' : 'none';
   if(!cfg.isApostille) document.getElementById('addonExpedite').checked = false;
   show('rIntlCoordLine', intlCoord > 0);
@@ -1052,6 +1093,7 @@ function buildQuoteSummary(){
   const zone    = document.getElementById('locationZone').value;
   const rush    = document.getElementById('addonRush').checked;
   const expedite= document.getElementById('addonExpedite').checked;
+  const transCoord = document.getElementById('addonTransCoord').checked;
   const printing= document.getElementById('addonPrint').checked;
   const copies  = document.getElementById('addonCertCopies').checked;
   const copiesN = parseInt(document.getElementById('certCopiesCount').value)||1;
@@ -1102,10 +1144,8 @@ function buildQuoteSummary(){
     lines.push('SERVICE LOCATION: ' + (zoneLabels[zone]||zone));
 
   if(region !== 'pickup' && (cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(svcKey))){
-    lines.push('RETURN SHIPPING: ' + (regionLabels[region]||region) + ' - ' + speedLabels[speed]);
-    if(isInternational(region)){
-      lines.push('INTL COORDINATION FEE: +$' + INTL_COORD_FEE);
-    }
+    lines.push('RETURN SHIPPING: ' + (regionLabels[region]||region) +
+      (isInternational(region) ? ' - flat rate, tracked' : ' - ' + (speedLabels[speed]||speed)));
   } else if(cfg.shipOut || ['apo_tx','apo_oos','combo'].includes(svcKey)) {
     lines.push('RETURN SHIPPING: In-Person Pickup');
   }
@@ -1122,6 +1162,7 @@ function buildQuoteSummary(){
 
   const addons = [];
   if(cfg.isApostille && expedite) addons.push('Priority Hand-Carried Handling, 5-7 business days (+$150)');
+  if(transCoord) addons.push('Certified Translation Coordination - $50-$60 per page by target language; final page count and rate confirmed after document review');
   if(rush)     addons.push('Rush / Same-Day / After-Hours / Weekend (+$50)');
   if(printing) addons.push('Print / Copy / Scan (+$25)');
   if(copies)  addons.push('Certified Copies x' + copiesN + ' (+$' + (copiesN*15) + ')');
