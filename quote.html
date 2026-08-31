@@ -279,7 +279,7 @@ body{padding-bottom:64px}
     </div>
 
     <div class="hint" id="batchedNotice" style="display:none;border-left:2px solid var(--gold,#B8860B);padding-left:12px;margin-bottom:16px">
-      <strong>Mail-in tier.</strong> You mail or drop off your original documents, and they are filed in the next scheduled Secretary of State submission. Standard processing is 10&ndash;15 business days. Document retrieval from the issuing institution and priority hand-carried handling are not available at this tier &mdash; those are part of the Texas Executive Tier.
+      <strong>Mail-in tier.</strong> You mail or drop off your original documents, and they are filed in the next scheduled Secretary of State submission. Standard processing is 10&ndash;15 business days, and notarization is included where your document needs it. Document retrieval from the issuing institution is part of the Texas Executive Tier and is not available here. Priority hand-carried handling <strong>is</strong> available on this tier as an add-on if you need a dedicated submission run.
     </div>
 
     <div class="field" id="docCountWrap">
@@ -403,7 +403,7 @@ body{padding-bottom:64px}
 <div class="step" id="shippingStep">
   <div class="step-hdr"><span class="step-num" id="shipStepNum">03</span><span class="step-title">Document Destination &amp; Shipping</span></div>
   <div class="step-body">
-    <p class="step-desc">Select your region first, then your preferred delivery speed. Shipping is fully coordinated &mdash; we handle outbound to the SOS and return delivery to you. Domestic return shipping is $25 USPS or $35 FedEx &middot; UPS; international is a flat $150.</p>
+    <p class="step-desc">Select your region first, then your preferred delivery speed. Shipping is fully coordinated &mdash; we handle outbound to the SOS and return delivery to you. Return shipping is billed at carrier cost plus a flat $25 handling charge, the same basis whether your documents are going across town or overseas. The carrier figures below are estimates; the exact cost is confirmed on your invoice before anything ships.</p>
 
     <div class="field">
       <label>Delivery Region</label>
@@ -450,12 +450,12 @@ body{padding-bottom:64px}
         </div>
       </div>
       <div class="ship-confirm-note show" id="shipNote">
-        Domestic return shipping: $25 USPS or $35 FedEx &middot; UPS. Choose the carrier that matches your deadline.
+        Carrier cost is estimated here and billed at actual cost, plus a flat $25 handling charge. Choose the carrier that matches your deadline.
       </div>
     </div>
 
     <div class="ship-confirm-note show" id="intlFlatNote" style="display:none">
-      International return shipping is a flat <strong>$150</strong>, tracked, and covers a standard document envelope. Oversized or multi-package shipments are quoted at intake.
+      International return shipping is tracked and billed at <strong>carrier cost plus a flat $25 handling charge</strong> &mdash; the same basis as domestic. The figure shown is an estimate for a standard document envelope; the exact carrier cost is confirmed on your invoice. Oversized or multi-package shipments are quoted at intake.
     </div>
   </div>
 </div>
@@ -586,7 +586,8 @@ body{padding-bottom:64px}
     <div class="line-item" id="rCoupleLine" style="display:none"><span class="li-label">Couples Discount</span><span class="li-val savings" id="rCoupleDisc">&minus;$45 saved</span></div>
     <div class="line-item" id="rTravelLine" style="display:none"><span class="li-label">Travel Fee</span><span class="li-val" id="rTravel">&mdash;</span></div>
     <div class="line-item" id="rShipOutLine"><span class="li-label">Outbound Shipping (SOS)</span><span class="li-val incl" id="rShipOut">Included</span></div>
-    <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping</span><span class="li-val" id="rShipRet">&mdash;</span></div>
+    <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping (est. carrier cost)</span><span class="li-val" id="rShipRet">&mdash;</span></div>
+    <div class="line-item" id="rShipHandlingLine"><span class="li-label">Shipping Handling</span><span class="li-val" id="rShipHandling">+$25</span></div>
     <div class="line-item" id="rTransCoordLine" style="display:none"><span class="li-label">Translation Coordination</span><span class="li-val" id="rTransCoord">+$65</span></div>
     <div class="line-item" id="rExpediteLine" style="display:none"><span class="li-label">Priority Hand-Carried Handling (5&ndash;7 business days)</span><span class="li-val" id="rExpedite">+$150</span></div>
         <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
@@ -610,7 +611,7 @@ body{padding-bottom:64px}
     <a href="tel:2106289991" class="btn-contact">Questions? Call (210) 628-9991</a>
 
     <div class="results-disclaimer">
-      This estimate is based on typical parameters for the selected service. Your confirmed quote will be provided in writing before any work begins and may reflect exact document count, destination, and scheduling. Shipping costs for international orders are estimated and confirmed at booking. &middot; <em>Notarized Right. The First Time. Every Time.</em>
+      This estimate is based on typical parameters for the selected service. Your confirmed quote will be provided in writing before any work begins and may reflect exact document count, destination, and scheduling. Return shipping is billed at carrier cost plus a flat $25 handling charge; the carrier figure shown is an estimate and is confirmed at actual cost on your invoice. &middot; <em>Notarized Right. The First Time. Every Time.</em>
     </div>
   </div>
 </div>
@@ -724,17 +725,25 @@ const TRANS_PRICE = { spanish: 50, other: 60 };
 // NOT per page. Idiomatic's per-page charge is passed through separately at cost.
 const TRANS_COORD_FEE = 65;
 const TRAVEL_FEES = { local:35, mid:55, far:75, extended:null };
-// Domestic: USPS $25 / FedEx-UPS $35. International: flat rate confirmed at intake.
+// RETURN SHIPPING (Aug 2026 model): billed at carrier cost plus a flat $25
+// handling charge, identical basis domestic and international. The figures below
+// are ESTIMATED CARRIER COSTS shown to the client for planning; the invoice bills
+// actual carrier cost + SHIP_HANDLING. Replace these six numbers with your real
+// carrier rates -- they are the only place shipping estimates are defined.
+const SHIP_HANDLING = 25;
 const SHIP = {
   pickup:  { standard:0,   expedited:0   },
-  dom:     { standard:25,  expedited:35  },
-  latam:   { standard:150, expedited:150 },
-  europe:  { standard:150, expedited:150 },
-  asia:    { standard:150, expedited:150 },
-  other:   { standard:150, expedited:150 }
+  dom:     { standard:12,  expedited:32  },
+  latam:   { standard:65,  expedited:65  },
+  europe:  { standard:75,  expedited:75  },
+  asia:    { standard:85,  expedited:85  },
+  other:   { standard:95,  expedited:95  }
 };
 const INTL_COORD_FEE = 0;
-const EXPEDITED_HANDLING = 150;   // flat, per submission, apostille family only
+const EXPEDITED_HANDLING = 150;   // flat, per submission, available on EVERY apostille tier.
+// Buys a dedicated submission run scheduled within 2 business days, target 5-7
+// business days. Separate from the Executive tier, which governs HOW a document is
+// filed (in person in Austin) rather than WHEN.
 const WITNESS_FEE = 30;
 
   // Maps each quote service to a router tag → Gmail INTAKE label
@@ -883,8 +892,10 @@ function updateSpeedLabels(){
 
   document.getElementById('speedSubStd').textContent = isDom ? 'USPS - 2-3 business days' : 'Standard';
   document.getElementById('speedSubExp').textContent = isDom ? 'FedEx / UPS - next business day' : 'Expedited';
-  document.getElementById('speedPriceStd').textContent = rates.standard  > 0 ? fmt(rates.standard)  : '';
-  document.getElementById('speedPriceExp').textContent = rates.expedited > 0 ? fmt(rates.expedited) : '';
+  // Speed cards show what the client actually pays for that choice: estimated
+  // carrier cost plus the flat handling charge.
+  document.getElementById('speedPriceStd').textContent = rates.standard  > 0 ? '~' + fmt(rates.standard  + SHIP_HANDLING) : '';
+  document.getElementById('speedPriceExp').textContent = rates.expedited > 0 ? '~' + fmt(rates.expedited + SHIP_HANDLING) : '';
 }
 
 function onServiceChange(){
@@ -941,9 +952,9 @@ function onServiceChange(){
   document.getElementById('docCountLabel').textContent =
     key === 'combo' ? 'Number of Documents (Apostille)' : 'Number of Documents';
   const DOC_HINTS = {
-    apo_std: 'First document $225, all-inclusive of the Texas SOS filing fee. Each additional document in the same submission is $75.',
-    apo_tx:  'First document $400, all-inclusive of the Texas SOS filing fee. Each additional document in the same submission is $100.',
-    apo_oos: 'First document $600, inclusive of the required state-level certification step. Each additional document in the same federal submission is $100.',
+    apo_std: 'First document $225, all-inclusive of the Texas SOS filing fee and of notarization where required. Each additional document in the same submission is $75.',
+    apo_tx:  'First document $400, all-inclusive of the Texas SOS filing fee and of notarization where required. Each additional document in the same submission is $100.',
+    apo_oos: 'First document $600, inclusive of the required state-level certification step and of notarization where required. Each additional document in the same federal submission is $100.',
     combo:   'Each document requiring both notarization and an apostille certificate. First document $400; each additional is $100.'
   };
   document.getElementById('docHint').textContent =
@@ -1032,14 +1043,16 @@ function recalc(){
   const sosFee = cfg.sos * (cfg.perDoc ? docs : 1);
   const travelFee = cfg.travel ? (TRAVEL_FEES[zone]||0) : 0;
   const shipRates = SHIP[region] || {standard:0, expedited:0};
-  const shipRetFee = shipRates[speed] || 0;
+  const shipCarrier = shipRates[speed] || 0;
+  const shipHandling = (region !== 'pickup' && shipCarrier > 0) ? SHIP_HANDLING : 0;
+  const shipRetFee = shipCarrier + shipHandling;
   const intlCoord = isInternational(region) ? INTL_COORD_FEE : 0;
 
   const witnessFee = (cfg.witnessOpt && witnessNeed === 'coord') ? (WITNESS_FEE * witnessN) : 0;
 
-  // Priority handling is unavailable on the batched tier by design: that tier is
-  // priced on submissions accumulating into one Austin run.
-  const expediteFee = (cfg.isApostille && !cfg.isBatched && expedite) ? EXPEDITED_HANDLING : 0;
+  // Priority handling is available on every apostille tier. On the batched tier it
+  // is what buys the dedicated run instead of waiting for submissions to accumulate.
+  const expediteFee = (cfg.isApostille && expedite) ? EXPEDITED_HANDLING : 0;
   const rushFee    = rush   ? 50   : 0;
   const printFee   = printing ? 25 : 0;
   const copiesFee  = copies ? 15 * copiesN : 0;
@@ -1098,18 +1111,18 @@ function recalc(){
 
   const showShipRet = region !== 'pickup' && (cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(key));
   show('rShipRetLine', showShipRet);
+  show('rShipHandlingLine', showShipRet && shipHandling > 0);
   if(showShipRet){
-    const isIntl = isInternational(region);
-    document.getElementById('rShipRet').textContent = isIntl
-      ? `~${fmt(shipRetFee)} (est.)` : fmt(shipRetFee);
-    document.getElementById('rShipRet').className = 'li-val' + (isIntl?' incl':'');
+    document.getElementById('rShipRet').textContent = `~${fmt(shipCarrier)} (est.)`;
+    document.getElementById('rShipRet').className = 'li-val incl';
+    document.getElementById('rShipHandling').textContent = `+${fmt(shipHandling)}`;
   }
 
   show('rExpediteLine', expediteFee > 0);
   show('rTransCoordLine', transCoordFee > 0);
   document.getElementById('rTransCoord').textContent = fmt(transCoordFee);
   show('transCoordPanel', transCoord);
-  const expediteAvailable = cfg.isApostille && !cfg.isBatched;
+  const expediteAvailable = cfg.isApostille;
   document.getElementById('expediteCard').style.display = expediteAvailable ? '' : 'none';
   if(!expediteAvailable) document.getElementById('addonExpedite').checked = false;
   show('rIntlCoordLine', intlCoord > 0);
@@ -1206,7 +1219,9 @@ function buildQuoteSummary(){
 
   if(region !== 'pickup' && (cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(svcKey))){
     lines.push('RETURN SHIPPING: ' + (regionLabels[region]||region) +
-      (isInternational(region) ? ' - flat rate, tracked' : ' - ' + (speedLabels[speed]||speed)));
+      (isInternational(region) ? ' - tracked' : ' - ' + (speedLabels[speed]||speed)) +
+      ' - est. carrier cost $' + (SHIP[region]||{})[speed] + ' plus $' + SHIP_HANDLING +
+      ' handling (carrier cost billed at actual on invoice)');
   } else if(cfg.shipOut || ['apo_std','apo_tx','apo_oos','combo'].includes(svcKey)) {
     lines.push('RETURN SHIPPING: In-Person Pickup');
   }
@@ -1222,7 +1237,7 @@ function buildQuoteSummary(){
   }
 
   const addons = [];
-  if(cfg.isApostille && !cfg.isBatched && expedite) addons.push('Priority Hand-Carried Handling, 5-7 business days (+$150)');
+  if(cfg.isApostille && expedite) addons.push('Priority Hand-Carried Handling, 5-7 business days (+$150)');
   if(transCoord) addons.push('Certified Translation - ' + (coordLang === 'spanish' ? 'Spanish' : 'Other Language') +
     ', ' + coordTransPages + ' page(s) at $' + (coordLang === 'spanish' ? 50 : 60) + '/page, plus $' + TRANS_COORD_FEE +
     ' coordination fee (page count confirmed after document review)');
