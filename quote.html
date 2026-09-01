@@ -189,6 +189,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;border-b
 .btn-book{display:block;background:#B8860B;color:#0d1f3c;text-decoration:none;text-align:center;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:16px;margin-top:16px;transition:background .2s;border:none;cursor:pointer;width:100%;font-family:'Outfit',sans-serif}
 .btn-book:hover{background:#d4a017}
 .btn-book:disabled{background:rgba(184,134,11,.5);cursor:not-allowed}
+.quote-ref{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;margin-top:12px}
+.quote-ref strong{color:#B8860B;letter-spacing:2px}
+.btn-alt{display:block;width:100%;background:transparent;color:#B8860B;border:1px solid rgba(184,134,11,.45);text-align:center;font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;padding:14px;margin-top:10px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.btn-alt:hover{background:rgba(184,134,11,.12);border-color:#B8860B}
+.cta-note{font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.5);text-align:center;margin-top:10px}
 .btn-contact{display:block;text-align:center;font-size:12px;font-weight:400;color:rgba(255,255,255,.3);padding:10px;margin-top:8px;border:1px solid rgba(255,255,255,.08);text-decoration:none;transition:all .2s}
 .btn-contact:hover{color:#B8860B;border-color:rgba(184,134,11,.35)}
 .results-disclaimer{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);font-size:10px;font-weight:300;color:rgba(255,255,255,.18);line-height:1.7}
@@ -224,7 +229,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;border-b
 .sticky-mobile-cta{display:none}
 @media(max-width:768px){
 .sticky-mobile-cta{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:998;background:#0d1f3c;border-top:1px solid rgba(184,134,11,.3);padding:10px;gap:8px;box-shadow:0 -4px 12px rgba(0,0,0,.15)}
-.sticky-mobile-cta a{flex:1;text-align:center;padding:12px 8px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px}
+.sticky-mobile-cta a,.sticky-mobile-cta button{flex:1;font-family:inherit;border:none;cursor:pointer;text-align:center;padding:12px 8px;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;text-decoration:none;border-radius:2px}
 .sticky-mobile-cta .sticky-call{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
 .sticky-mobile-cta .sticky-book{background:#B8860B;color:#0d1f3c}
 body{padding-bottom:64px}
@@ -608,10 +613,13 @@ body{padding-bottom:64px}
     </div>
 
     <button id="bookBtn" class="btn-book" type="button">Book This Service</button>
+    <button id="altBtn" class="btn-alt" type="button">Email me this quote instead</button>
+    <div id="ctaNote" class="cta-note"></div>
+    <div id="quoteRefBox" class="quote-ref">Quote reference <strong id="quoteRefVal">&mdash;</strong></div>
     <a href="tel:2106289991" class="btn-contact">Questions? Call (210) 628-9991</a>
 
     <div class="results-disclaimer">
-      This estimate is based on typical parameters for the selected service. Your confirmed quote will be provided in writing before any work begins and may reflect exact document count, destination, and scheduling. Return shipping is billed at carrier cost plus a flat $25 handling charge; the carrier figure shown is an estimate and is confirmed at actual cost on your invoice. &middot; <em>Notarized Right. The First Time. Every Time.</em>
+      This estimate is based on typical parameters for the selected service. Your confirmed quote will be provided in writing before any work begins and may reflect exact document count, destination, and scheduling. Return shipping is billed at carrier cost plus a flat $25 handling charge; the carrier figure shown is an estimate and is confirmed at actual cost on your written quote. Apostille orders are paid once, as a single itemized invoice issued after your documents are reviewed. &middot; <em>Notarized Right. The First Time. Every Time.</em>
     </div>
   </div>
 </div>
@@ -641,6 +649,7 @@ body{padding-bottom:64px}
         <input type="hidden" name="subject" id="quoteFormSubject" value="Quote Request — Texas Notary Kristy">
         <input type="hidden" name="from_name" value="Texas Notary Kristy Quote Estimator">
         <input type="hidden" name="quote_summary" id="quoteFormSummary" value="">
+        <input type="hidden" name="quote_reference" id="quoteFormRef" value="">
         <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
 
         <div class="field-row">
@@ -679,7 +688,7 @@ body{padding-bottom:64px}
 
 <div class="sticky-mobile-cta">
 <a href="tel:2106289991" class="sticky-call">Call Now</a>
-<a href="/contact.html" class="sticky-book">Email Quote</a>
+<button type="button" class="sticky-book" id="stickyQuoteBtn">Email Quote</button>
 </div>
 
 <div id="site-footer"></div>
@@ -756,6 +765,12 @@ const SERVICE_TAG_MAP = {
 
   // Maps each quote service to its Google Calendar appointment schedule.
   // null = no self-serve schedule; Kristy follows up by email instead.
+// Apostille has no booking deposit: documents are reviewed first, then a single
+// written quote is issued and paid as ONE itemized invoice. Nothing is charged
+// at the estimator, and the client is never billed twice.
+const APOSTILLE_KEYS = ['apo_std','apo_tx','apo_oos','combo'];
+const isApostilleKey = k => APOSTILLE_KEYS.indexOf(k) !== -1;
+
 const BOOKING_URL_MAP = {
   mobile_std:  'https://calendar.app.google/AJhpzGRf5ZpFbXu7A',
   mobile_loan: 'https://calendar.app.google/F3GgqTiQebre4hj46',
@@ -1257,6 +1272,9 @@ function buildQuoteSummary(){
   if(cfg.isRon && signers > 1) modalName += ` (${signers} signers)`;
   if(cfg.comboTrans && comboTransOn) modalName = 'Executive Apostille: ' + modalName + ' + Translation';
 
+  // Keep the call-to-action buttons in step with the selected service.
+  if(typeof refreshCTAs === 'function') refreshCTAs();
+
   return { svcName: modalName, quoteAmt, summary: lines.join('\n') };
 }
 
@@ -1274,8 +1292,9 @@ function openBookModal(){
   document.getElementById('modalQuoteMeta').textContent = 'Estimated total based on your selections. Confirmed in writing before work begins.';
   const routeKey = document.getElementById('serviceType').value;
   const routeTag = SERVICE_TAG_MAP[routeKey] || 'GNW';
-  document.getElementById('quoteFormSubject').value = '[' + routeTag + '] Quote Request — ' + q.svcName + ' (' + q.quoteAmt + ')';
-  document.getElementById('quoteFormSummary').value = q.summary;
+  document.getElementById('quoteFormSubject').value = '[' + routeTag + '] Quote Request ' + QUOTE_REF + ' — ' + q.svcName + ' (' + q.quoteAmt + ')';
+  document.getElementById('quoteFormSummary').value = 'Quote reference: ' + QUOTE_REF + '\n\n' + q.summary;
+  document.getElementById('quoteFormRef').value = QUOTE_REF;
   bookModal.classList.add('open');
   document.body.style.overflow = 'hidden';
   setTimeout(()=>document.getElementById('qf_first').focus(), 100);
@@ -1286,7 +1305,127 @@ function closeBookModal(){
   document.body.style.overflow = '';
 }
 
-bookBtn.addEventListener('click', openBookModal);
+// ---------------------------------------------------------------------------
+// QUOTE REFERENCE + SILENT CAPTURE
+// One reference code per visit. It travels on BOTH paths -- the written-quote
+// form and the direct booking -- so a Calendar booking can be matched back to
+// the selections the client made in the estimator.
+//
+// When someone books directly, their selections would otherwise be lost: the
+// Calendar page collects a name and an email and nothing else. So the moment
+// they click through to the calendar we post a snapshot of the quote on their
+// behalf. They type nothing extra; the data still arrives.
+// ---------------------------------------------------------------------------
+const W3F_KEY = 'a3c6f4ed-406c-4167-90de-8d815ba16898';
+
+const QUOTE_REF = (function(){
+  const c = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';   // no I/O/0/1 -- read aloud safely
+  let out = '';
+  for(let i = 0; i < 4; i++) out += c[Math.floor(Math.random() * c.length)];
+  return 'NBK-' + out;
+})();
+
+let snapshotSent = false;
+
+function sendBookingSnapshot(){
+  if(snapshotSent) return;              // one per visit, not one per click
+  snapshotSent = true;
+  const q        = buildQuoteSummary();
+  const routeKey = document.getElementById('serviceType').value;
+  const routeTag = SERVICE_TAG_MAP[routeKey] || 'GNW';
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify({
+      access_key: W3F_KEY,
+      subject: '[' + routeTag + '] BOOKING IN PROGRESS ' + QUOTE_REF + ' — ' + q.svcName + ' (' + q.quoteAmt + ')',
+      from_name: 'Texas Notary Kristy Quote Estimator',
+      quote_reference: QUOTE_REF,
+      capture_type: 'Client went straight to the calendar. Name and email arrive with the Calendar booking; match on this reference or on the timestamp.',
+      quote_summary: q.summary
+    })
+  }).catch(function(){ /* never block the booking on this */ });
+}
+
+// ---------------------------------------------------------------------------
+// CTA ROUTING -- two doors, never both.
+// A client who is ready to book goes STRAIGHT to the calendar, which collects
+// their name and email itself. Sending them through the quote form first made
+// them type the same details twice. The quote form is now the alternative door,
+// for people who want the estimate in writing before committing to a time.
+// ---------------------------------------------------------------------------
+const altBtn  = document.getElementById('altBtn');
+const ctaNote = document.getElementById('ctaNote');
+let ctaMode = 'quote';        // 'book' | 'quote' | 'quote_only'
+let ctaBookingUrl = null;
+
+function refreshCTAs(){
+  const refVal = document.getElementById('quoteRefVal');
+  const refBox = document.getElementById('quoteRefBox');
+  if(refVal) refVal.textContent = QUOTE_REF;
+  const routeKey = document.getElementById('serviceType').value;
+  if(refBox) refBox.style.display = routeKey ? 'block' : 'none';
+  if(!routeKey){
+    ctaMode = 'quote'; ctaBookingUrl = null;
+    bookBtn.textContent = 'Book This Service';
+    altBtn.style.display = 'none';
+    ctaNote.textContent = '';
+    return;
+  }
+  const bKey    = bookingKeyFor(routeKey);
+  const url     = BOOKING_URL_MAP[bKey] || null;
+  const deposit = BOOKING_DEPOSIT[bKey] || null;
+  ctaBookingUrl = url;
+
+  if(isApostilleKey(bKey)){
+    // Apostille is never booked-and-paid. The written quote IS the path.
+    ctaMode = 'quote';
+    bookBtn.textContent = 'Request Your Written Quote';
+    altBtn.style.display = url ? 'block' : 'none';
+    altBtn.textContent = 'Or book a free consultation';
+    ctaNote.innerHTML = 'Nothing is charged now. After I review your documents you receive one itemized written quote, paid as a single invoice.';
+  } else if(url){
+    // Bookable service: primary CTA goes straight to the calendar.
+    ctaMode = 'book';
+    bookBtn.textContent = 'Book This Service';
+    altBtn.style.display = 'block';
+    altBtn.textContent = 'Email me this quote instead';
+    ctaNote.innerHTML = (deposit
+      ? 'Booking takes your details once. Only the ' + deposit + ' service &amp; coordination fee is charged at booking; travel and add-ons are invoiced after your appointment.'
+      : 'Booking takes your details once. No payment is collected to book.')
+      + ' Your selections come through with your quote reference below.';
+  } else {
+    // No calendar for this service (translation, officiant) -- quote only.
+    ctaMode = 'quote_only';
+    bookBtn.textContent = 'Request Your Written Quote';
+    altBtn.style.display = 'none';
+    ctaNote.innerHTML = 'This service is quoted individually. We respond within one business day.';
+  }
+}
+
+const stickyQuoteBtn = document.getElementById('stickyQuoteBtn');
+if(stickyQuoteBtn) stickyQuoteBtn.addEventListener('click', function(){
+  if(document.getElementById('serviceType').value) openBookModal();
+  else window.location.href = '/contact.html';
+});
+
+bookBtn.addEventListener('click', function(){
+  if(ctaMode === 'book' && ctaBookingUrl){
+    window.open(ctaBookingUrl, '_blank', 'noopener');   // open first: user gesture
+    sendBookingSnapshot();
+  } else {
+    openBookModal();
+  }
+});
+
+altBtn.addEventListener('click', function(){
+  if(ctaMode === 'book'){
+    openBookModal();
+  } else if(ctaBookingUrl){
+    window.open(ctaBookingUrl, '_blank', 'noopener');
+    sendBookingSnapshot();
+  }
+});
 bookModalClose.addEventListener('click', closeBookModal);
 
 bookModal.addEventListener('click', function(e){
@@ -1320,19 +1459,23 @@ quoteForm.addEventListener('submit', async function(e){
 
       quoteResult.className = 'form-result success';
 
-      if(bUrl){
-        let note;
-        if(deposit){
-          note = 'Only the ' + deposit + ' service &amp; coordination fee is charged at booking. Travel and add-ons are invoiced after your appointment.';
-        } else {
-          note = 'The consultation is free. No payment is collected to book.';
-        }
+      if(isApostilleKey(bKey)){
         quoteResult.innerHTML =
-          'Your quote request has been received.<br>' +
-          '<a href="' + bUrl + '" target="_blank" rel="noopener" ' +
-          'style="display:inline-block;margin-top:12px;font-weight:600;text-decoration:underline">' +
-          'Choose your appointment time &rarr;</a>' +
-          '<span style="display:block;margin-top:10px;font-size:.85em;opacity:.85">' + note + '</span>';
+          'Your quote request has been received.' +
+          '<span style="display:block;margin-top:10px;font-size:.85em;opacity:.85">' +
+          'Nothing is charged now. Send photographs of your documents to ' +
+          'kristy@notarizedbykristy.com and you will receive one itemized written quote, ' +
+          'paid as a single invoice. You are never billed twice.</span>';
+      } else if(bUrl){
+        // They chose the written-quote door. Offer the calendar, but make clear
+        // it is optional -- booking will ask for their details again.
+        quoteResult.innerHTML =
+          'Your quote request has been received. We will respond within one business day.' +
+          '<span style="display:block;margin-top:12px;font-size:.85em;opacity:.85">' +
+          'Ready now? <a href="' + bUrl + '" target="_blank" rel="noopener" ' +
+          'style="font-weight:600;text-decoration:underline;color:inherit">book your time directly</a>' +
+          (deposit ? ' &mdash; the ' + deposit + ' service &amp; coordination fee is charged at booking.' : '.') +
+          '</span>';
       } else {
         quoteResult.textContent = 'Your quote request has been received. We will respond within one business day.';
       }
