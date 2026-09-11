@@ -278,13 +278,15 @@ body{padding-bottom:64px}
           <option value="combo">Executive Apostille + Notarization &mdash; Combined</option>
           <option value="translation">Certified Translation</option>
           <option value="estate">Estate Planning Document Support</option>
-          <option value="officiant">Wedding Officiant</option>
+          <option value="officiant_sign">Wedding Officiant — Sign and Go</option>
+          <option value="officiant_2gether">Wedding Officiant — 2GetHer Forever</option>
+          <option value="officiant_lifetime">Wedding Officiant — LifeTime</option>
         </optgroup>
       </select>
     </div>
 
     <div class="hint" id="batchedNotice" style="display:none;border-left:2px solid var(--gold,#B8860B);padding-left:12px;margin-bottom:16px">
-      <strong>Mail-in tier.</strong> You mail or drop off your original documents, and they are filed in the next scheduled Secretary of State submission. Standard processing is 10&ndash;15 business days, and notarization is included where your document needs it. Document retrieval from the issuing institution is part of the Texas Executive Tier and is not available here. Priority hand-carried handling <strong>is</strong> available on this tier as an add-on if you need a dedicated submission run.
+      <strong>Mail-in tier.</strong> You mail or drop off your original documents, and they are filed in person with the Secretary of State on the next scheduled filing day. Standard processing is 10&ndash;15 business days, and notarization is included where your document needs it. Document retrieval from a registrar, university, court, or issuing office is part of the Texas Executive Tier and is not available here. Priority hand-carried handling <strong>is</strong> available on this tier as an add-on &mdash; it takes the earliest available filing slot, typically 1&ndash;2 business days from cleared custody.
     </div>
 
     <div class="field" id="docCountWrap">
@@ -408,7 +410,7 @@ body{padding-bottom:64px}
 <div class="step" id="shippingStep">
   <div class="step-hdr"><span class="step-num" id="shipStepNum">03</span><span class="step-title">Document Destination &amp; Shipping</span></div>
   <div class="step-body">
-    <p class="step-desc">Select your region first, then your preferred delivery speed. Shipping is fully coordinated &mdash; we handle outbound to the SOS and return delivery to you. Return shipping is billed at carrier cost plus a flat $25 handling charge, the same basis whether your documents are going across town or overseas. The carrier figures below are estimates; the exact cost is confirmed on your invoice before anything ships.</p>
+    <p class="step-desc">Select your region first, then your preferred delivery speed. Shipping is fully coordinated &mdash; we handle outbound filing and return delivery to you. Return shipping is billed at carrier cost plus a $25 handling charge for each shipment we coordinate, the same basis whether your documents are going across town or overseas. Documents that can be printed for filing travel once; original documents that must arrive in physical form travel twice and are quoted accordingly. The carrier figures below are estimates for a single shipment; the exact cost is confirmed on your written quote before anything ships.</p>
 
     <div class="field">
       <label>Delivery Region</label>
@@ -455,12 +457,12 @@ body{padding-bottom:64px}
         </div>
       </div>
       <div class="ship-confirm-note show" id="shipNote">
-        Carrier cost is estimated here and billed at actual cost, plus a flat $25 handling charge. Choose the carrier that matches your deadline.
+        Carrier cost is estimated here and billed at actual cost, plus a $25 handling charge for each shipment I coordinate. Choose the carrier that matches your deadline.
       </div>
     </div>
 
     <div class="ship-confirm-note show" id="intlFlatNote" style="display:none">
-      International return shipping is tracked and billed at <strong>carrier cost plus a flat $25 handling charge</strong> &mdash; the same basis as domestic. The figure shown is an estimate for a standard document envelope; the exact carrier cost is confirmed on your invoice. Oversized or multi-package shipments are quoted at intake.
+      International return shipping is tracked and billed at <strong>carrier cost plus a $25 handling charge per shipment</strong> &mdash; the same basis as domestic. The figure shown is an estimate for a standard document envelope on a single outbound shipment; the exact carrier cost is confirmed on your written quote. Oversized or multi-package shipments are quoted at intake.
     </div>
   </div>
 </div>
@@ -619,7 +621,7 @@ body{padding-bottom:64px}
     <a href="tel:2106289991" class="btn-contact">Questions? Call (210) 628-9991</a>
 
     <div class="results-disclaimer">
-      This estimate is based on typical parameters for the selected service. Your confirmed quote will be provided in writing before any work begins and may reflect exact document count, destination, and scheduling. Return shipping is billed at carrier cost plus a flat $25 handling charge; the carrier figure shown is an estimate and is confirmed at actual cost on your written quote. Apostille orders are paid once, as a single itemized invoice issued after your documents are reviewed. &middot; <em>Notarized Right. The First Time. Every Time.</em>
+      This estimate is based on typical parameters for the selected service. Your confirmed quote will be provided in writing before any work begins and may reflect exact document count, destination, and scheduling. Return shipping is billed at carrier cost plus a $25 handling charge for each shipment we coordinate; the carrier figure shown estimates a single shipment and is confirmed at actual cost on your written quote. Apostille orders are paid once, as a single itemized invoice issued after your documents are reviewed. &middot; <em>Notarized Right. The First Time. Every Time.</em>
     </div>
   </div>
 </div>
@@ -724,7 +726,9 @@ const SVC_CONFIG = {
   combo:       { name:'Executive Apostille + Certified Translation', base:400, sos:0, travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:true,  isRon:false, isTrans:false, isEstate:false },
   translation: { name:'Certified Translation',             base:50,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:true,  isEstate:false },
   estate:      { name:'Estate Planning Document Support',  base:145, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:true  },
-  officiant:   { name:'Wedding Officiant',                 base:275, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false }
+  officiant_sign:     { name:'Wedding Officiant \u2014 Sign and Go',       base:150, sos:0, travel:true, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  officiant_2gether:  { name:'Wedding Officiant \u2014 2GetHer Forever',    base:200, sos:0, travel:true, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  officiant_lifetime: { name:'Wedding Officiant \u2014 LifeTime',           base:300, sos:0, travel:true, travelX:2, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false }
 };
 
 const ESTATE_PRICE = { individual: 145, couple: 245 };
@@ -739,7 +743,13 @@ const TRAVEL_FEES = { local:35, mid:55, far:75, extended:null };
 // are ESTIMATED CARRIER COSTS shown to the client for planning; the invoice bills
 // actual carrier cost + SHIP_HANDLING. Replace these six numbers with your real
 // carrier rates -- they are the only place shipping estimates are defined.
-const SHIP_HANDLING = 25;
+const SHIP_HANDLING = 25;   // charged PER SHIPMENT coordinated, not per order.
+// Documents that can be printed for filing travel once (1 leg). Original
+// documents that must reach the filing office in physical form travel twice
+// (2 legs): client -> me -> filing, then filing -> client. Two labels, two
+// handling charges. The estimator assumes one leg and says so; the written
+// quote sets the real number after the documents are reviewed.
+const SHIP_LEGS_DEFAULT = 1;
 const SHIP = {
   pickup:  { standard:0,   expedited:0   },
   dom:     { standard:12,  expedited:32  },
@@ -759,7 +769,8 @@ const WITNESS_FEE = 30;
 const SERVICE_TAG_MAP = {
   apo_std:'APOSTILLE', apo_tx:'APOSTILLE', apo_oos:'APOSTILLE', combo:'APOSTILLE',
   mobile_loan:'TITLE', ron_loan:'TITLE',
-  mobile_std:'GNW', ron_std:'GNW', translation:'GNW', officiant:'GNW',
+  mobile_std:'GNW', ron_std:'GNW', translation:'GNW',
+  officiant_sign:'GNW', officiant_2gether:'GNW', officiant_lifetime:'GNW',
   estate:'LAW'
 };
 
@@ -783,7 +794,9 @@ const BOOKING_URL_MAP = {
   apo_oos: 'https://calendar.app.google/kaTVa2d8swhS7x7G7',
   combo:   'https://calendar.app.google/kaTVa2d8swhS7x7G7',
   translation: null,
-  officiant:   null
+  officiant_sign:     null,
+  officiant_2gether:  null,
+  officiant_lifetime: null
 };
 
   // Deposits charged at booking, by schedule key
@@ -1056,10 +1069,14 @@ function recalc(){
   const transCoordFee = translationOnOrder ? TRANS_COORD_FEE : 0;
 
   const sosFee = cfg.sos * (cfg.perDoc ? docs : 1);
-  const travelFee = cfg.travel ? (TRAVEL_FEES[zone]||0) : 0;
+  // travelX is the number of separate trips a service requires. Default 1.
+  // LifeTime includes rehearsal attendance, which is a second drive on a
+  // different day, so its travel zone is charged twice.
+  const travelTrips = cfg.travelX || 1;
+  const travelFee = cfg.travel ? (TRAVEL_FEES[zone]||0) * travelTrips : 0;
   const shipRates = SHIP[region] || {standard:0, expedited:0};
   const shipCarrier = shipRates[speed] || 0;
-  const shipHandling = (region !== 'pickup' && shipCarrier > 0) ? SHIP_HANDLING : 0;
+  const shipHandling = (region !== 'pickup' && shipCarrier > 0) ? SHIP_HANDLING * SHIP_LEGS_DEFAULT : 0;
   const shipRetFee = shipCarrier + shipHandling;
   const intlCoord = isInternational(region) ? INTL_COORD_FEE : 0;
 
@@ -1120,7 +1137,9 @@ function recalc(){
   show('rCoupleLine', coupleDisc > 0);
 
   show('rTravelLine', travelFee > 0);
-  document.getElementById('rTravel').textContent = fmt(travelFee);
+  document.getElementById('rTravel').textContent = travelTrips > 1
+    ? fmt(travelFee) + '  (' + travelTrips + ' trips)'
+    : fmt(travelFee);
 
   show('rShipOutLine', cfg.shipOut);
 
