@@ -263,8 +263,8 @@ body{padding-bottom:64px}
       <select id="serviceType" onchange="onServiceChange()">
         <optgroup label="Apostille Services">
           <option value="apo_std">Standard Apostille &mdash; Mail-In</option>
-          <option value="apo_tx">Texas Executive Tier &mdash; Apostille</option>
-          <option value="apo_oos">Federal Executive Tier &mdash; U.S. Dept. of State</option>
+          <option value="apo_tx">Texas Executive Apostille &mdash; Priority Included</option>
+          <option value="apo_oos">Federal Authentication &mdash; U.S. Dept. of State</option>
         </optgroup>
         <optgroup label="Mobile Notary">
           <option value="mobile_std">Mobile Notary &mdash; Standard</option>
@@ -275,7 +275,7 @@ body{padding-bottom:64px}
           <option value="ron_loan">RON &mdash; Loan Signing</option>
         </optgroup>
         <optgroup label="Combined &amp; Specialty">
-          <option value="combo">Executive Apostille + Notarization &mdash; Combined</option>
+          <option value="combo">Executive Apostille + Certified Translation</option>
           <option value="translation">Certified Translation</option>
           <option value="estate">Estate Planning Document Support</option>
           <option value="officiant_sign">Wedding Officiant — Sign and Go</option>
@@ -286,7 +286,11 @@ body{padding-bottom:64px}
     </div>
 
     <div class="hint" id="batchedNotice" style="display:none;border-left:2px solid var(--gold,#B8860B);padding-left:12px;margin-bottom:16px">
-      <strong>Mail-in tier.</strong> You mail or drop off your original documents, and they are filed in person with the Secretary of State on the next scheduled filing day. Standard processing is 10&ndash;15 business days, and notarization is included where your document needs it. Document retrieval from a registrar, university, court, or issuing office is part of the Texas Executive Tier and is not available here. Priority hand-carried handling <strong>is</strong> available on this tier as an add-on &mdash; it takes the earliest available filing slot, typically 1&ndash;2 business days from cleared custody.
+      <strong>Mail-in tier.</strong> You mail or drop off your original documents, and they are filed in person with the Secretary of State on the next scheduled filing day. Standard processing is 10&ndash;15 business days. Notarization by Remote Online Notarization (RON) is included where your document needs it ($25 for each additional signer or credible witness). Document retrieval from a registrar, university, court, or issuing office is part of the Texas Executive tier and is not available here. Priority hand-carried handling <strong>is</strong> available on this tier for $150 &mdash; your documents are filed on the next available filing day once your documents are ready &mdash; agreement signed, payment cleared, and notarization complete or originals in hand. Filing days follow the Secretary of State&rsquo;s schedule.
+    </div>
+
+    <div class="hint" id="execNotice" style="display:none;border-left:2px solid var(--gold,#B8860B);padding-left:12px;margin-bottom:16px">
+      <strong>Executive tier &mdash; priority included.</strong> Your documents are filed in person on the next available filing day once your documents are ready &mdash; agreement signed, payment cleared, and notarization complete or originals in hand. Also included: RON notarization ($25 for each additional signer or credible witness), retrieval from the issuing institution where needed, a check against the receiving party&rsquo;s written requirements, and a scanned copy of the apostilled document before the original ships. Filing days follow the Secretary of State&rsquo;s schedule; processing and return shipping time are additional.
     </div>
 
     <div class="field" id="docCountWrap">
@@ -478,7 +482,7 @@ body{padding-bottom:64px}
       </div>
       <div class="addon-card" id="expediteCard" style="display:none">
         <label><input type="checkbox" id="addonExpedite" onchange="recalc()">
-          <div><span class="addon-title">Priority Hand-Carried Handling</span><span class="addon-price">+$150 flat</span></div>
+          <div><span class="addon-title">Priority Hand-Carried Handling &mdash; next available filing day</span><span class="addon-price">+$150 flat</span></div>
         </label>
       </div>
       <div class="addon-card">
@@ -596,7 +600,7 @@ body{padding-bottom:64px}
     <div class="line-item" id="rShipRetLine"><span class="li-label">Return Shipping (est. carrier cost)</span><span class="li-val" id="rShipRet">&mdash;</span></div>
     <div class="line-item" id="rShipHandlingLine"><span class="li-label">Shipping Handling</span><span class="li-val" id="rShipHandling">+$25</span></div>
     <div class="line-item" id="rTransCoordLine" style="display:none"><span class="li-label">Translation Coordination</span><span class="li-val" id="rTransCoord">+$65</span></div>
-    <div class="line-item" id="rExpediteLine" style="display:none"><span class="li-label">Priority Hand-Carried Handling (5&ndash;7 business days)</span><span class="li-val" id="rExpedite">+$150</span></div>
+    <div class="line-item" id="rExpediteLine" style="display:none"><span class="li-label" id="rExpediteLabel">Priority Hand-Carried Handling (next available filing day)</span><span class="li-val" id="rExpedite">+$150</span></div>
         <div class="line-item" id="rWitnessLine" style="display:none"><span class="li-label">Witness Coordination</span><span class="li-val" id="rWitness">&mdash;</span></div>
     <div class="line-item" id="rRushLine" style="display:none"><span class="li-label">Rush / After-Hours</span><span class="li-val" id="rRush">+$50</span></div>
     <div class="line-item" id="rPrintLine" style="display:none"><span class="li-label">Print / Copy / Scan</span><span class="li-val" id="rPrint">+$25</span></div>
@@ -707,23 +711,24 @@ fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-f
 // apo_tx: $400 first doc, all-inclusive of the $15 TX SOS fee | +$100 each additional
 // apo_oos (Federal authentication, US Dept of State): $600 first doc | +$100 each additional
 // combo (apostille + certified translation): $400 first doc | +$100 each additional
-// Expedited handling: +$150 flat per submission (separate from shipping speed)
+// Priority handling: INCLUDED in Texas Executive (apo_tx, combo) -- Sep 24 2026.
+// +$150 flat per submission on Standard (apo_std) and Federal (apo_oos) only.
 // Apostille fees are inclusive of mileage/travel within Bexar, Guadalupe, Comal
 // mobile_std: $75 | mobile_loan: $165 | ron_std: $75 | ron_loan: $150
 // Estate individual: $145 | Estate couple: $245 (saves $45)
 // Translation: Spanish $50/pg | Other $60/pg
 // Witness coordination: $30/witness (only when kristy coordinates; client-brought = free)
-// International return shipping: $150 flat rate (no separate coordination fee)
+// Return shipping: carrier cost + $25 handling per shipment (see SHIP below)
 // ─────────────────────────────────────────────────────────────────────────────
 const SVC_CONFIG = {
   apo_std:     { name:'Standard Apostille - Mail-In',      base:225, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:75,  isApostille:true, isBatched:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
-  apo_tx:      { name:'Texas Executive Tier - Apostille',     base:400, sos:0,   travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
-  apo_oos:     { name:'Federal Executive Tier - U.S. Dept. of State', base:600, sos:0, travel:false, shipOut:true, perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  apo_tx:      { name:'Texas Executive Apostille - Priority Included', base:400, sos:0, travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, priorityIncl:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
+  apo_oos:     { name:'Federal Authentication - U.S. Dept. of State', base:600, sos:0, travel:false, shipOut:true, perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   mobile_std:  { name:'Mobile Notary - Standard',          base:75,  sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   mobile_loan: { name:'Mobile Notary - Loan Signing',      base:165, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:false },
   ron_std:     { name:'RON - Standard',                    base:75,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:true,  isTrans:false, isEstate:false },
   ron_loan:    { name:'RON - Loan Signing',                base:150, sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:true,  isTrans:false, isEstate:false },
-  combo:       { name:'Executive Apostille + Certified Translation', base:400, sos:0, travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, witnessOpt:false, comboTrans:true,  isRon:false, isTrans:false, isEstate:false },
+  combo:       { name:'Executive Apostille + Certified Translation', base:400, sos:0, travel:false, shipOut:true,  perDoc:false, multiDisc:false, addlDoc:100, isApostille:true, priorityIncl:true, witnessOpt:false, comboTrans:true,  isRon:false, isTrans:false, isEstate:false },
   translation: { name:'Certified Translation',             base:50,  sos:0,   travel:false, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:true,  isEstate:false },
   estate:      { name:'Estate Planning Document Support',  base:145, sos:0,   travel:true,  shipOut:false, perDoc:false, multiDisc:false, witnessOpt:true,  comboTrans:false, isRon:false, isTrans:false, isEstate:true  },
   officiant_sign:     { name:'Wedding Officiant \u2014 Sign and Go',       base:150, sos:0, travel:true, shipOut:false, perDoc:false, multiDisc:false, witnessOpt:false, comboTrans:false, isRon:false, isTrans:false, isEstate:false },
@@ -759,10 +764,10 @@ const SHIP = {
   other:   { standard:95,  expedited:95  }
 };
 const INTL_COORD_FEE = 0;
-const EXPEDITED_HANDLING = 150;   // flat, per submission, available on EVERY apostille tier.
-// Buys a dedicated submission run scheduled within 2 business days, target 5-7
-// business days. Separate from the Executive tier, which governs HOW a document is
-// filed (in person in Austin) rather than WHEN.
+const EXPEDITED_HANDLING = 150;   // flat, per submission. Standard and Federal only;
+// built into Texas Executive (cfg.priorityIncl). Promise is the SLOT, not a day
+// count: filed on the next available filing day once documents are ready
+// (agreement signed, payment cleared, notarization done or originals in hand).
 const WITNESS_FEE = 30;
 
   // Maps each quote service to a router tag → Gmail INTAKE label
@@ -933,6 +938,7 @@ function onServiceChange(){
   // Standard docCount shown for apostille and combo services
   show('docCountWrap',    (cfg.perDoc || cfg.addlDoc) && !cfg.isTrans);
   show('batchedNotice',   !!cfg.isBatched);
+  show('execNotice',      !!cfg.priorityIncl);
 
   // Translation-specific fields (standalone only)
   show('transLangWrap',   cfg.isTrans);
@@ -1082,9 +1088,9 @@ function recalc(){
 
   const witnessFee = (cfg.witnessOpt && witnessNeed === 'coord') ? (WITNESS_FEE * witnessN) : 0;
 
-  // Priority handling is available on every apostille tier. On the batched tier it
-  // is what buys the dedicated run instead of waiting for submissions to accumulate.
-  const expediteFee = (cfg.isApostille && expedite) ? EXPEDITED_HANDLING : 0;
+  // Priority handling: included in Texas Executive (never charged there);
+  // a $150 add-on on Standard and Federal.
+  const expediteFee = (cfg.isApostille && !cfg.priorityIncl && expedite) ? EXPEDITED_HANDLING : 0;
   const rushFee    = rush   ? 50   : 0;
   const printFee   = printing ? 25 : 0;
   const copiesFee  = copies ? 15 * copiesN : 0;
@@ -1152,11 +1158,16 @@ function recalc(){
     document.getElementById('rShipHandling').textContent = `+${fmt(shipHandling)}`;
   }
 
-  show('rExpediteLine', expediteFee > 0);
+  show('rExpediteLine', expediteFee > 0 || !!cfg.priorityIncl);
+  document.getElementById('rExpediteLabel').textContent = cfg.priorityIncl
+    ? 'Priority Filing (next available filing day)'
+    : 'Priority Hand-Carried Handling (next available filing day)';
+  document.getElementById('rExpedite').textContent = cfg.priorityIncl ? 'Included' : '+' + fmt(EXPEDITED_HANDLING);
+  document.getElementById('rExpedite').className = cfg.priorityIncl ? 'li-val incl' : 'li-val';
   show('rTransCoordLine', transCoordFee > 0);
   document.getElementById('rTransCoord').textContent = fmt(transCoordFee);
   show('transCoordPanel', transCoord);
-  const expediteAvailable = cfg.isApostille;
+  const expediteAvailable = cfg.isApostille && !cfg.priorityIncl;
   document.getElementById('expediteCard').style.display = expediteAvailable ? '' : 'none';
   if(!expediteAvailable) document.getElementById('addonExpedite').checked = false;
   show('rIntlCoordLine', intlCoord > 0);
@@ -1271,7 +1282,8 @@ function buildQuoteSummary(){
   }
 
   const addons = [];
-  if(cfg.isApostille && expedite) addons.push('Priority Hand-Carried Handling, 5-7 business days (+$150)');
+  if(cfg.priorityIncl) addons.push('Priority filing - INCLUDED in Texas Executive (next available filing day once documents are ready)');
+  else if(cfg.isApostille && expedite) addons.push('Priority Hand-Carried Handling - next available filing day once documents are ready (+$150)');
   if(transCoord) addons.push('Certified Translation - ' + (coordLang === 'spanish' ? 'Spanish' : 'Other Language') +
     ', ' + coordTransPages + ' page(s) at $' + (coordLang === 'spanish' ? 50 : 60) + '/page, plus $' + TRANS_COORD_FEE +
     ' coordination fee (page count confirmed after document review)');
