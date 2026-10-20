@@ -390,7 +390,7 @@ footer { text-align: center; font-size: 12px; color: var(--muted); padding-block
   <div class="step-head"><div class="step-no">8</div><h2>Look and devices</h2><p class="step-sub">Your logo goes on the sign-in screen, the header and your Home Screen icon.</p></div>
   <label class="f">Color theme</label>
   <div class="swatches" id="swatches"></div>
-  <div class="note">After you submit, <strong>reply to the confirmation email with your logo</strong> (a PNG with a transparent background or an SVG works best). No logo? I'll make a monogram from your initials.</div>
+  <div class="note">After you submit, <strong>email your logo to kristy@notarizedbykristy.com</strong> (a PNG with a transparent background or an SVG works best). No logo? I'll make a monogram from your initials.</div>
   <label class="f">Where you'll use it</label>
   <div class="choices">
     <label class="choice"><input type="checkbox" name="device" value="iPhone"> iPhone</label>
@@ -445,7 +445,8 @@ footer { text-align: center; font-size: 12px; color: var(--muted); padding-block
 <section class="done" id="done" aria-live="polite">
   <div class="eyebrow">Received</div>
   <h2 id="doneTitle">Thank you. Your intake is in.</h2>
-  <p id="doneText">I'll review your answers and email you within two business days with any questions and your build timeline. Reply to the confirmation email with your logo.</p>
+  <p id="doneText">I'll review your answers and email you within two business days with any questions and your build timeline.</p>
+  <div class="note" id="doneLogo" style="text-align:left;margin-top:16px"><strong>One more step: send your logo.</strong> Email it to <strong>kristy@notarizedbykristy.com</strong> with your business name in the subject line. A PNG with a transparent background or an SVG works best. No logo? Skip this and I'll make a monogram from your initials.</div>
   <div id="doneFallback" hidden>
     <p>Your answers didn't send from here. Copy them below and email them to <strong>kristy@notarizedbykristy.com</strong>.</p>
     <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button type="button" class="btn ghost" id="copyBtn">Copy my answers</button></div>
@@ -633,7 +634,7 @@ form.addEventListener('submit', async e => {
   if (ok) { try { localStorage.removeItem(DRAFT_KEY); } catch(e) {} }
   else {
     $('#doneTitle').textContent = 'Almost there';
-    $('#doneText').hidden = true; $('#doneFallback').hidden = false;
+    $('#doneText').hidden = true; $('#doneLogo').hidden = true; $('#doneFallback').hidden = false;
     $('#copyBox').value = readable() + '\n\n== SETUP FILE\n' + setup;
   }
   $('#done').scrollIntoView({ behavior:'smooth', block:'start' });
