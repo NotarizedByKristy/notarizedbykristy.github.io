@@ -168,6 +168,14 @@ section { padding-block: clamp(64px, 9vw, 112px); }
 .plan li { padding-left: 22px; position: relative; font-size: 15px; color: var(--ink-2); }
 .plan li::before { content: "◆"; position: absolute; left: 0; top: 2px; font-size: 9px; color: var(--gold); }
 @media (max-width: 760px) { .plans { grid-template-columns: 1fr; } }
+.diy { margin-top: 24px; border: 1px dashed var(--gold); border-radius: 18px; padding: 26px; background: var(--blush-2); display: grid; grid-template-columns: 1.5fr .5fr; gap: 24px; align-items: center; }
+.diy > * { min-width: 0; }
+.diy-copy { display: grid; gap: 10px; }
+.diy-copy p { color: var(--ink-2); font-size: 15px; }
+.diy-buy { display: grid; gap: 10px; justify-items: start; }
+.btn.ghost-btn { background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink); }
+.btn.ghost-btn:hover { background: var(--ink); color: #fff; }
+@media (max-width: 760px) { .diy { grid-template-columns: 1fr; } }
 
 /* faq */
 .faq { margin-top: 32px; border-top: 1px solid var(--line); }
@@ -375,6 +383,19 @@ footer .wrap { padding-block: 24px 36px; display: flex; flex-wrap: wrap; justify
         <p class="src">Skip it and your Command Center keeps working. You can edit prices and add mileage rates yourself in the app.</p>
       </div>
     </div>
+    <div class="diy" id="build-kit">
+      <div class="diy-copy">
+        <span class="eyebrow">Do it yourself</span>
+        <h3>Command Center Build Kit</h3>
+        <p>Comfortable with AI tools? Get the six step-by-step prompts I used to build the Command Center, plus a business profile to fill in, a fix-it prompt and hosting steps. You build and maintain your own copy with a paid plan of Claude, ChatGPT or Gemini.</p>
+        <p class="src">No setup or support included, and results vary by AI tool. Want it done for you? Choose the custom build above.</p>
+      </div>
+      <div class="diy-buy">
+        <div class="price"><b data-price="kit" style="font-size:44px"></b><span>one time</span></div>
+        <a class="btn ghost-btn" href="mailto:kristy@notarizedbykristy.com?subject=Command%20Center%20Build%20Kit">Email to buy the kit</a>
+        <p class="src">Or email kristy@notarizedbykristy.com</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -388,7 +409,7 @@ footer .wrap { padding-block: 24px 36px; display: flex; flex-wrap: wrap; justify
       <details><summary>Where is my data stored?</summary><div class="a">Only on the devices you use, inside the app. Nothing is sent to a server, and nobody else can see it, including me. That also means you're responsible for backups: the app reminds you, and a full backup takes one tap.</div></details>
       <details><summary>Does it work on my phone and my computer?</summary><div class="a">Yes. It installs to the Home Screen on iPhone and Android and opens in any current browser on Mac or Windows. Each device keeps its own records, and you move them with a backup file when you want them to match.</div></details>
       <details><summary>My state isn't Texas. Does the tax math still work?</summary><div class="a">Yes. The self-employment exclusion is federal. Your copy uses your own state's maximum fee per act, which you give me in the intake. If you're not sure of it, check the box and I'll look it up.</div></details>
-      <details><summary>Can I build it myself with AI?</summary><div class="a">Yes. If you're comfortable with AI tools, I also sell the build prompt I used to create the Command Center, so you can make and maintain your own version. Email kristy@notarizedbykristy.com to ask about it.</div></details>
+      <details><summary>Can I build it myself with AI?</summary><div class="a">Yes. The <a href="#build-kit">Command Center Build Kit</a> has the six prompts I used to create it, so you can build and maintain your own version with a paid AI plan. It doesn't include setup or support.</div></details>
       <details><summary>What if my prices change?</summary><div class="a">Edit them in the Pricing tab whenever you like. Invoices you've already sent keep their original amounts.</div></details>
     </div>
   </div>
@@ -413,12 +434,12 @@ footer .wrap { padding-block: 24px 36px; display: flex; flex-wrap: wrap; justify
 
 <script>
 /* ── Edit prices here ── */
-const PRICES = { build: 99, regular: 199, care: 49, slots: 10, founding: true };
+const PRICES = { build: 99, regular: 199, care: 49, kit: 49, slots: 10, founding: true };
 (function(){
   const stack = 707.28, three = PRICES.build + PRICES.care * 2;
   const months = Math.max(1, Math.ceil(PRICES.build / (stack / 12)));
   const fmt = n => '$' + Math.round(n).toLocaleString();
-  const vals = { build: fmt(PRICES.build), regular: PRICES.founding ? fmt(PRICES.regular) : '', care: fmt(PRICES.care), three: fmt(three), slots: PRICES.slots, payback: months + (months === 1 ? ' month' : ' months') };
+  const vals = { build: fmt(PRICES.build), regular: PRICES.founding ? fmt(PRICES.regular) : '', care: fmt(PRICES.care), kit: fmt(PRICES.kit), three: fmt(three), slots: PRICES.slots, payback: months + (months === 1 ? ' month' : ' months') };
   document.querySelectorAll('[data-price]').forEach(el => el.textContent = vals[el.dataset.price]);
   document.querySelectorAll('[data-bar]').forEach(el => el.style.width = Math.max(3, ({ build: PRICES.build, three })[el.dataset.bar] / (stack * 3) * 100) + '%');
   if (!PRICES.founding) document.querySelectorAll('[data-founding]').forEach(el => el.hidden = true);
