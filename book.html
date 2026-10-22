@@ -347,8 +347,11 @@
   function syncWeddingFields(){
     const isWedding=document.getElementById('bookingServiceSelect').value==='Wedding Officiant';
     document.getElementById('weddingFields').classList.toggle('show',isWedding);
-    document.getElementById('weddingPackageSelect').required=isWedding;
-    document.getElementById('ceremonyVenue').required=isWedding;
+    ['weddingPackageSelect','ceremonyVenue'].forEach(function(id){
+      const el=document.getElementById(id);
+      el.required=isWedding;
+      el.disabled=!isWedding;   // disabled fields are left out of non-wedding emails
+    });
     const tag=SERVICE_TAGS[document.getElementById('bookingServiceSelect').value];
     document.getElementById('bookingSubject').value=tag?'['+tag+'] '+BASE_SUBJECT:BASE_SUBJECT;
   }
@@ -362,6 +365,7 @@
   };
   function requestService(svc){selectService(svc);syncWeddingFields()}
   document.getElementById('bookingServiceSelect').addEventListener('change',syncWeddingFields);
+  syncWeddingFields();
   function selectWedding(pkg){
     selectService('Wedding Officiant');
     syncWeddingFields();
