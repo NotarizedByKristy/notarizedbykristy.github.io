@@ -129,24 +129,7 @@
 </style>
 </head>
 <body>
-<nav>
-  <a href="/index.html" class="nav-logo">
-    <div class="nav-logo-mark"><span>TK</span></div>
-    <div><span class="nav-logo-text">Texas Notary Kristy</span><span class="nav-logo-sub">Cibolo, TX · Est. 2020</span></div>
-  </a>
-  <ul class="nav-links"><li><a href="/services.html">Services</a></li>
-<li><a href="/apostille.html">Apostille</a></li>
-<li><a href="/about.html">About</a></li>
-<li><a href="/faq.html">FAQ</a></li>
-<li><a href="/contact.html">Contact</a></li>
-    <li><a href="/book.html" class="nav-cta">Schedule</a></li>
-  </ul>
-  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="/services.html">Services</a><a href="/apostille.html">Apostille</a><a href="/about.html">About</a><a href="/faq.html">FAQ</a><a href="/contact.html">Contact</a>
-  <a href="/book.html" style="color:var(--gold);font-weight:500">Schedule an Appointment</a>
-</div>
+<div id="site-nav"></div>
 <div class="page-hero" data-char="B">
   <div class="page-hero-inner">
     <div class="breadcrumb"><a href="/index.html">Home</a><span>/</span>Schedule</div>
@@ -410,55 +393,12 @@
     </div>
   </div>
 </div>
-<footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">Texas Notary Kristy</div>
-        <p class="footer-tagline">"Notarized Right. The First Time. Every Time."</p>
-        <a href="tel:2106289991" class="footer-link-item">210-628-9991</a>
-        <a href="mailto:info@notarizedbykristy.com" class="footer-link-item">info@notarizedbykristy.com</a>
-        <span class="footer-link-item">Cibolo, TX · San Antonio Metropolitan Area</span>
-        <div class="footer-creds-row">
-          <span class="footer-cred">SDVOSB</span><span class="footer-cred">WOSB</span><span class="footer-cred">VOSB</span><span class="footer-cred">BBB</span><span class="footer-cred">NNA</span><span class="footer-cred">SAM.gov</span>
-        </div>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Services</div>
-        <a href="/services.html#ron">Remote Online Notarization</a>
-        <a href="/services.html#mobile">Mobile Notary</a>
-        <a href="/apostille.html">Apostille &amp; Authentication</a>
-        <a href="/services.html#realestate">Real Estate &amp; Loan Signings</a>
-        <a href="/services.html#legal">Legal &amp; Estate Documents</a>
-        <a href="/services.html#specialty">Specialty &amp; Government</a>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Information</div>
-        <a href="/about.html">About Kristy</a>
-        <a href="/faq.html">Frequently Asked Questions</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/book.html">Schedule</a>
-        <a href="/privacy.html">Privacy Policy</a>
-      </div>
-      <div class="footer-col">
-        <div class="footer-col-title">Service Areas</div>
-        <a href="/notary-san-antonio.html">San Antonio</a>
-        <a href="/notary-schertz.html">Schertz</a>
-        <a href="/notary-new-braunfels.html">New Braunfels</a>
-        <a href="/notary-seguin.html">Seguin</a>
-        <a href="/notary-converse.html">Converse</a>
-        <a href="/notary-live-oak.html">Live Oak</a>
-      </div>
-    </div>
-    <hr class="footer-rule">
-    <div class="footer-bottom">
-      <span>© 2026 Texas Notary Kristy · Notarized By Kristy LLC. All rights reserved.</span>
-      <span>Texas Notary Kristy is a DBA of Notarized By Kristy LLC · Texas-Commissioned Notary Public · Not a law firm</span>
-    </div>
-  </div>
-</footer>
+<div id="site-footer"></div>
 <script>
-  function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+fetch("/nav.html").then(r=>r.text()).then(h=>{document.getElementById("site-nav").innerHTML=h;var s=document.getElementById("site-nav").querySelector("script");if(s){var f=new Function(s.textContent);f();}});
+fetch("/footer.html").then(r=>r.text()).then(h=>{document.getElementById("site-footer").innerHTML=h;var s=document.getElementById("site-footer").querySelector("script");if(s){var f=new Function(s.textContent);f();}});
+</script>
+<script>
   const reveals=document.querySelectorAll('.reveal');
   const obs=new IntersectionObserver(e=>e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')}),{threshold:.08});
   reveals.forEach(el=>obs.observe(el));
