@@ -99,7 +99,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0d1f3c;border-b
 .field{margin-bottom:18px}
 .field:last-child{margin-bottom:0}
 .field label{display:block;font-size:11px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;color:#9c9a8e;margin-bottom:7px}
-.field input[type=number],.field input[type=text],.field input[type=email],.field input[type=tel],.field select,.field textarea{width:100%;background:#f8f8f6;border:1px solid #e2e0d8;color:#2c2b25;padding:11px 14px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:400;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.field input[type=number],.field input[type=text],.field input[type=email],.field input[type=tel],.field input[type=date],.field select,.field textarea{width:100%;background:#f8f8f6;border:1px solid #e2e0d8;color:#2c2b25;padding:11px 14px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:400;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:#1B3A6B;background:#fff}
 .field textarea{min-height:80px;resize:vertical}
 .field .hint{font-size:11px;font-weight:300;color:#9c9a8e;margin-top:5px;line-height:1.5}
@@ -678,6 +678,21 @@ body{padding-bottom:64px}
             <input id="qf_phone" type="tel" name="phone" autocomplete="tel" placeholder="210-000-0000">
           </div>
         </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="qf_date">Preferred Date (optional)</label>
+            <input id="qf_date" type="date" name="preferred_date">
+          </div>
+          <div class="field">
+            <label for="qf_time">Preferred Time (optional)</label>
+            <select id="qf_time" name="preferred_time">
+              <option value="">No preference</option>
+              <option>Morning (8am–12pm)</option>
+              <option>Afternoon (12pm–4pm)</option>
+              <option>Evening (4pm–7pm)</option>
+            </select>
+          </div>
+        </div>
         <div class="field">
           <label for="qf_notes">Additional Details (optional)</label>
           <textarea id="qf_notes" name="notes" placeholder="Any specific scheduling needs, document specifics, or questions? We'll review before responding."></textarea>
@@ -788,16 +803,16 @@ const APOSTILLE_KEYS = ['apo_std','apo_tx','apo_oos','combo'];
 const isApostilleKey = k => APOSTILLE_KEYS.indexOf(k) !== -1;
 
 const BOOKING_URL_MAP = {
-  mobile_std:  'https://calendar.app.google/AJhpzGRf5ZpFbXu7A',
-  mobile_loan: 'https://calendar.app.google/F3GgqTiQebre4hj46',
-  ron_std:     'https://calendar.app.google/4vDvBVVm6rinDma58',
-  ron_loan:    'https://calendar.app.google/XegHZHvGp7HQKEnP9',
-  estate_individual: 'https://calendar.app.google/jL4wNdKdq1yD8pZZA',
-  estate_couple:     'https://calendar.app.google/Zo8UpeXN2ePCnUvy7',
-  apo_std: 'https://calendar.app.google/kaTVa2d8swhS7x7G7',
-  apo_tx:  'https://calendar.app.google/kaTVa2d8swhS7x7G7',
-  apo_oos: 'https://calendar.app.google/kaTVa2d8swhS7x7G7',
-  combo:   'https://calendar.app.google/kaTVa2d8swhS7x7G7',
+  mobile_std:  null,
+  mobile_loan: null,
+  ron_std:     null,
+  ron_loan:    null,
+  estate_individual: null,
+  estate_couple:     null,
+  apo_std: null,
+  apo_tx:  null,
+  apo_oos: null,
+  combo:   null,
   translation: null,
   officiant_sign:     null,
   officiant_2gether:  null,
@@ -1428,9 +1443,9 @@ function refreshCTAs(){
   } else {
     // No calendar for this service (translation, officiant) -- quote only.
     ctaMode = 'quote_only';
-    bookBtn.textContent = 'Request Your Written Quote';
+    bookBtn.textContent = 'Request This Service';
     altBtn.style.display = 'none';
-    ctaNote.innerHTML = 'This service is quoted individually. We respond within one business day.';
+    ctaNote.innerHTML = 'Send your request with your preferred date and time. I will confirm your appointment and total within one business day. Nothing is charged until it is confirmed.';
   }
 }
 
