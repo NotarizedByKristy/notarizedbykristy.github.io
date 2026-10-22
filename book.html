@@ -375,6 +375,11 @@
   document.getElementById('bookingForm').addEventListener('submit',async function(e){
     e.preventDefault();
     syncWeddingFields();
+    // Unique subject per request so Gmail keeps each client in its own conversation
+    const svc=document.getElementById('bookingServiceSelect').value;
+    const who=(this.first_name.value+' '+this.last_name.value).trim();
+    const tag=SERVICE_TAGS[svc];
+    document.getElementById('bookingSubject').value=(tag?'['+tag+'] ':'')+'Booking Request — '+svc+(who?' — '+who:'');
     const btn=document.getElementById('bookingSubmitBtn');
     const result=document.getElementById('bookingResult');
     btn.textContent='Submitting...';btn.disabled=true;
