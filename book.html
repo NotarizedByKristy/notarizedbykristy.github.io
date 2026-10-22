@@ -106,7 +106,7 @@
     .book-form-field input,.book-form-field select,.book-form-field textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:12px 14px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:300;color:var(--white);transition:border-color .2s;-webkit-appearance:none;width:100%}
     .book-form-field input::placeholder,.book-form-field textarea::placeholder{color:rgba(255,255,255,.25)}
     .book-form-field input:focus,.book-form-field select:focus,.book-form-field textarea:focus{outline:none;border-color:var(--gold);background:rgba(255,255,255,.09)}
-    .book-form-field select option{{background:var(--navy-dark);color:var(--white)}}
+    .book-form-field select option{background:var(--navy-dark);color:var(--white)}
     .book-form-field textarea{min-height:100px;resize:vertical}
     .book-btn-submit{background:var(--gold);color:var(--navy-dark);border:none;padding:16px;font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:background .2s;width:100%}
     .book-btn-submit:hover{background:var(--gold-light)}
@@ -120,8 +120,12 @@
     .prep-item{padding:32px 28px;border-right:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200)}
     .prep-item-title{font-family:'EB Garamond',serif;font-size:18px;font-weight:600;color:var(--navy-dark);margin-bottom:10px}
     .prep-item-body{font-size:13px;font-weight:300;color:var(--gray-600);line-height:1.75}
-    @media(max-width:900px){{.book-grid{{grid-template-columns:1fr 1fr}}.prep-grid{{grid-template-columns:1fr 1fr}}}}
-    @media(max-width:600px){{.book-grid{{grid-template-columns:1fr}}.prep-grid{{grid-template-columns:1fr}}.book-form-row{{grid-template-columns:1fr}}}}
+    @media(max-width:900px){.book-grid{grid-template-columns:1fr 1fr}.prep-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:600px){.book-grid{grid-template-columns:1fr}.prep-grid{grid-template-columns:1fr}.book-form-row{grid-template-columns:1fr}}
+    .wedding-section{background:var(--white);border-top:1px solid var(--gray-200)}
+    .book-card-note{font-size:11px;font-weight:400;color:var(--gray-600);margin:-14px 0 18px;font-style:italic}
+    .wedding-only{display:none}
+    .wedding-only.show{display:grid}
 </style>
 </head>
 <body>
@@ -210,13 +214,45 @@
   </div>
 </section>
 
+<section class="wedding-section" id="wedding">
+  <div class="section-inner">
+    <div class="section-eyebrow">Wedding Officiant</div>
+    <h2 class="section-title">Request Your <em>Wedding Date</em></h2>
+    <p class="section-body">I officiate weddings as an ordained minister. Choose a package to request your date &mdash; I will confirm availability and next steps within one business day.</p>
+    <div class="book-grid reveal">
+<a class="book-card" href="#bookingFormSection" onclick="selectWedding('Sign and Go');return false;">
+  <span class="book-card-number">01</span>
+  <div class="book-card-title">Sign and Go</div>
+  <div class="book-card-price">$150 + travel</div>
+  <p class="book-card-desc">Officiant service for signing your marriage license. Payable in full on or before your ceremony date.</p>
+  <span class="book-card-btn">Request This Package</span>
+</a>
+<a class="book-card" href="#bookingFormSection" onclick="selectWedding('2GetHer Forever');return false;">
+  <span class="book-card-number">02</span>
+  <div class="book-card-title">2GetHer Forever</div>
+  <div class="book-card-price">$200 + travel</div>
+  <p class="book-card-desc">Your ceremony, officiated on your wedding day. Payable in full on or before your ceremony date.</p>
+  <span class="book-card-btn">Request This Package</span>
+</a>
+<a class="book-card" href="#bookingFormSection" onclick="selectWedding('LifeTime');return false;">
+  <span class="book-card-number">03</span>
+  <div class="book-card-title">LifeTime</div>
+  <div class="book-card-price">$300 + travel &times; 2</div>
+  <p class="book-card-desc">Your ceremony plus rehearsal attendance on a separate day. A $100 non-refundable retainer holds your date and is applied to the total.</p>
+  <span class="book-card-btn">Request This Package</span>
+</a>
+</div>
+    <p class="book-card-footnote">Travel follows the standard zones from Cibolo: $35 under 15 miles, $55 for 15&ndash;30 miles, $75 for 31&ndash;45 miles. LifeTime is two trips (rehearsal and ceremony), so its travel zone is charged twice. For a full estimate, use the <a href="/quote.html">fee estimator</a>.</p>
+  </div>
+</section>
+
 <div class="book-form-section" id="bookingFormSection">
   <div class="book-form-inner">
     <h2 class="book-form-title">Booking <em>Request</em></h2>
     <p class="book-form-sub">Complete the form below and we will confirm your appointment within one business day. For same-day requests, please call 210-628-9991 directly.</p>
     <form class="book-form" id="bookingForm">
       <input type="hidden" name="access_key" value="a3c6f4ed-406c-4167-90de-8d815ba16898">
-      <input type="hidden" name="subject" value="New Booking Request — Texas Notary Kristy">
+      <input type="hidden" name="subject" id="bookingSubject" value="New Booking Request — Texas Notary Kristy">
       <input type="hidden" name="from_name" value="Texas Notary Kristy Booking">
       <input type="checkbox" name="botcheck" style="display:none">
       <div class="book-form-row">
@@ -243,6 +279,19 @@
           <option>Specialty / Government Services</option>
           <option>General Inquiry</option>
         </select>
+      </div>
+      <div class="book-form-row wedding-only" id="weddingFields">
+        <div class="book-form-field">
+          <label>Wedding Package</label>
+          <select name="wedding_package" id="weddingPackageSelect">
+            <option value="">Select a package...</option>
+            <option>Sign and Go — $150 + travel</option>
+            <option>2GetHer Forever — $200 + travel</option>
+            <option>LifeTime — $300 + travel ×2 (includes rehearsal)</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="book-form-field"><label>Ceremony Venue / City</label><input type="text" name="ceremony_venue" id="ceremonyVenue" placeholder="Venue name or city"></div>
       </div>
       <div class="book-form-row">
         <div class="book-form-field"><label>Preferred Date</label><input type="date" name="preferred_date"></div>
@@ -294,8 +343,24 @@
     section.style.outline='1px solid rgba(184,134,11,.4)';
     setTimeout(()=>section.style.outline='',2000);
   }
+  const BASE_SUBJECT='New Booking Request — Texas Notary Kristy';
+  function syncWeddingFields(){
+    const isWedding=document.getElementById('bookingServiceSelect').value==='Wedding Officiant';
+    document.getElementById('weddingFields').classList.toggle('show',isWedding);
+    document.getElementById('weddingPackageSelect').required=isWedding;
+    document.getElementById('ceremonyVenue').required=isWedding;
+    document.getElementById('bookingSubject').value=isWedding?'[WEDDING] '+BASE_SUBJECT:BASE_SUBJECT;
+  }
+  document.getElementById('bookingServiceSelect').addEventListener('change',syncWeddingFields);
+  function selectWedding(pkg){
+    selectService('Wedding Officiant');
+    syncWeddingFields();
+    const sel=document.getElementById('weddingPackageSelect');
+    for(let i=0;i<sel.options.length;i++){if(sel.options[i].text.indexOf(pkg)===0){sel.selectedIndex=i;break}}
+  }
   document.getElementById('bookingForm').addEventListener('submit',async function(e){
     e.preventDefault();
+    syncWeddingFields();
     const btn=document.getElementById('bookingSubmitBtn');
     const result=document.getElementById('bookingResult');
     btn.textContent='Submitting...';btn.disabled=true;
@@ -305,7 +370,7 @@
       if(data.success){
         result.style.display='block';result.style.background='rgba(26,122,74,.15)';result.style.color='#4ecf7f';result.style.borderLeft='2px solid rgba(26,122,74,.4)';
         result.textContent='Your booking request has been received. We will confirm your appointment within one business day.';
-        btn.textContent='Request Submitted';btn.style.background='#1a7a4a';this.reset();
+        btn.textContent='Request Submitted';btn.style.background='#1a7a4a';this.reset();syncWeddingFields();
       }else{throw new Error()}
     }catch{
       result.style.display='block';result.style.background='rgba(192,57,43,.15)';result.style.color='#e07070';result.style.borderLeft='2px solid rgba(192,57,43,.4)';
