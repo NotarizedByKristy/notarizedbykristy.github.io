@@ -1,0 +1,29 @@
+/* ============================================================
+   NBK BRAND LAYER — Notarized By Kristy LLC
+   Black / white with pink strokes. Loaded after each page's own
+   styles. Light sections use deep rose accents; dark sections
+   (page banners, CTA strips, panels, footer) swap to light pink
+   so text and buttons keep strong contrast.
+   ============================================================ */
+:root{
+  --ink:#1C1719;          /* near-black: headings, dark sections */
+  --rose:#B23A63;         /* deep rose: accents on white */
+  --rose-dark:#9A2F53;    /* hover */
+  --pink:#E8A0B4;         /* light pink: accents on black */
+  --pink-light:#F2C4D2;
+  --blush:#F7E6E8;        /* soft section tint */
+  --on-accent:#fff;       /* text on rose buttons */
+}
+
+/* Dark contexts: accents flip to light pink, button text to ink */
+.page-hero,.hero,.quote-hero,.credential-bar,.filter-bar,.cta-strip,.cta-section,.dark-panel,.pricing-panel,.pull-quote,
+.terms-mark,.results-card,.step-hdr,.modal-hdr,.addon-section-hdr,.areas-section,
+.about-panel,.about-panel-side,.contact-quote-panel,.founder-image-frame,
+.book-form-section,.audience-tab.active,.sticky-mobile-cta,.tnk-cookie-banner,footer{
+  --gold:#E8A0B4;
+  --gold-light:#F2C4D2;
+  --on-accent:#1C1719;
+}
+
+/* A thin pink stroke under each page banner */
+.page-hero{border-bottom:3px solid #E8A0B4!important}
