@@ -364,7 +364,7 @@ footer .wrap { padding-block: 24px 36px; display: flex; flex-wrap: wrap; justify
           <li>Built from your intake: services, rate card, travel zones and policies</li>
           <li>Your state's notary fee limits in the tax math</li>
           <li>Your logo, colors and email templates</li>
-          <li>Hosted at a private web address, or delivered as files you keep</li>
+          <li>Delivered as files you keep, or hosted for you at a private web address (hosting needs Yearly Care)</li>
           <li>A setup call to install it on your phone and computer</li>
           <li>30 days of questions answered</li>
         </ul>
@@ -373,14 +373,15 @@ footer .wrap { padding-block: 24px 36px; display: flex; flex-wrap: wrap; justify
       </div>
       <div class="plan">
         <h3>Yearly Care</h3>
-        <div class="price"><b data-price="care" style="font-size:44px"></b><span>per year, optional</span></div>
+        <div class="price"><b data-price="care" style="font-size:44px"></b><span>per year</span></div>
         <ul>
           <li>New IRS mileage rates added each year</li>
           <li>New features as they're released</li>
           <li>Changes to your rate card, services or branding</li>
           <li>Help restoring from a backup</li>
+          <li>Hosting at your private web address</li>
         </ul>
-        <p class="src">Skip it and your Command Center keeps working. You can edit prices and add mileage rates yourself in the app.</p>
+        <p class="src">Included with every hosted copy. Optional if you keep your own files: skip it and your Command Center keeps working, and you can edit prices and add mileage rates yourself.</p>
       </div>
     </div>
     <div class="diy" id="build-kit">
@@ -434,7 +435,7 @@ footer .wrap { padding-block: 24px 36px; display: flex; flex-wrap: wrap; justify
 
 <script>
 /* ── Edit prices here ── */
-const PRICES = { build: 99, regular: 199, care: 49, kit: 49, slots: 10, founding: true };
+const PRICES = { build: 99, regular: 249, care: 49, kit: 49, slots: 10, founding: true };
 (function(){
   const stack = 707.28, three = PRICES.build + PRICES.care * 2;
   const months = Math.max(1, Math.ceil(PRICES.build / (stack / 12)));
