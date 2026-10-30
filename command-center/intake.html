@@ -225,6 +225,9 @@ footer { text-align: center; font-size: 12px; color: var(--muted); padding-block
     <label class="choice"><input type="checkbox" name="svc" value="officiant"> <span>Wedding officiant</span></label>
     <label class="choice"><input type="checkbox" name="svc" value="translation"> <span>Certified translation</span></label>
   </div>
+  <label class="f" for="otherSvc">Other services you offer (one per line, up to 8)</label>
+  <textarea id="otherSvc" name="otherSvc" style="min-height:64px" placeholder="e.g. Immigration form prep&#10;Background checks&#10;Document prep"></textarea>
+  <div class="hint">Each one gets its own appointment type and its own line in your income and taxes, separate from your notary fees.</div>
 
   <div class="svc-block" data-svc="general">
     <h3>General notary</h3>
@@ -333,6 +336,9 @@ footer { text-align: center; font-size: 12px; color: var(--muted); padding-block
   <div class="hint">Your invoices print a scannable QR code for this link.</div>
   <label class="f" for="payNote">Payment instructions</label>
   <input type="text" id="payNote" name="payNote" placeholder="e.g. Zelle to pat@example.com, or pay by card at the link">
+  <label class="f" for="reviewLink">Google review link (optional)</label>
+  <input type="url" id="reviewLink" name="reviewLink" placeholder="https://g.page/r/…/review">
+  <div class="hint">The app can text or email clients a review request with this link. Find it in your Google Business Profile under <em>Ask for reviews</em>.</div>
 </section>
 
 <!-- 5 -->
@@ -582,7 +588,7 @@ function buildConfig(){
   const cfg = {
     format:'NCC-Setup', version:1, storageKey: slug(name), appName:'Command Center',
     business:{ name, dba: val('dba'), owner: val('owner'), address: val('address'), phone: val('phone'), email: val('email'), website: val('website'),
-      payLink: val('payLink'), payNote: val('payNote'), dueDays: +val('dueDays') || 0, filingAgent: svc.apostille ? agent : '', dropoff: svc.loan ? val('courierDrop') : '' },
+      payLink: val('payLink'), payNote: val('payNote'), reviewLink: val('reviewLink'), dueDays: +val('dueDays') || 0, filingAgent: svc.apostille ? agent : '', dropoff: svc.loan ? val('courierDrop') : '' },
     brand:{ preset: (form.querySelector('input[name=preset]:checked')||{}).value || 'classic', logo:'', tagline: val('dba') },
     state:{ name: st, abbr: p.abbr || '', citation: p.citation || '', ronCitation: p.ronCitation || '',
       fees:{ ack_first: +val('feeAck') || 0, ack_add: +val('feeAdd') || 0, oath: +val('feeOath') || 0, ron: +val('feeRon') || 0 } },
@@ -592,6 +598,7 @@ function buildConfig(){
     terms: val('terms'),
     apostille:{ stages: stages.length >= 2 ? stages.map((s,i) => ({ name: i === stages.length - 1 && !/✓/.test(s) ? s + ' ✓' : s, waiting:'' })) : null, filingDays: agent ? days : [], cutoff: agent ? val('filingCutoff') : '' },
     credentials: creds,
+    customTypes: val('otherSvc').split('\n').map(s => s.trim()).filter(Boolean).slice(0, 8).map(label => ({ label })),
     goals:{ commissionEnd: val('commEnd'), yearlyTarget: +val('yearTarget') || 0, measure: val('measure') || 'gross', mix: Object.keys(mix).length ? mix : null },
     emailSignature: val('emailSig') || val('owner'),
   };
@@ -665,7 +672,7 @@ function fillFromConfig(c){
   const set = (id, v) => { const el = $('#' + id); if (el && v !== undefined && v !== null) el.value = v; };
   const b = c.business || {};
   set('owner', b.owner); set('email', b.email); set('bizName', b.name); set('dba', b.dba); set('phone', b.phone); set('website', b.website); set('address', b.address);
-  set('shortName', c.shortName); set('emailSig', c.emailSignature); set('payLink', b.payLink); set('payNote', b.payNote); set('dueDays', b.dueDays); set('filingAgent', b.filingAgent); set('courierDrop', b.dropoff);
+  set('shortName', c.shortName); set('emailSig', c.emailSignature); set('payLink', b.payLink); set('payNote', b.payNote); set('reviewLink', b.reviewLink); set('otherSvc', (c.customTypes || []).map(x => typeof x === 'string' ? x : x.label).join('\n')); set('dueDays', b.dueDays); set('filingAgent', b.filingAgent); set('courierDrop', b.dropoff);
   const s = c.state || {}; set('state', s.name); const f = s.fees || {}; set('feeAck', f.ack_first); set('feeAdd', f.ack_add); set('feeOath', f.oath); set('feeRon', f.ron);
   $$('input[name=svc]').forEach(x => x.checked = !!(c.services || {})[x.value]);
   $$('[data-rate]').forEach(i => { const v = (c.rates || {})[i.dataset.rate]; i.value = v === undefined ? '' : v; });
