@@ -8,7 +8,7 @@
    new version instead of serving the old cache.
 ══════════════════════════════════════════ */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 // Each copy's cache is named after its own web address, so several client
 // copies hosted on one website never clear each other's offline files.
 const CACHE_PREFIX  = `command-center-${self.registration.scope}-`;
