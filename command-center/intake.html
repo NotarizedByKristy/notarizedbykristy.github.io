@@ -399,12 +399,27 @@ footer { text-align: center; font-size: 12px; color: var(--muted); padding-block
     <label class="choice"><input type="checkbox" name="device" value="Mac"> Mac</label>
     <label class="choice"><input type="checkbox" name="device" value="Windows PC"> Windows PC</label>
   </div>
-  <label class="f" for="delivery">How you'd like to receive it</label>
+  <label class="f">How you'd like to receive it</label>
+  <div class="note" style="margin-top:0">
+    <strong>Hosted for you.</strong> I put your copy online and send you one link. You open it on your phone and computer and tap Add to Home Screen. Nothing technical on your end. Hosting is included with Yearly Care ($49 a year), which is required for this option.<br><br>
+    <strong>Files you keep.</strong> You get a folder with your app and step-by-step instructions, and you put it online yourself. The easiest way is a free Netlify account where you drag in the folder (about 10 minutes, and I walk you through it on your setup call). No yearly fee required.<br><br>
+    Either way, your records stay only on your own devices. The app has to live at a web address to install on your phone, so it can't run straight from a file.
+  </div>
+  <label class="f" for="delivery">Your choice</label>
   <select id="delivery" name="delivery">
-    <option value="hosted">Host it for me at a private web address</option>
-    <option value="file">Send me the files to keep myself</option>
-    <option value="unsure">Not sure. Recommend one.</option>
+    <option value="hosted">Hosted for you</option>
+    <option value="file">Files you keep</option>
+    <option value="unsure">Not sure yet, help me choose</option>
   </select>
+  <label class="f" for="webAddr">Web address you want it on</label>
+  <select id="webAddr" name="webAddr">
+    <option value="any">No preference</option>
+    <option value="own">My own domain</option>
+    <option value="free">Free address with my business name</option>
+  </select>
+  <label class="f" for="domain">Your domain, if you have one</label>
+  <input type="text" id="domain" name="domain" placeholder="e.g. yourbusiness.com">
+  <div class="hint">Own domain looks like app.yourbusiness.com. Free address looks like yourbusiness.netlify.app. Using your own domain means adding one setting where you bought it (GoDaddy, Squarespace, Wix and so on). I'll send you the exact step.</div>
   <label class="f" for="tone">Tone for your invoice and reminder emails</label>
   <select id="tone" name="tone"><option>Warm and friendly</option><option>Polished and professional</option><option>Short and direct</option></select>
 </section>
@@ -621,7 +636,7 @@ form.addEventListener('submit', async e => {
   const setup = JSON.stringify(cfg, null, 2);
   const btn = $('#sendBtn'); btn.disabled = true; btn.textContent = 'Sending…';
   const extra = { feeLookup: $('#feeLookup').checked ? 'YES — look up state fees' : 'no', deposit: val('deposit'), structure: val('structure'), quarterly: val('quarterly'),
-    accountant: val('accountant'), acctFormat: val('acctFormat'), delivery: val('delivery'), tone: val('tone'), ronPlatform: val('ronPlatform'), depoCos: val('depoCos'),
+    accountant: val('accountant'), acctFormat: val('acctFormat'), delivery: val('delivery'), webAddr: val('webAddr'), domain: val('domain'), tone: val('tone'), ronPlatform: val('ronPlatform'), depoCos: val('depoCos'),
     payMethods: $$('input[name=payMethod]:checked').map(c=>c.value).join(', '), devices: $$('input[name=device]:checked').map(c=>c.value).join(', '),
     tools: $$('input[name=tool]:checked').map(c=>c.value).join(', '), monthlySpend: val('spend'), heard: val('heard'), wish: val('wish') };
   const payload = { access_key: WEB3FORMS_KEY, subject: 'Command Center Intake — ' + cfg.business.name, from_name: cfg.business.owner, replyto: cfg.business.email,
